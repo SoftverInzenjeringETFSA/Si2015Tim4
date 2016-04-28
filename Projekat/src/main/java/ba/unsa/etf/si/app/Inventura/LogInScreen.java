@@ -10,10 +10,13 @@ import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.Color;
 
 public class LogInScreen {
 
-	private JFrame frame;
+	private JFrame frmPrijavaNaSistem;
 	private JTextField textField;
 	private JPasswordField passwordField;
 
@@ -25,7 +28,7 @@ public class LogInScreen {
 			public void run() {
 				try {
 					LogInScreen window = new LogInScreen();
-					window.frame.setVisible(true);
+					window.frmPrijavaNaSistem.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -44,41 +47,45 @@ public class LogInScreen {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 260, 215);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmPrijavaNaSistem = new JFrame();
+		frmPrijavaNaSistem.getContentPane().setBackground(new Color(255, 255, 255));
+		frmPrijavaNaSistem.setBackground(Color.DARK_GRAY);
+		frmPrijavaNaSistem.setTitle("Prijava na sistem");
+		frmPrijavaNaSistem.setBounds(100, 100, 260, 207);
+		frmPrijavaNaSistem.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JLabel lblKorisnikoIme = new JLabel("Korisničko ime:");
 		
-		JLabel lblLozinka = new JLabel("Lozinka");
+		JLabel lblLozinka = new JLabel("Lozinka:");
 		
 		textField = new JTextField();
 		textField.setColumns(10);
 		
 		passwordField = new JPasswordField();
 		
-		JButton btnPotvrdi = new JButton("Potvrdi");
-		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
+		JButton btnPotvrdi = new JButton("Prijava");
+		btnPotvrdi.setBackground(new Color(143, 188, 143));
+		btnPotvrdi.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		GroupLayout groupLayout = new GroupLayout(frmPrijavaNaSistem.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+					.addContainerGap(68, Short.MAX_VALUE)
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+						.addComponent(btnPotvrdi)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addGroup(groupLayout.createSequentialGroup()
-									.addGap(43)
-									.addComponent(lblLozinka))
-								.addGroup(groupLayout.createSequentialGroup()
-									.addContainerGap()
-									.addComponent(lblKorisnikoIme, GroupLayout.PREFERRED_SIZE, 88, GroupLayout.PREFERRED_SIZE)))
-							.addPreferredGap(ComponentPlacement.RELATED)
 							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-								.addComponent(passwordField, GroupLayout.PREFERRED_SIZE, 96, GroupLayout.PREFERRED_SIZE)
-								.addComponent(textField, GroupLayout.PREFERRED_SIZE, 94, GroupLayout.PREFERRED_SIZE)))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(79)
-							.addComponent(btnPotvrdi)))
-					.addContainerGap(46, Short.MAX_VALUE))
+								.addComponent(lblKorisnikoIme)
+								.addComponent(lblLozinka, GroupLayout.PREFERRED_SIZE, 44, GroupLayout.PREFERRED_SIZE))
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
+								.addComponent(textField)
+								.addComponent(passwordField, GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE))
+							.addPreferredGap(ComponentPlacement.RELATED)))
+					.addGap(39))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -90,11 +97,11 @@ public class LogInScreen {
 					.addGap(18)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblLozinka)
-						.addComponent(passwordField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(27)
+						.addComponent(passwordField, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE))
+					.addGap(26)
 					.addComponent(btnPotvrdi)
-					.addGap(20))
+					.addGap(21))
 		);
-		frame.getContentPane().setLayout(groupLayout);
+		frmPrijavaNaSistem.getContentPane().setLayout(groupLayout);
 	}
 }
