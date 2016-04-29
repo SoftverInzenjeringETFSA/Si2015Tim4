@@ -11,6 +11,7 @@ import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import java.awt.Color;
 
 public class ModifikacijaArtiklaGUI {
 
@@ -47,11 +48,13 @@ public class ModifikacijaArtiklaGUI {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.getContentPane().setBackground(new Color(255, 255, 255));
 		frame.setBounds(100, 100, 459, 357);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Modifikacija artikla");
+		lblNewLabel.setForeground(new Color(0, 128, 0));
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.LEFT);
 		lblNewLabel.setVerticalAlignment(SwingConstants.BOTTOM);
@@ -59,10 +62,10 @@ public class ModifikacijaArtiklaGUI {
 		frame.getContentPane().add(lblNewLabel);
 		
 		JLabel lblImePrijavljenogKorisnika = new JLabel("ime prijavljenog korisnika");
-		lblImePrijavljenogKorisnika.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblImePrijavljenogKorisnika.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblImePrijavljenogKorisnika.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblImePrijavljenogKorisnika.setVerticalAlignment(SwingConstants.BOTTOM);
-		lblImePrijavljenogKorisnika.setBounds(200, 31, 214, 37);
+		lblImePrijavljenogKorisnika.setBounds(280, 11, 134, 37);
 		frame.getContentPane().add(lblImePrijavljenogKorisnika);
 		
 		JSeparator separator = new JSeparator();

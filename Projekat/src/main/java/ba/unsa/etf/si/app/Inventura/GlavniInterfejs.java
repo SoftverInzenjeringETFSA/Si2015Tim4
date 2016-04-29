@@ -101,7 +101,7 @@ public class GlavniInterfejs {
 		JLabel lblKorisnikoIme = new JLabel("Korisničko ime");
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(21, 11, 279, 199);
+		scrollPane.setBounds(21, 11, 279, 320);
 		frame.getContentPane().add(scrollPane);
 		
 		table = new JTable();

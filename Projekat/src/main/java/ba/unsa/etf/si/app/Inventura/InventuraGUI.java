@@ -80,6 +80,7 @@ public class InventuraGUI {
 		frame.getContentPane().setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Novi popis robe");
+		lblNewLabel.setForeground(new Color(0, 128, 0));
 		lblNewLabel.setVerticalAlignment(SwingConstants.TOP);
 		lblNewLabel.setHorizontalAlignment(SwingConstants.LEFT);
 		lblNewLabel.setBackground(new Color(240, 240, 240));

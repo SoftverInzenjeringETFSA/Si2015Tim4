@@ -28,6 +28,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JFrame;
 import javax.swing.JFrame;
 import javax.swing.JList;
+import java.awt.Color;
 
 public class ProsireniInterfejsGUI {
 
@@ -85,6 +86,7 @@ public class ProsireniInterfejsGUI {
 		));
 		
 		final JLabel lblDokument = new JLabel("Novi ulazni dokument");
+		lblDokument.setForeground(new Color(0, 128, 0));
 		lblDokument.setVerticalAlignment(SwingConstants.TOP);
 		lblDokument.setHorizontalAlignment(SwingConstants.LEFT);
 		lblDokument.setFont(new Font("Tahoma", Font.PLAIN, 20));
