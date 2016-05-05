@@ -33,11 +33,6 @@ import java.awt.Color;
 public class ProsireniInterfejsGUI {
 
 	private JFrame frame;
-	private JTable table;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
 
 	/**
 	 * Launch the application.
@@ -67,201 +62,63 @@ public class ProsireniInterfejsGUI {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 887, 647);
+		frame.setBounds(100, 100, 419, 403);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(20, 24, 272, 539);
-		frame.getContentPane().add(scrollPane);
-		
-		table = new JTable();
-		scrollPane.setViewportView(table);
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-			},
-			new String[] {
-				"ID", "Naziv proizvoda", "Koli\u010Dina"
-			}
-		));
-		
-		final JLabel lblDokument = new JLabel("Novi ulazni dokument");
-		lblDokument.setForeground(new Color(0, 128, 0));
-		lblDokument.setVerticalAlignment(SwingConstants.TOP);
-		lblDokument.setHorizontalAlignment(SwingConstants.LEFT);
-		lblDokument.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblDokument.setBackground(SystemColor.menu);
-		lblDokument.setBounds(329, 24, 289, 39);
-		frame.getContentPane().add(lblDokument);
-		
 		JSeparator separator = new JSeparator();
-		separator.setBounds(329, 72, 289, 2);
+		separator.setBounds(21, 72, 361, 2);
 		frame.getContentPane().add(separator);
-		
-		textField = new JTextField();
-		textField.setColumns(10);
-		textField.setBounds(415, 102, 203, 20);
-		frame.getContentPane().add(textField);
-		
-		JLabel label_1 = new JLabel("Artikal ID:");
-		label_1.setVerticalAlignment(SwingConstants.BOTTOM);
-		label_1.setHorizontalAlignment(SwingConstants.RIGHT);
-		label_1.setBounds(341, 98, 63, 21);
-		frame.getContentPane().add(label_1);
-		
-		JLabel label_2 = new JLabel("Naziv artikla:");
-		label_2.setVerticalAlignment(SwingConstants.BOTTOM);
-		label_2.setHorizontalAlignment(SwingConstants.RIGHT);
-		label_2.setBounds(329, 133, 75, 21);
-		frame.getContentPane().add(label_2);
-		
-		textField_1 = new JTextField();
-		textField_1.setHorizontalAlignment(SwingConstants.LEFT);
-		textField_1.setColumns(10);
-		textField_1.setBounds(415, 134, 203, 20);
-		frame.getContentPane().add(textField_1);
-		
-		JLabel label_3 = new JLabel("Klasa artikla:");
-		label_3.setVerticalAlignment(SwingConstants.BOTTOM);
-		label_3.setHorizontalAlignment(SwingConstants.RIGHT);
-		label_3.setBounds(329, 165, 75, 21);
-		frame.getContentPane().add(label_3);
-		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(415, 169, 203, 20);
-		frame.getContentPane().add(comboBox);
-		
-		JLabel lblProdaja = new JLabel("Prodaja:");
-		lblProdaja.setVerticalAlignment(SwingConstants.BOTTOM);
-		lblProdaja.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblProdaja.setBounds(329, 200, 75, 21);
-		frame.getContentPane().add(lblProdaja);
-		
-		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setBounds(415, 204, 203, 20);
-		frame.getContentPane().add(comboBox_1);
-		
-		JLabel lblKoliina = new JLabel("Koli\u010Dina:");
-		lblKoliina.setVerticalAlignment(SwingConstants.BOTTOM);
-		lblKoliina.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblKoliina.setBounds(329, 244, 75, 21);
-		frame.getContentPane().add(lblKoliina);
-		
-		textField_2 = new JTextField();
-		textField_2.setHorizontalAlignment(SwingConstants.LEFT);
-		textField_2.setColumns(10);
-		textField_2.setBounds(415, 245, 102, 20);
-		frame.getContentPane().add(textField_2);
-		
-		JComboBox comboBox_2 = new JComboBox();
-		comboBox_2.setBounds(525, 241, 93, 27);
-		frame.getContentPane().add(comboBox_2);
-		
-		JLabel lblCijena = new JLabel("Cijena:");
-		lblCijena.setVerticalAlignment(SwingConstants.BOTTOM);
-		lblCijena.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblCijena.setBounds(329, 281, 75, 21);
-		frame.getContentPane().add(lblCijena);
-		
-		textField_3 = new JTextField();
-		textField_3.setHorizontalAlignment(SwingConstants.LEFT);
-		textField_3.setColumns(10);
-		textField_3.setBounds(415, 282, 102, 20);
-		frame.getContentPane().add(textField_3);
-		
-		JLabel lblKm = new JLabel("KM");
-		lblKm.setHorizontalAlignment(SwingConstants.LEFT);
-		lblKm.setVerticalAlignment(SwingConstants.BOTTOM);
-		lblKm.setBounds(525, 288, 46, 14);
-		frame.getContentPane().add(lblKm);
-		
-		JComboBox comboBox_3 = new JComboBox();
-		comboBox_3.setBounds(415, 343, 203, 20);
-		frame.getContentPane().add(comboBox_3);
-		
-		JLabel lblTipDokumenta = new JLabel("Tip dokumenta:");
-		lblTipDokumenta.setVerticalAlignment(SwingConstants.BOTTOM);
-		lblTipDokumenta.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblTipDokumenta.setBounds(311, 339, 93, 21);
-		frame.getContentPane().add(lblTipDokumenta);
-		
-		JTextArea textArea = new JTextArea();
-		textArea.setBounds(329, 394, 289, 95);
-		frame.getContentPane().add(textArea);
-		
-		JLabel lblKomentar = new JLabel("Komentar:");
-		lblKomentar.setHorizontalAlignment(SwingConstants.LEFT);
-		lblKomentar.setVerticalAlignment(SwingConstants.BOTTOM);
-		lblKomentar.setBounds(329, 369, 63, 14);
-		frame.getContentPane().add(lblKomentar);
-		
-		JButton button = new JButton("<< Dodaj artikal");
-		button.setBounds(329, 540, 122, 23);
-		frame.getContentPane().add(button);
-		
-		JButton btnZakljuiDokument = new JButton("Zaklju\u010Di dokument");
-		btnZakljuiDokument.setBounds(475, 540, 143, 23);
-		frame.getContentPane().add(btnZakljuiDokument);
-		
-		JList list = new JList();
-		list.setBounds(658, 102, 187, 387);
-		frame.getContentPane().add(list);
-		
-		JSeparator separator_1 = new JSeparator();
-		separator_1.setBounds(658, 72, 187, 2);
-		frame.getContentPane().add(separator_1);
 		
 		JLabel label = new JLabel("ime prijavljenog korisnika");
 		label.setVerticalAlignment(SwingConstants.BOTTOM);
 		label.setHorizontalAlignment(SwingConstants.RIGHT);
-		label.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		label.setBounds(631, 31, 214, 37);
+		label.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		label.setBounds(260, 11, 122, 20);
 		frame.getContentPane().add(label);
 		
-		JLabel lblUestvujuUKreiranju = new JLabel("U\u010Destvuju u kreiranju dokumenta:");
-		lblUestvujuUKreiranju.setHorizontalAlignment(SwingConstants.LEFT);
-		lblUestvujuUKreiranju.setBounds(658, 85, 214, 14);
-		frame.getContentPane().add(lblUestvujuUKreiranju);
+		JList list = new JList();
+		list.setBounds(21, 97, 361, 235);
+		frame.getContentPane().add(list);
 		
 		JMenuBar menuBar = new JMenuBar();
 		frame.setJMenuBar(menuBar);
 		
-		JMenu mnSistem = new JMenu("Sistem");
-		menuBar.add(mnSistem);
+		JMenu mnInventura = new JMenu("Inventura");
+		menuBar.add(mnInventura);
 		
-		JMenu mnNovi = new JMenu("Novi");
-		mnSistem.add(mnNovi);
+		JMenuItem mntmZaponiNovu = new JMenuItem("Započni novu");
+		mnInventura.add(mntmZaponiNovu);
 		
-		JMenuItem mntmUlazniDokument = new JMenuItem("Ulazni dokument");
-		mntmUlazniDokument.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				lblDokument.setText("Novi ulazni dokument");
-			}
-		});
-		mnNovi.add(mntmUlazniDokument);
+		JMenuItem mntmPregledZavrenih = new JMenuItem("Pregled završenih");
+		mnInventura.add(mntmPregledZavrenih);
 		
-		JMenuItem mntmIzlazniDokument = new JMenuItem("Izlazni dokument");
-		mntmIzlazniDokument.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				lblDokument.setText("Novi izlazni dokument");
-			}
-		});
-		mnNovi.add(mntmIzlazniDokument);
+		JMenu mnSkladite = new JMenu("Skladište");
+		menuBar.add(mnSkladite);
 		
-		JMenuItem mntmInventura = new JMenuItem("Inventura");
-		mnNovi.add(mntmInventura);
+		JMenuItem mntmPregledStanjaNa = new JMenuItem("Pregled stanja na skadištu");
+		mnSkladite.add(mntmPregledStanjaNa);
 		
-		JMenuBar menuBar_2 = new JMenuBar();
-		mnNovi.add(menuBar_2);
+		JMenu mnDokumenti = new JMenu("Dokumenti");
+		menuBar.add(mnDokumenti);
 		
-		JMenuItem mntmOdjava = new JMenuItem("Odjava");
-		mnSistem.add(mntmOdjava);
+		JMenuItem mntmKreirajIzlazniDokument_1 = new JMenuItem("Kreiraj izlazni dokument");
+		mnDokumenti.add(mntmKreirajIzlazniDokument_1);
 		
-		JMenuBar menuBar_1 = new JMenuBar();
-		mnSistem.add(menuBar_1);
+		JMenuItem mntmKreiraj = new JMenuItem("Kreiraj dokument otpisa");
+		mnDokumenti.add(mntmKreiraj);
 		
-		JMenu mnPostavke = new JMenu("Postavke");
-		menuBar.add(mnPostavke);
+		JMenuItem mntmPregledKreiranihDokumenata = new JMenuItem("Pregled dokumenata viška");
+		mnDokumenti.add(mntmPregledKreiranihDokumenata);
+		
+		JMenuItem mntmPregledDokumenataManjka = new JMenuItem("Pregled dokumenata manjka");
+		mnDokumenti.add(mntmPregledDokumenataManjka);
+		
+		JMenuItem mntmPregledDokumenataOtpisa = new JMenuItem("Pregled dokumenata otpisa");
+		mnDokumenti.add(mntmPregledDokumenataOtpisa);
+		
+		JMenuItem mntmPregledIzlaznihDokumenata = new JMenuItem("Pregled izlaznih dokumenata");
+		mnDokumenti.add(mntmPregledIzlaznihDokumenata);
 		
 		JMenu mnAdministracija = new JMenu("Administracija");
 		menuBar.add(mnAdministracija);
@@ -299,10 +156,17 @@ public class ProsireniInterfejsGUI {
 		JMenuItem mntmBrisanje_1 = new JMenuItem("Brisanje");
 		mnKorisnici.add(mntmBrisanje_1);
 		
-		JMenuBar menuBar_5 = new JMenuBar();
-		mnKorisnici.add(menuBar_5);
+		JMenu mnNewMenu = new JMenu("Postavke");
+		menuBar.add(mnNewMenu);
 		
-		JMenuBar menuBar_3 = new JMenuBar();
-		mnAdministracija.add(menuBar_3);
+		JMenuItem mntmNewMenuItem_2 = new JMenuItem("Promijeni lozinku");
+		mnNewMenu.add(mntmNewMenuItem_2);
+		
+		JMenu mnSistem = new JMenu("Sistem");
+		menuBar.add(mnSistem);
+		
+		JMenuItem mntmNewMenuItem = new JMenuItem("Odjava");
+		mnSistem.add(mntmNewMenuItem);
+		
 	}
 }

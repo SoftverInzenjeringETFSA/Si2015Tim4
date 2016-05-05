@@ -111,9 +111,9 @@ public class InventuraGUI {
 		btnDodajArtikal.setBounds(393, 198, 122, 23);
 		frame.getContentPane().add(btnDodajArtikal);
 		
-		JButton button_1 = new JButton("Zaklju\u010Di dokument");
-		button_1.setBounds(484, 246, 143, 23);
-		frame.getContentPane().add(button_1);
+		JButton btnZakljuiIObraunaj = new JButton("Zaključi i obračunaj");
+		btnZakljuiIObraunaj.setBounds(484, 246, 143, 23);
+		frame.getContentPane().add(btnZakljuiIObraunaj);
 		
 		JLabel label_4 = new JLabel("ime prijavljenog korisnika");
 		label_4.setVerticalAlignment(SwingConstants.BOTTOM);

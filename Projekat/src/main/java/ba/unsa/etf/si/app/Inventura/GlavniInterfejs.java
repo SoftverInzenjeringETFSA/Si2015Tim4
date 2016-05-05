@@ -60,15 +60,6 @@ public class GlavniInterfejs {
 		JMenuBar menuBar = new JMenuBar();
 		frame.setJMenuBar(menuBar);
 		
-		JMenu mnSistem = new JMenu("Sistem");
-		menuBar.add(mnSistem);
-		
-		JMenuItem mntmKreirajIzlazniDokument = new JMenuItem("Kreiraj izlazni dokument");
-		mnSistem.add(mntmKreirajIzlazniDokument);
-		
-		JMenuItem mntmNewMenuItem = new JMenuItem("Odjava");
-		mnSistem.add(mntmNewMenuItem);
-		
 		JMenu mnInventura = new JMenu("Inventura");
 		menuBar.add(mnInventura);
 		
@@ -87,14 +78,35 @@ public class GlavniInterfejs {
 		JMenu mnDokumenti = new JMenu("Dokumenti");
 		menuBar.add(mnDokumenti);
 		
-		JMenuItem mntmPregledKreiranihDokumenata = new JMenuItem("Pregled kreiranih dokumenata");
+		JMenuItem mntmKreirajIzlazniDokument_1 = new JMenuItem("Kreiraj izlazni dokument");
+		mnDokumenti.add(mntmKreirajIzlazniDokument_1);
+		
+		JMenuItem mntmKreiraj = new JMenuItem("Kreiraj dokument otpisa");
+		mnDokumenti.add(mntmKreiraj);
+		
+		JMenuItem mntmPregledKreiranihDokumenata = new JMenuItem("Pregled dokumenata viška");
 		mnDokumenti.add(mntmPregledKreiranihDokumenata);
+		
+		JMenuItem mntmPregledDokumenataManjka = new JMenuItem("Pregled dokumenata manjka");
+		mnDokumenti.add(mntmPregledDokumenataManjka);
+		
+		JMenuItem mntmPregledDokumenataOtpisa = new JMenuItem("Pregled dokumenata otpisa");
+		mnDokumenti.add(mntmPregledDokumenataOtpisa);
+		
+		JMenuItem mntmPregledIzlaznihDokumenata = new JMenuItem("Pregled izlaznih dokumenata");
+		mnDokumenti.add(mntmPregledIzlaznihDokumenata);
 		
 		JMenu mnNewMenu = new JMenu("Postavke");
 		menuBar.add(mnNewMenu);
 		
 		JMenuItem mntmNewMenuItem_2 = new JMenuItem("Promijeni lozinku");
 		mnNewMenu.add(mntmNewMenuItem_2);
+		
+		JMenu mnSistem = new JMenu("Sistem");
+		menuBar.add(mnSistem);
+		
+		JMenuItem mntmNewMenuItem = new JMenuItem("Odjava");
+		mnSistem.add(mntmNewMenuItem);
 		
 		JLabel lblKorisnikoIme_1 = new JLabel("Korisničko ime");
 		

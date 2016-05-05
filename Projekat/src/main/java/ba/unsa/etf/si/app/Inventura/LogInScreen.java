@@ -13,6 +13,8 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
+import java.awt.SystemColor;
+import java.awt.Font;
 
 public class LogInScreen {
 
@@ -48,7 +50,7 @@ public class LogInScreen {
 	 */
 	private void initialize() {
 		frmPrijavaNaSistem = new JFrame();
-		frmPrijavaNaSistem.getContentPane().setBackground(new Color(255, 255, 255));
+		frmPrijavaNaSistem.getContentPane().setBackground(SystemColor.control);
 		frmPrijavaNaSistem.setBackground(Color.DARK_GRAY);
 		frmPrijavaNaSistem.setTitle("Prijava na sistem");
 		frmPrijavaNaSistem.setBounds(100, 100, 260, 207);
@@ -69,38 +71,49 @@ public class LogInScreen {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
+		
+		JLabel lblNewLabel = new JLabel("Dobrodošli");
+		lblNewLabel.setForeground(new Color(0, 128, 0));
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		GroupLayout groupLayout = new GroupLayout(frmPrijavaNaSistem.getContentPane());
 		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
+			groupLayout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap(68, Short.MAX_VALUE)
 					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-						.addComponent(btnPotvrdi)
 						.addGroup(groupLayout.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(btnPotvrdi))
+						.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+							.addGap(18)
 							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 								.addComponent(lblKorisnikoIme)
 								.addComponent(lblLozinka, GroupLayout.PREFERRED_SIZE, 44, GroupLayout.PREFERRED_SIZE))
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
-								.addComponent(textField)
-								.addComponent(passwordField, GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE))
-							.addPreferredGap(ComponentPlacement.RELATED)))
-					.addGap(39))
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(passwordField, GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
+								.addComponent(textField, GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE))))
+					.addGap(33))
+				.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+					.addGap(77)
+					.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(87, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
+			groupLayout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(48)
+					.addGap(20)
+					.addComponent(lblNewLabel)
+					.addGap(30)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblKorisnikoIme, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+						.addComponent(lblKorisnikoIme, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(passwordField, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblLozinka))
 					.addGap(18)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblLozinka)
-						.addComponent(passwordField, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE))
-					.addGap(26)
 					.addComponent(btnPotvrdi)
-					.addGap(21))
+					.addContainerGap())
 		);
 		frmPrijavaNaSistem.getContentPane().setLayout(groupLayout);
 	}
