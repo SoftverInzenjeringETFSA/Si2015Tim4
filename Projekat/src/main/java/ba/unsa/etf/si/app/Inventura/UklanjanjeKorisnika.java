@@ -9,6 +9,7 @@ import java.awt.Font;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import java.awt.SystemColor;
 
 public class UklanjanjeKorisnika {
 
@@ -43,10 +44,10 @@ public class UklanjanjeKorisnika {
 	 */
 	private void initialize() {
 		frmUklanjanjeKorisnika = new JFrame();
-		frmUklanjanjeKorisnika.getContentPane().setBackground(new Color(255, 255, 255));
+		frmUklanjanjeKorisnika.getContentPane().setBackground(SystemColor.control);
 		frmUklanjanjeKorisnika.setTitle("Uklanjanje korisnika");
 		frmUklanjanjeKorisnika.setBackground(new Color(255, 255, 255));
-		frmUklanjanjeKorisnika.setBounds(100, 100, 450, 300);
+		frmUklanjanjeKorisnika.setBounds(100, 100, 390, 238);
 		frmUklanjanjeKorisnika.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmUklanjanjeKorisnika.getContentPane().setLayout(null);
 		
@@ -54,7 +55,7 @@ public class UklanjanjeKorisnika {
 		lblUklanjanjeKorisnika.setForeground(new Color(0, 128, 0));
 		lblUklanjanjeKorisnika.setBackground(new Color(0, 128, 0));
 		lblUklanjanjeKorisnika.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblUklanjanjeKorisnika.setBounds(42, 44, 148, 20);
+		lblUklanjanjeKorisnika.setBounds(23, 44, 148, 20);
 		frmUklanjanjeKorisnika.getContentPane().add(lblUklanjanjeKorisnika);
 		
 		JLabel lblImePrijavljenogKorisnika = new JLabel("ime prijavljenog korisnika");
@@ -65,24 +66,24 @@ public class UklanjanjeKorisnika {
 		
 		JSeparator separator = new JSeparator();
 		separator.setForeground(new Color(0, 0, 0));
-		separator.setBounds(42, 75, 350, 2);
+		separator.setBounds(10, 75, 350, 2);
 		frmUklanjanjeKorisnika.getContentPane().add(separator);
 		
 		JLabel lblKorisnikoIme = new JLabel("Korisničko ime:");
-		lblKorisnikoIme.setBounds(85, 100, 79, 14);
+		lblKorisnikoIme.setBounds(33, 100, 79, 14);
 		frmUklanjanjeKorisnika.getContentPane().add(lblKorisnikoIme);
 		
 		textField = new JTextField();
-		textField.setBounds(188, 97, 204, 20);
+		textField.setBounds(122, 97, 204, 20);
 		frmUklanjanjeKorisnika.getContentPane().add(textField);
 		textField.setColumns(10);
 		
-		JButton btnZavri = new JButton("Završi");
-		btnZavri.setBounds(42, 190, 89, 23);
+		JButton btnZavri = new JButton("Odustani");
+		btnZavri.setBounds(52, 139, 89, 23);
 		frmUklanjanjeKorisnika.getContentPane().add(btnZavri);
 		
 		JButton btnUkloni = new JButton("Ukloni");
-		btnUkloni.setBounds(303, 190, 89, 23);
+		btnUkloni.setBounds(188, 139, 89, 23);
 		frmUklanjanjeKorisnika.getContentPane().add(btnUkloni);
 	}
 

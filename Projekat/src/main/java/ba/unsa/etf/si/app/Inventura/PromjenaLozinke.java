@@ -13,6 +13,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
+import java.awt.SystemColor;
 
 public class PromjenaLozinke {
 
@@ -50,7 +51,7 @@ public class PromjenaLozinke {
 	private void initialize() {
 		frmPromjenaLozinke = new JFrame();
 		frmPromjenaLozinke.setTitle("Promjena lozinke");
-		frmPromjenaLozinke.getContentPane().setBackground(new Color(255, 255, 255));
+		frmPromjenaLozinke.getContentPane().setBackground(SystemColor.control);
 		
 		JLabel lblNewLabel = new JLabel("Promjena lozinke");
 		lblNewLabel.setForeground(new Color(0, 128, 0));

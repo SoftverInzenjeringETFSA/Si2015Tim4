@@ -19,11 +19,12 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.JList;
+import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class GlavniInterfejs {
 
 	private JFrame frame;
-	private JTable table;
 
 	/**
 	 * Launch the application.
@@ -53,7 +54,7 @@ public class GlavniInterfejs {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 537, 428);
+		frame.setBounds(100, 100, 406, 283);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JMenuBar menuBar = new JMenuBar();
@@ -62,17 +63,32 @@ public class GlavniInterfejs {
 		JMenu mnSistem = new JMenu("Sistem");
 		menuBar.add(mnSistem);
 		
-		JMenu mnNovi = new JMenu("Novi");
-		mnSistem.add(mnNovi);
-		
-		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Izlazni dokument");
-		mnNovi.add(mntmNewMenuItem_1);
-		
-		JMenuItem mntmInventura = new JMenuItem("Inventura");
-		mnNovi.add(mntmInventura);
+		JMenuItem mntmKreirajIzlazniDokument = new JMenuItem("Kreiraj izlazni dokument");
+		mnSistem.add(mntmKreirajIzlazniDokument);
 		
 		JMenuItem mntmNewMenuItem = new JMenuItem("Odjava");
 		mnSistem.add(mntmNewMenuItem);
+		
+		JMenu mnInventura = new JMenu("Inventura");
+		menuBar.add(mnInventura);
+		
+		JMenuItem mntmZaponiNovu = new JMenuItem("Započni novu");
+		mnInventura.add(mntmZaponiNovu);
+		
+		JMenuItem mntmPregledZavrenih = new JMenuItem("Pregled završenih");
+		mnInventura.add(mntmPregledZavrenih);
+		
+		JMenu mnSkladite = new JMenu("Skladište");
+		menuBar.add(mnSkladite);
+		
+		JMenuItem mntmPregledStanjaNa = new JMenuItem("Pregled stanja na skadištu");
+		mnSkladite.add(mntmPregledStanjaNa);
+		
+		JMenu mnDokumenti = new JMenu("Dokumenti");
+		menuBar.add(mnDokumenti);
+		
+		JMenuItem mntmPregledKreiranihDokumenata = new JMenuItem("Pregled kreiranih dokumenata");
+		mnDokumenti.add(mntmPregledKreiranihDokumenata);
 		
 		JMenu mnNewMenu = new JMenu("Postavke");
 		menuBar.add(mnNewMenu);
@@ -81,41 +97,39 @@ public class GlavniInterfejs {
 		mnNewMenu.add(mntmNewMenuItem_2);
 		
 		JLabel lblKorisnikoIme_1 = new JLabel("Korisničko ime");
+		
+		JList list = new JList();
+		
+		JList list_1 = new JList();
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
-					.addContainerGap(431, Short.MAX_VALUE)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap(280, Short.MAX_VALUE)
 					.addComponent(lblKorisnikoIme_1)
 					.addGap(44))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(52)
+					.addComponent(list, GroupLayout.PREFERRED_SIZE, 1, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(337, Short.MAX_VALUE))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(20)
+					.addComponent(list_1, GroupLayout.PREFERRED_SIZE, 345, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(25, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addComponent(lblKorisnikoIme_1)
-					.addContainerGap(354, Short.MAX_VALUE))
-				
+					.addGap(31)
+					.addComponent(list_1, GroupLayout.PREFERRED_SIZE, 156, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(list, GroupLayout.PREFERRED_SIZE, 1, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(15, Short.MAX_VALUE))
 		);
 		frame.getContentPane().setLayout(groupLayout);
 		
 		JLabel lblKorisnikoIme = new JLabel("Korisničko ime");
-		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(21, 11, 279, 320);
-		frame.getContentPane().add(scrollPane);
-		
-		table = new JTable();
-		scrollPane.setViewportView(table);
-		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		table.setShowVerticalLines(false);
-		table.setShowHorizontalLines(false);
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-			},
-			new String[] {
-				"ID", "Naziv proizvoda", "Koli\u010Dina"
-			}
-		));
 		
 		
 	}

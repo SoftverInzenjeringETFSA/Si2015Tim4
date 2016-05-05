@@ -12,12 +12,16 @@ import javax.swing.JComboBox;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import java.awt.Color;
+import javax.swing.JList;
+import java.awt.SystemColor;
 
 public class ModifikacijaArtiklaGUI {
 
 	private JFrame frame;
-	private JTextField textField;
 	private JTextField textField_1;
+	private JTextField textField;
+	private JTextField textField_2;
+	private JTextField textField_3;
 
 	/**
 	 * Launch the application.
@@ -48,8 +52,8 @@ public class ModifikacijaArtiklaGUI {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.getContentPane().setBackground(new Color(255, 255, 255));
-		frame.setBounds(100, 100, 459, 357);
+		frame.getContentPane().setBackground(SystemColor.control);
+		frame.setBounds(100, 100, 515, 384);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
@@ -65,61 +69,85 @@ public class ModifikacijaArtiklaGUI {
 		lblImePrijavljenogKorisnika.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblImePrijavljenogKorisnika.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblImePrijavljenogKorisnika.setVerticalAlignment(SwingConstants.BOTTOM);
-		lblImePrijavljenogKorisnika.setBounds(280, 11, 134, 37);
+		lblImePrijavljenogKorisnika.setBounds(304, 11, 134, 37);
 		frame.getContentPane().add(lblImePrijavljenogKorisnika);
 		
 		JSeparator separator = new JSeparator();
-		separator.setBounds(24, 80, 390, 7);
+		separator.setBounds(24, 80, 414, 7);
 		frame.getContentPane().add(separator);
 		
-		JLabel lblNewLabel_1 = new JLabel("Arikal ID:");
+		JLabel lblNewLabel_1 = new JLabel("Postojeći artikli:");
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblNewLabel_1.setVerticalAlignment(SwingConstants.BOTTOM);
-		lblNewLabel_1.setBounds(24, 111, 67, 14);
+		lblNewLabel_1.setBounds(10, 112, 89, 14);
 		frame.getContentPane().add(lblNewLabel_1);
 		
 		JLabel lblNazivArtikla = new JLabel("Naziv artikla:");
 		lblNazivArtikla.setVerticalAlignment(SwingConstants.BOTTOM);
 		lblNazivArtikla.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNazivArtikla.setBounds(111, 195, 79, 14);
+		lblNazivArtikla.setBounds(215, 129, 79, 14);
 		frame.getContentPane().add(lblNazivArtikla);
 		
 		JLabel lblKlasaArtikla = new JLabel("Klasa artikla:");
 		lblKlasaArtikla.setVerticalAlignment(SwingConstants.BOTTOM);
 		lblKlasaArtikla.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblKlasaArtikla.setBounds(111, 220, 79, 14);
+		lblKlasaArtikla.setBounds(215, 154, 79, 14);
 		frame.getContentPane().add(lblKlasaArtikla);
-		
-		textField = new JTextField();
-		textField.setBounds(101, 108, 214, 20);
-		frame.getContentPane().add(textField);
-		textField.setColumns(10);
 		
 		textField_1 = new JTextField();
 		textField_1.setColumns(10);
-		textField_1.setBounds(200, 192, 214, 20);
+		textField_1.setBounds(304, 126, 134, 20);
 		frame.getContentPane().add(textField_1);
 		
 		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(200, 217, 214, 20);
+		comboBox.setBounds(304, 151, 134, 20);
 		frame.getContentPane().add(comboBox);
 		
-		JButton btnPretraga = new JButton("Pretraga");
-		btnPretraga.setBounds(325, 107, 89, 23);
-		frame.getContentPane().add(btnPretraga);
-		
 		JButton btnSauvaj = new JButton("Sa\u010Duvaj");
-		btnSauvaj.setBounds(325, 268, 89, 23);
+		btnSauvaj.setBounds(365, 300, 89, 23);
 		frame.getContentPane().add(btnSauvaj);
 		
-		JButton btnZavri = new JButton("Zavr\u0161i");
-		btnZavri.setBounds(24, 268, 89, 23);
+		JButton btnZavri = new JButton("Odustani");
+		btnZavri.setBounds(221, 300, 89, 23);
 		frame.getContentPane().add(btnZavri);
 		
-		JCheckBox chckbxArtikalPronaen = new JCheckBox("Artikal prona\u0111en");
-		chckbxArtikalPronaen.setHorizontalAlignment(SwingConstants.RIGHT);
-		chckbxArtikalPronaen.setBounds(280, 152, 134, 23);
-		frame.getContentPane().add(chckbxArtikalPronaen);
+		JLabel lblBarKod = new JLabel("Bar kod:");
+		lblBarKod.setBounds(248, 179, 46, 14);
+		frame.getContentPane().add(lblBarKod);
+		
+		textField = new JTextField();
+		textField.setBounds(304, 176, 134, 20);
+		frame.getContentPane().add(textField);
+		textField.setColumns(10);
+		
+		JLabel lblNewLabel_2 = new JLabel("Količina:");
+		lblNewLabel_2.setBounds(248, 204, 46, 14);
+		frame.getContentPane().add(lblNewLabel_2);
+		
+		JLabel lblNewLabel_3 = new JLabel("Cijena:");
+		lblNewLabel_3.setBounds(248, 229, 46, 14);
+		frame.getContentPane().add(lblNewLabel_3);
+		
+		JLabel lblNewLabel_4 = new JLabel("Mjerna jedinica:");
+		lblNewLabel_4.setBounds(215, 254, 79, 14);
+		frame.getContentPane().add(lblNewLabel_4);
+		
+		textField_2 = new JTextField();
+		textField_2.setBounds(304, 201, 134, 20);
+		frame.getContentPane().add(textField_2);
+		textField_2.setColumns(10);
+		
+		textField_3 = new JTextField();
+		textField_3.setBounds(304, 226, 134, 20);
+		frame.getContentPane().add(textField_3);
+		textField_3.setColumns(10);
+		
+		JComboBox comboBox_1 = new JComboBox();
+		comboBox_1.setBounds(318, 251, 96, 20);
+		frame.getContentPane().add(comboBox_1);
+		
+		JList list = new JList();
+		list.setBounds(24, 136, 183, 187);
+		frame.getContentPane().add(list);
 	}
-
 }

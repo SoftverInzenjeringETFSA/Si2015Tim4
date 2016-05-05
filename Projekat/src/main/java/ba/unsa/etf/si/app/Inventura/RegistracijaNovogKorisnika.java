@@ -13,6 +13,7 @@ import javax.swing.JTextField;
 import javax.swing.JList;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
+import java.awt.SystemColor;
 
 public class RegistracijaNovogKorisnika {
 
@@ -49,7 +50,7 @@ public class RegistracijaNovogKorisnika {
 	private void initialize() {
 		frmRegistracijaNovogKorisnika = new JFrame();
 		frmRegistracijaNovogKorisnika.setTitle("Registracija korisnika");
-		frmRegistracijaNovogKorisnika.getContentPane().setBackground(new Color(255, 255, 255));
+		frmRegistracijaNovogKorisnika.getContentPane().setBackground(SystemColor.control);
 		frmRegistracijaNovogKorisnika.setBounds(100, 100, 450, 300);
 		frmRegistracijaNovogKorisnika.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmRegistracijaNovogKorisnika.getContentPane().setLayout(null);
@@ -64,7 +65,7 @@ public class RegistracijaNovogKorisnika {
 		JLabel lblImePrijavljenogKorisnika = new JLabel("ime prijavljenog korisnika");
 		lblImePrijavljenogKorisnika.setForeground(new Color(0, 0, 0));
 		lblImePrijavljenogKorisnika.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblImePrijavljenogKorisnika.setBounds(258, 11, 176, 14);
+		lblImePrijavljenogKorisnika.setBounds(289, 11, 176, 14);
 		frmRegistracijaNovogKorisnika.getContentPane().add(lblImePrijavljenogKorisnika);
 		
 		JSeparator separator = new JSeparator();
@@ -81,7 +82,7 @@ public class RegistracijaNovogKorisnika {
 		frmRegistracijaNovogKorisnika.getContentPane().add(textField);
 		textField.setColumns(10);
 		
-		JLabel lblNewLabel_1 = new JLabel("Nova lozinka:");
+		JLabel lblNewLabel_1 = new JLabel("Lozinka:");
 		lblNewLabel_1.setBounds(132, 142, 67, 14);
 		frmRegistracijaNovogKorisnika.getContentPane().add(lblNewLabel_1);
 		
@@ -99,13 +100,13 @@ public class RegistracijaNovogKorisnika {
 		comboBox.setBounds(226, 172, 152, 20);
 		frmRegistracijaNovogKorisnika.getContentPane().add(comboBox);
 		
-		JButton btnZavri = new JButton("Završi");
-		btnZavri.setBounds(43, 208, 89, 23);
+		JButton btnZavri = new JButton("Odustani");
+		btnZavri.setBounds(88, 227, 89, 23);
 		frmRegistracijaNovogKorisnika.getContentPane().add(btnZavri);
 		
 		JButton btnNewButton = new JButton("Registruj");
 		btnNewButton.setToolTipText("");
-		btnNewButton.setBounds(321, 208, 89, 23);
+		btnNewButton.setBounds(278, 227, 89, 23);
 		frmRegistracijaNovogKorisnika.getContentPane().add(btnNewButton);
 	}
 }

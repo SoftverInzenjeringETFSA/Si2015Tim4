@@ -11,13 +11,12 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
+import java.awt.SystemColor;
+import javax.swing.JList;
 
 public class ModifikacijaKorisnika {
 
 	private JFrame frmModifikacijaKorisnika;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
 
 	/**
 	 * Launch the application.
@@ -48,7 +47,7 @@ public class ModifikacijaKorisnika {
 	private void initialize() {
 		frmModifikacijaKorisnika = new JFrame();
 		frmModifikacijaKorisnika.setTitle("Modifikacija korisnika");
-		frmModifikacijaKorisnika.getContentPane().setBackground(new Color(255, 255, 255));
+		frmModifikacijaKorisnika.getContentPane().setBackground(SystemColor.control);
 		frmModifikacijaKorisnika.getContentPane().setLayout(null);
 		
 		JLabel lblModifikacijaKorisnika = new JLabel("Modifikacija korisnika");
@@ -60,7 +59,7 @@ public class ModifikacijaKorisnika {
 		JLabel lblImePrijavljenogKorisnika = new JLabel("ime prijavljenog korisnika");
 		lblImePrijavljenogKorisnika.setForeground(new Color(0, 0, 0));
 		lblImePrijavljenogKorisnika.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblImePrijavljenogKorisnika.setBounds(222, 21, 178, 14);
+		lblImePrijavljenogKorisnika.setBounds(265, 22, 178, 14);
 		frmModifikacijaKorisnika.getContentPane().add(lblImePrijavljenogKorisnika);
 		
 		JSeparator separator = new JSeparator();
@@ -68,57 +67,30 @@ public class ModifikacijaKorisnika {
 		separator.setBounds(43, 69, 341, 2);
 		frmModifikacijaKorisnika.getContentPane().add(separator);
 		
-		JLabel lblKorisnikoIme = new JLabel("Korisničko ime:");
-		lblKorisnikoIme.setBounds(43, 94, 80, 14);
+		JLabel lblKorisnikoIme = new JLabel("Registrovani korisnici:");
+		lblKorisnikoIme.setBounds(43, 94, 150, 14);
 		frmModifikacijaKorisnika.getContentPane().add(lblKorisnikoIme);
 		
-		textField = new JTextField();
-		textField.setBounds(146, 91, 141, 20);
-		frmModifikacijaKorisnika.getContentPane().add(textField);
-		textField.setColumns(10);
-		
-		JButton btnPretraga = new JButton("Pretraga");
-		btnPretraga.setBounds(297, 90, 89, 23);
-		frmModifikacijaKorisnika.getContentPane().add(btnPretraga);
-		
-		JCheckBox chckbxKorisnikPronaen = new JCheckBox("Korisnik pronađen");
-		chckbxKorisnikPronaen.setBounds(275, 141, 119, 23);
-		frmModifikacijaKorisnika.getContentPane().add(chckbxKorisnikPronaen);
-		
-		JLabel lblNovoKorisnikoIme = new JLabel("Novo korisničko ime:");
-		lblNovoKorisnikoIme.setBounds(43, 196, 119, 14);
-		frmModifikacijaKorisnika.getContentPane().add(lblNovoKorisnikoIme);
-		
-		textField_1 = new JTextField();
-		textField_1.setBounds(146, 193, 141, 20);
-		frmModifikacijaKorisnika.getContentPane().add(textField_1);
-		textField_1.setColumns(10);
-		
-		JLabel lblNovaLozinka = new JLabel("Nova lozinka:");
-		lblNovaLozinka.setBounds(77, 221, 64, 14);
-		frmModifikacijaKorisnika.getContentPane().add(lblNovaLozinka);
-		
-		textField_2 = new JTextField();
-		textField_2.setBounds(146, 218, 141, 20);
-		frmModifikacijaKorisnika.getContentPane().add(textField_2);
-		textField_2.setColumns(10);
-		
 		JLabel lblNivoPrivilegije = new JLabel("Nivo privilegije:");
-		lblNivoPrivilegije.setBounds(61, 246, 80, 14);
+		lblNivoPrivilegije.setBounds(231, 142, 80, 14);
 		frmModifikacijaKorisnika.getContentPane().add(lblNivoPrivilegije);
 		
 		JComboBox comboBox = new JComboBox();
 		comboBox.setToolTipText("Radnik\r\nŠef");
-		comboBox.setBounds(146, 243, 141, 20);
+		comboBox.setBounds(233, 175, 141, 20);
 		frmModifikacijaKorisnika.getContentPane().add(comboBox);
 		
-		JButton btnZavri = new JButton("Završi");
-		btnZavri.setBounds(22, 280, 89, 23);
+		JButton btnZavri = new JButton("Odustani");
+		btnZavri.setBounds(222, 280, 89, 23);
 		frmModifikacijaKorisnika.getContentPane().add(btnZavri);
 		
 		JButton btnSauvaj = new JButton("Sačuvaj");
-		btnSauvaj.setBounds(314, 280, 89, 23);
+		btnSauvaj.setBounds(330, 280, 89, 23);
 		frmModifikacijaKorisnika.getContentPane().add(btnSauvaj);
+		
+		JList list = new JList();
+		list.setBounds(43, 119, 150, 184);
+		frmModifikacijaKorisnika.getContentPane().add(list);
 		frmModifikacijaKorisnika.setBounds(100, 100, 445, 353);
 		frmModifikacijaKorisnika.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}

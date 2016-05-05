@@ -12,6 +12,7 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JSeparator;
+import java.awt.SystemColor;
 
 public class BrisanjeArtikla {
 
@@ -46,7 +47,7 @@ public class BrisanjeArtikla {
 	 */
 	private void initialize() {
 		frmUklanjanjeArtikla = new JFrame();
-		frmUklanjanjeArtikla.getContentPane().setBackground(new Color(255, 255, 255));
+		frmUklanjanjeArtikla.getContentPane().setBackground(SystemColor.control);
 		frmUklanjanjeArtikla.setTitle("Uklanjanje artikla");
 		frmUklanjanjeArtikla.setBounds(100, 100, 361, 205);
 		frmUklanjanjeArtikla.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -55,39 +56,43 @@ public class BrisanjeArtikla {
 		lblUklanjanjeArtikla.setForeground(new Color(0, 128, 0));
 		lblUklanjanjeArtikla.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		
-		JLabel lblArtikalId = new JLabel("Artikal ID:");
+		JLabel lblArtikalId = new JLabel("Unesite Bar kod artikla koji želite obrisati:");
 		
 		textField = new JTextField();
 		textField.setColumns(10);
 		
-		JButton btnNewButton = new JButton("Završi");
+		JButton btnNewButton = new JButton("Odustani");
 		btnNewButton.setBackground(new Color(143, 188, 143));
 		
-		JButton btnNewButton_1 = new JButton("Ukloni");
+		JButton btnNewButton_1 = new JButton("Obriši");
 		btnNewButton_1.setBackground(new Color(143, 188, 143));
 		
 		JSeparator separator = new JSeparator();
 		separator.setForeground(new Color(0, 0, 0));
 		GroupLayout groupLayout = new GroupLayout(frmUklanjanjeArtikla.getContentPane());
 		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+			groupLayout.createParallelGroup(Alignment.TRAILING)
+				.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
 					.addGap(36)
-					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-						.addComponent(separator, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-								.addGroup(groupLayout.createSequentialGroup()
-									.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-										.addComponent(lblArtikalId)
-										.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE))
-									.addGap(39))
-								.addComponent(lblUklanjanjeArtikla, GroupLayout.PREFERRED_SIZE, 128, GroupLayout.PREFERRED_SIZE))
-							.addPreferredGap(ComponentPlacement.RELATED, 6, Short.MAX_VALUE)
-							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+							.addComponent(lblUklanjanjeArtikla, GroupLayout.PREFERRED_SIZE, 128, GroupLayout.PREFERRED_SIZE)
+							.addContainerGap())
+						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+							.addGroup(groupLayout.createSequentialGroup()
+								.addComponent(lblArtikalId, GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
+								.addContainerGap())
+							.addGroup(groupLayout.createSequentialGroup()
+								.addComponent(separator, GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE)
+								.addGap(32))
+							.addGroup(groupLayout.createSequentialGroup()
+								.addComponent(textField, GroupLayout.PREFERRED_SIZE, 207, GroupLayout.PREFERRED_SIZE)
+								.addContainerGap())
+							.addGroup(groupLayout.createSequentialGroup()
+								.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE)
+								.addPreferredGap(ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
 								.addComponent(btnNewButton_1, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE)
-								.addComponent(textField, GroupLayout.PREFERRED_SIZE, 143, GroupLayout.PREFERRED_SIZE))))
-					.addGap(32))
+								.addGap(96)))))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -96,14 +101,14 @@ public class BrisanjeArtikla {
 					.addComponent(lblUklanjanjeArtikla, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(separator, GroupLayout.PREFERRED_SIZE, 2, GroupLayout.PREFERRED_SIZE)
-					.addGap(25)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(lblArtikalId)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addGap(21)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblArtikalId))
-					.addGap(32)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnNewButton_1)
-						.addComponent(btnNewButton))
+						.addComponent(btnNewButton)
+						.addComponent(btnNewButton_1))
 					.addContainerGap())
 		);
 		frmUklanjanjeArtikla.getContentPane().setLayout(groupLayout);
