@@ -28,9 +28,12 @@ import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.JTextArea;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.util.Date;
+import java.awt.event.ActionEvent;
 
 public class InventuraGUI {
-
+	int brojac=1;
 	private JFrame frame;
 	private JTextField textField_1;
 	private JTextField textField_2;
@@ -62,6 +65,7 @@ public class InventuraGUI {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		
 		frame = new JFrame();
 		frame.setBounds(100, 100, 698, 386);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -108,10 +112,25 @@ public class InventuraGUI {
 		frame.getContentPane().add(comboBox_2);
 		
 		JButton btnDodajArtikal = new JButton("Dodaj artikal");
+		btnDodajArtikal.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+			}
+		});
 		btnDodajArtikal.setBounds(393, 198, 122, 23);
 		frame.getContentPane().add(btnDodajArtikal);
 		
 		JButton btnZakljuiIObraunaj = new JButton("Zaključi i obračunaj");
+		btnZakljuiIObraunaj.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				Date d=new Date();
+				Inventura i=new Inventura(brojac,d,"Opis",1200,"Amra");
+				i.iskoristiInventuru(i);
+				brojac++;
+			}
+		});
+		
 		btnZakljuiIObraunaj.setBounds(484, 246, 143, 23);
 		frame.getContentPane().add(btnZakljuiIObraunaj);
 		
