@@ -13,15 +13,22 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import java.awt.Color;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
+
 import java.awt.SystemColor;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class ModifikacijaArtiklaGUI {
 
 	private JFrame frame;
-	private JTextField textField_1;
-	private JTextField textField;
-	private JTextField textField_2;
-	private JTextField textField_3;
+	private JTextField txtNaziv;
+	private JTextField txtBarkod;
+	private JTextField txtKolicina;
+	private JTextField txtCijena;
+	private JComboBox comboKlasa;
+	private JComboBox comboMjera;
+	private JList listArtikli;
 
 	/**
 	 * Launch the application.
@@ -51,6 +58,7 @@ public class ModifikacijaArtiklaGUI {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+
 		frame = new JFrame();
 		frame.getContentPane().setBackground(SystemColor.control);
 		frame.setBounds(100, 100, 515, 384);
@@ -94,31 +102,46 @@ public class ModifikacijaArtiklaGUI {
 		lblKlasaArtikla.setBounds(215, 154, 79, 14);
 		frame.getContentPane().add(lblKlasaArtikla);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(304, 126, 134, 20);
-		frame.getContentPane().add(textField_1);
+		txtNaziv = new JTextField();
+		txtNaziv.setColumns(10);
+		txtNaziv.setBounds(304, 126, 134, 20);
+		frame.getContentPane().add(txtNaziv);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(304, 151, 134, 20);
-		frame.getContentPane().add(comboBox);
+		comboKlasa = new JComboBox();
+		comboKlasa.setBounds(304, 151, 134, 20);
+		frame.getContentPane().add(comboKlasa);
 		
-		JButton btnSauvaj = new JButton("Sa\u010Duvaj");
-		btnSauvaj.setBounds(365, 300, 89, 23);
-		frame.getContentPane().add(btnSauvaj);
+		JButton btnSacuvaj = new JButton("Sa\u010Duvaj");
+		btnSacuvaj.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try{
+					izmjeniArtikal();
+				}
+				catch(Exception i){
+					JOptionPane.showMessageDialog(frame, i.getMessage());
+				}
+			}
+		});
+		btnSacuvaj.setBounds(365, 300, 89, 23);
+		frame.getContentPane().add(btnSacuvaj);
 		
-		JButton btnZavri = new JButton("Odustani");
-		btnZavri.setBounds(221, 300, 89, 23);
-		frame.getContentPane().add(btnZavri);
+		JButton btnZavrsi = new JButton("Odustani");
+		btnZavrsi.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				frame.dispose();
+			}
+		});
+		btnZavrsi.setBounds(221, 300, 89, 23);
+		frame.getContentPane().add(btnZavrsi);
 		
 		JLabel lblBarKod = new JLabel("Bar kod:");
 		lblBarKod.setBounds(248, 179, 46, 14);
 		frame.getContentPane().add(lblBarKod);
 		
-		textField = new JTextField();
-		textField.setBounds(304, 176, 134, 20);
-		frame.getContentPane().add(textField);
-		textField.setColumns(10);
+		txtBarkod = new JTextField();
+		txtBarkod.setBounds(304, 176, 134, 20);
+		frame.getContentPane().add(txtBarkod);
+		txtBarkod.setColumns(10);
 		
 		JLabel lblNewLabel_2 = new JLabel("Količina:");
 		lblNewLabel_2.setBounds(248, 204, 46, 14);
@@ -132,22 +155,39 @@ public class ModifikacijaArtiklaGUI {
 		lblNewLabel_4.setBounds(215, 254, 79, 14);
 		frame.getContentPane().add(lblNewLabel_4);
 		
-		textField_2 = new JTextField();
-		textField_2.setBounds(304, 201, 134, 20);
-		frame.getContentPane().add(textField_2);
-		textField_2.setColumns(10);
+		txtKolicina = new JTextField();
+		txtKolicina.setBounds(304, 201, 134, 20);
+		frame.getContentPane().add(txtKolicina);
+		txtKolicina.setColumns(10);
 		
-		textField_3 = new JTextField();
-		textField_3.setBounds(304, 226, 134, 20);
-		frame.getContentPane().add(textField_3);
-		textField_3.setColumns(10);
+		txtCijena = new JTextField();
+		txtCijena.setBounds(304, 226, 134, 20);
+		frame.getContentPane().add(txtCijena);
+		txtCijena.setColumns(10);
 		
-		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setBounds(318, 251, 96, 20);
-		frame.getContentPane().add(comboBox_1);
+		comboMjera = new JComboBox();
+		comboMjera.setBounds(318, 251, 96, 20);
+		frame.getContentPane().add(comboMjera);
 		
-		JList list = new JList();
-		list.setBounds(24, 136, 183, 187);
-		frame.getContentPane().add(list);
+		listArtikli = new JList();
+		listArtikli.setBounds(24, 136, 183, 187);
+		frame.getContentPane().add(listArtikli);
+	}
+
+	public void izmjeniArtikal() throws Exception {
+		Artikal artikal=(Artikal)listArtikli.getSelectedValue();
+		
+		String naziv=txtNaziv.getText();
+		String klasa=(String)comboKlasa.getSelectedItem();
+		String barkod=txtBarkod.getText();
+		Double cijena=Double.parseDouble(txtCijena.getText());
+		Double kolicina=Double.parseDouble(txtKolicina.getText());
+		String mjera=(String)comboMjera.getSelectedItem();
+		
+		Artikal novi=new Artikal(naziv, klasa, barkod, cijena, kolicina, mjera);
+		
+		artikal.izmjeniArtikal(novi);
+		
+		// azuriranje liste i baze
 	}
 }

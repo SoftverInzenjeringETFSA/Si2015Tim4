@@ -7,6 +7,8 @@ import java.awt.Color;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -14,15 +16,19 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JSeparator;
 import javax.swing.JComboBox;
 import java.awt.SystemColor;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class DodavanjeArtikla {
 
-	private JFrame frmDodavanjeArtikla;
-	private JTextField textField;
-	private JTextField textField_2;
-	private JTextField textField_1;
-	private JTextField textField_3;
-
+	private JFrame frame;
+	private JTextField txtNaziv;
+	private JTextField txtBarkod;
+	private JTextField txtCijena;
+	private JTextField txtKolicina;
+	private JComboBox comboKlasa;
+	private JComboBox comboMjera;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -31,7 +37,7 @@ public class DodavanjeArtikla {
 			public void run() {
 				try {
 					DodavanjeArtikla window = new DodavanjeArtikla();
-					window.frmDodavanjeArtikla.setVisible(true);
+					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -50,9 +56,9 @@ public class DodavanjeArtikla {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frmDodavanjeArtikla = new JFrame();
-		frmDodavanjeArtikla.setTitle("Dodavanje artikla");
-		frmDodavanjeArtikla.getContentPane().setBackground(SystemColor.control);
+		frame = new JFrame();
+		frame.setTitle("Dodavanje artikla");
+		frame.getContentPane().setBackground(SystemColor.control);
 		
 		JLabel lblDodavanjeArtikla = new JLabel("Unos novog artikla");
 		lblDodavanjeArtikla.setForeground(new Color(0, 100, 0));
@@ -62,12 +68,28 @@ public class DodavanjeArtikla {
 		
 		JLabel lblNewLabel_1 = new JLabel("Klasa artikla:");
 		
-		textField = new JTextField();
-		textField.setColumns(10);
-		JButton btnZavri = new JButton("Odustani");
-		btnZavri.setBackground(new Color(143, 188, 143));
+		txtNaziv = new JTextField();
+		txtNaziv.setColumns(10);
+		JButton btnZavrsi = new JButton("Odustani");
+		btnZavrsi.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+			}
+		});
+		btnZavrsi.setBackground(new Color(143, 188, 143));
 		
 		JButton btnUnesi = new JButton("Dodaj");
+		btnUnesi.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try{
+					Artikal artikal=dajArtikal();
+					// dodati u bazu
+				}
+				catch(Exception i){
+					JOptionPane.showMessageDialog(frame, i.getMessage());
+				}
+			}
+		});
 		btnUnesi.setBackground(new Color(143, 188, 143));
 		
 		JSeparator separator = new JSeparator();
@@ -75,25 +97,26 @@ public class DodavanjeArtikla {
 		
 		JLabel lblBarKodArtikla = new JLabel("Bar kod artikla:");
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
+		txtBarkod = new JTextField();
+		txtBarkod.setColumns(10);
 		
-		JComboBox comboBox = new JComboBox();
+		comboKlasa = new JComboBox();
 		
 		JLabel lblCijenaArtikla = new JLabel("Cijena artikla:");
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
+		txtCijena = new JTextField();
+		txtCijena.setColumns(10);
 		
 		JLabel lblKoliinaArtikla = new JLabel("Količina artikla:");
 		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
+		txtKolicina = new JTextField();
+		txtKolicina.setColumns(10);
 		
 		JLabel lblMjernaJedinica = new JLabel("Mjerna jedinica:");
 		
-		JComboBox comboBox_1 = new JComboBox();
-		GroupLayout groupLayout = new GroupLayout(frmDodavanjeArtikla.getContentPane());
+		comboMjera = new JComboBox();
+		
+		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
@@ -116,14 +139,14 @@ public class DodavanjeArtikla {
 										.addComponent(lblNewLabel_1))
 									.addPreferredGap(ComponentPlacement.UNRELATED)
 									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-										.addComponent(comboBox_1, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-										.addComponent(textField_3)
-										.addComponent(textField_1)
-										.addComponent(comboBox, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-										.addComponent(textField)
-										.addComponent(textField_2, GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)))
+										.addComponent(comboMjera, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+										.addComponent(txtKolicina)
+										.addComponent(txtCijena)
+										.addComponent(comboKlasa, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+										.addComponent(txtNaziv)
+										.addComponent(txtBarkod, GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)))
 								.addGroup(groupLayout.createSequentialGroup()
-									.addComponent(btnZavri, GroupLayout.PREFERRED_SIZE, 92, GroupLayout.PREFERRED_SIZE)
+									.addComponent(btnZavrsi, GroupLayout.PREFERRED_SIZE, 92, GroupLayout.PREFERRED_SIZE)
 									.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 									.addComponent(btnUnesi, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE))))
 						.addGroup(groupLayout.createSequentialGroup()
@@ -141,36 +164,49 @@ public class DodavanjeArtikla {
 					.addGap(18)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblBarKodArtikla)
-						.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(txtBarkod, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(19)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblNewLabel)
-						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(txtNaziv, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(18)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(comboKlasa, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblNewLabel_1))
 					.addGap(18)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(txtCijena, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblCijenaArtikla))
 					.addGap(18)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblKoliinaArtikla)
-						.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(txtKolicina, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(18)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblMjernaJedinica)
-						.addComponent(comboBox_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(comboMjera, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnZavri)
+						.addComponent(btnZavrsi)
 						.addComponent(btnUnesi))
 					.addContainerGap())
 		);
-		frmDodavanjeArtikla.getContentPane().setLayout(groupLayout);
-		frmDodavanjeArtikla.setBackground(new Color(255, 255, 255));
-		frmDodavanjeArtikla.setBounds(100, 100, 303, 374);
-		frmDodavanjeArtikla.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(groupLayout);
+		frame.setBackground(new Color(255, 255, 255));
+		frame.setBounds(100, 100, 303, 374);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+	
+	public Artikal dajArtikal() throws Exception {
+		String naziv=txtNaziv.getText();
+		String klasa=(String)comboKlasa.getSelectedItem();
+		String barkod=txtBarkod.getText();
+		Double cijena=Double.parseDouble(txtCijena.getText());
+		Double kolicina=Double.parseDouble(txtKolicina.getText());
+		String mjera=(String)comboMjera.getSelectedItem();
+		
+		Artikal artikal=new Artikal(1, naziv, klasa, barkod, cijena, kolicina, mjera);
+		
+		return artikal;
 	}
 }
