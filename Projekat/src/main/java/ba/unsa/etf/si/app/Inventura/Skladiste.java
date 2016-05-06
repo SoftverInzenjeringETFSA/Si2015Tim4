@@ -1,23 +1,24 @@
 package ba.unsa.etf.si.app.Inventura;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Skladiste {
-	private Map<Artikal, Double> lista;
-	
+	private List<Artikal> artikli;
+
 	public Skladiste(){
-		lista=new HashMap<Artikal, Double>();
+		artikli=new ArrayList<Artikal>();
 	}
 	
-	public Skladiste(Map<Artikal, Double> _lista){
-		setLista(_lista);
+	public Skladiste(List<Artikal> _artikli){
+		setArtikli(_artikli);
+	}
+	
+	List<Artikal> getArtikli() {
+		return artikli;
+	}
+	void setArtikli(List<Artikal> artikli) {
+		this.artikli = artikli;
 	}
 
-	Map<Artikal, Double> getLista() {
-		return lista;
-	}
-	void setLista(Map<Artikal, Double> lista) {
-		this.lista = lista;
-	}
 }
