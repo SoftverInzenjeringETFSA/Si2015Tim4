@@ -90,6 +90,9 @@ public class ProsireniInterfejsGUI {
 		JMenuItem mntmPregledStanjaNa = new JMenuItem("Pregled stanja na skadištu");
 		mnSkladite.add(mntmPregledStanjaNa);
 		
+		JMenuItem mntmUnosSkladita = new JMenuItem("Unos skladišta");
+		mnSkladite.add(mntmUnosSkladita);
+		
 		JMenu mnDokumenti = new JMenu("Dokumenti");
 		menuBar.add(mnDokumenti);
 		
