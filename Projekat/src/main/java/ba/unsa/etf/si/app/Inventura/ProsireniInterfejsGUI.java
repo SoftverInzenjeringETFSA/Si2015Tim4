@@ -84,15 +84,6 @@ public class ProsireniInterfejsGUI {
 		JMenuBar menuBar = new JMenuBar();
 		frame.setJMenuBar(menuBar);
 		
-		JMenu mnInventura = new JMenu("Inventura");
-		menuBar.add(mnInventura);
-		
-		JMenuItem mntmZaponiNovu = new JMenuItem("Započni novu");
-		mnInventura.add(mntmZaponiNovu);
-		
-		JMenuItem mntmPregledZavrenih = new JMenuItem("Pregled završenih");
-		mnInventura.add(mntmPregledZavrenih);
-		
 		JMenu mnSkladite = new JMenu("Skladište");
 		menuBar.add(mnSkladite);
 		
@@ -122,6 +113,18 @@ public class ProsireniInterfejsGUI {
 		
 		JMenu mnAdministracija = new JMenu("Administracija");
 		menuBar.add(mnAdministracija);
+		
+		JMenu mnKlaseArtikala = new JMenu("Klase artikala");
+		mnAdministracija.add(mnKlaseArtikala);
+		
+		JMenuItem mntmUnos_2 = new JMenuItem("Unos");
+		mnKlaseArtikala.add(mntmUnos_2);
+		
+		JMenuItem mntmModifikacija_2 = new JMenuItem("Modifikacija");
+		mnKlaseArtikala.add(mntmModifikacija_2);
+		
+		JMenuItem mntmBrisanje_2 = new JMenuItem("Brisanje");
+		mnKlaseArtikala.add(mntmBrisanje_2);
 		
 		JMenu mnArtikli = new JMenu("Artikli");
 		mnAdministracija.add(mnArtikli);
