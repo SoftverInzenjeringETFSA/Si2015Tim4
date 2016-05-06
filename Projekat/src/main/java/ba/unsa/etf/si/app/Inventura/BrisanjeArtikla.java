@@ -13,11 +13,13 @@ import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JSeparator;
 import java.awt.SystemColor;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class BrisanjeArtikla {
 
-	private JFrame frmUklanjanjeArtikla;
-	private JTextField textField;
+	private JFrame frame;
+	private JTextField txtBarkod;
 
 	/**
 	 * Launch the application.
@@ -27,7 +29,7 @@ public class BrisanjeArtikla {
 			public void run() {
 				try {
 					BrisanjeArtikla window = new BrisanjeArtikla();
-					window.frmUklanjanjeArtikla.setVisible(true);
+					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -46,11 +48,11 @@ public class BrisanjeArtikla {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frmUklanjanjeArtikla = new JFrame();
-		frmUklanjanjeArtikla.getContentPane().setBackground(SystemColor.control);
-		frmUklanjanjeArtikla.setTitle("Uklanjanje artikla");
-		frmUklanjanjeArtikla.setBounds(100, 100, 361, 205);
-		frmUklanjanjeArtikla.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame = new JFrame();
+		frame.getContentPane().setBackground(SystemColor.control);
+		frame.setTitle("Uklanjanje artikla");
+		frame.setBounds(100, 100, 361, 205);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JLabel lblUklanjanjeArtikla = new JLabel("Uklanjanje artikla");
 		lblUklanjanjeArtikla.setForeground(new Color(0, 128, 0));
@@ -58,18 +60,30 @@ public class BrisanjeArtikla {
 		
 		JLabel lblArtikalId = new JLabel("Unesite Bar kod artikla koji želite obrisati:");
 		
-		textField = new JTextField();
-		textField.setColumns(10);
+		txtBarkod = new JTextField();
+		txtBarkod.setColumns(10);
 		
 		JButton btnNewButton = new JButton("Odustani");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+			}
+		});
 		btnNewButton.setBackground(new Color(143, 188, 143));
 		
 		JButton btnNewButton_1 = new JButton("Obriši");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String barkod=txtBarkod.getText();
+				
+				// obrisati iz baze
+			}
+		});
 		btnNewButton_1.setBackground(new Color(143, 188, 143));
 		
 		JSeparator separator = new JSeparator();
 		separator.setForeground(new Color(0, 0, 0));
-		GroupLayout groupLayout = new GroupLayout(frmUklanjanjeArtikla.getContentPane());
+		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
@@ -86,7 +100,7 @@ public class BrisanjeArtikla {
 								.addComponent(separator, GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE)
 								.addGap(32))
 							.addGroup(groupLayout.createSequentialGroup()
-								.addComponent(textField, GroupLayout.PREFERRED_SIZE, 207, GroupLayout.PREFERRED_SIZE)
+								.addComponent(txtBarkod, GroupLayout.PREFERRED_SIZE, 207, GroupLayout.PREFERRED_SIZE)
 								.addContainerGap())
 							.addGroup(groupLayout.createSequentialGroup()
 								.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE)
@@ -104,14 +118,14 @@ public class BrisanjeArtikla {
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(lblArtikalId)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addComponent(txtBarkod, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 					.addGap(21)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnNewButton)
 						.addComponent(btnNewButton_1))
 					.addContainerGap())
 		);
-		frmUklanjanjeArtikla.getContentPane().setLayout(groupLayout);
+		frame.getContentPane().setLayout(groupLayout);
 	}
 
 }
