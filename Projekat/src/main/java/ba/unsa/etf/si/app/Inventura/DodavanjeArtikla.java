@@ -199,7 +199,7 @@ public class DodavanjeArtikla {
 	
 	public Artikal dajArtikal() throws Exception {
 		String naziv=txtNaziv.getText();
-		String klasa=(String)comboKlasa.getSelectedItem();
+		KlasaArtikla klasa=(KlasaArtikla)comboKlasa.getSelectedItem();
 		String barkod=txtBarkod.getText();
 		Double cijena=Double.parseDouble(txtCijena.getText());
 		Double kolicina=Double.parseDouble(txtKolicina.getText());

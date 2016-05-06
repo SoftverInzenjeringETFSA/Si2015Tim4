@@ -3,7 +3,7 @@ package ba.unsa.etf.si.app.Inventura;
 public class Artikal {
 	private int id;
 	private String naziv;
-	private String klasa;
+	private KlasaArtikla klasa;
 	private String barkod;
 	private Double cijena;
 	private Double kolicina;
@@ -11,7 +11,7 @@ public class Artikal {
 	
 	public Artikal(){}
 	
-	public Artikal(int _id, String _naziv, String _klasa, String _barkod, Double _cijena, Double _kolicina, String _mjera) throws Exception {
+	public Artikal(int _id, String _naziv, KlasaArtikla _klasa, String _barkod, Double _cijena, Double _kolicina, String _mjera) throws Exception {
 		setId(_id);
 		setNaziv(_naziv);
 		setKlasa(_klasa);
@@ -21,7 +21,7 @@ public class Artikal {
 		setKolicina(_kolicina);
 	}
 	
-	public Artikal(String _naziv, String _klasa, String _barkod, Double _cijena, Double _kolicina, String _mjera) throws Exception {
+	public Artikal(String _naziv, KlasaArtikla _klasa, String _barkod, Double _cijena, Double _kolicina, String _mjera) throws Exception {
 		setId(0);
 		setNaziv(_naziv);
 		setKlasa(_klasa);
@@ -31,9 +31,14 @@ public class Artikal {
 		setKolicina(_kolicina);
 	}
 	
+	@Override
+	public String toString(){
+		return getNaziv();
+	}
+	
 	public void izmjeniArtikal(Artikal novi){
 		naziv=novi.naziv;
-		klasa=novi.klasa;
+		setKlasa(novi.getKlasa());
 		barkod=novi.barkod;
 		cijena=novi.cijena;
 		mjera=novi.mjera;
@@ -55,12 +60,12 @@ public class Artikal {
 	void setNaziv(String naziv) {
 		this.naziv = naziv;
 	}
-
-	String getKlasa() {
+	
+	private KlasaArtikla getKlasa() {
 		return klasa;
 	}
 
-	void setKlasa(String klasa) {
+	private void setKlasa(KlasaArtikla klasa) {
 		this.klasa = klasa;
 	}
 
@@ -101,4 +106,5 @@ public class Artikal {
 	void setMjera(String mjera) {
 		this.mjera = mjera;
 	}
+
 }

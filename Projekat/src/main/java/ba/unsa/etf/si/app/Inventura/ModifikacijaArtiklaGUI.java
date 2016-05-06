@@ -178,7 +178,7 @@ public class ModifikacijaArtiklaGUI {
 		Artikal artikal=(Artikal)listArtikli.getSelectedValue();
 		
 		String naziv=txtNaziv.getText();
-		String klasa=(String)comboKlasa.getSelectedItem();
+		KlasaArtikla klasa=(KlasaArtikla)comboKlasa.getSelectedItem();
 		String barkod=txtBarkod.getText();
 		Double cijena=Double.parseDouble(txtCijena.getText());
 		Double kolicina=Double.parseDouble(txtKolicina.getText());
