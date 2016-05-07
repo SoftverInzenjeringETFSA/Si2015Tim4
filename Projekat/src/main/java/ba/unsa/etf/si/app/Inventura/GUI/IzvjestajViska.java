@@ -1,17 +1,19 @@
-package ba.unsa.etf.si.app.Inventura;
+package ba.unsa.etf.si.app.Inventura.GUI;
 
-import java.awt.Color;
 import java.awt.EventQueue;
-import java.awt.Font;
 
-import javax.swing.GroupLayout;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JTextArea;
+import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.JLabel;
+import java.awt.Font;
+import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.JTextArea;
+import javax.swing.JButton;
+import java.awt.Color;
 
-public class IzvjestajManjka {
+public class IzvjestajViska {
 
 	private JFrame frame;
 
@@ -22,7 +24,7 @@ public class IzvjestajManjka {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					IzvjestajManjka window = new IzvjestajManjka();
+					IzvjestajViska window = new IzvjestajViska();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -34,7 +36,7 @@ public class IzvjestajManjka {
 	/**
 	 * Create the application.
 	 */
-	public IzvjestajManjka() {
+	public IzvjestajViska() {
 		initialize();
 	}
 
@@ -43,16 +45,16 @@ public class IzvjestajManjka {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 284, 300);
+		frame.setBounds(100, 100, 274, 313);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		JLabel lblIzvjetajManjka = new JLabel("Izvještaj manjka");
-		lblIzvjetajManjka.setForeground(new Color(0, 128, 0));
-		lblIzvjetajManjka.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		JLabel lblIzvjetajVika = new JLabel("Izvještaj viška");
+		lblIzvjetajVika.setForeground(new Color(0, 128, 0));
+		lblIzvjetajVika.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		
 		JTextArea txtrNaOsnovuIzvrenog = new JTextArea();
 		txtrNaOsnovuIzvrenog.setRows(5);
-		txtrNaOsnovuIzvrenog.setText("Na osnovu izvršenog\r\nobračuna popisa robe,\r\nustanovljen je manjak u \r\nodnosu na stanje u\r\nskladištu u iznosu od: ");
+		txtrNaOsnovuIzvrenog.setText("Na osnovu izvršenog\r\nobračuna popisa robe,\r\nustanovljen je višak u \r\nodnosu na stanje u\r\nskladištu u iznosu od: ");
 		
 		JLabel lblNewLabel = new JLabel("-iznos-");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -74,14 +76,14 @@ public class IzvjestajManjka {
 							.addComponent(lblNewLabel_1, GroupLayout.PREFERRED_SIZE, 28, GroupLayout.PREFERRED_SIZE))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(80)
-							.addComponent(lblIzvjetajManjka)))
+							.addComponent(lblIzvjetajVika)))
 					.addContainerGap(25, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(30)
-					.addComponent(lblIzvjetajManjka)
+					.addComponent(lblIzvjetajVika)
 					.addGap(29)
 					.addComponent(txtrNaOsnovuIzvrenog, GroupLayout.PREFERRED_SIZE, 116, GroupLayout.PREFERRED_SIZE)
 					.addGap(18)
@@ -92,5 +94,4 @@ public class IzvjestajManjka {
 		);
 		frame.getContentPane().setLayout(groupLayout);
 	}
-
 }

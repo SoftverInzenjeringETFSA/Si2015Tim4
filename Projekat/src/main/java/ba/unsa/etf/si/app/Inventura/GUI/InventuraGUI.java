@@ -1,4 +1,4 @@
-package ba.unsa.etf.si.app.Inventura;
+package ba.unsa.etf.si.app.Inventura.GUI;
 
 import java.awt.EventQueue;
 
@@ -23,6 +23,9 @@ import javax.swing.JSpinner;
 import java.awt.Component;
 import javax.swing.AbstractListModel;
 import javax.swing.table.DefaultTableModel;
+
+import ba.unsa.etf.si.app.Inventura.Model.Inventura;
+
 import javax.swing.ListSelectionModel;
 import javax.swing.JScrollPane;
 import javax.swing.JSeparator;

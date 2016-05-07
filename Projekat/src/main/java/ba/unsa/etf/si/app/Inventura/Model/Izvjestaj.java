@@ -1,10 +1,19 @@
-package ba.unsa.etf.si.app.Inventura;
+package ba.unsa.etf.si.app.Inventura.Model;
+
+import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
 
 import java.util.Date;
 
-public class Izvjestaj implements java.io.Serializable {
+@Entity
+public class Izvjestaj implements Serializable {
 	
-
+	private static final long serialVersionUID = 1L;
+	@Id
+	@GeneratedValue
 	long id;
 	int ID;
 	String Vrsta="";

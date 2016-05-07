@@ -1,4 +1,4 @@
-package ba.unsa.etf.si.app.Inventura;
+package ba.unsa.etf.si.app.Inventura.Model;
 
 public class StanjeInventure {
 

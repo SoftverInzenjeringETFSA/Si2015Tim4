@@ -1,4 +1,4 @@
-package ba.unsa.etf.si.app.Inventura;
+package ba.unsa.etf.si.app.Inventura.GUI;
 
 import java.awt.EventQueue;
 
@@ -13,6 +13,10 @@ import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
+
+import ba.unsa.etf.si.app.Inventura.Model.Artikal;
+import ba.unsa.etf.si.app.Inventura.Model.KlasaArtikla;
+
 import javax.swing.JSeparator;
 import javax.swing.JComboBox;
 import java.awt.SystemColor;
