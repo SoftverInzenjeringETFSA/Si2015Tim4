@@ -1,21 +1,26 @@
 package ba.unsa.etf.si.app.Inventura;
+
 import java.util.Date;
 
-public class Izvjestaj {
+public class Izvjestaj implements java.io.Serializable {
+	
 
+	long id;
 	int ID;
-	String Vrsta;
-	String Opis;
+	String Vrsta="";
+	
+	String Opis="";
 	Date Datum;
 	int i=0;
-	
-	int getID(){
-		return ID;
-	}
 	
 	void setID(int id){
 		ID=id;
 	}
+	
+	int getID(){
+		return ID;
+	}
+
 	
 	String getVrsta(){
 		return Vrsta;
@@ -28,14 +33,15 @@ public class Izvjestaj {
 		Vrsta=v;
 	}
 	
+	
+	void setOpis(String o){	
+		Opis=o;
+	}
+	
 	String getOpis(){
 		return Opis;
 	}
-	
-	void setOpis(String o){
-	
-		Opis=o;
-	}
+
 	
 	Date getDatum(){
 		return Datum;
@@ -46,6 +52,7 @@ public class Izvjestaj {
 	}
 	
 	public Izvjestaj(){}
+	
 	public Izvjestaj(String v,String o, Date d) throws Exception
 	{
 		setID(i);

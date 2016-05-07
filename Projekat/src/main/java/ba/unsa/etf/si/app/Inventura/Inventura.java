@@ -59,7 +59,7 @@ public class Inventura {
 
 	
 	public Inventura(){}
-	public Inventura(Date datum, String opis, int stanje, String osoba) throws Exception
+	public Inventura(int id, Date datum, String opis, int stanje, String osoba) throws Exception
 	{
 		setID(brojac);
 		setDatum(datum);

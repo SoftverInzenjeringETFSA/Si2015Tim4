@@ -123,9 +123,14 @@ public class InventuraGUI {
 		JButton btnZakljuiIObraunaj = new JButton("Zaključi i obračunaj");
 		btnZakljuiIObraunaj.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				Inventura i = null;
 				Date d=new Date();
-				Inventura i=new Inventura(brojac,d,"Opis",1200,"Amra");
+				try{
+					i=new Inventura(brojac,d,"Opis",1200,"Amra");
+				}
+				catch(Exception e1){
+					
+				}
 				i.iskoristiInventuru(i);
 				brojac++;
 			}
