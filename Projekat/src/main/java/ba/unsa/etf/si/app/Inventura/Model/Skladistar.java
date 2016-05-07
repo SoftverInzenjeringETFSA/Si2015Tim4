@@ -1,39 +1,48 @@
 package ba.unsa.etf.si.app.Inventura.Model;
 
-public class Skladistar {
 
-	private int id;
-	private int inventuraId;
+import java.io.Serializable;
+import java.util.*;
+
+import javax.persistence.*;
+
+import java.util.Date;
+
+@Entity
+public class Skladistar extends TipZaposlenika implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3139103661356529498L;
+	
+	@OneToOne
+    @JoinColumn(name="inventura_id") 
+	private Inventura inventura;
 	
 	public Skladistar() {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Skladistar(int _id, int _inventuraId)
+	public Skladistar(long _id, Inventura inventura)
 	{
 		setId(_id);
-		setInvId(_inventuraId);
+		setInventura(inventura);
 	}
-	public Skladistar(int _inventuraId)
+	public Skladistar(Inventura inventura)
 	{
 		setId(0);
-		setInvId(_inventuraId);
+		setInventura(inventura);
 	}
-	void setId(int id)
+
+	public void setInventura(Inventura inventura)
 	{
-		this.id=id;
+		this.inventura=inventura;
 	}
-	void setInvId(int inventuraId)
+
+	public Inventura getInventura()
 	{
-		this.inventuraId=inventuraId;
-	}
-	int getId()
-	{
-		return id;
-	}
-	int getInvId()
-	{
-		return inventuraId;
+		return inventura;
 	}
 
 }

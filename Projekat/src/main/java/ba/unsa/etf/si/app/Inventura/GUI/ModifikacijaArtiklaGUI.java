@@ -190,7 +190,7 @@ public class ModifikacijaArtiklaGUI {
 		
 		Artikal novi=new Artikal(naziv, klasa, barkod, cijena, kolicina, mjera);
 		
-		artikal.izmjeniArtikal(novi);
+		//artikal.izmjeniArtikal(novi);
 		
 		// azuriranje liste i baze
 	}

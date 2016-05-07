@@ -32,4 +32,23 @@
     	<version>4.3.9.Final</version>
     </dependency>
   </dependencies>
+   <build>
+  	<plugins>
+  		<plugin>
+  			<groupId>org.apache.maven.plugins</groupId>
+  			<artifactId>maven-assembly-plugin</artifactId>
+  			<version>2.5.4</version>
+			<configuration>
+				<archive>
+					<manifest>
+						<mainClass>ba.unsa.etf.si.app.Inventura.Kontroleri.Main</mainClass>
+					</manifest>
+				</archive>
+				<descriptorRefs>
+					<descriptorRef>jar-with-dependencies</descriptorRef>
+				</descriptorRefs>
+			</configuration>		
+  		</plugin>
+  	</plugins>
+  </build>
 </project>

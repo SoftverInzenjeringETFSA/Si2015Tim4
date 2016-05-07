@@ -129,7 +129,7 @@ public class InventuraGUI {
 				Inventura i = null;
 				Date d=new Date();
 				try{
-					i=new Inventura(brojac,d,"Opis",1200,"Amra");
+					//i=new Inventura(brojac,d,"Opis",1200,"Amra");
 				}
 				catch(Exception e1){
 					

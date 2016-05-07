@@ -1,7 +1,19 @@
 package ba.unsa.etf.si.app.Inventura.Model;
+import java.io.Serializable;
+import java.util.*;
 
-public class KlasaArtikla {
-	private int id;
+import javax.persistence.*;
+
+
+@Entity
+public class KlasaArtikla implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -618509826704996864L;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long id;
 	private String naziv;
 	
 	public KlasaArtikla(){}
@@ -21,17 +33,17 @@ public class KlasaArtikla {
 		return getNaziv();
 	}
 	
-	int getId() {
+	public long getId() {
 		return id;
 	}
-	void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 	
-	String getNaziv() {
+	public String getNaziv() {
 		return naziv;
 	}
-	void setNaziv(String naziv) {
+	public void setNaziv(String naziv) {
 		this.naziv = naziv;
 	}
 }

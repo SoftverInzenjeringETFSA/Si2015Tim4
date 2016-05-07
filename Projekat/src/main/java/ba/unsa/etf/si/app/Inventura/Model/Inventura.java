@@ -1,77 +1,91 @@
 package ba.unsa.etf.si.app.Inventura.Model;
 
+import java.io.Serializable;
+import java.util.*;
+
+import javax.persistence.*;
+
 import java.util.Date;
 
-public class Inventura {
 
-	int ID;
-	Date Datum;
-	String Opis;
+@Entity
+public class Inventura implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 109277892540249923L;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	long id;
+	Date datum;
+	String opis;
 	int trenutnoStanje;
-	String odgovornoLice;
-	int brojac=0;
-	int getID() {
-		return ID;
+	@OneToOne
+    @JoinColumn(name="skladistar_id") 
+	Skladistar skladistar;
+	
+	public long getId() {
+		return id;
 	}
 
-	void setID(int id) {
-		ID = id;
+	public void setId(long id) {
+		this.id = id;
 	}
 	
-	Date getDatum(){
-		return Datum;
+	public Date getDatum(){
+		return datum;
 	}
 	
-	void setDatum(Date d)
+	public void setDatum(Date d)
 	{
-		Datum=d;
+		datum=d;
 	}
 	
-	String getOpis(){
-		return Opis;
+	public String getOpis(){
+		return opis;
 	}
 	
-	void setOpis(String s)
+	public void setOpis(String s)
 	{
-		Opis=s;
+		opis=s;
 	}
 	
-	int gettrenutnoStanje() {
+	public int gettrenutnoStanje() {
 		return trenutnoStanje;
 	}
 
-	void settrenutnoStanje(int s) throws Exception {
+	public void settrenutnoStanje(int s) throws Exception {
 		if(s<0){
 			throw new Exception("Kolicina ne moze biti negativna."); 
 	    }
 		trenutnoStanje = s;
 	}
 
-	String getOdgovornoLice(){
-		return odgovornoLice;
+	public Skladistar getSkladistar(){
+		return skladistar;
 	}
 	
-	void setOdgovornoLice(String o)
+	public void setSkladistar(Skladistar o)
 	{
-		odgovornoLice=o;
+		skladistar=o;
 	}
 	
 
 	
 	public Inventura(){}
-	public Inventura(int id, Date datum, String opis, int stanje, String osoba) throws Exception
+	public Inventura(long id, Date datum, String opis, int stanje, Skladistar osoba) throws Exception
 	{
-		setID(brojac);
+		setId(id);
 		setDatum(datum);
 		setOpis(opis);
 		settrenutnoStanje(stanje);
-		setOdgovornoLice(osoba);
-		brojac++;
+		setSkladistar(osoba);
 	}
 
 	public void iskoristiInventuru(Inventura I){
 		
-		System.out.println("Inventura broj" + I.ID);
+		System.out.println("Inventura broj" + I.id);
 		
 		}
 }

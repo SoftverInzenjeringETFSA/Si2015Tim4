@@ -1,8 +1,23 @@
-package ba.unsa.etf.si.app.Inventura.Model;
+ package ba.unsa.etf.si.app.Inventura.Model;
+import java.io.Serializable;
+import java.util.*;
 
-public class Artikal {
-	private int id;
+import javax.persistence.*;
+
+
+@Entity
+public class Artikal implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2735917613496475984L;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long id;
 	private String naziv;
+	
+    @OneToOne(cascade=CascadeType.ALL)  
+    @JoinColumn(name="klasaArtikla_id")  
 	private KlasaArtikla klasa;
 	private String barkod;
 	private Double cijena;
@@ -14,7 +29,7 @@ public class Artikal {
 	public Artikal(int _id, String _naziv, KlasaArtikla _klasa, String _barkod, Double _cijena, Double _kolicina, String _mjera) throws Exception {
 		setId(_id);
 		setNaziv(_naziv);
-		setKlasa(_klasa);
+		setKlasaArtikla(_klasa);
 		setBarkod(_barkod);
 		setCijena(_cijena);
 		setMjera(_mjera);
@@ -24,7 +39,7 @@ public class Artikal {
 	public Artikal(String _naziv, KlasaArtikla _klasa, String _barkod, Double _cijena, Double _kolicina, String _mjera) throws Exception {
 		setId(0);
 		setNaziv(_naziv);
-		setKlasa(_klasa);
+		setKlasaArtikla(_klasa);
 		setBarkod(_barkod);
 		setCijena(_cijena);
 		setMjera(_mjera);
@@ -36,60 +51,52 @@ public class Artikal {
 		return getNaziv();
 	}
 	
-	public void izmjeniArtikal(Artikal novi){
-		naziv=novi.naziv;
-		setKlasa(novi.getKlasa());
-		barkod=novi.barkod;
-		cijena=novi.cijena;
-		mjera=novi.mjera;
-		kolicina=novi.kolicina;
-	}
 
-	int getId() {
+	public long getId() {
 		return id;
 	}
 
-	void setId(int id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
-	String getNaziv() {
+	public String getNaziv() {
 		return naziv;
 	}
 
-	void setNaziv(String naziv) {
+	public void setNaziv(String naziv) {
 		this.naziv = naziv;
 	}
 	
-	private KlasaArtikla getKlasa() {
+	public KlasaArtikla getKlasaArtikla() {
 		return klasa;
 	}
 
-	private void setKlasa(KlasaArtikla klasa) {
+	public void setKlasaArtikla(KlasaArtikla klasa) {
 		this.klasa = klasa;
 	}
 
-	String getBarkod() {
+	public String getBarkod() {
 		return barkod;
 	}
 
-	void setBarkod(String barkod) {
+	public void setBarkod(String barkod) {
 		this.barkod = barkod;
 	}
 
-	Double getCijena() {
+	public Double getCijena() {
 		return cijena;
 	}
 
-	void setCijena(Double cijena) {
+	public void setCijena(Double cijena) {
 		this.cijena = cijena;
 	}
 
-	Double getKolicina() {
+	public Double getKolicina() {
 		return kolicina;
 	}
 
-	void setKolicina(Double kolicina) throws Exception {
+	public void setKolicina(Double kolicina) throws Exception {
 		if(this.mjera.toLowerCase()=="komad" && kolicina!=Math.round(kolicina)){
 			throw new Exception("Mjerna jedinica artikla je na komad.");
 		}
@@ -99,11 +106,11 @@ public class Artikal {
 		this.kolicina = kolicina;
 	}
 
-	String getMjera() {
+	public String getMjera() {
 		return mjera;
 	}
 
-	void setMjera(String mjera) {
+	public void setMjera(String mjera) {
 		this.mjera = mjera;
 	}
 

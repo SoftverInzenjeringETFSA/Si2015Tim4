@@ -1,24 +1,24 @@
 package ba.unsa.etf.si.app.Inventura.Model;
+import java.io.Serializable;
+import java.util.*;
 
-public class Sef {
+import javax.persistence.*;
 
-	private int id;
+import java.util.Date;
+
+@Entity
+public class Sef extends TipZaposlenika implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -689742975237300668L;
 	public Sef() 
 	{
-		setId(0);
 	
 	}
 	public Sef(int _id)
 	{
 		setId(_id);
-	}
-
-	void setId(int id)
-	{
-		this.id=id;
-	}
-	int getId()
-	{
-		return id;
 	}
 }
