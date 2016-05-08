@@ -51,9 +51,9 @@ public static class Artikli{
 			return a;
 		}
 		
-		public static void izbrisi(int id){
+		public static void izbrisi(String barkod){
 			openSession();
-			Object instance = s.load(Artikal.class, new Long(id));
+			Object instance = s.load(Artikal.class, new String(barkod));
 			if (instance != null)
 				s.delete(instance);
 			
