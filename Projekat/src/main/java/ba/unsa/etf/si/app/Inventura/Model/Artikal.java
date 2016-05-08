@@ -18,8 +18,7 @@ public class Artikal implements Serializable {
 	private long id;
 	private String naziv;
 	
-    @OneToOne(cascade=CascadeType.ALL)  
-    @JoinColumn(name="klasaArtikla_id")  
+    @OneToOne(cascade = { CascadeType.ALL }, orphanRemoval=true, mappedBy="klasaArtikla_id")
 	private KlasaArtikla klasa;
 	private String barkod;
 	private Double cijena;

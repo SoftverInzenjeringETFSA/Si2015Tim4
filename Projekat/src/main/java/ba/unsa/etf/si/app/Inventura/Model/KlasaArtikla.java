@@ -16,6 +16,15 @@ public class KlasaArtikla implements Serializable{
 	private long id;
 	private String naziv;
 	
+	private List<Artikal> artikli;
+	public List<Artikal> getArtikli() {
+		return artikli;
+	}
+
+	public void setArtikli(List<Artikal> artikli) {
+		this.artikli = artikli;
+	}
+
 	public KlasaArtikla(){}
 	
 	public KlasaArtikla(String _naziv){

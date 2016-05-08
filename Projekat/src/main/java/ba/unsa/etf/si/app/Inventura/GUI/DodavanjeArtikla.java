@@ -102,9 +102,7 @@ public class DodavanjeArtikla {
 				try{
 					Artikal a= new Artikal();
 					a=dajArtikal();
-					ArtikliKontroler.dodaj(a);
-					System.out.println(a.getNaziv());
-					
+					ArtikliKontroler.dodaj(a);					
 				}
 				catch(Exception i){
 					JOptionPane.showMessageDialog(frame, i.getMessage());
@@ -145,7 +143,7 @@ public class DodavanjeArtikla {
 		
 		
 		comboMjera = new JComboBox<String>();
-		if(_artikli.size() != 0) {
+		if(_mjera.size() != 0) {
 			for(String m : _mjera) {
 				if(m != null) {
 					comboMjera.addItem(m);
@@ -249,7 +247,6 @@ public class DodavanjeArtikla {
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.out.println("ss");
 		}
 		
 		return artikal;

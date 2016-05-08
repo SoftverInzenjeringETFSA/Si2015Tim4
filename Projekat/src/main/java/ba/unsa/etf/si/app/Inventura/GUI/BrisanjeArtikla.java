@@ -13,7 +13,7 @@ import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 import ba.unsa.etf.si.app.Inventura.Kontroleri.ArtikliKontroler;
-
+import ba.unsa.etf.si.app.Inventura.Model.Artikal;
 
 import javax.swing.JSeparator;
 import java.awt.SystemColor;
@@ -79,8 +79,16 @@ public class BrisanjeArtikla {
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String barkod=txtBarkod.getText();
-				
-				ArtikliKontroler.izbrisi(barkod);
+				try {
+					
+					Artikal art=new Artikal();
+					art=ArtikliKontroler.nadjiBarKod(barkod);
+					ArtikliKontroler.izbrisi(art.getId());
+					
+				} catch (Exception e1) {
+					
+					e1.printStackTrace();
+				}
 			}
 		});
 		btnNewButton_1.setBackground(new Color(143, 188, 143));

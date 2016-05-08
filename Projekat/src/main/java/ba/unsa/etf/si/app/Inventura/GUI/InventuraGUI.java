@@ -25,6 +25,7 @@ import javax.swing.AbstractListModel;
 import javax.swing.table.DefaultTableModel;
 
 import ba.unsa.etf.si.app.Inventura.Model.Inventura;
+import ba.unsa.etf.si.app.Inventura.Model.KlasaArtikla;
 
 import javax.swing.ListSelectionModel;
 import javax.swing.JScrollPane;
@@ -32,7 +33,9 @@ import javax.swing.JSeparator;
 import javax.swing.JTextArea;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 import java.awt.event.ActionEvent;
 
 public class InventuraGUI {
@@ -40,6 +43,11 @@ public class InventuraGUI {
 	private JFrame frame;
 	private JTextField textField_1;
 	private JTextField textField_2;
+	
+	
+	private JComboBox<String> comboMjera;
+	
+	private List<String> _mjera = Arrays.asList("kom", "kg", "g", "l", "dl");
 
 	/**
 	 * Launch the application.
@@ -110,9 +118,17 @@ public class InventuraGUI {
 		textField_2.setBounds(417, 143, 102, 20);
 		frame.getContentPane().add(textField_2);
 		
-		JComboBox comboBox_2 = new JComboBox();
-		comboBox_2.setBounds(528, 140, 93, 27);
-		frame.getContentPane().add(comboBox_2);
+		
+		comboMjera = new JComboBox<String>();
+		if(_mjera.size() != 0) {
+			for(String m : _mjera) {
+				if(m != null) {
+					comboMjera.addItem(m);
+				}
+			}
+		}
+		comboMjera.setBounds(528, 140, 93, 27);
+		frame.getContentPane().add(comboMjera);
 		
 		JButton btnDodajArtikal = new JButton("Dodaj artikal");
 		btnDodajArtikal.addActionListener(new ActionListener() {

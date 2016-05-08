@@ -1,8 +1,11 @@
 package ba.unsa.etf.si.app.Inventura.Kontroleri;
 
 import java.util.List;
+
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 
 import ba.unsa.etf.si.app.Inventura.Model.Artikal;
 
@@ -50,9 +53,20 @@ public final class ArtikliKontroler{
 			return a;
 		}
 		
-		public static void izbrisi(String barkod){
+		public static Artikal nadjiBarKod(String barkod) throws Exception
+		{
 			openSession();
-			Object instance = s.load(Artikal.class, new String(barkod));
+			List<Object> artikli = s.createCriteria(Artikal.class).add(Restrictions.like("barkod", barkod)).list();
+			if(artikli.size() > 1) {
+				throw new Exception();
+			}
+			Artikal pronadjeniArtikal = (Artikal) artikli.get(0);
+			return pronadjeniArtikal;
+		}
+		
+		public static void izbrisi(long l){
+			openSession();
+			Object instance = s.load(Artikal.class, new Long(l));
 			if (instance != null)
 				s.delete(instance);
 			
