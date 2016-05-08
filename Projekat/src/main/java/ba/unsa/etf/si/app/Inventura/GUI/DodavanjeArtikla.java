@@ -15,7 +15,9 @@ import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 import ba.unsa.etf.si.app.Inventura.Kontroleri.ArtikliKontroler;
+import ba.unsa.etf.si.app.Inventura.Kontroleri.KlasaArtikalaKontroler;
 import ba.unsa.etf.si.app.Inventura.Model.Artikal;
+
 import ba.unsa.etf.si.app.Inventura.Model.KlasaArtikla;
 
 
@@ -24,6 +26,8 @@ import javax.swing.JComboBox;
 import java.awt.SystemColor;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.util.Arrays;
+import java.util.List;
 
 public class DodavanjeArtikla {
 
@@ -32,8 +36,12 @@ public class DodavanjeArtikla {
 	private JTextField txtBarkod;
 	private JTextField txtCijena;
 	private JTextField txtKolicina;
-	private JComboBox comboKlasa;
-	private JComboBox comboMjera;
+	private JComboBox<KlasaArtikla> comboKlasa;
+	private JComboBox<String> comboMjera;
+	
+	
+	private List<KlasaArtikla> _artikli;
+	private List<String> _mjera = Arrays.asList("kom", "kg", "g", "l", "dl");
 	
 	/**
 	 * Launch the application.
@@ -62,6 +70,7 @@ public class DodavanjeArtikla {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		_artikli = KlasaArtikalaKontroler.lista();
 		frame = new JFrame();
 		frame.setTitle("Dodavanje artikla");
 		frame.getContentPane().setBackground(SystemColor.control);
@@ -78,6 +87,7 @@ public class DodavanjeArtikla {
 		
 		txtNaziv = new JTextField();
 		txtNaziv.setColumns(10);
+		
 		JButton btnZavrsi = new JButton("Odustani");
 		btnZavrsi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -111,7 +121,15 @@ public class DodavanjeArtikla {
 		txtBarkod = new JTextField();
 		txtBarkod.setColumns(10);
 		
-		comboKlasa = new JComboBox();
+		comboKlasa = new JComboBox<KlasaArtikla>();
+		if(_artikli.size() != 0) {
+			for(KlasaArtikla a : _artikli) {
+				if(a != null) {
+					comboKlasa.addItem(a);
+				}
+			}
+		}
+		
 		
 		JLabel lblCijenaArtikla = new JLabel("Cijena artikla:");
 		
@@ -125,7 +143,15 @@ public class DodavanjeArtikla {
 		
 		JLabel lblMjernaJedinica = new JLabel("Mjerna jedinica:");
 		
-		comboMjera = new JComboBox();
+		
+		comboMjera = new JComboBox<String>();
+		if(_artikli.size() != 0) {
+			for(String m : _mjera) {
+				if(m != null) {
+					comboMjera.addItem(m);
+				}
+			}
+		}
 		
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
@@ -220,7 +246,6 @@ public class DodavanjeArtikla {
 		Artikal artikal=new Artikal();
 		try {
 			artikal = new Artikal(naziv, klasa, barkod, cijena, kolicina, mjera);
-			
 			
 		} catch (Exception e) {
 			e.printStackTrace();

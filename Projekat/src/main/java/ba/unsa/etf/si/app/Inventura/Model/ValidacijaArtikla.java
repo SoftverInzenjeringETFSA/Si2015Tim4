@@ -26,7 +26,7 @@ public final class ValidacijaArtikla {
 		return true;
 	}
 	
-	public static boolean validirajMjeru(Artikal.Mjera mjera){
+	public static boolean validirajMjeru(String mjera){
 		if(mjera==null){
 			return false;
 		}
@@ -52,14 +52,14 @@ public final class ValidacijaArtikla {
 		return true;
 	}
 	
-	public static boolean validirajKolicinu(String txt_kolicina, Artikal.Mjera mjera){
+	public static boolean validirajKolicinu(String txt_kolicina,  String mjera){
 		if(txt_kolicina==null || !validirajMjeru(mjera)){
 			return false;
 		}
 		
 		try{
 			Double kolicina=Double.parseDouble(txt_kolicina);
-			if(kolicina<0 || (mjera==Artikal.Mjera.kom && kolicina!=Math.floor(kolicina))){
+			if(kolicina<0 || (kolicina!=Math.floor(kolicina))){   //mjera==Math.floor(kom) &&
 				return false;
 			}
 		}

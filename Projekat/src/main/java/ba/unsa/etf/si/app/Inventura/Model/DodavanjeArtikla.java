@@ -1,4 +1,4 @@
-package ba.unsa.etf.si.app.Inventura.GUI;
+package ba.unsa.etf.si.app.Inventura.Model;
 
 import java.awt.EventQueue;
 
@@ -207,7 +207,7 @@ public class DodavanjeArtikla {
 		String barkod=txtBarkod.getText();
 		Double cijena=Double.parseDouble(txtCijena.getText());
 		Double kolicina=Double.parseDouble(txtKolicina.getText());
-		Artikal.Mjera mjera=(Artikal.Mjera)comboMjera.getSelectedItem();
+		String mjera=(String)comboMjera.getSelectedItem();
 		
 		Artikal artikal=new Artikal(1, naziv, klasa, barkod, cijena, kolicina, mjera);
 		

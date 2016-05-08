@@ -8,6 +8,7 @@ import javax.swing.SwingConstants;
 
 import ba.unsa.etf.si.app.Inventura.Kontroleri.ArtikliKontroler;
 import ba.unsa.etf.si.app.Inventura.Model.Artikal;
+
 import ba.unsa.etf.si.app.Inventura.Model.KlasaArtikla;
 
 

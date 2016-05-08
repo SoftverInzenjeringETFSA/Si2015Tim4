@@ -11,7 +11,6 @@ public class Artikal implements Serializable {
 	 * 
 	 */
 	
-	public enum Mjera{kom, kg, g, l, dl};
 	
 	private static final long serialVersionUID = 2735917613496475984L;
 	@Id
@@ -25,11 +24,11 @@ public class Artikal implements Serializable {
 	private String barkod;
 	private Double cijena;
 	private Double kolicina;
-	private Mjera mjera;
+	private String mjera;
 	
 	public Artikal(){}
 	
-	public Artikal(long _id, String _naziv, KlasaArtikla _klasa, String _barkod, Double _cijena, Double _kolicina, Mjera _mjera) {
+	public Artikal(long _id, String _naziv, KlasaArtikla _klasa, String _barkod, Double _cijena, Double _kolicina, String _mjera) {
 		setId(_id);
 		setNaziv(_naziv);
 		setKlasaArtikla(_klasa);
@@ -40,11 +39,7 @@ public class Artikal implements Serializable {
 	}
 	
 
-	public Artikal(String _naziv, KlasaArtikla _klasa, String _barkod, Double _cijena, Double _kolicina, String _mjera) throws Exception{
-		
-	}
-
-	public Artikal(String _naziv, KlasaArtikla _klasa, String _barkod, Double _cijena, Double _kolicina, Mjera _mjera) {
+	public Artikal(String _naziv, KlasaArtikla _klasa, String _barkod, Double _cijena, Double _kolicina, String _mjera) {
 		setNaziv(_naziv);
 		setKlasaArtikla(_klasa);
 		setBarkod(_barkod);
@@ -100,10 +95,10 @@ public class Artikal implements Serializable {
 		this.kolicina = kolicina;
 	}
 
-	public Mjera getMjera() {
+	public String getMjera() {
 		return mjera;
 	}
-	public void setMjera(Mjera mjera) {
+	public void setMjera(String mjera) {
 		this.mjera = mjera;
 	}
 

@@ -1,9 +1,11 @@
 package ba.unsa.etf.si.app.Inventura.Kontroleri;
 
+import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import ba.unsa.etf.si.app.Inventura.Model.Artikal;
+
 
 public final class ArtikliKontroler{
 		
@@ -69,5 +71,14 @@ public final class ArtikliKontroler{
 			
 			return nadji(naziv);
 		}
+		
+		public static List<Artikal> lista(){
+			openSession();
+			List<Artikal> artikaltmp=s.createCriteria(Artikal.class).list();
+			t.commit();
+			return artikaltmp;
+		}
+		
+	
 
 }
