@@ -7,9 +7,13 @@ import javax.persistence.*;
 
 @Entity
 public class Artikal implements Serializable {
+	/**
+	 * 
+	 */
+	
+	public enum Mjera{kom, kg, g, l, dl};
 	
 	private static final long serialVersionUID = 2735917613496475984L;
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
@@ -21,11 +25,11 @@ public class Artikal implements Serializable {
 	private String barkod;
 	private Double cijena;
 	private Double kolicina;
-	private String mjera;
+	private Mjera mjera;
 	
 	public Artikal(){}
 	
-	public Artikal(int _id, String _naziv, KlasaArtikla _klasa, String _barkod, Double _cijena, Double _kolicina, String _mjera) throws Exception {
+	public Artikal(long _id, String _naziv, KlasaArtikla _klasa, String _barkod, Double _cijena, Double _kolicina, Mjera _mjera) {
 		setId(_id);
 		setNaziv(_naziv);
 		setKlasaArtikla(_klasa);
@@ -35,7 +39,12 @@ public class Artikal implements Serializable {
 		setKolicina(_kolicina);
 	}
 	
+
 	public Artikal(String _naziv, KlasaArtikla _klasa, String _barkod, Double _cijena, Double _kolicina, String _mjera) throws Exception{
+		
+	}
+
+	public Artikal(String _naziv, KlasaArtikla _klasa, String _barkod, Double _cijena, Double _kolicina, Mjera _mjera) {
 		setNaziv(_naziv);
 		setKlasaArtikla(_klasa);
 		setBarkod(_barkod);
@@ -49,19 +58,16 @@ public class Artikal implements Serializable {
 		return getNaziv();
 	}
 	
-
 	public long getId() {
 		return id;
 	}
-
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
 	public String getNaziv() {
 		return naziv;
 	}
-
 	public void setNaziv(String naziv) {
 		this.naziv = naziv;
 	}
@@ -69,7 +75,6 @@ public class Artikal implements Serializable {
 	public KlasaArtikla getKlasaArtikla() {
 		return klasa;
 	}
-
 	public void setKlasaArtikla(KlasaArtikla klasa) {
 		this.klasa = klasa;
 	}
@@ -77,7 +82,6 @@ public class Artikal implements Serializable {
 	public String getBarkod() {
 		return barkod;
 	}
-
 	public void setBarkod(String barkod) {
 		this.barkod = barkod;
 	}
@@ -85,7 +89,6 @@ public class Artikal implements Serializable {
 	public Double getCijena() {
 		return cijena;
 	}
-
 	public void setCijena(Double cijena) {
 		this.cijena = cijena;
 	}
@@ -93,22 +96,14 @@ public class Artikal implements Serializable {
 	public Double getKolicina() {
 		return kolicina;
 	}
-
-	public void setKolicina(Double kolicina) throws Exception {
-		if(this.mjera.toLowerCase()=="komad" && kolicina!=Math.round(kolicina)){
-			throw new Exception("Mjerna jedinica artikla je na komad.");
-		}
-		else if(kolicina<0){
-			throw new Exception("Kolicina ne moze biti negativna.");
-		}
+	public void setKolicina(Double kolicina) {
 		this.kolicina = kolicina;
 	}
 
-	public String getMjera() {
+	public Mjera getMjera() {
 		return mjera;
 	}
-
-	public void setMjera(String mjera) {
+	public void setMjera(Mjera mjera) {
 		this.mjera = mjera;
 	}
 
