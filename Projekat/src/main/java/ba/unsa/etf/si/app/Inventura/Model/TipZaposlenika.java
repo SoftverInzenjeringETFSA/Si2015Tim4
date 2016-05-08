@@ -27,9 +27,8 @@ public class TipZaposlenika implements Serializable{
 	{
 		// TODO Auto-generated constructor stub
 	}
-	public TipZaposlenika(String _ime,Skladistar _skladistar, Sef _sef,String _prezime,String _jmbg, String _adresa, String _brojTel, String _email, String _korisnickoIme, String _lozinka)
+	public TipZaposlenika(String _ime, Skladistar _skladistar, Sef _sef,String _prezime,String _jmbg, String _adresa, String _brojTel, String _email, String _korisnickoIme, String _lozinka)
 	{
-		setId(0);
 		setIme(_ime);
 		setPrezime(_prezime);
 		setJmbg(_jmbg);

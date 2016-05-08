@@ -17,9 +17,9 @@ public class Izvjestaj implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	long id;
 	String Vrsta="";
-	
 	String Opis="";
 	Date Datum;
+	
 	int i=0;
 	
 	public void setId(int id){
