@@ -74,6 +74,8 @@ public class DodavanjeArtikla {
 		
 		JLabel lblNewLabel_1 = new JLabel("Klasa artikla:");
 		
+		//ovdje napisati kako da povuce iz baze sve klase artikla??
+		
 		txtNaziv = new JTextField();
 		txtNaziv.setColumns(10);
 		JButton btnZavrsi = new JButton("Odustani");
@@ -91,6 +93,7 @@ public class DodavanjeArtikla {
 					Artikal a= new Artikal();
 					a=dajArtikal();
 					ArtikliKontroler.dodaj(a);
+					System.out.println(a.getNaziv());
 					
 				}
 				catch(Exception i){
@@ -206,6 +209,7 @@ public class DodavanjeArtikla {
 	}
 	
 	public Artikal dajArtikal() {
+		
 		String naziv=txtNaziv.getText();
 		KlasaArtikla klasa=(KlasaArtikla)comboKlasa.getSelectedItem();
 		String barkod=txtBarkod.getText();
@@ -215,10 +219,12 @@ public class DodavanjeArtikla {
 		
 		Artikal artikal=new Artikal();
 		try {
-			artikal = new Artikal(0, naziv, klasa, barkod, cijena, kolicina, mjera);
-		} catch (Exception e) {
+			artikal = new Artikal(naziv, klasa, barkod, cijena, kolicina, mjera);
 			
+			
+		} catch (Exception e) {
 			e.printStackTrace();
+			System.out.println("ss");
 		}
 		
 		return artikal;

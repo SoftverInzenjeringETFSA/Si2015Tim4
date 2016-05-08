@@ -35,8 +35,7 @@ public class Artikal implements Serializable {
 		setKolicina(_kolicina);
 	}
 	
-	public Artikal(String _naziv, KlasaArtikla _klasa, String _barkod, Double _cijena, Double _kolicina, String _mjera) throws Exception {
-		setId(0);
+	public Artikal(String _naziv, KlasaArtikla _klasa, String _barkod, Double _cijena, Double _kolicina, String _mjera) throws Exception{
 		setNaziv(_naziv);
 		setKlasaArtikla(_klasa);
 		setBarkod(_barkod);

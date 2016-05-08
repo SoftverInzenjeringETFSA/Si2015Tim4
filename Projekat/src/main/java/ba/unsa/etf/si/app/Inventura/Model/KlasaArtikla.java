@@ -19,7 +19,6 @@ public class KlasaArtikla implements Serializable{
 	public KlasaArtikla(){}
 	
 	public KlasaArtikla(String _naziv){
-		setId(0);
 		setNaziv(_naziv);
 	}
 	
