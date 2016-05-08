@@ -31,7 +31,7 @@ public class TipZaposlenikaKontroler {
 	
 	private TipZaposlenikaKontroler(){}
 		
-		public static long dodaj (TipZaposlenika tip){
+		public static long dodaj(TipZaposlenika tip){
 			openSession();
 			
 			long id= (long) s.save(tip);

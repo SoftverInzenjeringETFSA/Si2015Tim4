@@ -31,7 +31,6 @@ public class Skladistar extends TipZaposlenika implements Serializable{
 	}
 	public Skladistar(Inventura inventura)
 	{
-		setId(0);
 		setInventura(inventura);
 	}
 
