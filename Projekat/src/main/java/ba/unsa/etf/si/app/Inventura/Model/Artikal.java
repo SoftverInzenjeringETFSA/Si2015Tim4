@@ -7,10 +7,9 @@ import javax.persistence.*;
 
 @Entity
 public class Artikal implements Serializable {
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 2735917613496475984L;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;

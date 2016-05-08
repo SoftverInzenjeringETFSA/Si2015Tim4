@@ -16,6 +16,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 
 import ba.unsa.etf.si.app.Inventura.Model.Artikal;
 import ba.unsa.etf.si.app.Inventura.Model.KlasaArtikla;
+import ba.unsa.etf.si.app.Inventura.Servis.Servis;
 
 import javax.swing.JSeparator;
 import javax.swing.JComboBox;
@@ -86,8 +87,9 @@ public class DodavanjeArtikla {
 		btnUnesi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try{
-					Artikal artikal=dajArtikal();
-					// dodati u bazu
+					Artikal a= new Artikal();
+					a=dajArtikal();
+					Servis.Artikli.dodaj(a);
 				}
 				catch(Exception i){
 					JOptionPane.showMessageDialog(frame, i.getMessage());
@@ -201,7 +203,7 @@ public class DodavanjeArtikla {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
-	public Artikal dajArtikal() throws Exception {
+	public Artikal dajArtikal() {
 		String naziv=txtNaziv.getText();
 		KlasaArtikla klasa=(KlasaArtikla)comboKlasa.getSelectedItem();
 		String barkod=txtBarkod.getText();
@@ -209,7 +211,13 @@ public class DodavanjeArtikla {
 		Double kolicina=Double.parseDouble(txtKolicina.getText());
 		String mjera=(String)comboMjera.getSelectedItem();
 		
-		Artikal artikal=new Artikal(1, naziv, klasa, barkod, cijena, kolicina, mjera);
+		Artikal artikal=new Artikal();
+		try {
+			artikal = new Artikal(0, naziv, klasa, barkod, cijena, kolicina, mjera);
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
 		
 		return artikal;
 	}
