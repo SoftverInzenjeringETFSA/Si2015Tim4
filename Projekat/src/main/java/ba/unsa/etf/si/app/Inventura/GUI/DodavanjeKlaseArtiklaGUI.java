@@ -4,12 +4,20 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
+
+import ba.unsa.etf.si.app.Inventura.Model.KlasaArtikla;
+import ba.unsa.etf.si.app.Inventura.Servis.Servis;
+
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JSeparator;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.Color;
+import java.awt.Component;
 
 public class DodavanjeKlaseArtiklaGUI {
 
@@ -62,6 +70,19 @@ public class DodavanjeKlaseArtiklaGUI {
 		txtNaziv.setColumns(10);
 		
 		JButton btnDodaj = new JButton("Dodaj klasu artikla");
+		btnDodaj.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try{
+					KlasaArtikla klasa = new KlasaArtikla(txtNaziv.getText());
+					Servis.KlaseArtikala.dodaj(klasa);
+				}
+				catch(Exception i){
+					Component frame = null;
+					JOptionPane.showMessageDialog(frame, i.getMessage());
+				}
+			}
+		});
+		
 		btnDodaj.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnDodaj.setBounds(165, 158, 156, 23);
 		frmUnosNoveKlase.getContentPane().add(btnDodaj);

@@ -5,12 +5,21 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.SwingConstants;
+
+import ba.unsa.etf.si.app.Inventura.Model.KlasaArtikla;
+import ba.unsa.etf.si.app.Inventura.Servis.Servis;
+
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JSeparator;
 import java.awt.Color;
+import java.awt.Component;
 
 public class ModifikacijaKlaseArtiklaGUI {
 
@@ -74,6 +83,20 @@ public class ModifikacijaKlaseArtiklaGUI {
 		txtNaziv.setColumns(10);
 		
 		JButton btnIzmjeni = new JButton("Izmjeni");
+		btnIzmjeni.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try{
+					KlasaArtikla klasa = new KlasaArtikla();
+					klasa=Servis.KlaseArtikala.nadji(txtNaziv.getText()); // validacija jel nasao??
+					Servis.KlaseArtikala.izmijeni(klasa);
+				}
+				catch(Exception i){
+					Component frame = null;
+					JOptionPane.showMessageDialog(frame, i.getMessage());
+				}
+			}
+		});
+		
 		btnIzmjeni.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnIzmjeni.setBounds(221, 322, 89, 23);
 		frmModifikacijaKlaseArtikla.getContentPane().add(btnIzmjeni);

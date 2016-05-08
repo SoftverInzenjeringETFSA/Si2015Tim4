@@ -8,6 +8,7 @@ import javax.swing.SwingConstants;
 
 import ba.unsa.etf.si.app.Inventura.Model.Artikal;
 import ba.unsa.etf.si.app.Inventura.Model.KlasaArtikla;
+import ba.unsa.etf.si.app.Inventura.Servis.Servis;
 
 import java.awt.Font;
 import javax.swing.JSeparator;
@@ -16,6 +17,8 @@ import javax.swing.JComboBox;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import java.awt.Color;
+import java.awt.Component;
+
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 
@@ -119,9 +122,13 @@ public class ModifikacijaArtiklaGUI {
 		btnSacuvaj.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try{
-					izmjeniArtikal();
+					Artikal a = new Artikal();
+					 // validacija jel nasao??
+					a=izmjeniArtikal();
+					Servis.Artikli.izmijeni(a);
 				}
 				catch(Exception i){
+					Component frame = null;
 					JOptionPane.showMessageDialog(frame, i.getMessage());
 				}
 			}
@@ -178,7 +185,7 @@ public class ModifikacijaArtiklaGUI {
 		frame.getContentPane().add(listArtikli);
 	}
 
-	public void izmjeniArtikal() throws Exception {
+	public Artikal izmjeniArtikal() {
 		Artikal artikal=(Artikal)listArtikli.getSelectedValue();
 		
 		String naziv=txtNaziv.getText();
@@ -188,10 +195,15 @@ public class ModifikacijaArtiklaGUI {
 		Double kolicina=Double.parseDouble(txtKolicina.getText());
 		String mjera=(String)comboMjera.getSelectedItem();
 		
-		Artikal novi=new Artikal(naziv, klasa, barkod, cijena, kolicina, mjera);
+		Artikal novi=new Artikal();
+		try {
+			novi = new Artikal(naziv, klasa, barkod, cijena, kolicina, mjera);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
-		//artikal.izmjeniArtikal(novi);
-		
-		// azuriranje liste i baze
+		return novi;
+	
 	}
 }

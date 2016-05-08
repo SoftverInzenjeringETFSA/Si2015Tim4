@@ -5,6 +5,7 @@ import org.hibernate.Transaction;
 
 import ba.unsa.etf.si.app.Inventura.Kontroleri.HibernateUtil;
 import ba.unsa.etf.si.app.Inventura.Model.Artikal;
+import ba.unsa.etf.si.app.Inventura.Model.KlasaArtikla;
 
 public final class Servis {
 
@@ -42,9 +43,9 @@ public static class Artikli{
 			return id;	
 		}
 		
-		public static Artikal nadji(int id){
+		public static Artikal nadji(String naziv){
 			openSession();
-			Artikal a = (Artikal) s.get(Artikal.class,new Long(id));
+			Artikal a = (Artikal) s.get(Artikal.class,new String(naziv));
 			t.commit();
 			
 			closeSession();
@@ -68,19 +69,58 @@ public static class Artikli{
 				t.commit();
 				closeSession();
 				
-			long l=a.getId();
-			int id=(int) l;
-			return nadji(id);
+			String naziv=a.getNaziv();
+			
+			return nadji(naziv);
 		}
 		
-		/* public static List<Osoba> lista(){
-			openSession();
-			List<Osoba> osobe=s.createCriteria(Osoba.class).list();
-			t.commit();
-			return osobe;
-		}
-		*/
+	}
+
+public static class KlaseArtikala{
 	
+	public static Long dodaj(KlasaArtikla a){
+		openSession();
+		
+		Long id= (Long) s.save(a);
+		t.commit();
+		
+		closeSession();
+		return id;	
 	}
 	
+	public static KlasaArtikla nadji(String naziv){
+		openSession();
+		KlasaArtikla a = (KlasaArtikla) s.get(KlasaArtikla.class,new String(naziv));
+		t.commit();
+		
+		closeSession();
+		return a;
+	}
+	
+	public static void izbrisi(String naziv){
+		openSession();
+		Object instance = s.load(KlasaArtikla.class, new String(naziv));
+		if (instance != null)
+			s.delete(instance);
+		
+		t.commit();
+		closeSession();
+	}
+	
+	public static KlasaArtikla izmijeni(KlasaArtikla a){
+		openSession();
+		
+			s.merge(a);
+			t.commit();
+			closeSession();
+			
+		String naziv = a.getNaziv();	
+		
+		return nadji(naziv);
+	}
+	
+	}
+
 }
+
+

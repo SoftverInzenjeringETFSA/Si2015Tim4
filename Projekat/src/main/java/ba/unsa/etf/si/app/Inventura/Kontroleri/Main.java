@@ -6,7 +6,6 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import ba.unsa.etf.si.app.Inventura.Model.*;
-import ba.unsa.etf.si.app.Inventura.Servis.Servis;
 
 public class Main {
 	public static void main(String[] args) {
