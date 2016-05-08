@@ -23,7 +23,7 @@ public class KlasaArtikla implements Serializable{
 		setNaziv(_naziv);
 	}
 	
-	public KlasaArtikla(int _id, String _naziv){
+	public KlasaArtikla(long _id, String _naziv){
 		setId(_id);
 		setNaziv(_naziv);
 	}
