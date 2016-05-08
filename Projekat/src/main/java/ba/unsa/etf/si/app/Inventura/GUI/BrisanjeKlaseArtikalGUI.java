@@ -14,9 +14,10 @@ import java.awt.Component;
 
 import javax.swing.SwingConstants;
 
-import ba.unsa.etf.si.app.Inventura.Model.Artikal;
-import ba.unsa.etf.si.app.Inventura.Model.KlasaArtikla;
-import ba.unsa.etf.si.app.Inventura.Servis.Servis;
+
+// import ba.unsa.etf.si.app.Inventura.Model.KlasaArtikla;
+
+import ba.unsa.etf.si.app.Inventura.Kontroleri.KlasaArtikalaKontroler;
 
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
@@ -96,9 +97,7 @@ public class BrisanjeKlaseArtikalGUI {
 		btnObrisi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try{
-					KlasaArtikla klasa = new KlasaArtikla();
-					klasa=Servis.KlaseArtikala.nadji(txtNaziv.getText()); // validacija jel nasao??
-					Servis.KlaseArtikala.izbrisi(txtNaziv.getText());
+					KlasaArtikalaKontroler.izbrisi(txtNaziv.getText());
 				}
 				catch(Exception i){
 					Component frame = null;

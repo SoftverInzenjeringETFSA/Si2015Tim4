@@ -10,8 +10,9 @@ import java.awt.event.ActionListener;
 
 import javax.swing.SwingConstants;
 
+import ba.unsa.etf.si.app.Inventura.Kontroleri.KlasaArtikalaKontroler;
 import ba.unsa.etf.si.app.Inventura.Model.KlasaArtikla;
-import ba.unsa.etf.si.app.Inventura.Servis.Servis;
+
 
 import javax.swing.JList;
 import javax.swing.JOptionPane;
@@ -87,8 +88,8 @@ public class ModifikacijaKlaseArtiklaGUI {
 			public void actionPerformed(ActionEvent e) {
 				try{
 					KlasaArtikla klasa = new KlasaArtikla();
-					klasa=Servis.KlaseArtikala.nadji(txtNaziv.getText()); // validacija jel nasao??
-					Servis.KlaseArtikala.izmijeni(klasa);
+					klasa=KlasaArtikalaKontroler.nadji(txtNaziv.getText()); // validacija jel nasao??
+					KlasaArtikalaKontroler.izmijeni(klasa);
 				}
 				catch(Exception i){
 					Component frame = null;

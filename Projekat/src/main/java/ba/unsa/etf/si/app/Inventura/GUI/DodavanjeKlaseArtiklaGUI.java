@@ -7,8 +7,9 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 
+import ba.unsa.etf.si.app.Inventura.Kontroleri.KlasaArtikalaKontroler;
 import ba.unsa.etf.si.app.Inventura.Model.KlasaArtikla;
-import ba.unsa.etf.si.app.Inventura.Servis.Servis;
+
 
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -74,7 +75,7 @@ public class DodavanjeKlaseArtiklaGUI {
 			public void actionPerformed(ActionEvent e) {
 				try{
 					KlasaArtikla klasa = new KlasaArtikla(txtNaziv.getText());
-					Servis.KlaseArtikala.dodaj(klasa);
+					KlasaArtikalaKontroler.dodaj(klasa);
 				}
 				catch(Exception i){
 					Component frame = null;

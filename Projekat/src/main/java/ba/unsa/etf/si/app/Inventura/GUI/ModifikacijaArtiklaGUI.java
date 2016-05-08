@@ -6,9 +6,10 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
+import ba.unsa.etf.si.app.Inventura.Kontroleri.ArtikliKontroler;
 import ba.unsa.etf.si.app.Inventura.Model.Artikal;
 import ba.unsa.etf.si.app.Inventura.Model.KlasaArtikla;
-import ba.unsa.etf.si.app.Inventura.Servis.Servis;
+
 
 import java.awt.Font;
 import javax.swing.JSeparator;
@@ -125,7 +126,7 @@ public class ModifikacijaArtiklaGUI {
 					Artikal a = new Artikal();
 					 // validacija jel nasao??
 					a=izmjeniArtikal();
-					Servis.Artikli.izmijeni(a);
+					ArtikliKontroler.izmijeni(a);
 				}
 				catch(Exception i){
 					Component frame = null;

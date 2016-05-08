@@ -14,9 +14,10 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
+import ba.unsa.etf.si.app.Inventura.Kontroleri.ArtikliKontroler;
 import ba.unsa.etf.si.app.Inventura.Model.Artikal;
 import ba.unsa.etf.si.app.Inventura.Model.KlasaArtikla;
-import ba.unsa.etf.si.app.Inventura.Servis.Servis;
+
 
 import javax.swing.JSeparator;
 import javax.swing.JComboBox;
@@ -89,7 +90,8 @@ public class DodavanjeArtikla {
 				try{
 					Artikal a= new Artikal();
 					a=dajArtikal();
-					Servis.Artikli.dodaj(a);
+					ArtikliKontroler.dodaj(a);
+					
 				}
 				catch(Exception i){
 					JOptionPane.showMessageDialog(frame, i.getMessage());

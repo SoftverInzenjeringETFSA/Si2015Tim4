@@ -1,13 +1,13 @@
-package ba.unsa.etf.si.app.Inventura.Servis;
+package ba.unsa.etf.si.app.Inventura.Kontroleri;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import ba.unsa.etf.si.app.Inventura.Kontroleri.HibernateUtil;
-import ba.unsa.etf.si.app.Inventura.Model.Artikal;
+
 import ba.unsa.etf.si.app.Inventura.Model.KlasaArtikla;
 
-public final class Servis {
+public final class KlasaArtikalaKontroler {
 
 	private static Transaction t;
 	private static Session s;
@@ -29,54 +29,8 @@ public final class Servis {
 		}	
 	}
 	
-	private Servis() {}
+	private KlasaArtikalaKontroler(){}
 	
-public static class Artikli{
-		
-		public static Long dodaj(Artikal a){
-			openSession();
-			
-			Long id= (Long) s.save(a);
-			t.commit();
-			
-			closeSession();
-			return id;	
-		}
-		
-		public static Artikal nadji(String naziv){
-			openSession();
-			Artikal a = (Artikal) s.get(Artikal.class,new String(naziv));
-			t.commit();
-			
-			closeSession();
-			return a;
-		}
-		
-		public static void izbrisi(String barkod){
-			openSession();
-			Object instance = s.load(Artikal.class, new String(barkod));
-			if (instance != null)
-				s.delete(instance);
-			
-			t.commit();
-			closeSession();
-		}
-		
-		public static Artikal izmijeni(Artikal a){
-			openSession();
-			
-				s.merge(a);
-				t.commit();
-				closeSession();
-				
-			String naziv=a.getNaziv();
-			
-			return nadji(naziv);
-		}
-		
-	}
-
-public static class KlaseArtikala{
 	
 	public static Long dodaj(KlasaArtikla a){
 		openSession();
@@ -121,6 +75,5 @@ public static class KlaseArtikala{
 	
 	}
 
-}
 
 
