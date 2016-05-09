@@ -68,7 +68,10 @@ public class Izvjestaj implements Serializable {
 		setDatum(d);
 	}
 	
-	
+	@Override
+	public String toString(){
+		return Opis;
+	}
 	
 	
 }
