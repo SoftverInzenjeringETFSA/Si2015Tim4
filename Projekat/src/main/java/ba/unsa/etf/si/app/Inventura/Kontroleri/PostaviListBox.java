@@ -6,6 +6,7 @@ import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
 
+import ba.unsa.etf.si.app.Inventura.Model.Inventura;
 import ba.unsa.etf.si.app.Inventura.Model.Izvjestaj;
 
 public final class PostaviListBox {
@@ -76,6 +77,16 @@ public final class PostaviListBox {
 		
 		DefaultListModel listModel=new DefaultListModel();
 		for(Izvjestaj i:izlaz){
+			listModel.addElement(i);
+		}
+		list.setModel(listModel);
+	}
+	
+	public static void dokumentiInventure(JList list){
+		List<Inventura> inventure = InventuraKontroler.lista();
+		
+		DefaultListModel listModel=new DefaultListModel();
+		for(Inventura i:inventure){
 			listModel.addElement(i);
 		}
 		list.setModel(listModel);
