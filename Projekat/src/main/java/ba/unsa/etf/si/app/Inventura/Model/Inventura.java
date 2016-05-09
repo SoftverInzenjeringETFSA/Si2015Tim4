@@ -88,4 +88,9 @@ public class Inventura implements Serializable {
 		System.out.println("Inventura broj" + I.id);
 		
 		}
+	
+	@Override
+	public String toString(){
+		return opis;
+	}
 }
