@@ -14,6 +14,8 @@ import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import java.awt.SystemColor;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class PromjenaLozinke {
 
@@ -25,7 +27,7 @@ public class PromjenaLozinke {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public static void pokreni() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -76,6 +78,12 @@ public class PromjenaLozinke {
 		btnPotvrdi.setBackground(new Color(143, 188, 143));
 		
 		JButton btnOdustani = new JButton("Odustani");
+		btnOdustani.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				frmPromjenaLozinke.dispose();
+				frmPromjenaLozinke.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			}
+		});
 		btnOdustani.setBackground(new Color(143, 188, 143));
 		GroupLayout groupLayout = new GroupLayout(frmPromjenaLozinke.getContentPane());
 		groupLayout.setHorizontalGroup(

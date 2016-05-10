@@ -52,7 +52,7 @@ public class InventuraGUI {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public static void pokreni() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -174,6 +174,12 @@ public class InventuraGUI {
 		frame.getContentPane().add(lblNewLabel_2);
 		
 		JButton btnNewButton = new JButton("Odustani");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			}
+		});
 		btnNewButton.setBounds(311, 246, 140, 23);
 		frame.getContentPane().add(btnNewButton);
 	}

@@ -28,7 +28,7 @@ public class DodavanjeKlaseArtiklaGUI {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public static void pokreni() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -101,6 +101,12 @@ public class DodavanjeKlaseArtiklaGUI {
 		frmUnosNoveKlase.getContentPane().add(separator);
 		
 		JButton btnZavrsi = new JButton("Završi");
+		btnZavrsi.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			frmUnosNoveKlase.dispose();
+			frmUnosNoveKlase.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			}
+		});
 		btnZavrsi.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnZavrsi.setBounds(31, 158, 89, 23);
 		frmUnosNoveKlase.getContentPane().add(btnZavrsi);

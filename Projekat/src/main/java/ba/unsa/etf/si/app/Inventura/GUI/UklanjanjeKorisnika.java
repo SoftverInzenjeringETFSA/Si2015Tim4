@@ -1,5 +1,5 @@
 package ba.unsa.etf.si.app.Inventura.GUI;
-
+import ba.unsa.etf.si.app.Inventura.Model.TipZaposlenika;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -10,6 +10,9 @@ import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.SystemColor;
+import java.awt.Window;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class UklanjanjeKorisnika {
 
@@ -19,7 +22,7 @@ public class UklanjanjeKorisnika {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public static void pokreni() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -70,7 +73,7 @@ public class UklanjanjeKorisnika {
 		frmUklanjanjeKorisnika.getContentPane().add(separator);
 		
 		JLabel lblKorisnikoIme = new JLabel("Korisničko ime:");
-		lblKorisnikoIme.setBounds(33, 100, 79, 14);
+		lblKorisnikoIme.setBounds(23, 100, 94, 14);
 		frmUklanjanjeKorisnika.getContentPane().add(lblKorisnikoIme);
 		
 		textField = new JTextField();
@@ -79,12 +82,32 @@ public class UklanjanjeKorisnika {
 		textField.setColumns(10);
 		
 		JButton btnZavri = new JButton("Odustani");
+		btnZavri.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frmUklanjanjeKorisnika.dispose();
+				frmUklanjanjeKorisnika.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			}
+		});
 		btnZavri.setBounds(52, 139, 89, 23);
 		frmUklanjanjeKorisnika.getContentPane().add(btnZavri);
 		
 		JButton btnUkloni = new JButton("Ukloni");
 		btnUkloni.setBounds(188, 139, 89, 23);
 		frmUklanjanjeKorisnika.getContentPane().add(btnUkloni);
+	}
+	public void ukloniKorisnika()
+	{
+		String naziv = textField.getText();
+		
+		try
+		{
+			
+		}
+		catch (Exception e) 
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }

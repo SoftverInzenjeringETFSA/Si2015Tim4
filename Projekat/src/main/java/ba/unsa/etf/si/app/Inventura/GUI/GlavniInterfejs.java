@@ -21,6 +21,8 @@ import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JList;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class GlavniInterfejs {
 
@@ -29,7 +31,7 @@ public class GlavniInterfejs {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public static void pokreni() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -41,13 +43,13 @@ public class GlavniInterfejs {
 			}
 		});
 	}
-
 	/**
 	 * Create the application.
 	 */
 	public GlavniInterfejs() {
 		initialize();
 	}
+
 
 	/**
 	 * Initialize the contents of the frame.
@@ -64,6 +66,12 @@ public class GlavniInterfejs {
 		menuBar.add(mnInventura);
 		
 		JMenuItem mntmZaponiNovu = new JMenuItem("Započni novu");
+		mntmZaponiNovu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			InventuraGUI nw = new InventuraGUI();
+			nw.pokreni();
+			}
+		});
 		mnInventura.add(mntmZaponiNovu);
 		
 		JMenuItem mntmPregledZavrenih = new JMenuItem("Pregled završenih");
@@ -79,15 +87,33 @@ public class GlavniInterfejs {
 		menuBar.add(mnDokumenti);
 		
 		JMenuItem mntmKreirajIzlazniDokument_1 = new JMenuItem("Kreiraj izlazni dokument");
+		mntmKreirajIzlazniDokument_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			izlazniDokument nw = new izlazniDokument();
+			nw.pokreni();
+			}
+		});
 		mnDokumenti.add(mntmKreirajIzlazniDokument_1);
 		
 		JMenuItem mntmKreiraj = new JMenuItem("Kreiraj dokument otpisa");
+		mntmKreiraj.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			OtpisDokument nw = new OtpisDokument();
+			nw.pokreni();
+			}
+		});
 		mnDokumenti.add(mntmKreiraj);
 		
 		JMenuItem mntmPregledKreiranihDokumenata = new JMenuItem("Pregled dokumenata viška");
 		mnDokumenti.add(mntmPregledKreiranihDokumenata);
 		
 		JMenuItem mntmPregledDokumenataManjka = new JMenuItem("Pregled dokumenata manjka");
+		mntmPregledDokumenataManjka.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			IzvjestajManjka nw = new IzvjestajManjka();
+			nw.pokreni();
+			}
+		});
 		mnDokumenti.add(mntmPregledDokumenataManjka);
 		
 		JMenuItem mntmPregledDokumenataOtpisa = new JMenuItem("Pregled dokumenata otpisa");
@@ -99,13 +125,30 @@ public class GlavniInterfejs {
 		JMenu mnNewMenu = new JMenu("Postavke");
 		menuBar.add(mnNewMenu);
 		
+		JMenuBar menuBar_2 = new JMenuBar();
+		mnNewMenu.add(menuBar_2);
+		
 		JMenuItem mntmNewMenuItem_2 = new JMenuItem("Promijeni lozinku");
+		mntmNewMenuItem_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			PromjenaLozinke nw = new PromjenaLozinke();
+			nw.pokreni();
+			}
+		});
 		mnNewMenu.add(mntmNewMenuItem_2);
+		
+		JMenuBar menuBar_1 = new JMenuBar();
+		mnNewMenu.add(menuBar_1);
 		
 		JMenu mnSistem = new JMenu("Sistem");
 		menuBar.add(mnSistem);
 		
 		JMenuItem mntmNewMenuItem = new JMenuItem("Odjava");
+		mntmNewMenuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			frame.dispose();
+			}
+		});
 		mnSistem.add(mntmNewMenuItem);
 		
 		JLabel lblKorisnikoIme_1 = new JLabel("Korisničko ime");

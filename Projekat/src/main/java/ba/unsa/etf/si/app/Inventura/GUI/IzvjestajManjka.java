@@ -18,7 +18,7 @@ public class IzvjestajManjka {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public static void pokreni() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -91,6 +91,7 @@ public class IzvjestajManjka {
 					.addContainerGap(61, Short.MAX_VALUE))
 		);
 		frame.getContentPane().setLayout(groupLayout);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	}
 
 }

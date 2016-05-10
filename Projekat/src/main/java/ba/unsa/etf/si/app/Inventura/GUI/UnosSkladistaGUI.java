@@ -10,7 +10,9 @@ import javax.swing.SwingConstants;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.JButton;
-
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import ba.unsa.etf.si.app.Inventura.Model.Skladiste;;
 public class UnosSkladistaGUI {
 
 	private JFrame frmUnosSkladita;
@@ -20,7 +22,7 @@ public class UnosSkladistaGUI {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public static void pokreni() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -100,9 +102,34 @@ public class UnosSkladistaGUI {
 		frmUnosSkladita.getContentPane().add(btnUnesi);
 		
 		JButton btnOdustani = new JButton("Odustani");
+		btnOdustani.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			frmUnosSkladita.dispose();
+			frmUnosSkladita.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			}
+		});
 		btnOdustani.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnOdustani.setBounds(24, 191, 89, 23);
 		frmUnosSkladita.getContentPane().add(btnOdustani);
 	}
+	
+	public void dodajSkladiste()
+	{
+		String naziv = textField.getText();
+		String lokacija = textField_1.getText();
+		
+		try
+		{
+			Skladiste s = new Skladiste(naziv,lokacija);
+			//upis u bazuPodataka
+		}
+		catch (Exception e) 
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
 
 }
+

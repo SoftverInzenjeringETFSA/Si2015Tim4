@@ -30,7 +30,7 @@ public class ModifikacijaKlaseArtiklaGUI {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public static void pokreni() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -103,6 +103,12 @@ public class ModifikacijaKlaseArtiklaGUI {
 		frmModifikacijaKlaseArtikla.getContentPane().add(btnIzmjeni);
 		
 		JButton btnOdustani = new JButton("Odustani");
+		btnOdustani.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			frmModifikacijaKlaseArtikla.dispose();
+			frmModifikacijaKlaseArtikla.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			}
+		});
 		btnOdustani.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnOdustani.setBounds(20, 322, 89, 23);
 		frmModifikacijaKlaseArtikla.getContentPane().add(btnOdustani);

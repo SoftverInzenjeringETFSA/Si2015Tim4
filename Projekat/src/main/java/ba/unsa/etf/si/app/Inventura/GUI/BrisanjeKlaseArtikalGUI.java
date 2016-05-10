@@ -31,7 +31,7 @@ public class BrisanjeKlaseArtikalGUI {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public static void pokreni() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -111,6 +111,12 @@ public class BrisanjeKlaseArtikalGUI {
 		frmBrisanjeKlaseArtikla.getContentPane().add(btnObrisi);
 		
 		JButton btnOdustani = new JButton("Odustani");
+		btnOdustani.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			frmBrisanjeKlaseArtikla.dispose();
+			frmBrisanjeKlaseArtikla.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			}
+		});
 		btnOdustani.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnOdustani.setBounds(22, 168, 89, 23);
 		frmBrisanjeKlaseArtikla.getContentPane().add(btnOdustani);
