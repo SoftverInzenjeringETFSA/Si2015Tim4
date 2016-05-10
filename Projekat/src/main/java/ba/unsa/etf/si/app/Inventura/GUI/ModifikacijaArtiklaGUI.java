@@ -129,13 +129,13 @@ public class ModifikacijaArtiklaGUI {
 			public void actionPerformed(ActionEvent e) {
 				try{
 					Artikal artikal=(Artikal)listArtikli.getSelectedValue();
-					 // validacija jel nasao??
 					izmjeniArtikal(artikal);
 					ArtikliKontroler.izmijeni(artikal);
 					
 					postaviListu();
 				}
 				catch(Exception i){
+					System.out.print("lalalala ");
 					Component frame = null;
 					JOptionPane.showMessageDialog(frame, i.getMessage());
 				}

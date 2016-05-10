@@ -52,6 +52,17 @@ public final class ArtikliKontroler{
 			closeSession();
 			return a;
 		}
+	
+		public static Artikal nadjiId(Long id) throws Exception
+		{
+			openSession();
+			List<Object> artikli = s.createCriteria(Artikal.class).add(Restrictions.like("id", id)).list();
+			if(artikli.size() > 1) {
+				throw new Exception();
+			}
+			Artikal pronadjeniArtikal = (Artikal) artikli.get(0);
+			return pronadjeniArtikal;
+		}
 		
 		public static Artikal nadjiBarKod(String barkod) throws Exception
 		{
@@ -74,7 +85,7 @@ public final class ArtikliKontroler{
 			closeSession();
 		}
 		
-		public static Artikal izmijeni(Artikal a){
+		public static Artikal izmijeni(Artikal a) throws Exception{
 			openSession();
 			
 				s.merge(a);
@@ -83,7 +94,7 @@ public final class ArtikliKontroler{
 				
 			String naziv=a.getNaziv();
 			
-			return nadji(naziv);
+			return nadjiId(a.getId());
 		}
 		
 		public static List<Artikal> lista(){
