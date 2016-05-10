@@ -34,7 +34,7 @@ public final class ArtikliKontroler{
 	
 	private ArtikliKontroler(){}
 	
-		public static Long dodaj(Artikal a){
+		public Long dodaj(Artikal a){
 			openSession();
 			
 			Long id= (Long) s.save(a);

@@ -7,9 +7,15 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Color;
 import javax.swing.SwingConstants;
+
+import ba.unsa.etf.si.app.Inventura.Kontroleri.SkladisteKontroler;
+import ba.unsa.etf.si.app.Inventura.Model.Skladiste;
+
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class UnosSkladistaGUI {
 
@@ -95,14 +101,28 @@ public class UnosSkladistaGUI {
 		frmUnosSkladita.getContentPane().add(textField_1);
 		
 		JButton btnUnesi = new JButton("Unesi");
+		btnUnesi.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				Skladiste s=new Skladiste(textField.getText(),textField_1.getText());
+				SkladisteKontroler sk=new SkladisteKontroler();
+				sk.dodajInfoOSkladistu(s);
+			}
+		});
 		btnUnesi.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnUnesi.setBounds(304, 191, 89, 23);
 		frmUnosSkladita.getContentPane().add(btnUnesi);
 		
 		JButton btnOdustani = new JButton("Odustani");
+		btnOdustani.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//zatvori prozor
+			
+		
+			}
+		});
 		btnOdustani.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnOdustani.setBounds(24, 191, 89, 23);
 		frmUnosSkladita.getContentPane().add(btnOdustani);
 	}
-
 }

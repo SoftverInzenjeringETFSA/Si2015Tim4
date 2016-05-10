@@ -40,7 +40,12 @@ public class ModifikacijaKorisnika {
 	public ModifikacijaKorisnika() {
 		initialize();
 	}
-
+	public void postaviListu(){
+		
+		
+		
+		
+	}
 	/**
 	 * Initialize the contents of the frame.
 	 */
@@ -91,6 +96,7 @@ public class ModifikacijaKorisnika {
 		JList list = new JList();
 		list.setBounds(43, 119, 150, 184);
 		frmModifikacijaKorisnika.getContentPane().add(list);
+		postavilistu();
 		frmModifikacijaKorisnika.setBounds(100, 100, 445, 353);
 		frmModifikacijaKorisnika.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}

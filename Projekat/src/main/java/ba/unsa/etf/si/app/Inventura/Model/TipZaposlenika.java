@@ -21,13 +21,14 @@ public class TipZaposlenika implements Serializable{
 	private String email;
 	private String korisnickoIme;
 	private String lozinka;
+	private String privilegija;
 	
 	
 	public TipZaposlenika() 
 	{
 		// TODO Auto-generated constructor stub
 	}
-	public TipZaposlenika(String _ime, Skladistar _skladistar, Sef _sef,String _prezime,String _jmbg, String _adresa, String _brojTel, String _email, String _korisnickoIme, String _lozinka)
+	public TipZaposlenika(String _ime,String _prezime,String _jmbg, String _adresa, String _brojTel, String _email, String _korisnickoIme, String _lozinka,String _privilegija)
 	{
 		setIme(_ime);
 		setPrezime(_prezime);
@@ -37,20 +38,9 @@ public class TipZaposlenika implements Serializable{
 		setEmail(_email);
 		setKorisnickoime(_korisnickoIme);
 		setLozinka(_lozinka);
+		setPrivilegija(_privilegija);
 	}
-	public TipZaposlenika(int _id, String _ime, Skladistar _skladistar, Sef _sef,String _prezime,String _jmbg, String _adresa, String _brojTel, String _email, String _korisnickoIme, String _lozinka)
-	{
-		setId(_id);
-		setIme(_ime);
-		setPrezime(_prezime);
-		setJmbg(_jmbg);
-		setAdresa(_adresa);
-		setBrojtel(_brojTel);
-		setEmail(_email);
-		setKorisnickoime(_korisnickoIme);
-		setLozinka(_lozinka);
-	}
-
+	
 	public long getId() {
 		return id;
 	}
@@ -125,6 +115,14 @@ public class TipZaposlenika implements Serializable{
 	public void setLozinka(String lozinka)
 	{
 		this.lozinka=lozinka;
+	}
+	public String getPrivilegija()
+	{
+		return privilegija;
+	}
+	public void setPrivilegija(String privil)
+	{
+		privilegija=privil;
 	}
 	public void izmjeniKorisnika(TipZaposlenika novi){
 		ime=novi.ime;

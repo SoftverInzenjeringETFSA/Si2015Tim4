@@ -29,12 +29,12 @@ public class TipZaposlenikaKontroler {
 	}
 	
 	
-	private TipZaposlenikaKontroler(){}
+	public TipZaposlenikaKontroler(){}
 		
-		public static long dodaj(TipZaposlenika tip){
+		public long dodaj(TipZaposlenika tipz){
 			openSession();
-			
-			long id= (long) s.save(tip);
+			//dodajZaposlenikaUBazu
+			long id= (long) s.save(tipz);
 			t.commit();
 			
 			closeSession();
@@ -42,7 +42,7 @@ public class TipZaposlenikaKontroler {
 		}
 		
 		// trazi po imenu i prezimenu korisnika
-		public static TipZaposlenika nadji(String ime, String prezime){
+		public TipZaposlenika nadji(String ime, String prezime){
 			openSession();
 			TipZaposlenika tip = (TipZaposlenika) s.get(TipZaposlenika.class,new String(ime) + new String(prezime));
 			t.commit();
@@ -52,7 +52,7 @@ public class TipZaposlenikaKontroler {
 		}
 		
 		//trazi po id-u
-		public static TipZaposlenika nadjiID(long id){
+		public TipZaposlenika nadjiID(long id){
 			openSession();
 			TipZaposlenika tip = (TipZaposlenika) s.get(TipZaposlenika.class, new Long (id));
 			t.commit();
@@ -62,7 +62,7 @@ public class TipZaposlenikaKontroler {
 		}
 		
 		//brise korisnika po ID/u
-		public static void izbrisi(long id){
+		public void izbrisi(long id){
 			openSession();
 			Object instance = s.load(TipZaposlenika.class, new Long (id));
 			if (instance != null)
@@ -73,7 +73,7 @@ public class TipZaposlenikaKontroler {
 		}
 		
 		// modifikacija zaposlenika 
-		public static TipZaposlenika izmijeni(TipZaposlenika a){
+		public TipZaposlenika izmijeni(TipZaposlenika a){
 			openSession();
 			
 				s.merge(a);
@@ -85,7 +85,7 @@ public class TipZaposlenikaKontroler {
 			return nadji(ime,prezime);
 		}
 		
-		public static List<TipZaposlenika> lista(){
+		public List<TipZaposlenika> lista(){
 			openSession();
 			
 			List<TipZaposlenika> tipTemp=s.createCriteria(TipZaposlenika.class).list();
