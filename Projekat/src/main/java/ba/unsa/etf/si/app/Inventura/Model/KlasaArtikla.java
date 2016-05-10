@@ -15,7 +15,8 @@ public class KlasaArtikla implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	private String naziv;
-	
+
+    @OneToMany(cascade = { CascadeType.ALL, CascadeType.PERSIST, CascadeType.MERGE },  orphanRemoval=true)
 	private List<Artikal> artikli;
 	public List<Artikal> getArtikli() {
 		return artikli;

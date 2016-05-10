@@ -15,8 +15,7 @@
   <mapping class="ba.unsa.etf.si.app.Inventura.Model.Skladiste"/>
   <mapping class="ba.unsa.etf.si.app.Inventura.Model.StanjeInventure"/>
   <mapping class="ba.unsa.etf.si.app.Inventura.Model.KlasaArtikla"/>
-  <mapping class="ba.unsa.etf.si.app.Inventura.Model.Sef"/>
-  <mapping class="ba.unsa.etf.si.app.Inventura.Model.Skladistar"/>
+  
   <mapping class="ba.unsa.etf.si.app.Inventura.Model.TipZaposlenika"/>
  </session-factory>
 </hibernate-configuration>

@@ -46,7 +46,21 @@ public class DodavanjeArtikla {
 	/**
 	 * Launch the application.
 	 */
-	public static void pokreni() {
+	
+	public static void  main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					DodavanjeArtikla window = new DodavanjeArtikla();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+	
+	public static void  pokreni(){
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {

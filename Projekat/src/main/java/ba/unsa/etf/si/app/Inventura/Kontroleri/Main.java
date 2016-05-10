@@ -19,14 +19,19 @@ public class Main {
 		
 		KlasaArtikla k = new KlasaArtikla();
 		TipZaposlenika zaposlenik = new TipZaposlenika();
+		TipZaposlenika sef = new TipZaposlenika();
+		TipZaposlenika skladistar = new TipZaposlenika();
+		ArrayList<TipZaposlenika> skladistari = new ArrayList<TipZaposlenika>();
 		Skladiste s = new Skladiste();
-		
+		s.setSef(sef);
+		s.setSkladistari(skladistari);
 		//a.setKlasaArtikla(k);
 		
 		session.save(k);
 		session.save(zaposlenik);
+		session.save(sef);
+		session.save(skladistar);
 		
-
 		session.save(s);
 		//session.save(a);
 		session.save(zaposlenik);
@@ -45,7 +50,7 @@ public class Main {
 		t.commit();
 		
 		session.close();
-
+		System.out.println("mali musa");
 	}
 
 }

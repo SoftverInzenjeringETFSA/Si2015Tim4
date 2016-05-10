@@ -15,7 +15,7 @@ import java.awt.Component;
 import javax.swing.SwingConstants;
 
 
-// import ba.unsa.etf.si.app.Inventura.Model.KlasaArtikla;
+import ba.unsa.etf.si.app.Inventura.Model.KlasaArtikla;
 
 import ba.unsa.etf.si.app.Inventura.Kontroleri.KlasaArtikalaKontroler;
 

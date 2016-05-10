@@ -38,6 +38,8 @@ public class UnosSkladistaGUI {
 			}
 		});
 	}
+	
+	   public static void main(String[] args){}
 
 	/**
 	 * Create the application.
