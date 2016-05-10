@@ -7,6 +7,7 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
 import ba.unsa.etf.si.app.Inventura.Kontroleri.ArtikliKontroler;
+import ba.unsa.etf.si.app.Inventura.Kontroleri.KlasaArtikalaKontroler;
 import ba.unsa.etf.si.app.Inventura.Model.Artikal;
 
 import ba.unsa.etf.si.app.Inventura.Model.KlasaArtikla;
@@ -16,6 +17,7 @@ import java.awt.Font;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import java.awt.Color;
@@ -26,6 +28,7 @@ import javax.swing.JOptionPane;
 
 import java.awt.SystemColor;
 import java.awt.event.ActionListener;
+import java.util.List;
 import java.awt.event.ActionEvent;
 
 public class ModifikacijaArtiklaGUI {
@@ -42,7 +45,7 @@ public class ModifikacijaArtiklaGUI {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public static void pokreni() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -70,7 +73,7 @@ public class ModifikacijaArtiklaGUI {
 
 		frame = new JFrame();
 		frame.getContentPane().setBackground(SystemColor.control);
-		frame.setBounds(100, 100, 515, 384);
+		frame.setBounds(100, 100, 475, 384);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
@@ -119,15 +122,18 @@ public class ModifikacijaArtiklaGUI {
 		comboKlasa = new JComboBox();
 		comboKlasa.setBounds(304, 151, 134, 20);
 		frame.getContentPane().add(comboKlasa);
+		postaviKlase();
 		
 		JButton btnSacuvaj = new JButton("Sa\u010Duvaj");
 		btnSacuvaj.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try{
-					Artikal a = new Artikal();
+					Artikal artikal=(Artikal)listArtikli.getSelectedValue();
 					 // validacija jel nasao??
-					a=izmjeniArtikal();
-					ArtikliKontroler.izmijeni(a);
+					izmjeniArtikal(artikal);
+					ArtikliKontroler.izmijeni(artikal);
+					
+					postaviListu();
 				}
 				catch(Exception i){
 					Component frame = null;
@@ -135,7 +141,7 @@ public class ModifikacijaArtiklaGUI {
 				}
 			}
 		});
-		btnSacuvaj.setBounds(365, 300, 89, 23);
+		btnSacuvaj.setBounds(349, 300, 89, 23);
 		frame.getContentPane().add(btnSacuvaj);
 		
 		JButton btnZavrsi = new JButton("Odustani");
@@ -179,17 +185,17 @@ public class ModifikacijaArtiklaGUI {
 		txtCijena.setColumns(10);
 		
 		comboMjera = new JComboBox();
-		comboMjera.setBounds(318, 251, 96, 20);
+		comboMjera.setBounds(304, 251, 134, 20);
 		frame.getContentPane().add(comboMjera);
+		postaviMjere();
 		
 		listArtikli = new JList();
 		listArtikli.setBounds(24, 136, 183, 187);
 		frame.getContentPane().add(listArtikli);
+		postaviListu();
 	}
 
-	public Artikal izmjeniArtikal() {
-		Artikal artikal=(Artikal)listArtikli.getSelectedValue();
-		
+	public void izmjeniArtikal(Artikal artikal) {
 		String naziv=txtNaziv.getText();
 		KlasaArtikla klasa=(KlasaArtikla)comboKlasa.getSelectedItem();
 		String barkod=txtBarkod.getText();
@@ -197,15 +203,44 @@ public class ModifikacijaArtiklaGUI {
 		Double kolicina=Double.parseDouble(txtKolicina.getText());
 		String mjera=(String)comboMjera.getSelectedItem();
 		
-		Artikal novi=new Artikal();
 		try {
-			novi = new Artikal(naziv, klasa, barkod, cijena, kolicina, mjera);
+			artikal.setNaziv(naziv);
+			artikal.setKlasaArtikla(klasa);
+			artikal.setBarkod(barkod);
+			artikal.setCijena(cijena);
+			artikal.setKolicina(kolicina);
+			artikal.setMjera(mjera);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		return novi;
+	}
 	
+	public void postaviListu(){
+		List<Artikal> artikli=ArtikliKontroler.lista();
+		
+		DefaultListModel model=new DefaultListModel();
+		
+		for(Artikal a:artikli){
+			model.addElement(a);
+		}
+		
+		listArtikli.setModel(model);
+	}
+	
+	public void postaviKlase(){
+		List<KlasaArtikla> klase=KlasaArtikalaKontroler.lista();
+				
+		for(KlasaArtikla k:klase){
+			comboKlasa.addItem(k);
+		}
+	}
+	
+	public void postaviMjere(){
+		String[] mjere=new String[]{"komad","kilogram","gram","litar","decilitar"}; // ovo je napamet
+		
+		for(String s:mjere){
+			comboMjera.addItem(s);
+		}
 	}
 }
