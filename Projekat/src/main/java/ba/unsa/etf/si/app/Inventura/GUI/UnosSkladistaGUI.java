@@ -117,7 +117,7 @@ public class UnosSkladistaGUI {
 		btnOdustani.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//zatvori prozor
-			
+				frmUnosSkladita.dispose();
 		
 			}
 		});

@@ -13,8 +13,6 @@ import javax.swing.SwingConstants;
 import ba.unsa.etf.si.app.Inventura.Kontroleri.TipZaposlenikaKontroler;
 import ba.unsa.etf.si.app.Inventura.Model.Artikal;
 import ba.unsa.etf.si.app.Inventura.Model.KlasaArtikla;
-import ba.unsa.etf.si.app.Inventura.Model.Sef;
-import ba.unsa.etf.si.app.Inventura.Model.Skladistar;
 import ba.unsa.etf.si.app.Inventura.Model.TipZaposlenika;
 
 import javax.swing.JTextField;

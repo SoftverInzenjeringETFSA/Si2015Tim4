@@ -27,7 +27,6 @@ import ba.unsa.etf.si.app.Inventura.Model.TipZaposlenika;
 public class ModifikacijaKorisnika {
 
 	private JFrame frmModifikacijaKorisnika;
-	private JTextField textID;
 	private JTextField textIme;
 	private JTextField textPrezime;
 	private JTextField textJMBG;
@@ -97,7 +96,7 @@ public class ModifikacijaKorisnika {
 		frmModifikacijaKorisnika.getContentPane().add(lblNivoPrivilegije);
 		
 		comboPrivilegije = new JComboBox();
-		comboPrivilegije.setToolTipText("Radnik\r\nŠef");
+		comboPrivilegije.setToolTipText("Skladištar\r\nŠef");
 		comboPrivilegije.setBounds(231, 145, 141, 20);
 		frmModifikacijaKorisnika.getContentPane().add(comboPrivilegije);
 		
@@ -112,6 +111,43 @@ public class ModifikacijaKorisnika {
 		frmModifikacijaKorisnika.getContentPane().add(btnZavrsi);
 		
 		JButton btnSacuvaj = new JButton("Sačuvaj");
+		btnSacuvaj.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				
+				TipZaposlenika zaposlenik = (TipZaposlenika)listKorisnici.getSelectedValue();
+				textIme.setText(zaposlenik.getIme());
+				textPrezime.setText(zaposlenik.getPrezime());
+				textAdresa.setText(zaposlenik.getAdresa());
+				textJMBG.setText(zaposlenik.getJmbg());
+				textBrojTelefona.setText(zaposlenik.getBrojtel());
+				textEmail.setText(zaposlenik.getEmail());
+				textKorisnickoIme.setText(zaposlenik.getKorisnickoime());
+				textLozinka.setText(zaposlenik.getLozinka());
+				if(zaposlenik.getPrivilegija()=="Šef"){
+					comboPrivilegije.setSelectedIndex(1);
+				}
+				else 
+					comboPrivilegije.setSelectedIndex(0);
+
+				String privilegija=(String) comboPrivilegije.getSelectedItem();
+				String ime=textIme.getText();
+				String prezime=textPrezime.getText();
+				String jmbg=textJMBG.getText();
+				String brtel=textBrojTelefona.getText();
+				String adresa=textAdresa.getText();
+				String mail=textEmail.getText();
+				String korime=textKorisnickoIme.getText();
+				String pass=textLozinka.getText();
+
+				TipZaposlenika z=new TipZaposlenika(ime,prezime,jmbg,adresa,brtel,mail,korime,pass,privilegija);
+				TipZaposlenikaKontroler tzk=new TipZaposlenikaKontroler();
+				tzk.dodaj(z);
+
+				
+				postaviListu();
+			}
+		});
 		btnSacuvaj.setBounds(334, 645, 89, 23);
 		frmModifikacijaKorisnika.getContentPane().add(btnSacuvaj);
 		
@@ -119,15 +155,6 @@ public class ModifikacijaKorisnika {
 		listKorisnici.setBounds(43, 119, 150, 549);
 		frmModifikacijaKorisnika.getContentPane().add(listKorisnici);
 		postaviListu();
-		
-		JLabel lblId = new JLabel("ID:");
-		lblId.setBounds(231, 176, 46, 14);
-		frmModifikacijaKorisnika.getContentPane().add(lblId);
-		
-		textID = new JTextField();
-		textID.setBounds(231, 188, 141, 20);
-		frmModifikacijaKorisnika.getContentPane().add(textID);
-		textID.setColumns(10);
 		
 		JLabel lblIme = new JLabel("Ime:");
 		lblIme.setBounds(231, 219, 46, 14);
@@ -202,35 +229,7 @@ public class ModifikacijaKorisnika {
 		textLozinka.setColumns(10);
 		frmModifikacijaKorisnika.setBounds(100, 100, 449, 718);
 		frmModifikacijaKorisnika.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	
-	/*	public TipZaposlenika izmijeniZaposlenika()
-		{
-			TipZaposlenika _zaposlenik = (TipZaposlenika)list.getSelectedValue();
-			String id = textID.getText();
-			String ime = textIme.getText();
-			String prezime = textPrezime.getText();
-			String JMBG = textJMBG.getText();
-			String adresa = textAdresa.getText();
-			String brojTelefona = textBrojTelefona.getText();
-			String email = textEmail.getText();
-			String korisnickoIme = textKorisnickoIme.getText();
-			String lozinka = textLozinka.getText();
-			
-			//kood za izmjenu
-			TipZaposlenika novi = new TipZaposlenika();
-			try
-			{
-				//public TipZaposlenika(int _id, String _ime, Skladistar _skladistar, Sef _sef,String _prezime,String _jmbg, String _adresa, String _brojTel, String _email, String _korisnickoIme, String _lozinka)
-				novi = new TipZaposlenika(id, ime, , , prezime, JMBG, adresa, brojTelefona, email, korisnickoIme, lozinka);
-			}
-			catch (Exception e) 
-			{
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			return novi;
-		
-	}*/
+
 
 	}
 	

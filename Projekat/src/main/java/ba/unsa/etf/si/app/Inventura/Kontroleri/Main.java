@@ -19,21 +19,12 @@ public class Main {
 		
 		KlasaArtikla k = new KlasaArtikla();
 		TipZaposlenika zaposlenik = new TipZaposlenika();
-		Sef sef = new Sef();
-		Skladistar skladistar = new Skladistar();
-		ArrayList<Skladistar> skladistari= new ArrayList<Skladistar>();
-		skladistari.add(skladistar);
 		Skladiste s = new Skladiste();
-		s.setSef(sef);
-		s.setSkladistari(skladistari);
+		
 		//a.setKlasaArtikla(k);
 		
 		session.save(k);
 		session.save(zaposlenik);
-		session.save(sef);
-		
-		
-		
 		
 
 		session.save(s);
@@ -41,7 +32,6 @@ public class Main {
 		session.save(zaposlenik);
 		
 		Inventura i = new Inventura();
-		i.setSkladistar(skladistar);
 		Izvjestaj iz = new Izvjestaj();
 		StanjeInventure stanje = new StanjeInventure();
 		

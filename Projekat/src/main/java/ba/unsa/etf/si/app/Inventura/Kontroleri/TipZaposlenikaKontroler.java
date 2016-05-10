@@ -31,14 +31,14 @@ public class TipZaposlenikaKontroler {
 	
 	public TipZaposlenikaKontroler(){}
 		
-		public long dodaj(TipZaposlenika tipz){
+		public void dodaj(TipZaposlenika tipz){
 			openSession();
 			//dodajZaposlenikaUBazu
-			long id= (long) s.save(tipz);
+			// OVAJ ID PROVJERITI long id= (long)s.save(tipz);
 			t.commit();
 			
 			closeSession();
-			return id;	
+			//return id;	
 		}
 		
 		// trazi po imenu i prezimenu korisnika
@@ -73,19 +73,19 @@ public class TipZaposlenikaKontroler {
 		}
 		
 		// modifikacija zaposlenika 
-		public TipZaposlenika izmijeni(TipZaposlenika a){
+		public void izmjeni(TipZaposlenika stari, TipZaposlenika novi){
 			openSession();
-			
-				s.merge(a);
-				t.commit();
+			//ovdje treba da nadje starog i zamjeni ga novim
+			//	s.merge(a);
+			//	t.commit();
 				closeSession();
 				
-			String ime = a.getIme();	
-			String prezime= a.getPrezime();
-			return nadji(ime,prezime);
+			//String ime = a.getIme();	
+			//String prezime= a.getPrezime();
+			//return nadji(ime,prezime);
 		}
 		
-		public List<TipZaposlenika> lista(){
+		public static List<TipZaposlenika> lista(){
 			openSession();
 			
 			List<TipZaposlenika> tipTemp=s.createCriteria(TipZaposlenika.class).list();

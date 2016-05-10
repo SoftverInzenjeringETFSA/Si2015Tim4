@@ -27,7 +27,7 @@ public final class ValidacijaInventure {
 		return true;
 	}
 
-	public static boolean validirajSkladistara(Skladistar skladistar){
+	public static boolean validirajSkladistara(TipZaposlenika skladistar){
 		if(skladistar==null){
 			return false;
 		}
