@@ -23,8 +23,8 @@ public class Inventura implements Serializable {
 	int trenutnoStanje;
 	@OneToOne
     @JoinColumn(name="skladistar_id") 
-	Skladistar skladistar;
 	
+    TipZaposlenika skladistar;	
 	public long getId() {
 		return id;
 	}
@@ -62,11 +62,11 @@ public class Inventura implements Serializable {
 		trenutnoStanje = s;
 	}
 
-	public Skladistar getSkladistar(){
+	public TipZaposlenika getSkladistar(){
 		return skladistar;
 	}
 	
-	public void setSkladistar(Skladistar o)
+	public void setSkladistar(TipZaposlenika o)
 	{
 		skladistar=o;
 	}
@@ -74,7 +74,7 @@ public class Inventura implements Serializable {
 
 	
 	public Inventura(){}
-	public Inventura(long id, Date datum, String opis, int stanje, Skladistar osoba) throws Exception
+	public Inventura(long id, Date datum, String opis, int stanje, TipZaposlenika osoba) throws Exception
 	{
 		setId(id);
 		setDatum(datum);
@@ -88,4 +88,9 @@ public class Inventura implements Serializable {
 		System.out.println("Inventura broj" + I.id);
 		
 		}
+	
+	@Override
+	public String toString(){
+		return opis;
+	}
 }

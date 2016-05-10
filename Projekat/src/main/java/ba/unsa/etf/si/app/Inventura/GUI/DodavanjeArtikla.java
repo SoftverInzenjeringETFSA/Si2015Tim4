@@ -83,7 +83,6 @@ public class DodavanjeArtikla {
 		
 		JLabel lblNewLabel_1 = new JLabel("Klasa artikla:");
 		
-		//ovdje napisati kako da povuce iz baze sve klase artikla??
 		
 		txtNaziv = new JTextField();
 		txtNaziv.setColumns(10);

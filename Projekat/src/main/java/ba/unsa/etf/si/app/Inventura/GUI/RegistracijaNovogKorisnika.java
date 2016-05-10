@@ -10,10 +10,9 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 
+import ba.unsa.etf.si.app.Inventura.Kontroleri.TipZaposlenikaKontroler;
 import ba.unsa.etf.si.app.Inventura.Model.Artikal;
 import ba.unsa.etf.si.app.Inventura.Model.KlasaArtikla;
-import ba.unsa.etf.si.app.Inventura.Model.Sef;
-import ba.unsa.etf.si.app.Inventura.Model.Skladistar;
 import ba.unsa.etf.si.app.Inventura.Model.TipZaposlenika;
 
 import javax.swing.JTextField;
@@ -25,7 +24,11 @@ import java.util.Arrays;
 import java.util.List;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
 import ba.unsa.etf.si.app.Inventura.Model.TipZaposlenika;
+
+
+
 public class RegistracijaNovogKorisnika {
 
 	private JFrame frmRegistracijaNovogKorisnika;
@@ -34,12 +37,23 @@ public class RegistracijaNovogKorisnika {
 	private JComboBox<String> comboPrivilegije;
 	
 	private List<String> _priv = Arrays.asList("Sef","Skladistar");
+
 	private JTextField textPrezime;
 	private JTextField textJMBG;
 	private JTextField textAdresa;
 	private JTextField textBrojTelefona;
 	private JTextField textEmail;
 	private JTextField textKorisnickoIme;
+
+	private JTextField textField;	
+	private JTextField textField_1;
+	private JTextField textField_2;
+	private JTextField textField_3;
+	private JTextField textField_4;
+	private JTextField textField_5;
+	private JTextField textField_6;
+	private JTextField textField_7;
+
 	
 	/**
 	 * Launch the application.
@@ -71,7 +85,11 @@ public class RegistracijaNovogKorisnika {
 		frmRegistracijaNovogKorisnika = new JFrame();
 		frmRegistracijaNovogKorisnika.setTitle("Registracija korisnika");
 		frmRegistracijaNovogKorisnika.getContentPane().setBackground(SystemColor.control);
+
 		frmRegistracijaNovogKorisnika.setBounds(100, 100, 551, 462);
+
+		frmRegistracijaNovogKorisnika.setBounds(100, 100, 400, 478);
+
 		frmRegistracijaNovogKorisnika.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmRegistracijaNovogKorisnika.getContentPane().setLayout(null);
 		
@@ -92,7 +110,7 @@ public class RegistracijaNovogKorisnika {
 		separator.setForeground(new Color(0, 0, 0));
 		separator.setBounds(43, 72, 367, 3);
 		frmRegistracijaNovogKorisnika.getContentPane().add(separator);
-		
+
 		JLabel ime = new JLabel("Ime:");
 		ime.setBounds(122, 86, 80, 19);
 		frmRegistracijaNovogKorisnika.getContentPane().add(ime);
@@ -113,7 +131,29 @@ public class RegistracijaNovogKorisnika {
 		
 		JLabel lblNivoPrivilegija = new JLabel("Nivo privilegije:");
 		lblNivoPrivilegija.setBounds(122, 332, 80, 14);
-		frmRegistracijaNovogKorisnika.getContentPane().add(lblNivoPrivilegija);
+
+		JLabel ime1 = new JLabel("Korisnicko ime:");
+		ime1.setBounds(68, 254, 80, 19);
+		frmRegistracijaNovogKorisnika.getContentPane().add(ime1);
+		
+		textField = new JTextField();
+		textField.setBounds(158, 253, 152, 20);
+		frmRegistracijaNovogKorisnika.getContentPane().add(textField);
+		textField.setColumns(10);
+		
+		JLabel lozinka1 = new JLabel("Lozinka:");
+		lozinka1.setBounds(102, 284, 67, 14);
+		frmRegistracijaNovogKorisnika.getContentPane().add(lozinka1);
+		
+		textField_1 = new JTextField();
+		textField_1.setBounds(158, 281, 152, 20);
+		frmRegistracijaNovogKorisnika.getContentPane().add(textField_1);
+		textField_1.setColumns(10);
+		
+		JLabel lblNivoPrivilegija1 = new JLabel("Nivo privilegije:");
+		lblNivoPrivilegija1.setBounds(68, 318, 80, 14);
+
+		frmRegistracijaNovogKorisnika.getContentPane().add(lblNivoPrivilegija1);
 		
 		
 		comboPrivilegije = new JComboBox<String>();
@@ -125,6 +165,7 @@ public class RegistracijaNovogKorisnika {
 			}
 		}
 		comboPrivilegije.setToolTipText("Radnik\r\nŠef");
+
 		comboPrivilegije.setBounds(226, 329, 152, 20);
 		frmRegistracijaNovogKorisnika.getContentPane().add(comboPrivilegije);
 		
@@ -136,12 +177,43 @@ public class RegistracijaNovogKorisnika {
 			}
 		});
 		btnZavri.setBounds(43, 389, 89, 23);
-		frmRegistracijaNovogKorisnika.getContentPane().add(btnZavri);
+
+		comboPrivilegije.setBounds(158, 315, 152, 20);
+		frmRegistracijaNovogKorisnika.getContentPane().add(comboPrivilegije);
+		
+		JButton btnZavri1 = new JButton("Odustani");
+		btnZavri1.setBounds(68, 405, 89, 23);
+
+		frmRegistracijaNovogKorisnika.getContentPane().add(btnZavri1);
 		
 		JButton registruj = new JButton("Registruj");
+		registruj.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				try{
+				String privilegija=(String) comboPrivilegije.getSelectedItem();
+				String ime=textField_2.getText();
+				String prezime=textField_3.getText();
+				String jmbg=textField_4.getText();
+				String brtel=textField_5.getText();
+				String adresa=textField_6.getText();
+				String mail=textField_7.getText();
+				String korime=textField.getText();
+				String pass=textField_1.getText();
+
+				TipZaposlenika z=new TipZaposlenika(ime,prezime,jmbg,adresa,brtel,mail,korime,pass,privilegija);
+				TipZaposlenikaKontroler tzk=new TipZaposlenikaKontroler();
+				tzk.dodaj(z);
+			    } 
+				catch (Exception e) {
+				e.printStackTrace();
+			    }
+			}
+		});
 		
 		
 		registruj.setToolTipText("");
+
 		registruj.setBounds(376, 389, 89, 23);
 		frmRegistracijaNovogKorisnika.getContentPane().add(registruj);
 		
@@ -226,5 +298,64 @@ public class RegistracijaNovogKorisnika {
 			return novi;
 		
 		}*/
+
+		registruj.setBounds(240, 405, 89, 23);
+		frmRegistracijaNovogKorisnika.getContentPane().add(registruj);
+		
+		JLabel lblNewLabel = new JLabel("Ime:");
+		lblNewLabel.setBounds(102, 97, 46, 14);
+		frmRegistracijaNovogKorisnika.getContentPane().add(lblNewLabel);
+		
+		JLabel lblNewLabel_1 = new JLabel("Prezime:");
+		lblNewLabel_1.setBounds(90, 129, 46, 14);
+		frmRegistracijaNovogKorisnika.getContentPane().add(lblNewLabel_1);
+		
+		JLabel lblNewLabel_2 = new JLabel("JMBG:");
+		lblNewLabel_2.setBounds(102, 154, 46, 14);
+		frmRegistracijaNovogKorisnika.getContentPane().add(lblNewLabel_2);
+		
+		JLabel lblNewLabel_3 = new JLabel("Adresa:");
+		lblNewLabel_3.setBounds(100, 204, 62, 14);
+		frmRegistracijaNovogKorisnika.getContentPane().add(lblNewLabel_3);
+		
+		JLabel lblNewLabel_4 = new JLabel("E-mail:");
+		lblNewLabel_4.setBounds(102, 229, 46, 14);
+		frmRegistracijaNovogKorisnika.getContentPane().add(lblNewLabel_4);
+		
+		JLabel lblNewLabel_5 = new JLabel("Broj telefona:");
+		lblNewLabel_5.setBounds(68, 179, 80, 14);
+		frmRegistracijaNovogKorisnika.getContentPane().add(lblNewLabel_5);
+		
+		textField_2 = new JTextField();
+		textField_2.setBounds(158, 94, 152, 20);
+		frmRegistracijaNovogKorisnika.getContentPane().add(textField_2);
+		textField_2.setColumns(10);
+		
+		textField_3 = new JTextField();
+		textField_3.setBounds(158, 126, 152, 20);
+		frmRegistracijaNovogKorisnika.getContentPane().add(textField_3);
+		textField_3.setColumns(10);
+		
+		textField_4 = new JTextField();
+		textField_4.setBounds(158, 151, 152, 20);
+		frmRegistracijaNovogKorisnika.getContentPane().add(textField_4);
+		textField_4.setColumns(10);
+		
+		textField_5 = new JTextField();
+		textField_5.setBounds(158, 176, 152, 20);
+		frmRegistracijaNovogKorisnika.getContentPane().add(textField_5);
+		textField_5.setColumns(10);
+		
+		textField_6 = new JTextField();
+		textField_6.setBounds(158, 201, 152, 20);
+		frmRegistracijaNovogKorisnika.getContentPane().add(textField_6);
+		textField_6.setColumns(10);
+		
+		textField_7 = new JTextField();
+		textField_7.setBounds(158, 229, 152, 20);
+		frmRegistracijaNovogKorisnika.getContentPane().add(textField_7);
+		textField_7.setColumns(10);
+		
+
 	}
 }

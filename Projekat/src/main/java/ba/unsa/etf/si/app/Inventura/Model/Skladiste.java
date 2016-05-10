@@ -37,25 +37,25 @@ public class Skladiste implements Serializable{
 	
 	@OneToOne(optional = false, fetch = FetchType.LAZY)
 	@JoinColumn(name = "sef_id")
-	private Sef sef;
+	private TipZaposlenika sef;
 	
-	public Sef getSef() {
+	public TipZaposlenika getSef() {
 		return sef;
 	}
 
-	public void setSef(Sef sef) {
+	public void setSef(TipZaposlenika sef) {
 		this.sef = sef;
 	}
 	
 	
 	@OneToMany(cascade = { CascadeType.ALL, CascadeType.PERSIST, CascadeType.MERGE }, orphanRemoval=true)
-	private List<Skladistar> skladistari=new ArrayList<Skladistar>();
+	private List<TipZaposlenika> skladistari=new ArrayList<TipZaposlenika>();
 
-	public List<Skladistar> getSkladistari() {
+	public List<TipZaposlenika> getSkladistari() {
 		return skladistari;
 	}
 
-	public void setSkladistari(List<Skladistar> skladistari) {
+	public void setSkladistari(List<TipZaposlenika> skladistari) {
 		this.skladistari = skladistari;
 	}
 

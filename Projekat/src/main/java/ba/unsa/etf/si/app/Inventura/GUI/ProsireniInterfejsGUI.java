@@ -180,8 +180,13 @@ public class ProsireniInterfejsGUI {
 		JMenuItem mntmModifikacija = new JMenuItem("Modifikacija");
 		mntmModifikacija.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+
 				ModifikacijaArtiklaGUI forma=new ModifikacijaArtiklaGUI();
 				forma.pokreni();
+
+				//ModifikacijaArtiklaGUI forma=new ModifikacijaArtiklaGUI();
+				// Ovo oko je pisao nek provjeri forma(null);
+
 			}
 		});
 		mnArtikli.add(mntmModifikacija);

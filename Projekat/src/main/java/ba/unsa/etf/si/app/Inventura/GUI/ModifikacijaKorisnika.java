@@ -9,9 +9,16 @@ import java.awt.Font;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
 
-import ba.unsa.etf.si.app.Inventura.Model.Sef;
-import ba.unsa.etf.si.app.Inventura.Model.Skladistar;
+
+// import ba.unsa.etf.si.app.Inventura.Model.Sef;
+// import ba.unsa.etf.si.app.Inventura.Model.Skladistar;
 import ba.unsa.etf.si.app.Inventura.Model.TipZaposlenika;
+
+import ba.unsa.etf.si.app.Inventura.Kontroleri.TipZaposlenikaKontroler;
+//import ba.unsa.etf.si.app.Inventura.Model.Skladistar;
+
+
+import javax.swing.DefaultListModel;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -19,12 +26,18 @@ import javax.swing.JComboBox;
 import java.awt.SystemColor;
 import javax.swing.JList;
 import java.awt.event.ActionListener;
+
+
+import java.util.List;
+
 import java.awt.event.ActionEvent;
-import ba.unsa.etf.si.app.Inventura.Model.TipZaposlenika;
+
 public class ModifikacijaKorisnika {
 
 	private JFrame frmModifikacijaKorisnika;
+
 	private JTextField textID;
+
 	private JTextField textIme;
 	private JTextField textPrezime;
 	private JTextField textJMBG;
@@ -33,6 +46,10 @@ public class ModifikacijaKorisnika {
 	private JTextField textEmail;
 	private JTextField textKorisnickoIme;
 	private JTextField textLozinka;
+
+	private JList listKorisnici;
+	private JComboBox comboPrivilegije;
+
 
 	/**
 	 * Launch the application.
@@ -91,6 +108,7 @@ public class ModifikacijaKorisnika {
 		lblNivoPrivilegije.setBounds(231, 120, 80, 14);
 		frmModifikacijaKorisnika.getContentPane().add(lblNivoPrivilegije);
 		
+
 		JComboBox comboBox = new JComboBox();
 		comboBox.setToolTipText("Radnik\r\nŠef");
 		comboBox.setBounds(231, 145, 141, 20);
@@ -141,6 +159,87 @@ public class ModifikacijaKorisnika {
 		frmModifikacijaKorisnika.getContentPane().add(textPrezime);
 		textPrezime.setColumns(10);
 		
+
+		comboPrivilegije = new JComboBox();
+		comboPrivilegije.setToolTipText("Skladištar\r\nŠef");
+		comboPrivilegije.setBounds(231, 145, 141, 20);
+		frmModifikacijaKorisnika.getContentPane().add(comboPrivilegije);
+		
+		JButton btnZavrsi = new JButton("Odustani");
+		btnZavrsi.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			frmModifikacijaKorisnika.dispose();
+			frmModifikacijaKorisnika.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			}
+		});
+		btnZavrsi.setBounds(231, 645, 89, 23);
+		frmModifikacijaKorisnika.getContentPane().add(btnZavrsi);
+		
+		JButton btnSacuvaj = new JButton("Sačuvaj");
+		btnSacuvaj.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				
+				TipZaposlenika zaposlenik = (TipZaposlenika)listKorisnici.getSelectedValue();
+				textIme.setText(zaposlenik.getIme());
+				textPrezime.setText(zaposlenik.getPrezime());
+				textAdresa.setText(zaposlenik.getAdresa());
+				textJMBG.setText(zaposlenik.getJmbg());
+				textBrojTelefona.setText(zaposlenik.getBrojtel());
+				textEmail.setText(zaposlenik.getEmail());
+				textKorisnickoIme.setText(zaposlenik.getKorisnickoime());
+				textLozinka.setText(zaposlenik.getLozinka());
+				if(zaposlenik.getPrivilegija()=="Šef"){
+					comboPrivilegije.setSelectedIndex(1);
+				}
+				else 
+					comboPrivilegije.setSelectedIndex(0);
+
+				String privilegija=(String) comboPrivilegije.getSelectedItem();
+				String ime=textIme.getText();
+				String prezime=textPrezime.getText();
+				String jmbg=textJMBG.getText();
+				String brtel=textBrojTelefona.getText();
+				String adresa=textAdresa.getText();
+				String mail=textEmail.getText();
+				String korime=textKorisnickoIme.getText();
+				String pass=textLozinka.getText();
+
+				TipZaposlenika z=new TipZaposlenika(ime,prezime,jmbg,adresa,brtel,mail,korime,pass,privilegija);
+				TipZaposlenikaKontroler tzk=new TipZaposlenikaKontroler();
+				tzk.dodaj(z);
+
+				
+				postaviListu();
+			}
+		});
+		btnSacuvaj.setBounds(334, 645, 89, 23);
+		frmModifikacijaKorisnika.getContentPane().add(btnSacuvaj);
+		
+		listKorisnici = new JList();
+		listKorisnici.setBounds(43, 119, 150, 549);
+		frmModifikacijaKorisnika.getContentPane().add(listKorisnici);
+		postaviListu();
+		
+		JLabel lblIme1 = new JLabel("Ime:");
+		lblIme1.setBounds(231, 219, 46, 14);
+		frmModifikacijaKorisnika.getContentPane().add(lblIme1);
+		
+		textIme = new JTextField();
+		textIme.setBounds(231, 235, 141, 20);
+		frmModifikacijaKorisnika.getContentPane().add(textIme);
+		textIme.setColumns(10);
+		
+		JLabel lblPrezime1 = new JLabel("Prezime:");
+		lblPrezime1.setBounds(231, 266, 46, 14);
+		frmModifikacijaKorisnika.getContentPane().add(lblPrezime1);
+		
+		textPrezime = new JTextField();
+		textPrezime.setBounds(231, 291, 141, 20);
+		frmModifikacijaKorisnika.getContentPane().add(textPrezime);
+		textPrezime.setColumns(10);
+		
+
 		JLabel lblJmbg = new JLabel("JMBG:");
 		lblJmbg.setBounds(231, 322, 46, 14);
 		frmModifikacijaKorisnika.getContentPane().add(lblJmbg);
@@ -196,6 +295,7 @@ public class ModifikacijaKorisnika {
 		textLozinka.setColumns(10);
 		frmModifikacijaKorisnika.setBounds(100, 100, 449, 718);
 		frmModifikacijaKorisnika.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
 	
 	/*	public TipZaposlenika izmijeniZaposlenika()
 		{
@@ -227,4 +327,21 @@ public class ModifikacijaKorisnika {
 	}*/
 
 		}
+
+
+
+	
+	public void postaviListu(){
+		List<TipZaposlenika> zaposlenici=TipZaposlenikaKontroler.lista();
+		DefaultListModel model=new DefaultListModel();
+		
+		for(TipZaposlenika z:zaposlenici){
+			model.addElement(z);
+		}
+		
+		listKorisnici.setModel(model);
 	}
+	
+	
+}
+

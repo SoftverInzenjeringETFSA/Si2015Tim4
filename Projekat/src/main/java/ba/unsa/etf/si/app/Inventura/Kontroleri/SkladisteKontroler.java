@@ -29,7 +29,7 @@ public class SkladisteKontroler {
 		}	
 	}
 	
-	private SkladisteKontroler(){}
+	public SkladisteKontroler(){}
 	
 	
 	public static List<Artikal> izlistajArtikle(){
@@ -38,4 +38,19 @@ public class SkladisteKontroler {
 		t.commit();
 		return klasaArtikalatmp;
 	}
+	
+	public void dodajInfoOSkladistu(Skladiste skl){
+		
+		//dodavanje u bazu informacija sa forme
+		openSession();
+		s.save(skl);
+		t.commit();
+		
+		closeSession();
+	
+		
+	}
+	
+	
+	
 }
