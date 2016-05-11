@@ -157,7 +157,7 @@ public class DodavanjeArtikla {
 		txtCijena = new JTextField();
 		txtCijena.setColumns(10);
 		
-		JLabel lblKoliinaArtikla = new JLabel("Kolièina artikla:");
+		JLabel lblKoliinaArtikla = new JLabel("Količina artikla:");
 		
 		txtKolicina = new JTextField();
 		txtKolicina.setColumns(10);
@@ -381,17 +381,17 @@ public class DodavanjeArtikla {
 								.addComponent(btnZavrsi, GroupLayout.PREFERRED_SIZE, 92, GroupLayout.PREFERRED_SIZE))
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(comboMjera, 0, 151, Short.MAX_VALUE)
-								.addComponent(txtKolicina, 154, 154, 154)
-								.addComponent(txtCijena, 154, 154, 154)
+								.addComponent(comboMjera, 0, 154, Short.MAX_VALUE)
 								.addComponent(comboKlasa, 0, 154, Short.MAX_VALUE)
-								.addComponent(txtNaziv, 154, 154, 154)
 								.addComponent(Vnaziv)
 								.addComponent(VbarCode)
 								.addComponent(txtBarkod, GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
 								.addComponent(Vcijena)
 								.addComponent(btnUnesi, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
-								.addComponent(Vkolicina))))
+								.addComponent(Vkolicina)
+								.addComponent(txtNaziv, GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
+								.addComponent(txtCijena, GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
+								.addComponent(txtKolicina, GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE))))
 					.addContainerGap())
 		);
 		groupLayout.setVerticalGroup(
@@ -441,7 +441,7 @@ public class DodavanjeArtikla {
 		);
 		frame.getContentPane().setLayout(groupLayout);
 		frame.setBackground(new Color(255, 255, 255));
-		frame.setBounds(100, 100, 303, 374);
+		frame.setBounds(100, 100, 318, 374);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	

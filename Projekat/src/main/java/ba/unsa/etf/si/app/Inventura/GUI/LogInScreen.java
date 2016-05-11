@@ -57,7 +57,7 @@ public class LogInScreen {
 		frmPrijavaNaSistem.setBounds(100, 100, 260, 207);
 		frmPrijavaNaSistem.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		JLabel lblKorisnikoIme = new JLabel("Korisnièko ime:");
+		JLabel lblKorisnikoIme = new JLabel("Korisničko ime:");
 		
 		JLabel lblLozinka = new JLabel("Lozinka:");
 		
@@ -73,20 +73,20 @@ public class LogInScreen {
 		btnPotvrdi.setBackground(new Color(143, 188, 143));
 		btnPotvrdi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+
 				String priv=TipZaposlenikaKontroler.provjerUserPass(textField.getText(), passwordField.getPassword().toString());
-				
-				if(priv=="Skladištar")
+				if(priv=="Skladistar")
 				{
 					new GlavniInterfejs();
 					GlavniInterfejs.pokreni();
 				}
-				else if(priv=="Šef")
+				else if(priv=="Sef")
 				{
 					new ProsireniInterfejsGUI();
 					ProsireniInterfejsGUI.pokreni();
 				}
 				else{
-					validacija.setText("korisnicko ime ili lozinka nisu tacni");
+					validacija.setText("Korisničko ime ili lozinka nisu tačni");
 				}
 			}
 		});

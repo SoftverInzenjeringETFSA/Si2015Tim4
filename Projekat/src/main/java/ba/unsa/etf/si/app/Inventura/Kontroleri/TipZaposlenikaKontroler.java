@@ -138,8 +138,8 @@ public class TipZaposlenikaKontroler {
 				closeSession();
 				if(tip.getLozinka()==password)
 				{
-					if(tip.getPrivilegija()=="Šef") return "Šef";
-					else return "Skladištar";
+					if(tip.getPrivilegija()=="Sef") return "Sef";
+					else return "Skladistar";
 				}
 				else return " ";
 				
