@@ -6,6 +6,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 import ba.unsa.etf.si.app.Inventura.Kontroleri.KlasaArtikalaKontroler;
 import ba.unsa.etf.si.app.Inventura.Model.*;
@@ -73,15 +75,20 @@ public class DodavanjeKlaseArtiklaGUI {
 		JButton btnDodaj = new JButton("Dodaj klasu artikla");
 		btnDodaj.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				
 				try{
 					KlasaArtikla klasa = new KlasaArtikla(txtNaziv.getText());
 					KlasaArtikalaKontroler.dodaj(klasa);
+					JOptionPane.showMessageDialog(null, "Klasa uspjesno dodana!");
 				}
 				catch(Exception i){
 					Component frame = null;
 					JOptionPane.showMessageDialog(frame, i.getMessage());
+					JOptionPane.showMessageDialog(null, "Klasa vec postoji bazi!");
 				}
-			}
+				}
+			
 		});
 		
 		btnDodaj.setFont(new Font("Tahoma", Font.PLAIN, 12));
@@ -117,5 +124,50 @@ public class DodavanjeKlaseArtiklaGUI {
 		lblKorisnik.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		lblKorisnik.setBounds(275, 40, 46, 14);
 		frmUnosNoveKlase.getContentPane().add(lblKorisnik);
+		
+		JLabel Vnaziv = new JLabel("  ");
+		Vnaziv.setForeground(Color.RED);
+		Vnaziv.setBounds(31, 139, 223, 14);
+		frmUnosNoveKlase.getContentPane().add(Vnaziv);
+		
+		txtNaziv.getDocument().addDocumentListener(new DocumentListener(){
+			public void changedUpdate(DocumentEvent arg0) {
+				
+				if(ValidacijaKlaseArtikla.validirajNaziv(txtNaziv.getText())) {
+					txtNaziv.setBackground(Color.WHITE);
+					Vnaziv.setText("  ");
+				}
+				else{
+					txtNaziv.setBackground(Color.getHSBColor(0, 80, 100));
+					Vnaziv.setText("Niste unjeli naziv");
+				}
+				
+			}
+
+			public void insertUpdate(DocumentEvent arg0) {
+				
+				if(ValidacijaArtikla.validirajNaziv(txtNaziv.getText())) {
+					txtNaziv.setBackground(Color.WHITE);
+					Vnaziv.setText("  ");
+				}
+				else{
+					txtNaziv.setBackground(Color.getHSBColor(0, 80, 100));
+					Vnaziv.setText("Niste unjeli naziv");
+				}
+				
+			}
+
+			public void removeUpdate(DocumentEvent arg0) {
+				
+				if(true==ValidacijaArtikla.validirajNaziv(txtNaziv.getText())) {
+					txtNaziv.setBackground(Color.WHITE);
+					Vnaziv.setText("  ");
+				}
+				else{
+					txtNaziv.setBackground(Color.getHSBColor(0, 80, 100));
+					Vnaziv.setText("Niste unjeli naziv");
+				}
+			}
+		});
 	}
 }
