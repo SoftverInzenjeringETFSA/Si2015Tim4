@@ -4,16 +4,20 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import java.awt.Color;
+import java.awt.Component;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
 
-
+import ba.unsa.etf.si.app.Inventura.Model.Artikal;
+import ba.unsa.etf.si.app.Inventura.Model.KlasaArtikla;
 // import ba.unsa.etf.si.app.Inventura.Model.Sef;
 // import ba.unsa.etf.si.app.Inventura.Model.Skladistar;
 import ba.unsa.etf.si.app.Inventura.Model.TipZaposlenika;
-
+import ba.unsa.etf.si.app.Inventura.Kontroleri.ArtikliKontroler;
+import ba.unsa.etf.si.app.Inventura.Kontroleri.KlasaArtikalaKontroler;
 import ba.unsa.etf.si.app.Inventura.Kontroleri.TipZaposlenikaKontroler;
 //import ba.unsa.etf.si.app.Inventura.Model.Skladistar;
 
@@ -25,6 +29,8 @@ import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import java.awt.SystemColor;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
+
 import java.awt.event.ActionListener;
 
 
@@ -49,7 +55,7 @@ public class ModifikacijaKorisnika {
 
 	private JList listKorisnici;
 	private JComboBox comboPrivilegije;
-
+	private JComboBox comboBoxPrivilegije;
 
 	/**
 	 * Launch the application.
@@ -109,10 +115,11 @@ public class ModifikacijaKorisnika {
 		frmModifikacijaKorisnika.getContentPane().add(lblNivoPrivilegije);
 		
 
-		JComboBox comboBox = new JComboBox();
-		comboBox.setToolTipText("Radnik\r\nŠef");
-		comboBox.setBounds(231, 145, 141, 20);
-		frmModifikacijaKorisnika.getContentPane().add(comboBox);
+		comboBoxPrivilegije = new JComboBox();
+		comboBoxPrivilegije.setToolTipText("Radnik\r\nŠef");
+		comboBoxPrivilegije.setBounds(231, 145, 141, 20);
+		frmModifikacijaKorisnika.getContentPane().add(comboBoxPrivilegije);
+		postaviPrivilegije();
 		
 		JButton btnZavri = new JButton("Odustani");
 		btnZavri.addActionListener(new ActionListener() {
@@ -127,11 +134,28 @@ public class ModifikacijaKorisnika {
 		JButton btnSauvaj = new JButton("Sačuvaj");
 		btnSauvaj.setBounds(334, 645, 89, 23);
 		frmModifikacijaKorisnika.getContentPane().add(btnSauvaj);
+		btnSauvaj.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try{
+					TipZaposlenika zaposlenik=(TipZaposlenika)listKorisnici.getSelectedValue();
+					modifikujZaposlenika(zaposlenik);
+					TipZaposlenikaKontroler.izmjeni(zaposlenik);
+					
+					postaviListu();
+				}
+				catch(Exception i){
+					System.out.print("lalalala ");
+					Component frame = null;
+					JOptionPane.showMessageDialog(frame, i.getMessage());
+				}
+			}
+		});
 		
-		JList list = new JList();
-		list.setBounds(43, 119, 150, 549);
-		frmModifikacijaKorisnika.getContentPane().add(list);
-		
+		listKorisnici= new JList();
+		listKorisnici.setBounds(43, 119, 150, 549);
+		frmModifikacijaKorisnika.getContentPane().add(listKorisnici);
+		 postaviListu();
+		 
 		JLabel lblId = new JLabel("ID:");
 		lblId.setBounds(231, 176, 46, 14);
 		frmModifikacijaKorisnika.getContentPane().add(lblId);
@@ -161,9 +185,10 @@ public class ModifikacijaKorisnika {
 		
 
 		comboPrivilegije = new JComboBox();
-		comboPrivilegije.setToolTipText("Skladištar\r\nŠef");
+		
 		comboPrivilegije.setBounds(231, 145, 141, 20);
 		frmModifikacijaKorisnika.getContentPane().add(comboPrivilegije);
+		
 		
 		JButton btnZavrsi = new JButton("Odustani");
 		btnZavrsi.addActionListener(new ActionListener() {
@@ -175,46 +200,7 @@ public class ModifikacijaKorisnika {
 		btnZavrsi.setBounds(231, 645, 89, 23);
 		frmModifikacijaKorisnika.getContentPane().add(btnZavrsi);
 		
-		JButton btnSacuvaj = new JButton("Sačuvaj");
-		btnSacuvaj.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				
-				
-				TipZaposlenika zaposlenik = (TipZaposlenika)listKorisnici.getSelectedValue();
-				textIme.setText(zaposlenik.getIme());
-				textPrezime.setText(zaposlenik.getPrezime());
-				textAdresa.setText(zaposlenik.getAdresa());
-				textJMBG.setText(zaposlenik.getJmbg());
-				textBrojTelefona.setText(zaposlenik.getBrojtel());
-				textEmail.setText(zaposlenik.getEmail());
-				textKorisnickoIme.setText(zaposlenik.getKorisnickoime());
-				textLozinka.setText(zaposlenik.getLozinka());
-				if(zaposlenik.getPrivilegija()=="Šef"){
-					comboPrivilegije.setSelectedIndex(1);
-				}
-				else 
-					comboPrivilegije.setSelectedIndex(0);
-
-				String privilegija=(String) comboPrivilegije.getSelectedItem();
-				String ime=textIme.getText();
-				String prezime=textPrezime.getText();
-				String jmbg=textJMBG.getText();
-				String brtel=textBrojTelefona.getText();
-				String adresa=textAdresa.getText();
-				String mail=textEmail.getText();
-				String korime=textKorisnickoIme.getText();
-				String pass=textLozinka.getText();
-
-				TipZaposlenika z=new TipZaposlenika(ime,prezime,jmbg,adresa,brtel,mail,korime,pass,privilegija);
-				TipZaposlenikaKontroler tzk=new TipZaposlenikaKontroler();
-				tzk.dodaj(z);
-
-				
-				postaviListu();
-			}
-		});
-		btnSacuvaj.setBounds(334, 645, 89, 23);
-		frmModifikacijaKorisnika.getContentPane().add(btnSacuvaj);
+		
 		
 		listKorisnici = new JList();
 		listKorisnici.setBounds(43, 119, 150, 549);
@@ -296,11 +282,10 @@ public class ModifikacijaKorisnika {
 		frmModifikacijaKorisnika.setBounds(100, 100, 449, 718);
 		frmModifikacijaKorisnika.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-	
-	/*	public TipZaposlenika izmijeniZaposlenika()
+	}
+		public void modifikujZaposlenika(TipZaposlenika tip)
 		{
-			TipZaposlenika _zaposlenik = (TipZaposlenika)list.getSelectedValue();
-			String id = textID.getText();
+			// TipZaposlenika _zaposlenik = (TipZaposlenika)list.getSelectedValue();
 			String ime = textIme.getText();
 			String prezime = textPrezime.getText();
 			String JMBG = textJMBG.getText();
@@ -309,39 +294,39 @@ public class ModifikacijaKorisnika {
 			String email = textEmail.getText();
 			String korisnickoIme = textKorisnickoIme.getText();
 			String lozinka = textLozinka.getText();
+		
+			String nivoPrivilegije =(String) comboBoxPrivilegije.getSelectedItem();
 			
-			//kood za izmjenu
-			TipZaposlenika novi = new TipZaposlenika();
+			
 			try
 			{
-				//public TipZaposlenika(int _id, String _ime, Skladistar _skladistar, Sef _sef,String _prezime,String _jmbg, String _adresa, String _brojTel, String _email, String _korisnickoIme, String _lozinka)
-				novi = new TipZaposlenika(id, ime, , , prezime, JMBG, adresa, brojTelefona, email, korisnickoIme, lozinka);
+				tip = new TipZaposlenika(ime, prezime, JMBG, adresa, brojTelefona, email, korisnickoIme, lozinka, nivoPrivilegije);
 			}
 			catch (Exception e) 
 			{
+					System.out.print("ne promjeni sve vrijednosti");
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+			}	
+		}
+		public void postaviListu(){
+			List<TipZaposlenika> zaposlenik=TipZaposlenikaKontroler.lista();
+			
+			DefaultListModel model=new DefaultListModel();
+			
+			for(TipZaposlenika a:zaposlenik){
+				model.addElement(a.getIme());
 			}
-			return novi;
-		
-	}*/
-
-		}
-
-
-
-	
-	public void postaviListu(){
-		List<TipZaposlenika> zaposlenici=TipZaposlenikaKontroler.lista();
-		DefaultListModel model=new DefaultListModel();
-		
-		for(TipZaposlenika z:zaposlenici){
-			model.addElement(z);
+			
+			listKorisnici.setModel(model);
 		}
 		
-		listKorisnici.setModel(model);
-	}
-	
-	
+		public void postaviPrivilegije(){
+			String[] privilegije=new String[]{"Sef","Skladistar"};
+					
+			for(String s: privilegije){
+				comboBoxPrivilegije.addItem(s);
+			}
+		}
 }
 

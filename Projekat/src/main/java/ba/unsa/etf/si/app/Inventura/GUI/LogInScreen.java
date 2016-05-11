@@ -15,6 +15,7 @@ import java.awt.event.ActionEvent;
 import java.awt.Color;
 import java.awt.SystemColor;
 import java.awt.Font;
+import ba.unsa.etf.si.app.Inventura.Kontroleri.TipZaposlenikaKontroler;;
 
 public class LogInScreen {
 
@@ -56,7 +57,7 @@ public class LogInScreen {
 		frmPrijavaNaSistem.setBounds(100, 100, 260, 207);
 		frmPrijavaNaSistem.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		JLabel lblKorisnikoIme = new JLabel("Korisničko ime:");
+		JLabel lblKorisnikoIme = new JLabel("Korisnièko ime:");
 		
 		JLabel lblLozinka = new JLabel("Lozinka:");
 		
@@ -65,13 +66,23 @@ public class LogInScreen {
 		
 		passwordField = new JPasswordField();
 		
+		JLabel validacija = new JLabel("  ");
+		validacija.setForeground(Color.RED);
+		
 		JButton btnPotvrdi = new JButton("Prijava");
 		btnPotvrdi.setBackground(new Color(143, 188, 143));
 		btnPotvrdi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-			
-				GlavniInterfejs nw = new GlavniInterfejs();
-				nw.pokreni();
+				TipZaposlenikaKontroler.provjerUserPass(textField.getText(), passwordField.getPassword().toString());
+				
+				if(true)
+				{
+					GlavniInterfejs nw = new GlavniInterfejs();
+					nw.pokreni();
+				}
+				else{
+					validacija.setText("korisnicko ime ili lozinka nisu tacni");
+				}
 			}
 		});
 		
@@ -85,6 +96,7 @@ public class LogInScreen {
 			System.exit(0);
 			}
 		});
+		
 		GroupLayout groupLayout = new GroupLayout(frmPrijavaNaSistem.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -97,14 +109,17 @@ public class LogInScreen {
 							.addComponent(btnPotvrdi))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(18)
-							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-								.addComponent(lblKorisnikoIme)
-								.addComponent(lblLozinka, GroupLayout.PREFERRED_SIZE, 44, GroupLayout.PREFERRED_SIZE))
-							.addPreferredGap(ComponentPlacement.RELATED)
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(passwordField, GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)
-								.addComponent(textField, GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE))))
-					.addGap(33))
+								.addGroup(groupLayout.createSequentialGroup()
+									.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+										.addComponent(lblLozinka, GroupLayout.PREFERRED_SIZE, 44, GroupLayout.PREFERRED_SIZE)
+										.addComponent(lblKorisnikoIme))
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+										.addComponent(passwordField, GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)
+										.addComponent(textField, GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)))
+								.addComponent(validacija, GroupLayout.PREFERRED_SIZE, 217, GroupLayout.PREFERRED_SIZE))))
+					.addContainerGap())
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(77)
 					.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
@@ -115,7 +130,9 @@ public class LogInScreen {
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(20)
 					.addComponent(lblNewLabel)
-					.addGap(30)
+					.addGap(5)
+					.addComponent(validacija)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblKorisnikoIme, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))

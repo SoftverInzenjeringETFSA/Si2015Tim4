@@ -28,6 +28,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.util.Arrays;
 import java.util.List;
+import javax.swing.event.*;
+import ba.unsa.etf.si.app.Inventura.Model.ValidacijaArtikla;;
+
 
 public class DodavanjeArtikla {
 
@@ -113,9 +116,16 @@ public class DodavanjeArtikla {
 		btnUnesi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try{
-					Artikal a= new Artikal();
-					a=dajArtikal();
-					ArtikliKontroler.dodaj(a);					
+					if(ValidacijaArtikla.validirajNaziv(txtNaziv.getText()) && ValidacijaArtikla.validirajBarkod(txtBarkod.getText()) && ValidacijaArtikla.validirajCijenu(txtCijena.getText()) && ValidacijaArtikla.validirajKolicinu(txtKolicina.getText(),_mjera.get(comboMjera.getSelectedIndex())))
+					{	
+						Artikal a= new Artikal();
+						a=dajArtikal();
+						ArtikliKontroler.dodaj(a);
+					}
+					else
+					{
+						JOptionPane.showMessageDialog(null, "Nisu pravilno uneseni parametri");
+					}					
 				}
 				catch(Exception i){
 					JOptionPane.showMessageDialog(frame, i.getMessage());
@@ -147,7 +157,7 @@ public class DodavanjeArtikla {
 		txtCijena = new JTextField();
 		txtCijena.setColumns(10);
 		
-		JLabel lblKoliinaArtikla = new JLabel("Količina artikla:");
+		JLabel lblKoliinaArtikla = new JLabel("Kolièina artikla:");
 		
 		txtKolicina = new JTextField();
 		txtKolicina.setColumns(10);
@@ -164,43 +174,225 @@ public class DodavanjeArtikla {
 			}
 		}
 		
+		JLabel VbarCode = new JLabel("  ");
+		
+		JLabel Vnaziv = new JLabel("  ");
+		
+		JLabel Vcijena = new JLabel("  ");
+		
+		JLabel Vkolicina = new JLabel("  ");
+		
+		txtNaziv.getDocument().addDocumentListener(new DocumentListener(){
+			public void changedUpdate(DocumentEvent arg0) {
+				// TODO Auto-generated method stub
+				if(ValidacijaArtikla.validirajNaziv(txtNaziv.getText())) {
+					txtNaziv.setBackground(Color.WHITE);
+					Vnaziv.setText("  ");
+				}
+				else{
+					txtNaziv.setBackground(Color.getHSBColor(0, 80, 100));
+					Vnaziv.setText("Niste unjeli naziv");
+					Vnaziv.setForeground(Color.RED);
+				}
+				
+			}
+
+			public void insertUpdate(DocumentEvent arg0) {
+				// TODO Auto-generated method stub
+				if(ValidacijaArtikla.validirajNaziv(txtNaziv.getText())) {
+					txtNaziv.setBackground(Color.WHITE);
+					Vnaziv.setText("  ");
+				}
+				else{
+					txtNaziv.setBackground(Color.getHSBColor(0, 80, 100));
+					Vnaziv.setText("Niste unjeli naziv");
+					Vnaziv.setForeground(Color.RED);
+				}
+				
+			}
+
+			public void removeUpdate(DocumentEvent arg0) {
+				// TODO Auto-generated method stub
+				if(true==ValidacijaArtikla.validirajNaziv(txtNaziv.getText())) {
+					txtNaziv.setBackground(Color.WHITE);
+					Vnaziv.setText("  ");
+				}
+				else{
+					txtNaziv.setBackground(Color.getHSBColor(0, 80, 100));
+					Vnaziv.setText("Niste unjeli naziv");
+					Vnaziv.setForeground(Color.RED);
+				}
+			}
+		});
+		
+		txtBarkod.getDocument().addDocumentListener(new DocumentListener() {
+
+			public void changedUpdate(DocumentEvent arg0) {
+				// TODO Auto-generated method stub
+				if(ValidacijaArtikla.validirajBarkod(txtBarkod.getText())) {
+					txtBarkod.setBackground(Color.WHITE);
+					VbarCode.setText("  ");
+				}
+				else{
+					txtBarkod.setBackground(Color.getHSBColor(0, 80, 100));
+					VbarCode.setText("treba imati 13 znakova");
+					VbarCode.setForeground(Color.RED);
+				}
+					
+				
+			}
+
+			public void insertUpdate(DocumentEvent arg0) {
+				// TODO Auto-generated method stub
+				if(ValidacijaArtikla.validirajBarkod(txtBarkod.getText())) {
+					txtBarkod.setBackground(Color.WHITE);
+					VbarCode.setText("  ");
+				}
+				else{
+					txtBarkod.setBackground(Color.getHSBColor(0, 80, 100));
+					VbarCode.setText("treba imati 13 znakova");
+					VbarCode.setForeground(Color.RED);
+				}
+				
+			}
+
+			public void removeUpdate(DocumentEvent arg0) {
+				// TODO Auto-generated method stub
+				if(ValidacijaArtikla.validirajBarkod(txtBarkod.getText())) {
+					txtBarkod.setBackground(Color.WHITE);
+					VbarCode.setText("  ");
+				}
+				else{
+					txtBarkod.setBackground(Color.getHSBColor(0, 80, 100));
+					VbarCode.setText("treba imati 13 znakova");
+					VbarCode.setForeground(Color.RED);
+				}
+			}
+		});
+		
+		txtCijena.getDocument().addDocumentListener(new DocumentListener() {
+
+			public void changedUpdate(DocumentEvent arg0) {
+				// TODO Auto-generated method stub
+				if(ValidacijaArtikla.validirajCijenu(txtCijena.getText())) {
+					txtCijena.setBackground(Color.WHITE);
+					Vcijena.setText("  ");
+				}
+				else{
+					txtCijena.setBackground(Color.getHSBColor(0, 80, 100));
+					Vcijena.setText("mora biti broj");
+					Vcijena.setForeground(Color.RED);
+				}
+					
+				
+			}
+
+			public void insertUpdate(DocumentEvent arg0) {
+				// TODO Auto-generated method stub
+				if(ValidacijaArtikla.validirajCijenu(txtCijena.getText())) {
+					txtCijena.setBackground(Color.WHITE);
+					Vcijena.setText("  ");
+				}
+				else{
+					txtCijena.setBackground(Color.getHSBColor(0, 80, 100));
+					Vcijena.setText("mora biti broj");
+					Vcijena.setForeground(Color.RED);
+				}
+				
+			}
+
+			public void removeUpdate(DocumentEvent arg0) {
+				// TODO Auto-generated method stub
+				if(ValidacijaArtikla.validirajCijenu(txtCijena.getText())) {
+					txtCijena.setBackground(Color.WHITE);
+					Vcijena.setText("  ");
+				}
+				else{
+					txtCijena.setBackground(Color.getHSBColor(0, 80, 100));
+					Vcijena.setText("mora biti broj");
+					Vcijena.setForeground(Color.RED);
+				}
+			}
+		});
+		
+		txtKolicina.getDocument().addDocumentListener(new DocumentListener() {
+
+			public void changedUpdate(DocumentEvent arg0) {
+				// TODO Auto-generated method stub
+				if(ValidacijaArtikla.validirajKolicinu(txtKolicina.getText(), _mjera.get(comboMjera.getSelectedIndex()))){
+					txtKolicina.setBackground(Color.WHITE);
+					Vkolicina.setText("  ");
+				}
+				else{
+					txtKolicina.setBackground(Color.getHSBColor(0, 80, 100));
+					Vkolicina.setText("mora biti cijeli broj");
+					Vkolicina.setForeground(Color.RED);
+				}
+			}
+
+			public void insertUpdate(DocumentEvent arg0) {
+				// TODO Auto-generated method stub
+				if(ValidacijaArtikla.validirajKolicinu(txtKolicina.getText(), _mjera.get(comboMjera.getSelectedIndex()))){
+					txtKolicina.setBackground(Color.WHITE);
+					Vkolicina.setText("  ");
+				}
+				else{
+					txtKolicina.setBackground(Color.getHSBColor(0, 80, 100));
+					Vkolicina.setText("mora biti cijeli broj");
+					Vkolicina.setForeground(Color.RED);
+				}
+				
+			}
+
+			public void removeUpdate(DocumentEvent arg0) {
+				// TODO Auto-generated method stub
+				if(ValidacijaArtikla.validirajKolicinu(txtKolicina.getText(), _mjera.get(comboMjera.getSelectedIndex()))){
+					txtKolicina.setBackground(Color.WHITE);
+					Vkolicina.setText("  ");
+				}
+				else{
+					txtKolicina.setBackground(Color.getHSBColor(0, 80, 100));
+					Vkolicina.setText("mora biti cijeli broj");
+					Vkolicina.setForeground(Color.RED);
+				}
+			}
+		});
+		
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
+			groupLayout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addContainerGap()
 							.addComponent(lblDodavanjeArtikla))
 						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(28)
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-								.addGroup(groupLayout.createSequentialGroup()
-									.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-										.addComponent(lblCijenaArtikla)
-										.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-											.addComponent(lblBarKodArtikla)
-											.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-												.addComponent(lblNewLabel)
-												.addComponent(lblKoliinaArtikla)
-												.addComponent(lblMjernaJedinica)))
-										.addComponent(lblNewLabel_1))
-									.addPreferredGap(ComponentPlacement.UNRELATED)
-									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-										.addComponent(comboMjera, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-										.addComponent(txtKolicina)
-										.addComponent(txtCijena)
-										.addComponent(comboKlasa, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-										.addComponent(txtNaziv)
-										.addComponent(txtBarkod, GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)))
-								.addGroup(groupLayout.createSequentialGroup()
-									.addComponent(btnZavrsi, GroupLayout.PREFERRED_SIZE, 92, GroupLayout.PREFERRED_SIZE)
-									.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-									.addComponent(btnUnesi, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE))))
-						.addGroup(groupLayout.createSequentialGroup()
 							.addContainerGap()
-							.addComponent(separator, GroupLayout.PREFERRED_SIZE, 270, GroupLayout.PREFERRED_SIZE)))
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+							.addComponent(separator, GroupLayout.PREFERRED_SIZE, 270, GroupLayout.PREFERRED_SIZE))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(28)
+							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+								.addComponent(lblBarKodArtikla)
+								.addComponent(lblCijenaArtikla)
+								.addComponent(lblNewLabel)
+								.addComponent(lblKoliinaArtikla)
+								.addComponent(lblNewLabel_1)
+								.addComponent(lblMjernaJedinica)
+								.addComponent(btnZavrsi, GroupLayout.PREFERRED_SIZE, 92, GroupLayout.PREFERRED_SIZE))
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(comboMjera, 0, 151, Short.MAX_VALUE)
+								.addComponent(txtKolicina, 154, 154, 154)
+								.addComponent(txtCijena, 154, 154, 154)
+								.addComponent(comboKlasa, 0, 154, Short.MAX_VALUE)
+								.addComponent(txtNaziv, 154, 154, 154)
+								.addComponent(Vnaziv)
+								.addComponent(VbarCode)
+								.addComponent(txtBarkod, GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
+								.addComponent(Vcijena)
+								.addComponent(btnUnesi, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
+								.addComponent(Vkolicina))))
+					.addContainerGap())
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -209,34 +401,42 @@ public class DodavanjeArtikla {
 					.addComponent(lblDodavanjeArtikla, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(separator, GroupLayout.PREFERRED_SIZE, 2, GroupLayout.PREFERRED_SIZE)
-					.addGap(18)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+					.addGap(15)
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 						.addComponent(lblBarKodArtikla)
 						.addComponent(txtBarkod, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(19)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(VbarCode)
+					.addGap(3)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblNewLabel)
 						.addComponent(txtNaziv, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(1)
+					.addComponent(Vnaziv)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblNewLabel_1)
+						.addComponent(comboKlasa, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(18)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(comboKlasa, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblNewLabel_1))
-					.addGap(18)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(txtCijena, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblCijenaArtikla))
-					.addGap(18)
+						.addComponent(lblCijenaArtikla)
+						.addComponent(txtCijena, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(1)
+					.addComponent(Vcijena)
+					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblKoliinaArtikla)
 						.addComponent(txtKolicina, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(18)
+					.addGap(2)
+					.addComponent(Vkolicina)
+					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblMjernaJedinica)
-						.addComponent(comboMjera, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnZavrsi)
-						.addComponent(btnUnesi))
+						.addComponent(comboMjera, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblMjernaJedinica, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+						.addComponent(btnUnesi)
+						.addComponent(btnZavrsi, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 					.addContainerGap())
 		);
 		frame.getContentPane().setLayout(groupLayout);

@@ -10,6 +10,10 @@ import javax.persistence.*;
 public class TipZaposlenika implements Serializable{
 
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1461727435489239293L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;

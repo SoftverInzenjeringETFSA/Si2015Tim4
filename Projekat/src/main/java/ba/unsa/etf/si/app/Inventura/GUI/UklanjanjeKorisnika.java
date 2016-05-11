@@ -1,10 +1,17 @@
 package ba.unsa.etf.si.app.Inventura.GUI;
+import ba.unsa.etf.si.app.Inventura.Kontroleri.ArtikliKontroler;
+import ba.unsa.etf.si.app.Inventura.Kontroleri.TipZaposlenikaKontroler;
+import ba.unsa.etf.si.app.Inventura.Model.Artikal;
 import ba.unsa.etf.si.app.Inventura.Model.TipZaposlenika;
+import ba.unsa.etf.si.app.Inventura.Model.ValidacijaArtikla;
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import java.awt.Color;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
@@ -17,7 +24,7 @@ import java.awt.event.ActionEvent;
 public class UklanjanjeKorisnika {
 
 	private JFrame frmUklanjanjeKorisnika;
-	private JTextField textField;
+	private JTextField textName;
 
 	/**
 	 * Launch the application.
@@ -76,10 +83,10 @@ public class UklanjanjeKorisnika {
 		lblKorisnikoIme.setBounds(23, 100, 94, 14);
 		frmUklanjanjeKorisnika.getContentPane().add(lblKorisnikoIme);
 		
-		textField = new JTextField();
-		textField.setBounds(122, 97, 204, 20);
-		frmUklanjanjeKorisnika.getContentPane().add(textField);
-		textField.setColumns(10);
+		textName = new JTextField();
+		textName.setBounds(122, 97, 204, 20);
+		frmUklanjanjeKorisnika.getContentPane().add(textName);
+		textName.setColumns(10);
 		
 		JButton btnZavri = new JButton("Odustani");
 		btnZavri.addActionListener(new ActionListener() {
@@ -92,22 +99,24 @@ public class UklanjanjeKorisnika {
 		frmUklanjanjeKorisnika.getContentPane().add(btnZavri);
 		
 		JButton btnUkloni = new JButton("Ukloni");
+		btnUkloni.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String ime=textName.getText();
+				try{
+					TipZaposlenika tip=new TipZaposlenika();
+					tip=TipZaposlenikaKontroler.nadjiIme(ime);
+					TipZaposlenikaKontroler.izbrisi(tip.getId());
+		
+				} catch (Exception e1) {
+					
+					e1.printStackTrace();
+					JOptionPane.showMessageDialog(null, "Artikal nije u bazi");
+				}
+			}
+		});
+		
 		btnUkloni.setBounds(188, 139, 89, 23);
 		frmUklanjanjeKorisnika.getContentPane().add(btnUkloni);
-	}
-	public void ukloniKorisnika()
-	{
-		String naziv = textField.getText();
-		
-		try
-		{
-			
-		}
-		catch (Exception e) 
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 
 }

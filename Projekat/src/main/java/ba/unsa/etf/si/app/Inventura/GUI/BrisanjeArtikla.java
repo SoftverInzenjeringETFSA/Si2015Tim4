@@ -6,14 +6,19 @@ import javax.swing.JFrame;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import java.awt.Color;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 import ba.unsa.etf.si.app.Inventura.Kontroleri.ArtikliKontroler;
 import ba.unsa.etf.si.app.Inventura.Model.Artikal;
+import ba.unsa.etf.si.app.Inventura.Model.ValidacijaArtikla;
 
 import javax.swing.JSeparator;
 import java.awt.SystemColor;
@@ -64,6 +69,7 @@ public class BrisanjeArtikla {
 		
 		JLabel lblArtikalId = new JLabel("Unesite Bar kod artikla koji želite obrisati:");
 		
+		JLabel VbarCode = new JLabel("  ");
 		txtBarkod = new JTextField();
 		txtBarkod.setColumns(10);
 		
@@ -80,45 +86,98 @@ public class BrisanjeArtikla {
 			public void actionPerformed(ActionEvent e) {
 				String barkod=txtBarkod.getText();
 				try {
-					
+					if(ValidacijaArtikla.validirajBarkod(txtBarkod.getText())){
 					Artikal art=new Artikal();
 					art=ArtikliKontroler.nadjiBarKod(barkod);
 					ArtikliKontroler.izbrisi(art.getId());
+					JOptionPane.showMessageDialog(null, "Artikal uspljesno izbrisan");
+					}
 					
 				} catch (Exception e1) {
 					
 					e1.printStackTrace();
+					JOptionPane.showMessageDialog(null, "Artikal nije u bazi");
 				}
 			}
 		});
 		btnNewButton_1.setBackground(new Color(143, 188, 143));
 		
+		txtBarkod.getDocument().addDocumentListener(new DocumentListener() {
+
+			public void changedUpdate(DocumentEvent arg0) {
+				// TODO Auto-generated method stub
+				if(ValidacijaArtikla.validirajBarkod(txtBarkod.getText())) {
+					txtBarkod.setBackground(Color.WHITE);
+					VbarCode.setText("  ");
+				}
+				else{
+					txtBarkod.setBackground(Color.getHSBColor(0, 80, 100));
+					VbarCode.setText("treba imati 13 znakova");
+					VbarCode.setForeground(Color.RED);
+				}
+					
+				
+			}
+
+			public void insertUpdate(DocumentEvent arg0) {
+				// TODO Auto-generated method stub
+				if(ValidacijaArtikla.validirajBarkod(txtBarkod.getText())) {
+					txtBarkod.setBackground(Color.WHITE);
+					VbarCode.setText("  ");
+				}
+				else{
+					txtBarkod.setBackground(Color.getHSBColor(0, 80, 100));
+					VbarCode.setText("treba imati 13 znakova");
+					VbarCode.setForeground(Color.RED);
+				}
+				
+			}
+
+			public void removeUpdate(DocumentEvent arg0) {
+				// TODO Auto-generated method stub
+				if(ValidacijaArtikla.validirajBarkod(txtBarkod.getText())) {
+					txtBarkod.setBackground(Color.WHITE);
+					VbarCode.setText("  ");
+				}
+				else{
+					txtBarkod.setBackground(Color.getHSBColor(0, 80, 100));
+					VbarCode.setText("treba imati 13 znakova");
+					VbarCode.setForeground(Color.RED);
+				}
+			}
+		});
+		
 		JSeparator separator = new JSeparator();
 		separator.setForeground(new Color(0, 0, 0));
+		
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.TRAILING)
-				.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(36)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(lblUklanjanjeArtikla, GroupLayout.PREFERRED_SIZE, 128, GroupLayout.PREFERRED_SIZE)
+							.addComponent(VbarCode)
 							.addContainerGap())
 						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 							.addGroup(groupLayout.createSequentialGroup()
-								.addComponent(lblArtikalId, GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
+								.addComponent(lblUklanjanjeArtikla, GroupLayout.PREFERRED_SIZE, 128, GroupLayout.PREFERRED_SIZE)
 								.addContainerGap())
-							.addGroup(groupLayout.createSequentialGroup()
-								.addComponent(separator, GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE)
-								.addGap(32))
-							.addGroup(groupLayout.createSequentialGroup()
-								.addComponent(txtBarkod, GroupLayout.PREFERRED_SIZE, 207, GroupLayout.PREFERRED_SIZE)
-								.addContainerGap())
-							.addGroup(groupLayout.createSequentialGroup()
-								.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE)
-								.addPreferredGap(ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
-								.addComponent(btnNewButton_1, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE)
-								.addGap(96)))))
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addGroup(groupLayout.createSequentialGroup()
+									.addComponent(lblArtikalId, GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE)
+									.addContainerGap())
+								.addGroup(groupLayout.createSequentialGroup()
+									.addComponent(separator, GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE)
+									.addGap(32))
+								.addGroup(groupLayout.createSequentialGroup()
+									.addComponent(txtBarkod, GroupLayout.PREFERRED_SIZE, 207, GroupLayout.PREFERRED_SIZE)
+									.addContainerGap())
+								.addGroup(groupLayout.createSequentialGroup()
+									.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+									.addComponent(btnNewButton_1, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE)
+									.addGap(96))))))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -131,7 +190,9 @@ public class BrisanjeArtikla {
 					.addComponent(lblArtikalId)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(txtBarkod, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addGap(21)
+					.addGap(1)
+					.addComponent(VbarCode)
+					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnNewButton)
 						.addComponent(btnNewButton_1))
@@ -139,5 +200,4 @@ public class BrisanjeArtikla {
 		);
 		frame.getContentPane().setLayout(groupLayout);
 	}
-
 }
