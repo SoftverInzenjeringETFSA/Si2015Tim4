@@ -43,11 +43,16 @@ public class ProsireniInterfejsGUI {
 			public void run() {
 				try {
 					ProsireniInterfejsGUI window = new ProsireniInterfejsGUI();
+					window.frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
+			
+			
+			
 			}
+			
 		});
 	}
 	
@@ -198,9 +203,6 @@ public class ProsireniInterfejsGUI {
 
 				new ModifikacijaArtiklaGUI();
 				ModifikacijaArtiklaGUI.pokreni();
-
-				//ModifikacijaArtiklaGUI forma=new ModifikacijaArtiklaGUI();
-				// Ovo oko je pisao nek provjeri forma(null);
 
 			}
 		});

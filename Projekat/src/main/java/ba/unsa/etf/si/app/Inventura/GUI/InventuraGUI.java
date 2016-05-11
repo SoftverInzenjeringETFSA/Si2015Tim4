@@ -57,6 +57,7 @@ public class InventuraGUI {
 			public void run() {
 				try {
 					InventuraGUI window = new InventuraGUI();
+					window.frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();

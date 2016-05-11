@@ -26,6 +26,7 @@ public class izlazniDokument {
 			public void run() {
 				try {
 					izlazniDokument window = new izlazniDokument();
+					window.frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();

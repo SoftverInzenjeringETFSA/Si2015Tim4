@@ -31,6 +31,7 @@ public class UnosSkladistaGUI {
 			public void run() {
 				try {
 					UnosSkladistaGUI window = new UnosSkladistaGUI();
+					window.frmUnosSkladita.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 					window.frmUnosSkladita.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();

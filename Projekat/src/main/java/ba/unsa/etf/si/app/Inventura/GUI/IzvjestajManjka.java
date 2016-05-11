@@ -23,6 +23,7 @@ public class IzvjestajManjka {
 			public void run() {
 				try {
 					IzvjestajManjka window = new IzvjestajManjka();
+					window.frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();

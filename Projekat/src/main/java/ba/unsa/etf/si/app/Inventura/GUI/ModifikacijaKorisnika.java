@@ -65,6 +65,7 @@ public class ModifikacijaKorisnika {
 			public void run() {
 				try {
 					ModifikacijaKorisnika window = new ModifikacijaKorisnika();
+					window.frmModifikacijaKorisnika.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 					window.frmModifikacijaKorisnika.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();

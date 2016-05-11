@@ -35,6 +35,7 @@ public class DodavanjeKlaseArtiklaGUI {
 			public void run() {
 				try {
 					DodavanjeKlaseArtiklaGUI window = new DodavanjeKlaseArtiklaGUI();
+					window.frmUnosNoveKlase.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 					window.frmUnosNoveKlase.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -125,7 +126,7 @@ public class DodavanjeKlaseArtiklaGUI {
 		lblKorisnik.setBounds(275, 40, 46, 14);
 		frmUnosNoveKlase.getContentPane().add(lblKorisnik);
 		
-		JLabel Vnaziv = new JLabel("  ");
+		final JLabel Vnaziv = new JLabel("  ");
 		Vnaziv.setForeground(Color.RED);
 		Vnaziv.setBounds(31, 139, 223, 14);
 		frmUnosNoveKlase.getContentPane().add(Vnaziv);

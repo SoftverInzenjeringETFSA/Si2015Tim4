@@ -27,6 +27,7 @@ public class OtpisDokument {
 			public void run() {
 				try {
 					OtpisDokument window = new OtpisDokument();
+					window.frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();

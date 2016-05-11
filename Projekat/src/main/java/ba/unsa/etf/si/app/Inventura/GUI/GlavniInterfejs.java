@@ -21,6 +21,8 @@ import javax.swing.GroupLayout.Alignment;
 //import javax.swing.table.DefaultTableModel;
 import javax.swing.JList;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.WindowConstants;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -36,6 +38,7 @@ public class GlavniInterfejs {
 			public void run() {
 				try {
 					GlavniInterfejs window = new GlavniInterfejs();
+					window.frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -65,14 +68,26 @@ public class GlavniInterfejs {
 		JMenu mnInventura = new JMenu("Inventura");
 		menuBar.add(mnInventura);
 		
+		
+		
+		
 		JMenuItem mntmZaponiNovu = new JMenuItem("Započni novu");
 		mntmZaponiNovu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			InventuraGUI nw = new InventuraGUI();
+			//InventuraGUI nw = new InventuraGUI();
 			InventuraGUI.pokreni();
 			}
 		});
 		mnInventura.add(mntmZaponiNovu);
+		
+		frame.addWindowListener(new java.awt.event.WindowAdapter() {
+		    @Override
+		    public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+		    
+		    	frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+		    	}
+		});
+		
 		
 		JMenuItem mntmPregledZavrenih = new JMenuItem("Pregled završenih");
 		mnInventura.add(mntmPregledZavrenih);
@@ -89,7 +104,7 @@ public class GlavniInterfejs {
 		JMenuItem mntmKreirajIzlazniDokument_1 = new JMenuItem("Kreiraj izlazni dokument");
 		mntmKreirajIzlazniDokument_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			izlazniDokument nw = new izlazniDokument();
+			//izlazniDokument nw = new izlazniDokument();
 			izlazniDokument.pokreni();
 			}
 		});
@@ -98,7 +113,7 @@ public class GlavniInterfejs {
 		JMenuItem mntmKreiraj = new JMenuItem("Kreiraj dokument otpisa");
 		mntmKreiraj.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			OtpisDokument nw = new OtpisDokument();
+			//OtpisDokument nw = new OtpisDokument();
 			OtpisDokument.pokreni();
 			}
 		});
@@ -110,7 +125,7 @@ public class GlavniInterfejs {
 		JMenuItem mntmPregledDokumenataManjka = new JMenuItem("Pregled dokumenata manjka");
 		mntmPregledDokumenataManjka.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			IzvjestajManjka nw = new IzvjestajManjka();
+		//	IzvjestajManjka nw = new IzvjestajManjka();
 			IzvjestajManjka.pokreni();
 			}
 		});

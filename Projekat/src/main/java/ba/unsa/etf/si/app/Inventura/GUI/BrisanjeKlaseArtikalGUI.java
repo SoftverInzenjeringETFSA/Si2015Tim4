@@ -36,6 +36,7 @@ public class BrisanjeKlaseArtikalGUI {
 			public void run() {
 				try {
 					BrisanjeKlaseArtikalGUI window = new BrisanjeKlaseArtikalGUI();
+					window.frmBrisanjeKlaseArtikla.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 					window.frmBrisanjeKlaseArtikla.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();

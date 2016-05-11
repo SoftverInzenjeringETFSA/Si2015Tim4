@@ -34,6 +34,7 @@ public class UklanjanjeKorisnika {
 			public void run() {
 				try {
 					UklanjanjeKorisnika window = new UklanjanjeKorisnika();
+					window.frmUklanjanjeKorisnika.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 					window.frmUklanjanjeKorisnika.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();

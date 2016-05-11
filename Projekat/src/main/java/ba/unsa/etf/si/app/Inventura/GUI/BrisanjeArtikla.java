@@ -38,6 +38,7 @@ public class BrisanjeArtikla {
 			public void run() {
 				try {
 					BrisanjeArtikla window = new BrisanjeArtikla();
+					window.frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();

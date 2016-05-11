@@ -56,6 +56,7 @@ public class RegistracijaNovogKorisnika {
 			public void run() {
 				try {
 					RegistracijaNovogKorisnika window = new RegistracijaNovogKorisnika();
+					window.frmRegistracijaNovogKorisnika.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 					window.frmRegistracijaNovogKorisnika.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();

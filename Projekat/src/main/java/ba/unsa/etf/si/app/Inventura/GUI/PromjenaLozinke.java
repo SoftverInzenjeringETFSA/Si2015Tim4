@@ -32,6 +32,7 @@ public class PromjenaLozinke {
 			public void run() {
 				try {
 					PromjenaLozinke window = new PromjenaLozinke();
+					window.frmPromjenaLozinke.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 					window.frmPromjenaLozinke.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();

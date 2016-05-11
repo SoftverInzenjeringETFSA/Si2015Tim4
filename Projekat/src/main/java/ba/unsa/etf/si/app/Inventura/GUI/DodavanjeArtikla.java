@@ -55,6 +55,7 @@ public class DodavanjeArtikla {
 			public void run() {
 				try {
 					DodavanjeArtikla window = new DodavanjeArtikla();
+					window.frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();

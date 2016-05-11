@@ -38,9 +38,9 @@ public class ModifikacijaArtiklaGUI {
 	private JTextField txtBarkod;
 	private JTextField txtKolicina;
 	private JTextField txtCijena;
-	private JComboBox comboKlasa;
-	private JComboBox comboMjera;
-	private JList listArtikli;
+	private JComboBox<KlasaArtikla> comboKlasa;
+	private JComboBox<String> comboMjera;
+	private JList<Artikal> listArtikli;
 
 	/**
 	 * Launch the application.
@@ -119,7 +119,7 @@ public class ModifikacijaArtiklaGUI {
 		txtNaziv.setBounds(304, 126, 134, 20);
 		frame.getContentPane().add(txtNaziv);
 		
-		comboKlasa = new JComboBox();
+		comboKlasa = new JComboBox<KlasaArtikla>();
 		comboKlasa.setBounds(304, 151, 134, 20);
 		frame.getContentPane().add(comboKlasa);
 		postaviKlase();
@@ -184,12 +184,12 @@ public class ModifikacijaArtiklaGUI {
 		frame.getContentPane().add(txtCijena);
 		txtCijena.setColumns(10);
 		
-		comboMjera = new JComboBox();
+		comboMjera = new JComboBox<String>();
 		comboMjera.setBounds(304, 251, 134, 20);
 		frame.getContentPane().add(comboMjera);
 		postaviMjere();
 		
-		listArtikli = new JList();
+		listArtikli = new JList<Artikal>();
 		listArtikli.setBounds(24, 136, 183, 187);
 		frame.getContentPane().add(listArtikli);
 		postaviListu();
@@ -219,7 +219,7 @@ public class ModifikacijaArtiklaGUI {
 	public void postaviListu(){
 		List<Artikal> artikli=ArtikliKontroler.lista();
 		
-		DefaultListModel model=new DefaultListModel();
+		DefaultListModel<Artikal> model=new DefaultListModel<Artikal>();
 		
 		for(Artikal a:artikli){
 			model.addElement(a);

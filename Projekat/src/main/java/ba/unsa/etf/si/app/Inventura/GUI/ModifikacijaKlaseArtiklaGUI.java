@@ -38,6 +38,7 @@ public class ModifikacijaKlaseArtiklaGUI {
 			public void run() {
 				try {
 					ModifikacijaKlaseArtiklaGUI window = new ModifikacijaKlaseArtiklaGUI();
+					window.frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
