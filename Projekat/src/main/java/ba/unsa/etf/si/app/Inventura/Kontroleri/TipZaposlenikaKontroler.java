@@ -76,6 +76,20 @@ public class TipZaposlenikaKontroler {
 			return pronadjeniTip;
 		}
 		
+		public static TipZaposlenika nadjiKorisnickoIme(String korisnickoIme) throws Exception
+		{
+			openSession();
+			List<Object> temp = s.createCriteria(TipZaposlenika.class).add(Restrictions.like("korisnickoIme", korisnickoIme)).list();
+			if(temp.size() > 1) {
+				throw new Exception();
+			}
+			else if(temp.size()==0){
+				return null;
+			}
+			TipZaposlenika pronadjeniKorisnik = (TipZaposlenika) temp.get(0);
+			return pronadjeniKorisnik;
+		}
+		
 		public static TipZaposlenika nadjiId(Long id) throws Exception
 		{
 			openSession();

@@ -90,8 +90,8 @@ public class LogInScreen {
 						ProsireniInterfejsGUI pg=new ProsireniInterfejsGUI();
 						ProsireniInterfejsGUI.pokreni();
 					}
-					else{
-						validacija.setText("Korisnicko ime ili lozinka nisu tacni");
+					else if(priv.equals("nema")){
+						validacija.setText("Korisnicko ime ili lozinka nisu tacni");	
 					}
 				} catch (Exception e) {
 					System.out.print("Ne provjeri pass i ne nadje usera");
@@ -167,13 +167,18 @@ public class LogInScreen {
 		
 		String psw = new String(cs);
 		TipZaposlenika tip = new TipZaposlenika();
-		tip = TipZaposlenikaKontroler.nadjiIme(username);
-		
+		//tip = TipZaposlenikaKontroler.nadjiIme(username);
+		tip = TipZaposlenikaKontroler.nadjiKorisnickoIme(username);
+		if(tip==null){
+			return "nema";
+		}
 		if(tip.getLozinka().equals(psw))
 		{
 			if(tip.getPrivilegija().equals("Sef")) return "Sef";
 			else return "Skladistar";
 		}
-		else return "Ne odgovara lozinka";		
-}
+		else{
+			return "Unesite validne podatke!";
+		}
+	}
 }
