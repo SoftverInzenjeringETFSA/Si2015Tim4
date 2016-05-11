@@ -1,6 +1,8 @@
 package ba.unsa.etf.si.app.Inventura.Kontroleri;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
@@ -126,25 +128,29 @@ public class TipZaposlenikaKontroler {
 			
 			List<TipZaposlenika> tipTemp=s.createCriteria(TipZaposlenika.class).list();
 			t.commit();
+			
+			closeSession();
+			
 			return tipTemp;
 		}
 		
-		public static String provjerUserPass(String username, String password)
-		{
+		public static String provjerUserPass(String username, String password){
 				openSession();
-				TipZaposlenika tip = (TipZaposlenika) s.get(TipZaposlenika.class, new String (username));
+				List<Object> l = s.createCriteria(TipZaposlenika.class).add(Restrictions.like("korisnickoIme", username)).list();
 				t.commit();
 				
 				closeSession();
-				if(tip.getLozinka()==password)
-				{
-					if(tip.getPrivilegija()=="Sef") return "Sef";
-					else return "Skladistar";
+				if(l.size() > 1) {
+					return "vise istih korisnickih imena";
 				}
-				else return " ";
 				
-			
-					
+				TipZaposlenika tip=(TipZaposlenika)l.get(0);
+				if(tip.getLozinka().equals(password))
+				{
+					if(tip.getPrivilegija().equals("Sef")) return "Šef";
+					else return "Skladištar";
+				}
+				else return "ne odgovara lozinka";		
 		}
 		
 	}
