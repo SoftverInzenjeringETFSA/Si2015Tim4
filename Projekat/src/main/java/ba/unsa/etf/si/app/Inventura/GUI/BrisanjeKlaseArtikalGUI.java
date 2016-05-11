@@ -14,9 +14,9 @@ import java.awt.Component;
 
 import javax.swing.SwingConstants;
 
-
+import ba.unsa.etf.si.app.Inventura.Model.Artikal;
 import ba.unsa.etf.si.app.Inventura.Model.KlasaArtikla;
-
+import ba.unsa.etf.si.app.Inventura.Kontroleri.ArtikliKontroler;
 import ba.unsa.etf.si.app.Inventura.Kontroleri.KlasaArtikalaKontroler;
 
 import javax.swing.JSeparator;
@@ -96,10 +96,14 @@ public class BrisanjeKlaseArtikalGUI {
 		
 		btnObrisi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				String naziv=txtNaziv.getText();
 				try{
-					KlasaArtikalaKontroler.izbrisi(txtNaziv.getText());
+					KlasaArtikla art=new KlasaArtikla();
+					art=KlasaArtikalaKontroler.nadjiIme(naziv);
+					KlasaArtikalaKontroler.izbrisi(art.getId());
 				}
 				catch(Exception i){
+					System.out.print("baci izuzetak");
 					Component frame = null;
 					JOptionPane.showMessageDialog(frame, i.getMessage());
 				}

@@ -4,9 +4,10 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 
 import ba.unsa.etf.si.app.Inventura.Kontroleri.HibernateUtil;
-
+import ba.unsa.etf.si.app.Inventura.Model.Artikal;
 import ba.unsa.etf.si.app.Inventura.Model.KlasaArtikla;
 //import java.util.List;
 
@@ -45,18 +46,29 @@ public final class KlasaArtikalaKontroler {
 		return id;	
 	}
 	
-	public static KlasaArtikla nadji(String naziv){
+	public static KlasaArtikla nadji(Long id){
 		openSession();
-		KlasaArtikla a = (KlasaArtikla) s.get(KlasaArtikla.class,new String(naziv));
+		KlasaArtikla a = (KlasaArtikla) s.get(KlasaArtikla.class,new Long(id));
 		t.commit();
 		
 		closeSession();
 		return a;
 	}
 	
-	public static void izbrisi(String naziv){
+	public static KlasaArtikla nadjiIme(String naziv) throws Exception
+	{
 		openSession();
-		Object instance = s.load(KlasaArtikla.class, new String(naziv));
+		List<Object> klase = s.createCriteria(KlasaArtikla.class).add(Restrictions.like("naziv", naziv)).list();
+		if(klase.size() > 1) {
+			throw new Exception();
+		}
+		KlasaArtikla pronadjenaKlasa = (KlasaArtikla) klase.get(0);
+		return pronadjenaKlasa;
+	}
+	
+	public static void izbrisi(Long id){
+		openSession();
+		Object instance = s.load(KlasaArtikla.class, new Long(id));
 		if (instance != null)
 			s.delete(instance);
 		
@@ -73,7 +85,7 @@ public final class KlasaArtikalaKontroler {
 			
 		String naziv = a.getNaziv();	
 		
-		return nadji(naziv);
+		return nadji(a.getId());
 	}
 	
 	public static List<KlasaArtikla> lista(){
