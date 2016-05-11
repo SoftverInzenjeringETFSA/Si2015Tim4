@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.LayoutStyle.ComponentPlacement;
@@ -57,7 +58,7 @@ public class LogInScreen {
 		frmPrijavaNaSistem.setBounds(100, 100, 260, 207);
 		frmPrijavaNaSistem.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		JLabel lblKorisnikoIme = new JLabel("Korisničko ime:");
+		JLabel lblKorisnikoIme = new JLabel("Korisnièko ime:");
 		
 		JLabel lblLozinka = new JLabel("Lozinka:");
 		
@@ -72,21 +73,22 @@ public class LogInScreen {
 		JButton btnPotvrdi = new JButton("Prijava");
 		btnPotvrdi.setBackground(new Color(143, 188, 143));
 		btnPotvrdi.addActionListener(new ActionListener() {
+			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent arg0) {
-
-				String priv=TipZaposlenikaKontroler.provjerUserPass(textField.getText(), passwordField.getPassword().toString());
-				if(priv=="Skladistar")
+				String priv=TipZaposlenikaKontroler.provjerUserPass(textField.getText(), passwordField.getText());
+				
+				if(priv.equals("Skladištar"))
 				{
 					new GlavniInterfejs();
 					GlavniInterfejs.pokreni();
 				}
-				else if(priv=="Sef")
+				else if(priv.equals("Šef"))
 				{
 					new ProsireniInterfejsGUI();
 					ProsireniInterfejsGUI.pokreni();
 				}
 				else{
-					validacija.setText("Korisničko ime ili lozinka nisu tačni");
+					validacija.setText("korisnicko ime ili lozinka nisu tacni");
 				}
 			}
 		});

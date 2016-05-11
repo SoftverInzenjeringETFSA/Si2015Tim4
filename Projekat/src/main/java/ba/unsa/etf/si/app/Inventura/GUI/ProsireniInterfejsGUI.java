@@ -42,7 +42,7 @@ public class ProsireniInterfejsGUI {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					GlavniInterfejs window = new GlavniInterfejs();
+					ProsireniInterfejsGUI window = new ProsireniInterfejsGUI();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
