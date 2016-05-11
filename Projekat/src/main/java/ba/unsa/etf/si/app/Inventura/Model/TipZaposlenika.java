@@ -1,7 +1,7 @@
 package ba.unsa.etf.si.app.Inventura.Model;
 
 import java.io.Serializable;
-import java.util.*;
+//import java.util.*;
 
 import javax.persistence.*;
 

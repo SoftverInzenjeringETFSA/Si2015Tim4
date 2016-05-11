@@ -69,7 +69,7 @@ public class BrisanjeArtikla {
 		
 		JLabel lblArtikalId = new JLabel("Unesite Bar kod artikla koji želite obrisati:");
 		
-		JLabel VbarCode = new JLabel("  ");
+		final JLabel VbarCode = new JLabel("  ");
 		txtBarkod = new JTextField();
 		txtBarkod.setColumns(10);
 		

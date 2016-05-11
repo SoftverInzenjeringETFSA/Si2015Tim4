@@ -3,32 +3,32 @@ package ba.unsa.etf.si.app.Inventura.GUI;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.ListSelectionModel;
-import javax.swing.table.DefaultTableModel;
+//import javax.swing.JScrollPane;
+//import javax.swing.JTable;
+//import javax.swing.ListSelectionModel;
+//import javax.swing.table.DefaultTableModel;
 import javax.swing.JLabel;
-import java.awt.SystemColor;
-import java.awt.Window;
+//import java.awt.SystemColor;
+//import java.awt.Window;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JSeparator;
-import javax.swing.JTextField;
-import javax.swing.JComboBox;
-import javax.swing.JComponent;
+//import javax.swing.JTextField;
+//import javax.swing.JComboBox;
+//import javax.swing.JComponent;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
-import javax.swing.JTextArea;
-import javax.swing.JButton;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
+//import javax.swing.JTextArea;
+//import javax.swing.JButton;
+//import java.awt.event.KeyAdapter;
+//import java.awt.event.KeyEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.JFrame;
-import javax.swing.JFrame;
+//import javax.swing.JFrame;
+//import javax.swing.JFrame;
 import javax.swing.JList;
-import java.awt.Color;
+//import java.awt.Color;
 
 public class ProsireniInterfejsGUI {
 
@@ -37,6 +37,21 @@ public class ProsireniInterfejsGUI {
 	/**
 	 * Launch the application.
 	 */
+	
+	public static void pokreni() {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					GlavniInterfejs window = new GlavniInterfejs();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+	
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -93,8 +108,8 @@ public class ProsireniInterfejsGUI {
 		JMenuItem mntmUnosSkladita = new JMenuItem("Unos skladišta");
 		mntmUnosSkladita.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			UnosSkladistaGUI nw = new UnosSkladistaGUI();
-			nw.pokreni();
+			new UnosSkladistaGUI();
+			UnosSkladistaGUI.pokreni();
 			}
 		});
 		mnSkladite.add(mntmUnosSkladita);
@@ -105,8 +120,8 @@ public class ProsireniInterfejsGUI {
 		JMenuItem mntmKreirajIzlazniDokument_1 = new JMenuItem("Kreiraj izlazni dokument");
 		mntmKreirajIzlazniDokument_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			izlazniDokument nw = new izlazniDokument();
-			nw.pokreni();
+			new izlazniDokument();
+			izlazniDokument.pokreni();
 			}
 		});
 		mnDokumenti.add(mntmKreirajIzlazniDokument_1);
@@ -114,8 +129,8 @@ public class ProsireniInterfejsGUI {
 		JMenuItem mntmKreiraj = new JMenuItem("Kreiraj dokument otpisa");
 		mntmKreiraj.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			OtpisDokument nw = new OtpisDokument();
-			nw.pokreni();
+			new OtpisDokument();
+			OtpisDokument.pokreni();
 			}
 		});
 		mnDokumenti.add(mntmKreiraj);
@@ -141,8 +156,8 @@ public class ProsireniInterfejsGUI {
 		JMenuItem mntmUnos_2 = new JMenuItem("Unos");
 		mntmUnos_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			DodavanjeKlaseArtiklaGUI nw = new DodavanjeKlaseArtiklaGUI();
-			nw.pokreni();
+			new DodavanjeKlaseArtiklaGUI();
+			DodavanjeKlaseArtiklaGUI.pokreni();
 			}
 		});
 		mnKlaseArtikala.add(mntmUnos_2);
@@ -150,8 +165,8 @@ public class ProsireniInterfejsGUI {
 		JMenuItem mntmModifikacija_2 = new JMenuItem("Modifikacija");
 		mntmModifikacija_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			ModifikacijaKlaseArtiklaGUI nw = new ModifikacijaKlaseArtiklaGUI();
-			nw.pokreni();
+			new ModifikacijaKlaseArtiklaGUI();
+			ModifikacijaKlaseArtiklaGUI.pokreni();
 			}
 		});
 		mnKlaseArtikala.add(mntmModifikacija_2);
@@ -159,8 +174,8 @@ public class ProsireniInterfejsGUI {
 		JMenuItem mntmBrisanje_2 = new JMenuItem("Brisanje");
 		mntmBrisanje_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			BrisanjeKlaseArtikalGUI nw = new BrisanjeKlaseArtikalGUI();
-			nw.pokreni();
+			new BrisanjeKlaseArtikalGUI();
+			BrisanjeKlaseArtikalGUI.pokreni();
 			}
 		});
 		mnKlaseArtikala.add(mntmBrisanje_2);
@@ -171,8 +186,8 @@ public class ProsireniInterfejsGUI {
 		JMenuItem mntmUnos = new JMenuItem("Unos");
 		mntmUnos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			DodavanjeArtikla nw = new DodavanjeArtikla();
-			nw.pokreni();
+			new DodavanjeArtikla();
+			DodavanjeArtikla.pokreni();
 			}
 		});
 		mnArtikli.add(mntmUnos);
@@ -181,8 +196,8 @@ public class ProsireniInterfejsGUI {
 		mntmModifikacija.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				ModifikacijaArtiklaGUI forma=new ModifikacijaArtiklaGUI();
-				forma.pokreni();
+				new ModifikacijaArtiklaGUI();
+				ModifikacijaArtiklaGUI.pokreni();
 
 				//ModifikacijaArtiklaGUI forma=new ModifikacijaArtiklaGUI();
 				// Ovo oko je pisao nek provjeri forma(null);
@@ -194,8 +209,8 @@ public class ProsireniInterfejsGUI {
 		JMenuItem mntmBrisanje = new JMenuItem("Brisanje");
 		mntmBrisanje.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			BrisanjeArtikla nw = new BrisanjeArtikla();
-			nw.pokreni();
+			new BrisanjeArtikla();
+			BrisanjeArtikla.pokreni();
 			}
 		});
 		mnArtikli.add(mntmBrisanje);
@@ -209,8 +224,8 @@ public class ProsireniInterfejsGUI {
 		JMenuItem mntmUnos_1 = new JMenuItem("Unos");
 		mntmUnos_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			RegistracijaNovogKorisnika nw = new RegistracijaNovogKorisnika();
-			nw.pokreni();
+			new RegistracijaNovogKorisnika();
+			RegistracijaNovogKorisnika.pokreni();
 			}
 		});
 		mnKorisnici.add(mntmUnos_1);
@@ -218,8 +233,8 @@ public class ProsireniInterfejsGUI {
 		JMenuItem mntmModifikacija_1 = new JMenuItem("Modifikacija");
 		mntmModifikacija_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			ModifikacijaKorisnika nw = new ModifikacijaKorisnika();
-			nw.pokreni();
+			new ModifikacijaKorisnika();
+			ModifikacijaKorisnika.pokreni();
 			}
 		});
 		mnKorisnici.add(mntmModifikacija_1);
@@ -227,8 +242,8 @@ public class ProsireniInterfejsGUI {
 		JMenuItem mntmBrisanje_1 = new JMenuItem("Brisanje");
 		mntmBrisanje_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				UklanjanjeKorisnika nw = new UklanjanjeKorisnika();
-				nw.pokreni();
+				new UklanjanjeKorisnika();
+				UklanjanjeKorisnika.pokreni();
 			}
 		});
 		mnKorisnici.add(mntmBrisanje_1);
@@ -239,8 +254,8 @@ public class ProsireniInterfejsGUI {
 		JMenuItem mntmNewMenuItem_2 = new JMenuItem("Promijeni lozinku");
 		mntmNewMenuItem_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			PromjenaLozinke nw = new PromjenaLozinke();
-			nw.pokreni();
+			new PromjenaLozinke();
+			PromjenaLozinke.pokreni();
 			}
 		});
 		mnNewMenu.add(mntmNewMenuItem_2);

@@ -8,7 +8,7 @@ import org.hibernate.Transaction;
 import ba.unsa.etf.si.app.Inventura.Kontroleri.HibernateUtil;
 
 import ba.unsa.etf.si.app.Inventura.Model.KlasaArtikla;
-import java.util.List;
+//import java.util.List;
 
 public final class KlasaArtikalaKontroler {
 

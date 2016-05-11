@@ -66,19 +66,24 @@ public class LogInScreen {
 		
 		passwordField = new JPasswordField();
 		
-		JLabel validacija = new JLabel("  ");
+		final JLabel validacija = new JLabel("  ");
 		validacija.setForeground(Color.RED);
 		
 		JButton btnPotvrdi = new JButton("Prijava");
 		btnPotvrdi.setBackground(new Color(143, 188, 143));
 		btnPotvrdi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				TipZaposlenikaKontroler.provjerUserPass(textField.getText(), passwordField.getPassword().toString());
+				String priv=TipZaposlenikaKontroler.provjerUserPass(textField.getText(), passwordField.getPassword().toString());
 				
-				if(true)
+				if(priv=="Skladištar")
 				{
-					GlavniInterfejs nw = new GlavniInterfejs();
-					nw.pokreni();
+					new GlavniInterfejs();
+					GlavniInterfejs.pokreni();
+				}
+				else if(priv=="Šef")
+				{
+					new ProsireniInterfejsGUI();
+					ProsireniInterfejsGUI.pokreni();
 				}
 				else{
 					validacija.setText("korisnicko ime ili lozinka nisu tacni");

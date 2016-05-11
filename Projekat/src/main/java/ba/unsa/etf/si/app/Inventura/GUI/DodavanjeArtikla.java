@@ -174,13 +174,13 @@ public class DodavanjeArtikla {
 			}
 		}
 		
-		JLabel VbarCode = new JLabel("  ");
+		final JLabel VbarCode = new JLabel("  ");
 		
-		JLabel Vnaziv = new JLabel("  ");
+		final JLabel Vnaziv = new JLabel("  ");
 		
-		JLabel Vcijena = new JLabel("  ");
+		final JLabel Vcijena = new JLabel("  ");
 		
-		JLabel Vkolicina = new JLabel("  ");
+		final JLabel Vkolicina = new JLabel("  ");
 		
 		txtNaziv.getDocument().addDocumentListener(new DocumentListener(){
 			public void changedUpdate(DocumentEvent arg0) {

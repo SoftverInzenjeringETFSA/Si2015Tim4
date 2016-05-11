@@ -2,7 +2,7 @@ package ba.unsa.etf.si.app.Inventura.Kontroleri;
 
 import java.util.List;
 
-import org.hibernate.Criteria;
+//import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;

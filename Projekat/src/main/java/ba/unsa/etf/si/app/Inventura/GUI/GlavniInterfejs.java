@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 //import java.awt.BorderLayout;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JScrollPane;
+//import javax.swing.JScrollPane;
 import javax.swing.JMenu;
 //import java.awt.Color;
 import javax.swing.JLabel;
@@ -16,9 +16,9 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 //import java.awt.Component;
 //import javax.swing.Box;
-import javax.swing.JTable;
-import javax.swing.ListSelectionModel;
-import javax.swing.table.DefaultTableModel;
+//import javax.swing.JTable;
+//import javax.swing.ListSelectionModel;
+//import javax.swing.table.DefaultTableModel;
 import javax.swing.JList;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.event.ActionListener;
@@ -26,7 +26,7 @@ import java.awt.event.ActionEvent;
 
 public class GlavniInterfejs {
 
-	private JFrame frame;
+	JFrame frame;
 
 	/**
 	 * Launch the application.
@@ -69,7 +69,7 @@ public class GlavniInterfejs {
 		mntmZaponiNovu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			InventuraGUI nw = new InventuraGUI();
-			nw.pokreni();
+			InventuraGUI.pokreni();
 			}
 		});
 		mnInventura.add(mntmZaponiNovu);
@@ -90,7 +90,7 @@ public class GlavniInterfejs {
 		mntmKreirajIzlazniDokument_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			izlazniDokument nw = new izlazniDokument();
-			nw.pokreni();
+			izlazniDokument.pokreni();
 			}
 		});
 		mnDokumenti.add(mntmKreirajIzlazniDokument_1);
@@ -99,7 +99,7 @@ public class GlavniInterfejs {
 		mntmKreiraj.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			OtpisDokument nw = new OtpisDokument();
-			nw.pokreni();
+			OtpisDokument.pokreni();
 			}
 		});
 		mnDokumenti.add(mntmKreiraj);
@@ -111,7 +111,7 @@ public class GlavniInterfejs {
 		mntmPregledDokumenataManjka.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			IzvjestajManjka nw = new IzvjestajManjka();
-			nw.pokreni();
+			IzvjestajManjka.pokreni();
 			}
 		});
 		mnDokumenti.add(mntmPregledDokumenataManjka);
@@ -132,7 +132,7 @@ public class GlavniInterfejs {
 		mntmNewMenuItem_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			PromjenaLozinke nw = new PromjenaLozinke();
-			nw.pokreni();
+			PromjenaLozinke.pokreni();
 			}
 		});
 		mnNewMenu.add(mntmNewMenuItem_2);

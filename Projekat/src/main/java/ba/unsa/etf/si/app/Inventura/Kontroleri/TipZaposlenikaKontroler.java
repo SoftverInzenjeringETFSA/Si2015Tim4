@@ -129,21 +129,22 @@ public class TipZaposlenikaKontroler {
 			return tipTemp;
 		}
 		
-		public static boolean provjerUserPass(String username, String password)
+		public static String provjerUserPass(String username, String password)
 		{
-			try{
 				openSession();
 				TipZaposlenika tip = (TipZaposlenika) s.get(TipZaposlenika.class, new String (username));
 				t.commit();
 				
 				closeSession();
 				if(tip.getLozinka()==password)
-					return true;
-				return false;
-			}
-			catch(Exception e1){
-				return false;
-			}
+				{
+					if(tip.getPrivilegija()=="Šef") return "Šef";
+					else return "Skladištar";
+				}
+				else return " ";
+				
+			
+					
 		}
 		
 	}

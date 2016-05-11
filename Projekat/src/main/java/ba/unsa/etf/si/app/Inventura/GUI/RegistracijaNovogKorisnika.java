@@ -4,24 +4,24 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JSeparator;
-import java.awt.BorderLayout;
+//import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 
 import javax.swing.JLabel;
 import java.awt.Font;
-import javax.swing.SwingConstants;
+//import javax.swing.SwingConstants;
 
-import ba.unsa.etf.si.app.Inventura.Kontroleri.ArtikliKontroler;
+//import ba.unsa.etf.si.app.Inventura.Kontroleri.ArtikliKontroler;
 import ba.unsa.etf.si.app.Inventura.Kontroleri.TipZaposlenikaKontroler;
-import ba.unsa.etf.si.app.Inventura.Model.Artikal;
-import ba.unsa.etf.si.app.Inventura.Model.KlasaArtikla;
+//import ba.unsa.etf.si.app.Inventura.Model.Artikal;
+//import ba.unsa.etf.si.app.Inventura.Model.KlasaArtikla;
 
 import ba.unsa.etf.si.app.Inventura.Model.TipZaposlenika;
-import ba.unsa.etf.si.app.Inventura.Model.ValidacijaArtikla;
+//import ba.unsa.etf.si.app.Inventura.Model.ValidacijaArtikla;
 
 import javax.swing.JTextField;
-import javax.swing.JList;
+//import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
@@ -30,7 +30,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import ba.unsa.etf.si.app.Inventura.Model.TipZaposlenika;
+//import ba.unsa.etf.si.app.Inventura.Model.TipZaposlenika;
 
 public class RegistracijaNovogKorisnika {
 

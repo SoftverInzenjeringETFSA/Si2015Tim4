@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.criterion.Restrictions;
+//import org.hibernate.criterion.Restrictions;
 
 import ba.unsa.etf.si.app.Inventura.Model.Izvjestaj;
 
