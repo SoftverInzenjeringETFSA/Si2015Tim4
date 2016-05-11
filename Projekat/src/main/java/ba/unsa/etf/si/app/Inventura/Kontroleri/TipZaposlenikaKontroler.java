@@ -133,26 +133,7 @@ public class TipZaposlenikaKontroler {
 			
 			return tipTemp;
 		}
-		
-		public static String provjerUserPass(String username, String password){
-				openSession();
-				List<Object> l = s.createCriteria(TipZaposlenika.class).add(Restrictions.like("korisnickoIme", username)).list();
-				t.commit();
-				
-				closeSession();
-				if(l.size() > 1) {
-					return "vise istih korisnickih imena";
-				}
-				
-				TipZaposlenika tip=(TipZaposlenika)l.get(0);
-				if(tip.getLozinka().equals(password))
-				{
-					if(tip.getPrivilegija().equals("Sef")) return "Šef";
-					else return "Skladištar";
-				}
-				else return "ne odgovara lozinka";		
-		}
-		
+			
 	}
 	
 

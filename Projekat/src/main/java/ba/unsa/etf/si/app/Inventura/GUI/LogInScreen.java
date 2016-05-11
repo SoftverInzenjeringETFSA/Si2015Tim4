@@ -16,7 +16,8 @@ import java.awt.event.ActionEvent;
 import java.awt.Color;
 import java.awt.SystemColor;
 import java.awt.Font;
-import ba.unsa.etf.si.app.Inventura.Kontroleri.TipZaposlenikaKontroler;;
+import ba.unsa.etf.si.app.Inventura.Kontroleri.TipZaposlenikaKontroler;
+import ba.unsa.etf.si.app.Inventura.Model.TipZaposlenika;;
 
 public class LogInScreen {
 
@@ -73,22 +74,28 @@ public class LogInScreen {
 		JButton btnPotvrdi = new JButton("Prijava");
 		btnPotvrdi.setBackground(new Color(143, 188, 143));
 		btnPotvrdi.addActionListener(new ActionListener() {
-			@SuppressWarnings("deprecation")
+			
 			public void actionPerformed(ActionEvent arg0) {
-				String priv=TipZaposlenikaKontroler.provjerUserPass(textField.getText(), passwordField.getText());
 				
-				if(priv.equals("Skladištar"))
-				{
-					new GlavniInterfejs();
-					GlavniInterfejs.pokreni();
-				}
-				else if(priv.equals("Šef"))
-				{
-					new ProsireniInterfejsGUI();
-					ProsireniInterfejsGUI.pokreni();
-				}
-				else{
-					validacija.setText("korisnicko ime ili lozinka nisu tacni");
+				String priv;
+				try {
+					priv = provjerUserPass(textField.getText(), passwordField.getPassword());
+					if(priv.equals("Skladistar"))
+					{
+						GlavniInterfejs g=new GlavniInterfejs();
+						GlavniInterfejs.pokreni();
+					}
+					else if(priv.equals("Sef"))
+					{
+						ProsireniInterfejsGUI pg=new ProsireniInterfejsGUI();
+						ProsireniInterfejsGUI.pokreni();
+					}
+					else{
+						validacija.setText("Korisnicko ime ili lozinka nisu tacni");
+					}
+				} catch (Exception e) {
+					System.out.print("Ne provjeri pass i ne nadje usera");
+					e.printStackTrace();
 				}
 			}
 		});
@@ -155,4 +162,18 @@ public class LogInScreen {
 		);
 		frmPrijavaNaSistem.getContentPane().setLayout(groupLayout);
 	}
+	
+	public static String provjerUserPass(String username, char[] cs) throws Exception{
+		
+		String psw = new String(cs);
+		TipZaposlenika tip = new TipZaposlenika();
+		tip = TipZaposlenikaKontroler.nadjiIme(username);
+		
+		if(tip.getLozinka().equals(psw))
+		{
+			if(tip.getPrivilegija().equals("Sef")) return "Sef";
+			else return "Skladistar";
+		}
+		else return "Ne odgovara lozinka";		
+}
 }
