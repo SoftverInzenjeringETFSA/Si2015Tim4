@@ -185,7 +185,7 @@ public class GlavniInterfejs {
 		frame.getContentPane().setLayout(groupLayout);
 		
 		JLabel lblKorisnikoIme = new JLabel("Korisničko ime");
-		
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
 	}
 }
