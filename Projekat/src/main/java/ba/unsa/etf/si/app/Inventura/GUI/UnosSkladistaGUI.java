@@ -130,7 +130,7 @@ public class UnosSkladistaGUI {
 		btnUnesi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				Skladiste s=new Skladiste(textField.getText(),textField_1.getText());
+				Skladiste s=new Skladiste(textField.getText(),textField_1.getText(),korisnik);
 				SkladisteKontroler sk=new SkladisteKontroler();
 				sk.dodajInfoOSkladistu(s);
 			}
@@ -150,24 +150,6 @@ public class UnosSkladistaGUI {
 		frame.getContentPane().add(btnOdustani);
 	}
 
-	
-	public void dodajSkladiste()
-	{
-		String naziv = textField.getText();
-		String lokacija = textField_1.getText();
-		
-		try
-		{
-			Skladiste s = new Skladiste(naziv,lokacija);
-			//upis u bazuPodataka
-		}
-		catch (Exception e) 
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-	}
 
 
 }

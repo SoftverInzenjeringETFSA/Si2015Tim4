@@ -5,90 +5,162 @@ import java.util.List;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
+import ba.unsa.etf.si.app.Inventura.Model.Artikal;
 import ba.unsa.etf.si.app.Inventura.Model.Inventura;
 import ba.unsa.etf.si.app.Inventura.Model.Izvjestaj;
+import ba.unsa.etf.si.app.Inventura.Model.TipZaposlenika;
 
 public final class PostaviListBox {
-	public static void dokumentiViska(JList list){
-		List<Izvjestaj> tmp = IzvjestajKontroler.lista();
+	public static void dokumentiViska(JTable tabela){
+		List<Izvjestaj> izvjestaji = IzvjestajKontroler.lista();
 		
-		List<Izvjestaj> visak=new ArrayList<Izvjestaj>();
+		DefaultTableModel model=new DefaultTableModel(
+				new Object[][] {
+				},
+				new String[] {
+					"Vrsta", "Datum", "Opis"
+				}
+			);
 		
-		for(Izvjestaj i:tmp){
-			if(i.getVrsta()=="Visak"){
-				visak.add(i);
+		for(Izvjestaj i:izvjestaji){
+			if(i.getVrsta().equals("Visak")){
+				String[] red=new String[]{i.getVrsta(),i.getDatum().toString(),i.getOpis()};
+				
+				model.addRow(red);
 			}
 		}
 		
-		DefaultListModel listModel=new DefaultListModel();
-		for(Izvjestaj i:visak){
-			listModel.addElement(i);
-		}
-		list.setModel(listModel);
+		tabela.setModel(model);
 	}
 	
-	public static void dokumentiManjka(JList list){
-		List<Izvjestaj> tmp = IzvjestajKontroler.lista();
+	public static void dokumentiManjka(JTable tabela){
+		List<Izvjestaj> izvjestaji = IzvjestajKontroler.lista();
 		
-		List<Izvjestaj> manjak=new ArrayList<Izvjestaj>();
+		DefaultTableModel model=new DefaultTableModel(
+				new Object[][] {
+				},
+				new String[] {
+					"Vrsta", "Datum", "Opis"
+				}
+			);
 		
-		for(Izvjestaj i:tmp){
-			if(i.getVrsta()=="Manjak"){
-				manjak.add(i);
+		for(Izvjestaj i:izvjestaji){
+			if(i.getVrsta().equals("Manjak")){
+				String[] red=new String[]{i.getVrsta(),i.getDatum().toString(),i.getOpis()};
+				
+				model.addRow(red);
 			}
 		}
 		
-		DefaultListModel listModel=new DefaultListModel();
-		for(Izvjestaj i:manjak){
-			listModel.addElement(i);
-		}
-		list.setModel(listModel);
+		tabela.setModel(model);
 	}
 	
-	public static void dokumentiOtpisa(JList list){
-		List<Izvjestaj> tmp = IzvjestajKontroler.lista();
+	public static void dokumentiOtpisa(JTable tabela){
+		List<Izvjestaj> izvjestaji = IzvjestajKontroler.lista();
 		
-		List<Izvjestaj> otpis=new ArrayList<Izvjestaj>();
+		DefaultTableModel model=new DefaultTableModel(
+				new Object[][] {
+				},
+				new String[] {
+					"Vrsta", "Datum", "Opis"
+				}
+			);
 		
-		for(Izvjestaj i:tmp){
-			if(i.getVrsta()=="Otpis"){
-				otpis.add(i);
+		for(Izvjestaj i:izvjestaji){
+			if(i.getVrsta().equals("Otpis")){
+				String[] red=new String[]{i.getVrsta(),i.getDatum().toString(),i.getOpis()};
+				
+				model.addRow(red);
 			}
 		}
 		
-		DefaultListModel listModel=new DefaultListModel();
-		for(Izvjestaj i:otpis){
-			listModel.addElement(i);
-		}
-		list.setModel(listModel);
+		tabela.setModel(model);
 	}
 	
-	public static void dokumentiIzlaza(JList list){
-		List<Izvjestaj> tmp = IzvjestajKontroler.lista();
+	public static void dokumentiIzlaza(JTable tabela){
+		List<Izvjestaj> izvjestaji = IzvjestajKontroler.lista();
 		
-		List<Izvjestaj> izlaz=new ArrayList<Izvjestaj>();
+		DefaultTableModel model=new DefaultTableModel(
+				new Object[][] {
+				},
+				new String[] {
+					"Vrsta", "Datum", "Opis"
+				}
+			);
 		
-		for(Izvjestaj i:tmp){
-			if(i.getVrsta()=="Izlaz"){
-				izlaz.add(i);
+		for(Izvjestaj i:izvjestaji){
+			if(i.getVrsta().equals("Izlaz")){
+				String[] red=new String[]{i.getVrsta(),i.getDatum().toString(),i.getOpis()};
+				
+				model.addRow(red);
 			}
 		}
 		
-		DefaultListModel listModel=new DefaultListModel();
-		for(Izvjestaj i:izlaz){
-			listModel.addElement(i);
-		}
-		list.setModel(listModel);
+		tabela.setModel(model);
 	}
 	
-	public static void dokumentiInventure(JList list){
+	public static void dokumentiInventure(JTable tabela){
 		List<Inventura> inventure = InventuraKontroler.lista();
 		
-		DefaultListModel listModel=new DefaultListModel();
+		DefaultTableModel model=new DefaultTableModel(
+				new Object[][] {
+				},
+				new String[] {
+					"Datum", "Opis", "Stanje"
+				}
+			);
+		
 		for(Inventura i:inventure){
-			listModel.addElement(i);
+			String[] red=new String[]{i.getDatum().toString(), i.getOpis(), Integer.toString(i.gettrenutnoStanje())};
+			
+			model.addRow(red);
 		}
-		list.setModel(listModel);
+		
+		tabela.setModel(model);
+	}
+	
+	
+	public static void artikliNaSkladistu(JTable tabela){
+		List<Artikal> artikli = ArtikliKontroler.lista();
+		
+		DefaultTableModel model=new DefaultTableModel(
+				new Object[][] {
+				},
+				new String[] {
+					"Naziv", "Barkod", "Klasa", "Kolicina", "Cijena", "Mjera"
+				}
+			);
+		
+		for(Artikal a:artikli){
+			String[] red=new String[]{a.getNaziv(), a.getBarkod(), a.getKlasaArtikla().toString(), a.getKolicina().toString(),
+									  a.getCijena().toString(), a.getMjera()};
+			
+			model.addRow(red);
+		}
+		
+		tabela.setModel(model);
+	}
+	
+	public static void prikaziZaposlenike(JTable tabela){
+		List<TipZaposlenika> zaposlenici = TipZaposlenikaKontroler.lista();
+		
+		DefaultTableModel model=new DefaultTableModel(
+				new Object[][] {
+				},
+				new String[] {
+					"Ime", "Prezime", "Korisnicko ime", "Broj telefona", "Funkcija"
+				}
+			);
+		
+		for(TipZaposlenika z:zaposlenici){
+			String[] red=new String[]{z.getIme(), z.getPrezime(), z.getKorisnickoime(), z.getBrojtel(),z.getPrivilegija()
+			};
+			model.addRow(red);
+		}
+		
+		tabela.setModel(model);
 	}
 }

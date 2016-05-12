@@ -14,6 +14,7 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 
 import ba.unsa.etf.si.app.Inventura.Kontroleri.FormaKontroler;
+import ba.unsa.etf.si.app.Inventura.Kontroleri.PostaviListBox;
 import ba.unsa.etf.si.app.Inventura.Model.TipZaposlenika;
 
 import javax.swing.JSeparator;
@@ -32,6 +33,8 @@ import java.awt.event.ActionEvent;
 //import javax.swing.JFrame;
 //import javax.swing.JFrame;
 import javax.swing.JList;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 //import java.awt.Color;
 
 public class ProsireniInterfejsGUI {
@@ -41,6 +44,7 @@ public class ProsireniInterfejsGUI {
 	private JFrame frameRoditelj;
 	private TipZaposlenika korisnik;
 	private JMenu mnKorisnik;
+	private JTable tabela;
 
 	/**
 	 * Launch the application.
@@ -107,9 +111,12 @@ public class ProsireniInterfejsGUI {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JList list = new JList();
-		list.setBounds(21, 23, 361, 215);
-		frame.getContentPane().add(list);
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 23, 383, 213);
+		frame.getContentPane().add(scrollPane);
+		
+		tabela = new JTable();
+		scrollPane.setViewportView(tabela);
 		
 		JMenuBar menuBar = new JMenuBar();
 		frame.setJMenuBar(menuBar);
@@ -118,6 +125,11 @@ public class ProsireniInterfejsGUI {
 		menuBar.add(mnSkladite);
 		
 		JMenuItem mntmPregledStanjaNa = new JMenuItem("Pregled stanja na skadištu");
+		mntmPregledStanjaNa.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				PostaviListBox.artikliNaSkladistu(tabela);
+			}
+		});
 		mnSkladite.add(mntmPregledStanjaNa);
 		
 		JMenuItem mntmUnosSkladita = new JMenuItem("Unos skladišta");
@@ -131,7 +143,7 @@ public class ProsireniInterfejsGUI {
 		JMenu mnDokumenti = new JMenu("Dokumenti");
 		menuBar.add(mnDokumenti);
 		
-		JMenuItem mntmKreirajIzlazniDokument_1 = new JMenuItem("Kreiraj izlazni dokument");
+		JMenuItem mntmKreirajIzlazniDokument_1 = new JMenuItem("Kreiraj dokument");
 		mntmKreirajIzlazniDokument_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				izlazniDokument.pokreni(frame, korisnik);
@@ -139,25 +151,45 @@ public class ProsireniInterfejsGUI {
 		});
 		mnDokumenti.add(mntmKreirajIzlazniDokument_1);
 		
-		JMenuItem mntmKreiraj = new JMenuItem("Kreiraj dokument otpisa");
-		mntmKreiraj.addActionListener(new ActionListener() {
+		JMenuItem mntmPregledKreiranihDokumenata = new JMenuItem("Pregled dokumenata viška");
+		mntmPregledKreiranihDokumenata.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				OtpisDokument.pokreni(frame, korisnik);
+				PostaviListBox.dokumentiViska(tabela);
 			}
 		});
-		mnDokumenti.add(mntmKreiraj);
-		
-		JMenuItem mntmPregledKreiranihDokumenata = new JMenuItem("Pregled dokumenata viška");
 		mnDokumenti.add(mntmPregledKreiranihDokumenata);
 		
 		JMenuItem mntmPregledDokumenataManjka = new JMenuItem("Pregled dokumenata manjka");
+		mntmPregledDokumenataManjka.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				PostaviListBox.dokumentiManjka(tabela);
+			}
+		});
 		mnDokumenti.add(mntmPregledDokumenataManjka);
 		
 		JMenuItem mntmPregledDokumenataOtpisa = new JMenuItem("Pregled dokumenata otpisa");
+		mntmPregledDokumenataOtpisa.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				PostaviListBox.dokumentiOtpisa(tabela);
+			}
+		});
 		mnDokumenti.add(mntmPregledDokumenataOtpisa);
 		
 		JMenuItem mntmPregledIzlaznihDokumenata = new JMenuItem("Pregled izlaznih dokumenata");
+		mntmPregledIzlaznihDokumenata.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				PostaviListBox.dokumentiIzlaza(tabela);
+			}
+		});
 		mnDokumenti.add(mntmPregledIzlaznihDokumenata);
+		
+		JMenuItem mntmPregledZaposlenika = new JMenuItem("Pregled zaposlenika");
+		mntmPregledZaposlenika.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				PostaviListBox.prikaziZaposlenike(tabela);
+			}
+		});
+		mnDokumenti.add(mntmPregledZaposlenika);
 		
 		JMenu mnAdministracija = new JMenu("Administracija");
 		menuBar.add(mnAdministracija);

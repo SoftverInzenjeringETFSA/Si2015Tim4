@@ -32,7 +32,7 @@ public final class ArtikliKontroler{
 		}	
 	}
 	
-	public ArtikliKontroler(){}
+	private ArtikliKontroler(){}
 	
 		public static Long dodaj(Artikal a){
 			openSession();

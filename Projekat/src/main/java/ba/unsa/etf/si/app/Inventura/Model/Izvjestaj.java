@@ -37,10 +37,8 @@ public class Izvjestaj implements Serializable {
 		return Vrsta;
 	}
 	
-	public void setVrsta(String v) throws Exception{
-		if(v==" ") {
-			throw new Exception("Morate postojati tip izvještaja");
-		}
+	public void setVrsta(String v){
+		
 		Vrsta=v;
 	}
 	
@@ -63,7 +61,7 @@ public class Izvjestaj implements Serializable {
 	
 	public Izvjestaj(){}
 	
-	public Izvjestaj(String v,String o, Date d) throws Exception
+	public Izvjestaj(String v,String o, Date d)
 	{
 		setVrsta(v);
 		setOpis(o);

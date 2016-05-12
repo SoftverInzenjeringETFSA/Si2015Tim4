@@ -7,11 +7,14 @@ import java.awt.Color;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JSeparator;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 import ba.unsa.etf.si.app.Inventura.Kontroleri.FormaKontroler;
+import ba.unsa.etf.si.app.Inventura.Kontroleri.TipZaposlenikaKontroler;
 import ba.unsa.etf.si.app.Inventura.Model.TipZaposlenika;
 
 import javax.swing.JTextField;
@@ -30,9 +33,9 @@ public class PromjenaLozinke {
 	private TipZaposlenika korisnik;
 	private JLabel lblKorisnik;
 	
-	private JTextField textField;
-	private JPasswordField passwordField;
-	private JPasswordField passwordField_1;
+	private JTextField txtStaraLozinka;
+	private JPasswordField passwordNovaLozinka1;
+	private JPasswordField passwordNovaLozinka2;
 
 	/**
 	 * Launch the application.
@@ -103,17 +106,36 @@ public class PromjenaLozinke {
 		JLabel lblNewLabel_3 = new JLabel("Potvrdite novu lozinku:");
 		lblNewLabel_3.setBounds(32, 169, 110, 14);
 		
-		textField = new JTextField();
-		textField.setBounds(153, 77, 177, 20);
-		textField.setColumns(10);
+		txtStaraLozinka = new JTextField();
+		txtStaraLozinka.setBounds(153, 77, 177, 20);
+		txtStaraLozinka.setColumns(10);
 		
-		passwordField = new JPasswordField();
-		passwordField.setBounds(152, 128, 178, 20);
+		passwordNovaLozinka1 = new JPasswordField();
+		passwordNovaLozinka1.setBounds(152, 128, 178, 20);
 		
-		passwordField_1 = new JPasswordField();
-		passwordField_1.setBounds(152, 166, 178, 20);
+		passwordNovaLozinka2 = new JPasswordField();
+		passwordNovaLozinka2.setBounds(152, 166, 178, 20);
 		
 		JButton btnPotvrdi = new JButton("Potvrdi");
+		btnPotvrdi.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String staraLozinka=txtStaraLozinka.getText();
+				@SuppressWarnings("deprecation")
+				String novaLozinka1=new String(passwordNovaLozinka1.getText());
+				String novaLozinka2=new String(passwordNovaLozinka2.getText());
+				
+				if(korisnik.getLozinka().equals(staraLozinka) && novaLozinka1.equals(novaLozinka2)){
+					korisnik.setLozinka(novaLozinka1);
+					try{
+						TipZaposlenikaKontroler.izmjeni(korisnik);
+					}
+					catch(Exception i){
+						korisnik.setLozinka(staraLozinka);
+						JOptionPane.showMessageDialog(null, i.getMessage());
+					}
+				}
+			}
+		});
 		btnPotvrdi.setBounds(252, 212, 78, 23);
 		btnPotvrdi.setBackground(new Color(143, 188, 143));
 		
@@ -129,11 +151,11 @@ public class PromjenaLozinke {
 		frame.getContentPane().add(btnOdustani);
 		frame.getContentPane().add(btnPotvrdi);
 		frame.getContentPane().add(lblNewLabel_3);
-		frame.getContentPane().add(passwordField_1);
+		frame.getContentPane().add(passwordNovaLozinka2);
 		frame.getContentPane().add(lblNewLabel_2);
-		frame.getContentPane().add(passwordField);
+		frame.getContentPane().add(passwordNovaLozinka1);
 		frame.getContentPane().add(lblNewLabel_1);
-		frame.getContentPane().add(textField);
+		frame.getContentPane().add(txtStaraLozinka);
 		frame.getContentPane().add(separator);
 		frame.getContentPane().add(lblNewLabel);
 		

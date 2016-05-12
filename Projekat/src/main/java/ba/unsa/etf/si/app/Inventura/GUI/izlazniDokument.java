@@ -3,6 +3,7 @@ package ba.unsa.etf.si.app.Inventura.GUI;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.DefaultListModel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
@@ -10,15 +11,30 @@ import java.awt.Font;
 import java.awt.Color;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
+import ba.unsa.etf.si.app.Inventura.Kontroleri.ArtikliKontroler;
 import ba.unsa.etf.si.app.Inventura.Kontroleri.FormaKontroler;
+import ba.unsa.etf.si.app.Inventura.Kontroleri.IzvjestajKontroler;
+import ba.unsa.etf.si.app.Inventura.Model.Artikal;
+import ba.unsa.etf.si.app.Inventura.Model.Izvjestaj;
+import ba.unsa.etf.si.app.Inventura.Model.MojaTabela;
 import ba.unsa.etf.si.app.Inventura.Model.TipZaposlenika;
 
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import java.awt.event.ActionEvent;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.JTextArea;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
 
 public class izlazniDokument {
 
@@ -28,7 +44,12 @@ public class izlazniDokument {
 	private TipZaposlenika korisnik;
 	private JLabel lblKorisnik;
 	
-	private JTextField textField;
+	private JTextField txtKolicina;
+	private MojaTabela tabelaDodani;
+	private MojaTabela tabelaPostojeci;
+	private List<Double> kolicine=new ArrayList<Double>();
+	private JTextArea txtOpis;
+	private JComboBox comboVrsta;
 
 	/**
 	 * Launch the application.
@@ -77,13 +98,13 @@ public class izlazniDokument {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 701, 495);
+		frame.setBounds(100, 100, 817, 495);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		JLabel lblKreiranjeIzlaznogDokumenta = new JLabel("Kreiranje izlaznog dokumenta:");
+		JLabel lblKreiranjeIzlaznogDokumenta = new JLabel("Kreiranje dokumenta:");
 		lblKreiranjeIzlaznogDokumenta.setBounds(215, 36, 215, 20);
 		lblKreiranjeIzlaznogDokumenta.setForeground(new Color(0, 128, 0));
-		lblKreiranjeIzlaznogDokumenta.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblKreiranjeIzlaznogDokumenta.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		
 		lblKorisnik = new JLabel("korisnik");
 		lblKorisnik.setVerticalAlignment(SwingConstants.BOTTOM);
@@ -92,53 +113,167 @@ public class izlazniDokument {
 		lblKorisnik.setBounds(507, 11, 158, 20);
 		
 		JLabel lblPostojeiArtikli = new JLabel("Postojeći artikli:");
-		lblPostojeiArtikli.setBounds(10, 96, 75, 14);
+		lblPostojeiArtikli.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblPostojeiArtikli.setBounds(20, 94, 112, 14);
 		
 		JLabel lblDodaniArtikli = new JLabel("Dodani artikli");
-		lblDodaniArtikli.setBounds(442, 94, 61, 14);
-		
-		JList list = new JList();
-		list.setBounds(10, 128, 100, 0);
-		
-		JList list_1 = new JList();
-		list_1.setBounds(442, 126, 223, 257);
-		
-		JList list_2 = new JList();
-		list_2.setBounds(10, 128, 212, 255);
+		lblDodaniArtikli.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblDodaniArtikli.setBounds(555, 94, 100, 14);
 		
 		JLabel lblUnesiteKoliinu = new JLabel("Unesite količinu:");
-		lblUnesiteKoliinu.setBounds(280, 141, 77, 14);
+		lblUnesiteKoliinu.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblUnesiteKoliinu.setBounds(280, 150, 100, 14);
 		
-		textField = new JTextField();
-		textField.setBounds(280, 166, 86, 20);
-		textField.setColumns(10);
+		txtKolicina = new JTextField();
+		txtKolicina.setBounds(280, 175, 244, 20);
+		txtKolicina.setColumns(10);
 		
 		JButton btnDodaj = new JButton("Dodaj >>");
-		btnDodaj.setBounds(280, 223, 79, 23);
+		btnDodaj.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		btnDodaj.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				// validacija svega
+				
+				int brojReda=tabelaPostojeci.getSelectedRow();
+				Artikal artikal=(Artikal)tabelaPostojeci.dajRed(brojReda);
+				
+				try{
+					Double kolicina=Double.parseDouble(txtKolicina.getText());
+					
+					if(kolicina<0 || (artikal.getMjera().equals("kom") && kolicina!=Math.floor(kolicina))){
+						JOptionPane.showMessageDialog(null,	"Kolicina pozitivna itd.");
+						return;
+					}
+					
+					String[] red=new String[]{artikal.getNaziv(), Double.toString(kolicina)};
+					
+					tabelaDodani.dodajRed(artikal, red);
+					
+					kolicine.add(kolicina);
+				}
+				catch(Exception i){
+					JOptionPane.showMessageDialog(null,	i.getMessage());
+				}
+			}
+		});
+		btnDodaj.setBounds(345, 206, 100, 23);
 		
 		JButton btnOdustani = new JButton("Odustani");
+		btnOdustani.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnOdustani.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				FormaKontroler.zatvoriFormu(frameRoditelj, frame, false);
 			}
 		});
-		btnOdustani.setBounds(215, 407, 112, 23);
+		btnOdustani.setBounds(256, 423, 142, 23);
 		
 		JButton btnZakljuiDokument = new JButton("Zaključi dokument");
-		btnZakljuiDokument.setBounds(345, 407, 117, 23);
+		btnZakljuiDokument.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				List<Object> objekti=tabelaDodani.getObjekti();
+				for(Object o:objekti){
+					Artikal artikal=(Artikal)o;
+					try{
+						artikal.setKolicina(artikal.getKolicina()-kolicine.get(objekti.indexOf(o)));
+						ArtikliKontroler.izmijeni(artikal);
+					}
+					catch(Exception i){
+						JOptionPane.showMessageDialog(null, i.getMessage());
+					}
+				}
+				
+				tabelaPostojeci.isprazni();
+				tabelaDodani.isprazni();
+				
+				List<Artikal> artikli=ArtikliKontroler.lista();
+				for(Artikal a:artikli){
+					String[] red=new String[]{a.getNaziv(), Double.toString(a.getKolicina())};
+					tabelaPostojeci.dodajRed(a,	red);
+				}
+				txtKolicina.setText("");
+				
+				Izvjestaj i=new Izvjestaj(comboVrsta.getSelectedItem().toString(),txtOpis.getText(),new Date());
+				IzvjestajKontroler.dodaj(i);
+			}
+		});
+		btnZakljuiDokument.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		btnZakljuiDokument.setBounds(408, 423, 142, 23);
 		frame.getContentPane().setLayout(null);
 		frame.getContentPane().add(lblPostojeiArtikli);
-		frame.getContentPane().add(list);
-		frame.getContentPane().add(list_2);
 		frame.getContentPane().add(lblUnesiteKoliinu);
-		frame.getContentPane().add(textField);
+		frame.getContentPane().add(txtKolicina);
 		frame.getContentPane().add(btnDodaj);
 		frame.getContentPane().add(lblDodaniArtikli);
-		frame.getContentPane().add(list_1);
 		frame.getContentPane().add(lblKreiranjeIzlaznogDokumenta);
 		frame.getContentPane().add(btnOdustani);
 		frame.getContentPane().add(btnZakljuiDokument);
 		frame.getContentPane().add(lblKorisnik);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(20, 121, 237, 275);
+		frame.getContentPane().add(scrollPane);
+		
+		tabelaPostojeci = new MojaTabela();
+		tabelaPostojeci.setModel(new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+				"Naziv", "Kolicina na skladistu"
+			}
+		));
+		List<Artikal> artikli=ArtikliKontroler.lista();
+		for(Artikal a:artikli){
+			String[] red=new String[]{a.getNaziv(), Double.toString(a.getKolicina())};
+			tabelaPostojeci.dodajRed(a,	red);
+		}
+		scrollPane.setViewportView(tabelaPostojeci);
+		
+		JScrollPane scrollPane_1 = new JScrollPane();
+		scrollPane_1.setBounds(555, 121, 215, 275);
+		frame.getContentPane().add(scrollPane_1);
+		
+		tabelaDodani = new MojaTabela();
+		tabelaDodani.setModel(new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+				"Naziv", "Kolicina"
+			}
+		));
+		scrollPane_1.setViewportView(tabelaDodani);
+		
+		JButton btnNewButton = new JButton("Obriši");
+		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				int red=tabelaDodani.getSelectedRow();
+				tabelaDodani.obrisiRed(red);
+				kolicine.remove(red);
+			}
+		});
+		btnNewButton.setBounds(345, 242, 100, 23);
+		frame.getContentPane().add(btnNewButton);
+		
+		txtOpis = new JTextArea();
+		txtOpis.setBounds(280, 301, 244, 95);
+		frame.getContentPane().add(txtOpis);
+		
+		JLabel lblOpis = new JLabel("Opis:");
+		lblOpis.setHorizontalAlignment(SwingConstants.LEFT);
+		lblOpis.setVerticalAlignment(SwingConstants.BOTTOM);
+		lblOpis.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblOpis.setBounds(280, 276, 46, 14);
+		frame.getContentPane().add(lblOpis);
+		
+		JLabel lblVrstaDokumenta = new JLabel("Vrsta dokumenta:");
+		lblVrstaDokumenta.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblVrstaDokumenta.setBounds(280, 124, 100, 14);
+		frame.getContentPane().add(lblVrstaDokumenta);
+		
+	    comboVrsta = new JComboBox();
+		comboVrsta.setModel(new DefaultComboBoxModel(new String[] {"Izlaz", "Otpis"}));
+		comboVrsta.setBounds(389, 121, 135, 20);
+		frame.getContentPane().add(comboVrsta);
 	}
-
 }

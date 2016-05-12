@@ -34,6 +34,7 @@ import ba.unsa.etf.si.app.Inventura.Model.Artikal;
 import ba.unsa.etf.si.app.Inventura.Model.Inventura;
 import ba.unsa.etf.si.app.Inventura.Model.Izvjestaj;
 import ba.unsa.etf.si.app.Inventura.Model.KlasaArtikla;
+import ba.unsa.etf.si.app.Inventura.Model.MojaTabela;
 import ba.unsa.etf.si.app.Inventura.Model.TipZaposlenika;
 
 import javax.swing.ListSelectionModel;
@@ -63,10 +64,11 @@ public class InventuraGUI {
 	private JTextField txtBarkod;
 	private JTextField txtKolicina;
 	private Artikal artikal=null;
-	private JList listArtikli;
 	private JTextField txtNaziv;
 	private JTextField txtMjera;
-	private List<String> popis=new ArrayList<String>();
+	private List<Long> popis=new ArrayList<Long>();
+	private List<Double> kolicine=new ArrayList<Double>();
+	private MojaTabela tabela;
 	
 	/**
 	 * Launch the application.
@@ -164,14 +166,16 @@ public class InventuraGUI {
 					Double kolicina=Double.parseDouble(txtKolicina.getText());
 					
 					// validacija podataka
-					
-					artikal.setKolicina(kolicina);
-					
-					if(!popis.contains(artikal.getBarkod())){
-						DefaultListModel model=(DefaultListModel)listArtikli.getModel();
+										
+					if(!popis.contains(artikal.getId())){
 						
-						model.addElement(artikal);
-						popis.add(artikal.getBarkod());
+						popis.add(artikal.getId());
+						kolicine.add(kolicina);
+						String[] red=new String[]{artikal.getNaziv(), kolicina.toString()};
+						tabela.dodajRed(artikal, red);
+					}
+					else{
+						JOptionPane.showMessageDialog(null, "Artkal je već dodat na popis.");
 					}
 				}
 				catch(NumberFormatException i){
@@ -188,24 +192,23 @@ public class InventuraGUI {
 		btnObracun.setBounds(478, 456, 143, 23);
 		btnObracun.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnObracun.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {	/*
+			public void actionPerformed(ActionEvent e) {	
 				try{
 					Date datum=new Date();
 					
 					List<Artikal> artikliInventure=new ArrayList<Artikal>();
-					DefaultListModel model=(DefaultListModel)listArtikli.getModel();
+					List<Object> objekti=tabela.getObjekti();
 					
-					int vel=model.size();
-					for(int i=0;i<vel;i++){
-						Artikal a=(Artikal)model.getElementAt(i);
+					
+					for(Object o:objekti){
+						Artikal a=(Artikal)o;
+						a.setKolicina(kolicine.get(objekti.indexOf(o)));
 						artikliInventure.add(a);
 					}
 					
-					TipZaposlenika zaposlenik=new TipZaposlenika();
-					
 					String opis=txtOpis.getText();
 					
-					Inventura inventura=new Inventura(datum, opis, zaposlenik, artikliInventure);
+					Inventura inventura=new Inventura(datum, opis, korisnik);
 					InventuraKontroler.dodaj(inventura);
 					
 					List<Artikal> artikliManjka=new ArrayList<Artikal>();
@@ -218,7 +221,7 @@ public class InventuraGUI {
 					for(Artikal a1:artikliBaze){
 						boolean popisan=false;
 						for(Artikal a2:artikliInventure){
-							if(a1.getBarkod()==a2.getBarkod()){
+							if(a1.getId()==a2.getId()){
 								popisan=true;
 								
 								Double kolicina=a2.getKolicina()-a1.getKolicina();
@@ -240,8 +243,8 @@ public class InventuraGUI {
 						}
 					}
 					
-					Izvjestaj manjak=new Izvjestaj("Manjak", inventura.getOpis(), inventura.getDatum(), artikliManjka);
-					Izvjestaj visak=new Izvjestaj("Visak", inventura.getOpis(), inventura.getDatum(), artikliViska);
+					Izvjestaj manjak=new Izvjestaj("Manjak", inventura.getOpis(), inventura.getDatum());
+					Izvjestaj visak=new Izvjestaj("Visak", inventura.getOpis(), inventura.getDatum());
 					
 					IzvjestajKontroler.dodaj(manjak);
 					IzvjestajKontroler.dodaj(visak);
@@ -257,7 +260,7 @@ public class InventuraGUI {
 				}
 				catch(Exception i){
 					JOptionPane.showMessageDialog(frame, i.getMessage());
-				}	*/
+				}	
 			} 
 		});
 		
@@ -266,9 +269,6 @@ public class InventuraGUI {
 		lblKorisnik.setVerticalAlignment(SwingConstants.BOTTOM);
 		lblKorisnik.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblKorisnik.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		
-		listArtikli = new JList();
-		listArtikli.setBounds(23, 51, 231, 428);
 		
 		JLabel lblNewLabel_2 = new JLabel("Popisani artikli:");
 		lblNewLabel_2.setBounds(23, 25, 143, 23);
@@ -294,7 +294,6 @@ public class InventuraGUI {
 		frame.getContentPane().add(btnDodaj);
 		frame.getContentPane().add(btnObracun);
 		frame.getContentPane().add(lblKorisnik);
-		frame.getContentPane().add(listArtikli);
 		frame.getContentPane().add(lblNewLabel_2);
 		frame.getContentPane().add(btnOdustani);
 		
@@ -346,6 +345,32 @@ public class InventuraGUI {
 		lblOpis.setHorizontalAlignment(SwingConstants.LEFT);
 		lblOpis.setBounds(277, 290, 46, 14);
 		frame.getContentPane().add(lblOpis);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(23, 57, 224, 379);
+		frame.getContentPane().add(scrollPane);
+		
+		tabela = new MojaTabela();
+		tabela.setModel(new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+				"Naziv artikla", "Popisana količina"
+			}
+		));
+		scrollPane.setViewportView(tabela);
+		
+		JButton btnNewButton = new JButton("Ukloni");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int brojReda=tabela.getSelectedRow();
+				tabela.obrisiRed(brojReda);
+				popis.remove(brojReda);
+				kolicine.remove(brojReda);
+			}
+		});
+		btnNewButton.setBounds(100, 457, 89, 23);
+		frame.getContentPane().add(btnNewButton);
 		
 		
 	}
