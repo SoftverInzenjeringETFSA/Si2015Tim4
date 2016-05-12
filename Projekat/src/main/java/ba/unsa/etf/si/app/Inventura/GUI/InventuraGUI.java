@@ -23,9 +23,12 @@ import javax.swing.JList;
 //import java.awt.Component;
 //import javax.swing.AbstractListModel;
 //import javax.swing.table.DefaultTableModel;
+import javax.swing.JMenu;
 
+import ba.unsa.etf.si.app.Inventura.Kontroleri.FormaKontroler;
 import ba.unsa.etf.si.app.Inventura.Model.Inventura;
 //import ba.unsa.etf.si.app.Inventura.Model.KlasaArtikla;
+import ba.unsa.etf.si.app.Inventura.Model.TipZaposlenika;
 
 //import javax.swing.ListSelectionModel;
 //import javax.swing.JScrollPane;
@@ -39,11 +42,15 @@ import java.util.List;
 import java.awt.event.ActionEvent;
 
 public class InventuraGUI {
-	int brojac=1;
 	private JFrame frame;
+	
+	private JFrame frameRoditelj;
+	private TipZaposlenika korisnik;
+	private JLabel lblKorisnik;
+	
+	int brojac=1;
 	private JTextField textField_1;
 	private JTextField textField_2;
-	
 	
 	private JComboBox<String> comboMjera;
 	
@@ -59,6 +66,24 @@ public class InventuraGUI {
 					InventuraGUI window = new InventuraGUI();
 					window.frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+	
+	public static void pokreni(JFrame _frameRoditelj, TipZaposlenika _korisnik) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					InventuraGUI window = new InventuraGUI();
+					
+					window.frameRoditelj=_frameRoditelj;
+					window.korisnik=_korisnik;
+					window.lblKorisnik.setText(window.korisnik.getIme().toUpperCase());
+					
+					FormaKontroler.postaviFormu(window.frameRoditelj, window.frame, false);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -89,7 +114,7 @@ public class InventuraGUI {
 		lblNewLabel.setHorizontalAlignment(SwingConstants.LEFT);
 		lblNewLabel.setBackground(new Color(240, 240, 240));
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblNewLabel.setBounds(332, 25, 289, 39);
+		lblNewLabel.setBounds(332, 25, 178, 39);
 		frame.getContentPane().add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Unesite bar kod artikla:");
@@ -159,12 +184,12 @@ public class InventuraGUI {
 		btnZakljuiIObraunaj.setBounds(484, 246, 143, 23);
 		frame.getContentPane().add(btnZakljuiIObraunaj);
 		
-		JLabel label_4 = new JLabel("ime prijavljenog korisnika");
-		label_4.setVerticalAlignment(SwingConstants.BOTTOM);
-		label_4.setHorizontalAlignment(SwingConstants.RIGHT);
-		label_4.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		label_4.setBounds(458, 2, 214, 37);
-		frame.getContentPane().add(label_4);
+		lblKorisnik = new JLabel("korisnik");
+		lblKorisnik.setVerticalAlignment(SwingConstants.BOTTOM);
+		lblKorisnik.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblKorisnik.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblKorisnik.setBounds(528, 20, 93, 28);
+		frame.getContentPane().add(lblKorisnik);
 		
 		JList list = new JList();
 		list.setBounds(23, 51, 231, 251);
@@ -177,8 +202,7 @@ public class InventuraGUI {
 		JButton btnNewButton = new JButton("Odustani");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
-				frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				FormaKontroler.zatvoriFormu(frameRoditelj, frame, false);
 			}
 		});
 		btnNewButton.setBounds(311, 246, 140, 23);

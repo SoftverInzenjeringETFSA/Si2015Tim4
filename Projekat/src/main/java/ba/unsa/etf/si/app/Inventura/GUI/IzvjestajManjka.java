@@ -48,50 +48,27 @@ public class IzvjestajManjka {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JLabel lblIzvjetajManjka = new JLabel("Izvještaj manjka");
+		lblIzvjetajManjka.setBounds(80, 30, 110, 19);
 		lblIzvjetajManjka.setForeground(new Color(0, 128, 0));
 		lblIzvjetajManjka.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		
 		JTextArea txtrNaOsnovuIzvrenog = new JTextArea();
+		txtrNaOsnovuIzvrenog.setBounds(38, 78, 195, 116);
 		txtrNaOsnovuIzvrenog.setRows(5);
 		txtrNaOsnovuIzvrenog.setText("Na osnovu izvršenog\r\nobračuna popisa robe,\r\nustanovljen je manjak u \r\nodnosu na stanje u\r\nskladištu u iznosu od: ");
 		
 		JLabel lblNewLabel = new JLabel("-iznos-");
+		lblNewLabel.setBounds(97, 212, 48, 20);
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		
 		JLabel lblNewLabel_1 = new JLabel("KM");
+		lblNewLabel_1.setBounds(155, 212, 28, 20);
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(38)
-							.addComponent(txtrNaOsnovuIzvrenog, GroupLayout.PREFERRED_SIZE, 195, GroupLayout.PREFERRED_SIZE))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(97)
-							.addComponent(lblNewLabel)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(lblNewLabel_1, GroupLayout.PREFERRED_SIZE, 28, GroupLayout.PREFERRED_SIZE))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(80)
-							.addComponent(lblIzvjetajManjka)))
-					.addContainerGap(25, Short.MAX_VALUE))
-		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(30)
-					.addComponent(lblIzvjetajManjka)
-					.addGap(29)
-					.addComponent(txtrNaOsnovuIzvrenog, GroupLayout.PREFERRED_SIZE, 116, GroupLayout.PREFERRED_SIZE)
-					.addGap(18)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblNewLabel)
-						.addComponent(lblNewLabel_1))
-					.addContainerGap(61, Short.MAX_VALUE))
-		);
-		frame.getContentPane().setLayout(groupLayout);
+		frame.getContentPane().setLayout(null);
+		frame.getContentPane().add(txtrNaOsnovuIzvrenog);
+		frame.getContentPane().add(lblNewLabel);
+		frame.getContentPane().add(lblNewLabel_1);
+		frame.getContentPane().add(lblIzvjetajManjka);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	}
 

@@ -17,17 +17,25 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
 import ba.unsa.etf.si.app.Inventura.Kontroleri.ArtikliKontroler;
+import ba.unsa.etf.si.app.Inventura.Kontroleri.FormaKontroler;
 import ba.unsa.etf.si.app.Inventura.Model.Artikal;
+import ba.unsa.etf.si.app.Inventura.Model.TipZaposlenika;
 import ba.unsa.etf.si.app.Inventura.Model.ValidacijaArtikla;
 
 import javax.swing.JSeparator;
 import java.awt.SystemColor;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.SwingConstants;
 
 public class BrisanjeArtikla {
 
 	private JFrame frame;
+	
+	private JFrame frameRoditelj;
+	private TipZaposlenika korisnik;
+	private JLabel lblKorisnik;
+	
 	private JTextField txtBarkod;
 
 	/**
@@ -40,6 +48,24 @@ public class BrisanjeArtikla {
 					BrisanjeArtikla window = new BrisanjeArtikla();
 					window.frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+	
+	public static void pokreni(JFrame _frameRoditelj, TipZaposlenika _korisnik) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					BrisanjeArtikla window = new BrisanjeArtikla();
+					
+					window.frameRoditelj=_frameRoditelj;
+					window.korisnik=_korisnik;
+					window.lblKorisnik.setText(window.korisnik.getIme().toUpperCase());
+					
+					FormaKontroler.postaviFormu(window.frameRoditelj, window.frame, false);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -65,24 +91,32 @@ public class BrisanjeArtikla {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JLabel lblUklanjanjeArtikla = new JLabel("Uklanjanje artikla");
+		lblUklanjanjeArtikla.setHorizontalAlignment(SwingConstants.LEFT);
+		lblUklanjanjeArtikla.setVerticalAlignment(SwingConstants.BOTTOM);
+		lblUklanjanjeArtikla.setBounds(36, 11, 128, 36);
 		lblUklanjanjeArtikla.setForeground(new Color(0, 128, 0));
 		lblUklanjanjeArtikla.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		
 		JLabel lblArtikalId = new JLabel("Unesite Bar kod artikla koji želite obrisati:");
+		lblArtikalId.setBounds(36, 66, 299, 14);
 		
 		final JLabel VbarCode = new JLabel("  ");
+		VbarCode.setBounds(36, 112, 6, 14);
 		txtBarkod = new JTextField();
+		txtBarkod.setBounds(36, 91, 207, 20);
 		txtBarkod.setColumns(10);
 		
 		JButton btnNewButton = new JButton("Odustani");
+		btnNewButton.setBounds(36, 132, 87, 23);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
+				FormaKontroler.zatvoriFormu(frameRoditelj, frame, false);
 			}
 		});
 		btnNewButton.setBackground(new Color(143, 188, 143));
 		
 		JButton btnNewButton_1 = new JButton("Obriši");
+		btnNewButton_1.setBounds(168, 132, 81, 23);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String barkod=txtBarkod.getText();
@@ -149,56 +183,21 @@ public class BrisanjeArtikla {
 		});
 		
 		JSeparator separator = new JSeparator();
+		separator.setBounds(36, 53, 277, 2);
 		separator.setForeground(new Color(0, 0, 0));
+		frame.getContentPane().setLayout(null);
+		frame.getContentPane().add(VbarCode);
+		frame.getContentPane().add(lblUklanjanjeArtikla);
+		frame.getContentPane().add(lblArtikalId);
+		frame.getContentPane().add(separator);
+		frame.getContentPane().add(txtBarkod);
+		frame.getContentPane().add(btnNewButton);
+		frame.getContentPane().add(btnNewButton_1);
 		
-		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(36)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(VbarCode)
-							.addContainerGap())
-						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-							.addGroup(groupLayout.createSequentialGroup()
-								.addComponent(lblUklanjanjeArtikla, GroupLayout.PREFERRED_SIZE, 128, GroupLayout.PREFERRED_SIZE)
-								.addContainerGap())
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addGroup(groupLayout.createSequentialGroup()
-									.addComponent(lblArtikalId, GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE)
-									.addContainerGap())
-								.addGroup(groupLayout.createSequentialGroup()
-									.addComponent(separator, GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE)
-									.addGap(32))
-								.addGroup(groupLayout.createSequentialGroup()
-									.addComponent(txtBarkod, GroupLayout.PREFERRED_SIZE, 207, GroupLayout.PREFERRED_SIZE)
-									.addContainerGap())
-								.addGroup(groupLayout.createSequentialGroup()
-									.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE)
-									.addPreferredGap(ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
-									.addComponent(btnNewButton_1, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE)
-									.addGap(96))))))
-		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(lblUklanjanjeArtikla, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(separator, GroupLayout.PREFERRED_SIZE, 2, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(lblArtikalId)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(txtBarkod, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addGap(1)
-					.addComponent(VbarCode)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnNewButton)
-						.addComponent(btnNewButton_1))
-					.addContainerGap())
-		);
-		frame.getContentPane().setLayout(groupLayout);
+		lblKorisnik = new JLabel("korisnik");
+		lblKorisnik.setVerticalAlignment(SwingConstants.BOTTOM);
+		lblKorisnik.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblKorisnik.setBounds(209, 32, 102, 14);
+		frame.getContentPane().add(lblKorisnik);
 	}
 }

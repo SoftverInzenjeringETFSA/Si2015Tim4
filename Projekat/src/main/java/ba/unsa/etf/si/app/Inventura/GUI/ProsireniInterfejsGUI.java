@@ -12,6 +12,10 @@ import javax.swing.JLabel;
 //import java.awt.Window;
 import java.awt.Font;
 import javax.swing.SwingConstants;
+
+import ba.unsa.etf.si.app.Inventura.Kontroleri.FormaKontroler;
+import ba.unsa.etf.si.app.Inventura.Model.TipZaposlenika;
+
 import javax.swing.JSeparator;
 //import javax.swing.JTextField;
 //import javax.swing.JComboBox;
@@ -33,6 +37,10 @@ import javax.swing.JList;
 public class ProsireniInterfejsGUI {
 
 	private JFrame frame;
+	
+	private JFrame frameRoditelj;
+	private TipZaposlenika korisnik;
+	private JMenu mnKorisnik;
 
 	/**
 	 * Launch the application.
@@ -48,14 +56,27 @@ public class ProsireniInterfejsGUI {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-			
-			
-			
 			}
-			
 		});
 	}
 	
+	public static void pokreni(JFrame _frameRoditelj, TipZaposlenika _korisnik) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					ProsireniInterfejsGUI window = new ProsireniInterfejsGUI();
+					
+					window.frameRoditelj=_frameRoditelj;
+					window.korisnik=_korisnik;
+					window.mnKorisnik.setText(window.korisnik.getIme().toUpperCase());
+					
+					FormaKontroler.postaviFormu(window.frameRoditelj, window.frame, true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -82,23 +103,12 @@ public class ProsireniInterfejsGUI {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 419, 403);
+		frame.setBounds(100, 100, 419, 321);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JSeparator separator = new JSeparator();
-		separator.setBounds(21, 72, 361, 2);
-		frame.getContentPane().add(separator);
-		
-		JLabel label = new JLabel("ime prijavljenog korisnika");
-		label.setVerticalAlignment(SwingConstants.BOTTOM);
-		label.setHorizontalAlignment(SwingConstants.RIGHT);
-		label.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		label.setBounds(260, 11, 122, 20);
-		frame.getContentPane().add(label);
-		
 		JList list = new JList();
-		list.setBounds(21, 97, 361, 235);
+		list.setBounds(21, 23, 361, 215);
 		frame.getContentPane().add(list);
 		
 		JMenuBar menuBar = new JMenuBar();
@@ -113,8 +123,7 @@ public class ProsireniInterfejsGUI {
 		JMenuItem mntmUnosSkladita = new JMenuItem("Unos skladišta");
 		mntmUnosSkladita.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			new UnosSkladistaGUI();
-			UnosSkladistaGUI.pokreni();
+				UnosSkladistaGUI.pokreni(frame, korisnik);
 			}
 		});
 		mnSkladite.add(mntmUnosSkladita);
@@ -125,8 +134,7 @@ public class ProsireniInterfejsGUI {
 		JMenuItem mntmKreirajIzlazniDokument_1 = new JMenuItem("Kreiraj izlazni dokument");
 		mntmKreirajIzlazniDokument_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			new izlazniDokument();
-			izlazniDokument.pokreni();
+				izlazniDokument.pokreni(frame, korisnik);
 			}
 		});
 		mnDokumenti.add(mntmKreirajIzlazniDokument_1);
@@ -134,8 +142,7 @@ public class ProsireniInterfejsGUI {
 		JMenuItem mntmKreiraj = new JMenuItem("Kreiraj dokument otpisa");
 		mntmKreiraj.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			new OtpisDokument();
-			OtpisDokument.pokreni();
+				OtpisDokument.pokreni(frame, korisnik);
 			}
 		});
 		mnDokumenti.add(mntmKreiraj);
@@ -161,8 +168,7 @@ public class ProsireniInterfejsGUI {
 		JMenuItem mntmUnos_2 = new JMenuItem("Unos");
 		mntmUnos_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			new DodavanjeKlaseArtiklaGUI();
-			DodavanjeKlaseArtiklaGUI.pokreni();
+				DodavanjeKlaseArtiklaGUI.pokreni(frame, korisnik);
 			}
 		});
 		mnKlaseArtikala.add(mntmUnos_2);
@@ -170,8 +176,7 @@ public class ProsireniInterfejsGUI {
 		JMenuItem mntmModifikacija_2 = new JMenuItem("Modifikacija");
 		mntmModifikacija_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			new ModifikacijaKlaseArtiklaGUI();
-			ModifikacijaKlaseArtiklaGUI.pokreni();
+				ModifikacijaKlaseArtiklaGUI.pokreni(frame, korisnik);
 			}
 		});
 		mnKlaseArtikala.add(mntmModifikacija_2);
@@ -179,8 +184,7 @@ public class ProsireniInterfejsGUI {
 		JMenuItem mntmBrisanje_2 = new JMenuItem("Brisanje");
 		mntmBrisanje_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			new BrisanjeKlaseArtikalGUI();
-			BrisanjeKlaseArtikalGUI.pokreni();
+				BrisanjeKlaseArtikalGUI.pokreni(frame, korisnik);
 			}
 		});
 		mnKlaseArtikala.add(mntmBrisanje_2);
@@ -191,8 +195,7 @@ public class ProsireniInterfejsGUI {
 		JMenuItem mntmUnos = new JMenuItem("Unos");
 		mntmUnos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			new DodavanjeArtikla();
-			DodavanjeArtikla.pokreni();
+				DodavanjeArtikla.pokreni(frame, korisnik);
 			}
 		});
 		mnArtikli.add(mntmUnos);
@@ -200,10 +203,7 @@ public class ProsireniInterfejsGUI {
 		JMenuItem mntmModifikacija = new JMenuItem("Modifikacija");
 		mntmModifikacija.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
-				new ModifikacijaArtiklaGUI();
-				ModifikacijaArtiklaGUI.pokreni();
-
+				ModifikacijaArtiklaGUI.pokreni(frame, korisnik);
 			}
 		});
 		mnArtikli.add(mntmModifikacija);
@@ -211,8 +211,7 @@ public class ProsireniInterfejsGUI {
 		JMenuItem mntmBrisanje = new JMenuItem("Brisanje");
 		mntmBrisanje.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			new BrisanjeArtikla();
-			BrisanjeArtikla.pokreni();
+				BrisanjeArtikla.pokreni(frame, korisnik);
 			}
 		});
 		mnArtikli.add(mntmBrisanje);
@@ -226,8 +225,7 @@ public class ProsireniInterfejsGUI {
 		JMenuItem mntmUnos_1 = new JMenuItem("Unos");
 		mntmUnos_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			new RegistracijaNovogKorisnika();
-			RegistracijaNovogKorisnika.pokreni();
+				RegistracijaNovogKorisnika.pokreni(frame, korisnik);
 			}
 		});
 		mnKorisnici.add(mntmUnos_1);
@@ -235,8 +233,7 @@ public class ProsireniInterfejsGUI {
 		JMenuItem mntmModifikacija_1 = new JMenuItem("Modifikacija");
 		mntmModifikacija_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			new ModifikacijaKorisnika();
-			ModifikacijaKorisnika.pokreni();
+				ModifikacijaKorisnika.pokreni(frame, korisnik);
 			}
 		});
 		mnKorisnici.add(mntmModifikacija_1);
@@ -244,8 +241,7 @@ public class ProsireniInterfejsGUI {
 		JMenuItem mntmBrisanje_1 = new JMenuItem("Brisanje");
 		mntmBrisanje_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new UklanjanjeKorisnika();
-				UklanjanjeKorisnika.pokreni();
+				UklanjanjeKorisnika.pokreni(frame, korisnik);
 			}
 		});
 		mnKorisnici.add(mntmBrisanje_1);
@@ -256,23 +252,21 @@ public class ProsireniInterfejsGUI {
 		JMenuItem mntmNewMenuItem_2 = new JMenuItem("Promijeni lozinku");
 		mntmNewMenuItem_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			new PromjenaLozinke();
-			PromjenaLozinke.pokreni();
+				PromjenaLozinke.pokreni(frame, korisnik);
 			}
 		});
 		mnNewMenu.add(mntmNewMenuItem_2);
 		
-		JMenu mnSistem = new JMenu("Sistem");
-		menuBar.add(mnSistem);
+		mnKorisnik = new JMenu("Korisnik");
+		menuBar.add(mnKorisnik);
 		
 		JMenuItem mntmNewMenuItem = new JMenuItem("Odjava");
 		mntmNewMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			frame.dispose();
-			frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				FormaKontroler.zatvoriFormu(frameRoditelj, frame, true);
 			}
 		});
-		mnSistem.add(mntmNewMenuItem);
+		mnKorisnik.add(mntmNewMenuItem);
 		
 	}
 }

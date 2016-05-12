@@ -13,9 +13,20 @@ import javax.swing.JTextField;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
+import ba.unsa.etf.si.app.Inventura.Kontroleri.FormaKontroler;
+import ba.unsa.etf.si.app.Inventura.Model.TipZaposlenika;
+import javax.swing.SwingConstants;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
 public class OtpisDokument {
 
 	private JFrame frame;
+	
+	private JFrame frameRoditelj;
+	private TipZaposlenika korisnik;
+	private JLabel lblKorisnik;
+	
 	private JTextField textField;
 	private JTextField textField_1;
 
@@ -29,6 +40,24 @@ public class OtpisDokument {
 					OtpisDokument window = new OtpisDokument();
 					window.frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+	
+	public static void pokreni(JFrame _frameRoditelj, TipZaposlenika _korisnik) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					OtpisDokument window = new OtpisDokument();
+					
+					window.frameRoditelj=_frameRoditelj;
+					window.korisnik=_korisnik;
+					window.lblKorisnik.setText(window.korisnik.getIme().toUpperCase());
+					
+					FormaKontroler.postaviFormu(window.frameRoditelj, window.frame, false);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -51,119 +80,74 @@ public class OtpisDokument {
 		frame.setBounds(100, 100, 701, 496);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		JLabel lblKreiranjeOtpisDokumenta = new JLabel("Kreiranje dokumenta otpisa:");
+		lblKreiranjeOtpisDokumenta.setBounds(215, 47, 200, 20);
 		lblKreiranjeOtpisDokumenta.setForeground(new Color(0, 128, 0));
 		lblKreiranjeOtpisDokumenta.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		
-		JLabel lblKorisnikoIme = new JLabel("Korisničko ime");
+		lblKorisnik = new JLabel("korisnik");
+		lblKorisnik.setVerticalAlignment(SwingConstants.BOTTOM);
+		lblKorisnik.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblKorisnik.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblKorisnik.setBounds(525, 11, 140, 23);
 		
 		JLabel lblPostojeiArtikli = new JLabel("Postojeći artikli:");
+		lblPostojeiArtikli.setBounds(10, 107, 75, 14);
 		
 		JLabel lblDodaniArtikli = new JLabel("Dodani artikli");
+		lblDodaniArtikli.setBounds(442, 105, 61, 14);
 		
 		JList list = new JList();
+		list.setBounds(10, 139, 100, 0);
 		
 		JList list_1 = new JList();
+		list_1.setBounds(442, 137, 223, 257);
 		
 		JList list_2 = new JList();
+		list_2.setBounds(10, 139, 212, 255);
 		
 		JLabel lblUnesiteKoliinu = new JLabel("Unesite količinu:");
+		lblUnesiteKoliinu.setBounds(289, 139, 77, 14);
 		
 		
 		JButton btnDodaj = new JButton("Dodaj >>");
+		btnDodaj.setBounds(289, 288, 79, 23);
 		
 		JButton btnOdustani = new JButton("Odustani");
+		btnOdustani.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				FormaKontroler.zatvoriFormu(frameRoditelj, frame, false);
+			}
+		});
+		btnOdustani.setBounds(215, 412, 112, 23);
 		
 		JButton btnZakljuiDokument = new JButton("Zaključi dokument");
+		btnZakljuiDokument.setBounds(345, 412, 117, 23);
 		
 		JLabel lblNewLabel = new JLabel("Komentar:");
+		lblNewLabel.setBounds(289, 203, 78, 14);
 		
 		textField = new JTextField();
+		textField.setBounds(289, 161, 86, 20);
 		textField.setColumns(10);
 		
 		textField_1 = new JTextField();
+		textField_1.setBounds(289, 233, 86, 20);
 		textField_1.setColumns(10);
-		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblPostojeiArtikli)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-								.addGroup(groupLayout.createSequentialGroup()
-									.addComponent(list, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
-									.addGap(112))
-								.addComponent(list_2, GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE))
-							.addGap(67)
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(lblUnesiteKoliinu)
-								.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(btnDodaj)
-								.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 78, GroupLayout.PREFERRED_SIZE))
-							.addGap(67)))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblDodaniArtikli)
-						.addComponent(list_1, GroupLayout.PREFERRED_SIZE, 223, GroupLayout.PREFERRED_SIZE))
-					.addGap(20))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(215)
-					.addComponent(lblKreiranjeOtpisDokumenta)
-					.addContainerGap(270, Short.MAX_VALUE))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap(586, Short.MAX_VALUE)
-					.addComponent(lblKorisnikoIme)
-					.addGap(33))
-				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
-					.addContainerGap(215, Short.MAX_VALUE)
-					.addComponent(btnOdustani, GroupLayout.PREFERRED_SIZE, 112, GroupLayout.PREFERRED_SIZE)
-					.addGap(18)
-					.addComponent(btnZakljuiDokument)
-					.addGap(223))
-		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(11)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(lblKorisnikoIme)
-							.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-							.addComponent(lblDodaniArtikli)
-							.addGap(18)
-							.addComponent(list_1, GroupLayout.PREFERRED_SIZE, 257, GroupLayout.PREFERRED_SIZE))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addGroup(groupLayout.createSequentialGroup()
-									.addGap(96)
-									.addComponent(lblPostojeiArtikli))
-								.addGroup(groupLayout.createSequentialGroup()
-									.addGap(36)
-									.addComponent(lblKreiranjeOtpisDokumenta)))
-							.addGap(18)
-							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(list)
-								.addComponent(list_2, GroupLayout.PREFERRED_SIZE, 255, GroupLayout.PREFERRED_SIZE)
-								.addGroup(groupLayout.createSequentialGroup()
-									.addComponent(lblUnesiteKoliinu)
-									.addGap(8)
-									.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-									.addGap(22)
-									.addComponent(lblNewLabel)
-									.addGap(16)
-									.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-									.addGap(35)
-									.addComponent(btnDodaj)))))
-					.addGap(18)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnZakljuiDokument)
-						.addComponent(btnOdustani))
-					.addContainerGap())
-		);
-		frame.getContentPane().setLayout(groupLayout);
+		frame.getContentPane().setLayout(null);
+		frame.getContentPane().add(lblPostojeiArtikli);
+		frame.getContentPane().add(list);
+		frame.getContentPane().add(list_2);
+		frame.getContentPane().add(lblUnesiteKoliinu);
+		frame.getContentPane().add(textField);
+		frame.getContentPane().add(textField_1);
+		frame.getContentPane().add(btnDodaj);
+		frame.getContentPane().add(lblNewLabel);
+		frame.getContentPane().add(lblDodaniArtikli);
+		frame.getContentPane().add(list_1);
+		frame.getContentPane().add(lblKreiranjeOtpisDokumenta);
+		frame.getContentPane().add(lblKorisnik);
+		frame.getContentPane().add(btnOdustani);
+		frame.getContentPane().add(btnZakljuiDokument);
 	}
 
 }
