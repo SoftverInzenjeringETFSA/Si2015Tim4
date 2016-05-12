@@ -25,11 +25,13 @@ public final class FormaKontroler {
 	
 	@SuppressWarnings("deprecation")
 	public static void zatvoriFormu(JFrame frameRoditelj, JFrame frame, boolean odjava){
-		if(odjava){
-			frameRoditelj.setVisible(true);
-		}
-		else{
-			frameRoditelj.enable();
+		if(frameRoditelj!=null){
+			if(odjava){
+				frameRoditelj.setVisible(true);
+			}
+			else{
+				frameRoditelj.enable();
+			}
 		}
 		
 		frame.dispose();
