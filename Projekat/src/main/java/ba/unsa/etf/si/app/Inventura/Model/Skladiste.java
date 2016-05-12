@@ -63,9 +63,10 @@ public class Skladiste implements Serializable{
 		artikli=new ArrayList<Artikal>();
 	}
 	
-	public Skladiste(String _naziv, String _lokacija){
+	public Skladiste(String _naziv, String _lokacija,TipZaposlenika sef){
 		setNaziv(_naziv);
 		setLokacija(_lokacija);
+		setSef(sef);
 		artikli=new ArrayList<Artikal>();
 	}
 	
@@ -97,5 +98,6 @@ public class Skladiste implements Serializable{
 	void setLokacija(String lokacija) {
 		this.lokacija = lokacija;
 	}
+	
 
 }

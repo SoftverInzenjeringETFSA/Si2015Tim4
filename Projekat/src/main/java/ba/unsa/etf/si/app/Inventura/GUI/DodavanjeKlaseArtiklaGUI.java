@@ -9,6 +9,7 @@ import javax.swing.SwingConstants;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
+import ba.unsa.etf.si.app.Inventura.Kontroleri.FormaKontroler;
 import ba.unsa.etf.si.app.Inventura.Kontroleri.KlasaArtikalaKontroler;
 import ba.unsa.etf.si.app.Inventura.Model.*;
 
@@ -24,7 +25,12 @@ import java.awt.Component;
 
 public class DodavanjeKlaseArtiklaGUI {
 
-	private JFrame frmUnosNoveKlase;
+	private JFrame frame;
+	
+	private JFrame frameRoditelj;
+	private TipZaposlenika korisnik;
+	private JLabel lblKorisnik;
+	
 	private JTextField txtNaziv;
 
 	/**
@@ -35,7 +41,26 @@ public class DodavanjeKlaseArtiklaGUI {
 			public void run() {
 				try {
 					DodavanjeKlaseArtiklaGUI window = new DodavanjeKlaseArtiklaGUI();
-					window.frmUnosNoveKlase.setVisible(true);
+					window.frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+	
+	public static void pokreni(JFrame _frameRoditelj, TipZaposlenika _korisnik) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					DodavanjeKlaseArtiklaGUI window = new DodavanjeKlaseArtiklaGUI();
+					
+					window.frameRoditelj=_frameRoditelj;
+					window.korisnik=_korisnik;
+					window.lblKorisnik.setText(window.korisnik.getIme().toUpperCase());
+					
+					FormaKontroler.postaviFormu(window.frameRoditelj, window.frame, false);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -54,22 +79,22 @@ public class DodavanjeKlaseArtiklaGUI {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frmUnosNoveKlase = new JFrame();
-		frmUnosNoveKlase.setTitle("Dodavanje klase artikla");
-		frmUnosNoveKlase.setBounds(100, 100, 365, 240);
-		frmUnosNoveKlase.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frmUnosNoveKlase.getContentPane().setLayout(null);
+		frame = new JFrame();
+		frame.setTitle("Dodavanje klase artikla");
+		frame.setBounds(100, 100, 365, 240);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
 		
 		JLabel lblNazivKlaseArtikla = new JLabel("Naziv klase artikla:");
 		lblNazivKlaseArtikla.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		lblNazivKlaseArtikla.setVerticalAlignment(SwingConstants.BOTTOM);
 		lblNazivKlaseArtikla.setHorizontalAlignment(SwingConstants.LEFT);
 		lblNazivKlaseArtikla.setBounds(31, 94, 103, 14);
-		frmUnosNoveKlase.getContentPane().add(lblNazivKlaseArtikla);
+		frame.getContentPane().add(lblNazivKlaseArtikla);
 		
 		txtNaziv = new JTextField();
 		txtNaziv.setBounds(31, 119, 290, 20);
-		frmUnosNoveKlase.getContentPane().add(txtNaziv);
+		frame.getContentPane().add(txtNaziv);
 		txtNaziv.setColumns(10);
 		
 		JButton btnDodaj = new JButton("Dodaj klasu artikla");
@@ -93,42 +118,41 @@ public class DodavanjeKlaseArtiklaGUI {
 		
 		btnDodaj.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnDodaj.setBounds(165, 158, 156, 23);
-		frmUnosNoveKlase.getContentPane().add(btnDodaj);
+		frame.getContentPane().add(btnDodaj);
 		
 		JLabel lblNewLabel = new JLabel("Unos nove klase artikla");
 		lblNewLabel.setForeground(new Color(0, 128, 0));
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblNewLabel.setVerticalAlignment(SwingConstants.BOTTOM);
 		lblNewLabel.setHorizontalAlignment(SwingConstants.LEFT);
-		lblNewLabel.setBounds(31, 32, 244, 23);
-		frmUnosNoveKlase.getContentPane().add(lblNewLabel);
+		lblNewLabel.setBounds(31, 32, 162, 23);
+		frame.getContentPane().add(lblNewLabel);
 		
 		JSeparator separator = new JSeparator();
 		separator.setBounds(31, 66, 290, 14);
-		frmUnosNoveKlase.getContentPane().add(separator);
+		frame.getContentPane().add(separator);
 		
 		JButton btnZavrsi = new JButton("Završi");
 		btnZavrsi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			frmUnosNoveKlase.dispose();
-			frmUnosNoveKlase.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				FormaKontroler.zatvoriFormu(frameRoditelj, frame, false);
 			}
 		});
 		btnZavrsi.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnZavrsi.setBounds(31, 158, 89, 23);
-		frmUnosNoveKlase.getContentPane().add(btnZavrsi);
+		frame.getContentPane().add(btnZavrsi);
 		
-		JLabel lblKorisnik = new JLabel("korisnik");
+		lblKorisnik = new JLabel("korisnik");
 		lblKorisnik.setVerticalAlignment(SwingConstants.BOTTOM);
 		lblKorisnik.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblKorisnik.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblKorisnik.setBounds(275, 40, 46, 14);
-		frmUnosNoveKlase.getContentPane().add(lblKorisnik);
+		lblKorisnik.setBounds(218, 40, 103, 14);
+		frame.getContentPane().add(lblKorisnik);
 		
-		JLabel Vnaziv = new JLabel("  ");
+		final JLabel Vnaziv = new JLabel("  ");
 		Vnaziv.setForeground(Color.RED);
 		Vnaziv.setBounds(31, 139, 223, 14);
-		frmUnosNoveKlase.getContentPane().add(Vnaziv);
+		frame.getContentPane().add(Vnaziv);
 		
 		txtNaziv.getDocument().addDocumentListener(new DocumentListener(){
 			public void changedUpdate(DocumentEvent arg0) {

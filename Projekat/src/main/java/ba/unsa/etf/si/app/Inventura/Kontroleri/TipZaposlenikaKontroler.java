@@ -94,7 +94,7 @@ public class TipZaposlenikaKontroler {
 		{
 			openSession();
 			List<Object> zaposlenici = s.createCriteria(TipZaposlenika.class).add(Restrictions.like("id", id)).list();
-			if(zaposlenici.size() > 1) {
+			if(zaposlenici.size() != 1) {
 				throw new Exception();
 			}
 			TipZaposlenika tipZ = (TipZaposlenika) zaposlenici.get(0);

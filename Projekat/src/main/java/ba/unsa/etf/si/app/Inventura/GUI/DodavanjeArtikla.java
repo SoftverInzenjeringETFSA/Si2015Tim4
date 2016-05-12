@@ -15,11 +15,12 @@ import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 import ba.unsa.etf.si.app.Inventura.Kontroleri.ArtikliKontroler;
+import ba.unsa.etf.si.app.Inventura.Kontroleri.FormaKontroler;
 import ba.unsa.etf.si.app.Inventura.Kontroleri.KlasaArtikalaKontroler;
 import ba.unsa.etf.si.app.Inventura.Model.Artikal;
 
 import ba.unsa.etf.si.app.Inventura.Model.KlasaArtikla;
-
+import ba.unsa.etf.si.app.Inventura.Model.TipZaposlenika;
 
 import javax.swing.JSeparator;
 import javax.swing.JComboBox;
@@ -29,20 +30,25 @@ import java.awt.event.ActionEvent;
 import java.util.Arrays;
 import java.util.List;
 import javax.swing.event.*;
-import ba.unsa.etf.si.app.Inventura.Model.ValidacijaArtikla;;
+import ba.unsa.etf.si.app.Inventura.Model.ValidacijaArtikla;
+import javax.swing.SwingConstants;;
 
 
 public class DodavanjeArtikla {
 
 	private JFrame frame;
+	
+	private JFrame frameRoditelj;
+	private TipZaposlenika korisnik;
+	private JLabel lblKorisnik;
+	
 	private JTextField txtNaziv;
 	private JTextField txtBarkod;
 	private JTextField txtCijena;
 	private JTextField txtKolicina;
 	private JComboBox<KlasaArtikla> comboKlasa;
 	private JComboBox<String> comboMjera;
-	
-	
+
 	private List<KlasaArtikla> _artikli;
 	private List<String> _mjera = Arrays.asList("kom", "kg", "g", "l", "dl");
 	
@@ -55,6 +61,7 @@ public class DodavanjeArtikla {
 			public void run() {
 				try {
 					DodavanjeArtikla window = new DodavanjeArtikla();
+					window.frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -69,6 +76,24 @@ public class DodavanjeArtikla {
 				try {
 					DodavanjeArtikla window = new DodavanjeArtikla();
 					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+	
+	public static void pokreni(JFrame _frameRoditelj, TipZaposlenika _korisnik) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					DodavanjeArtikla window = new DodavanjeArtikla();
+					
+					window.frameRoditelj=_frameRoditelj;
+					window.korisnik=_korisnik;
+					window.lblKorisnik.setText(window.korisnik.getIme().toUpperCase());
+					
+					FormaKontroler.postaviFormu(window.frameRoditelj, window.frame, false);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -93,26 +118,32 @@ public class DodavanjeArtikla {
 		frame.getContentPane().setBackground(SystemColor.control);
 		
 		JLabel lblDodavanjeArtikla = new JLabel("Unos novog artikla");
+		lblDodavanjeArtikla.setBounds(10, 11, 120, 32);
 		lblDodavanjeArtikla.setForeground(new Color(0, 100, 0));
 		lblDodavanjeArtikla.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		
 		JLabel lblNewLabel = new JLabel("Naziv artikla:");
+		lblNewLabel.setBounds(58, 112, 62, 14);
 		
 		JLabel lblNewLabel_1 = new JLabel("Klasa artikla:");
+		lblNewLabel_1.setBounds(59, 153, 61, 14);
 		
 		
 		txtNaziv = new JTextField();
+		txtNaziv.setBounds(126, 109, 166, 20);
 		txtNaziv.setColumns(10);
 		
 		JButton btnZavrsi = new JButton("Odustani");
+		btnZavrsi.setBounds(28, 304, 92, 23);
 		btnZavrsi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
+				FormaKontroler.zatvoriFormu(frameRoditelj, frame, false);
 			}
 		});
 		btnZavrsi.setBackground(new Color(143, 188, 143));
 		
 		JButton btnUnesi = new JButton("Dodaj");
+		btnUnesi.setBounds(197, 304, 95, 23);
 		btnUnesi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try{
@@ -135,14 +166,18 @@ public class DodavanjeArtikla {
 		btnUnesi.setBackground(new Color(143, 188, 143));
 		
 		JSeparator separator = new JSeparator();
+		separator.setBounds(10, 49, 270, 2);
 		separator.setForeground(new Color(0, 0, 0));
 		
 		JLabel lblBarKodArtikla = new JLabel("Bar kod artikla:");
+		lblBarKodArtikla.setBounds(48, 72, 72, 14);
 		
 		txtBarkod = new JTextField();
+		txtBarkod.setBounds(126, 66, 166, 20);
 		txtBarkod.setColumns(10);
 		
 		comboKlasa = new JComboBox<KlasaArtikla>();
+		comboKlasa.setBounds(126, 150, 166, 20);
 		if(_artikli.size() != 0) {
 			for(KlasaArtikla a : _artikli) {
 				if(a != null) {
@@ -153,19 +188,25 @@ public class DodavanjeArtikla {
 		
 		
 		JLabel lblCijenaArtikla = new JLabel("Cijena artikla:");
+		lblCijenaArtikla.setBounds(54, 191, 66, 14);
 		
 		txtCijena = new JTextField();
+		txtCijena.setBounds(126, 188, 166, 20);
 		txtCijena.setColumns(10);
 		
 		JLabel lblKoliinaArtikla = new JLabel("Količina artikla:");
+		lblKoliinaArtikla.setBounds(49, 232, 71, 14);
 		
 		txtKolicina = new JTextField();
+		txtKolicina.setBounds(126, 229, 166, 20);
 		txtKolicina.setColumns(10);
 		
 		JLabel lblMjernaJedinica = new JLabel("Mjerna jedinica:");
+		lblMjernaJedinica.setBounds(44, 271, 76, 27);
 		
 		
 		comboMjera = new JComboBox<String>();
+		comboMjera.setBounds(126, 274, 166, 20);
 		if(_mjera.size() != 0) {
 			for(String m : _mjera) {
 				if(m != null) {
@@ -175,12 +216,16 @@ public class DodavanjeArtikla {
 		}
 		
 		final JLabel VbarCode = new JLabel("  ");
+		VbarCode.setBounds(126, 92, 6, 14);
 		
 		final JLabel Vnaziv = new JLabel("  ");
+		Vnaziv.setBounds(126, 130, 6, 14);
 		
 		final JLabel Vcijena = new JLabel("  ");
+		Vcijena.setBounds(126, 209, 6, 14);
 		
 		final JLabel Vkolicina = new JLabel("  ");
+		Vkolicina.setBounds(126, 251, 6, 14);
 		
 		txtNaziv.getDocument().addDocumentListener(new DocumentListener(){
 			public void changedUpdate(DocumentEvent arg0) {
@@ -357,89 +402,34 @@ public class DodavanjeArtikla {
 				}
 			}
 		});
+		frame.getContentPane().setLayout(null);
+		frame.getContentPane().add(lblDodavanjeArtikla);
+		frame.getContentPane().add(separator);
+		frame.getContentPane().add(lblBarKodArtikla);
+		frame.getContentPane().add(lblCijenaArtikla);
+		frame.getContentPane().add(lblNewLabel);
+		frame.getContentPane().add(lblKoliinaArtikla);
+		frame.getContentPane().add(lblNewLabel_1);
+		frame.getContentPane().add(lblMjernaJedinica);
+		frame.getContentPane().add(btnZavrsi);
+		frame.getContentPane().add(comboMjera);
+		frame.getContentPane().add(comboKlasa);
+		frame.getContentPane().add(Vnaziv);
+		frame.getContentPane().add(VbarCode);
+		frame.getContentPane().add(txtBarkod);
+		frame.getContentPane().add(Vcijena);
+		frame.getContentPane().add(btnUnesi);
+		frame.getContentPane().add(Vkolicina);
+		frame.getContentPane().add(txtNaziv);
+		frame.getContentPane().add(txtCijena);
+		frame.getContentPane().add(txtKolicina);
 		
-		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.TRAILING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(lblDodavanjeArtikla))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(separator, GroupLayout.PREFERRED_SIZE, 270, GroupLayout.PREFERRED_SIZE))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(28)
-							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-								.addComponent(lblBarKodArtikla)
-								.addComponent(lblCijenaArtikla)
-								.addComponent(lblNewLabel)
-								.addComponent(lblKoliinaArtikla)
-								.addComponent(lblNewLabel_1)
-								.addComponent(lblMjernaJedinica)
-								.addComponent(btnZavrsi, GroupLayout.PREFERRED_SIZE, 92, GroupLayout.PREFERRED_SIZE))
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(comboMjera, 0, 154, Short.MAX_VALUE)
-								.addComponent(comboKlasa, 0, 154, Short.MAX_VALUE)
-								.addComponent(Vnaziv)
-								.addComponent(VbarCode)
-								.addComponent(txtBarkod, GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
-								.addComponent(Vcijena)
-								.addComponent(btnUnesi, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
-								.addComponent(Vkolicina)
-								.addComponent(txtNaziv, GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
-								.addComponent(txtCijena, GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
-								.addComponent(txtKolicina, GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE))))
-					.addContainerGap())
-		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(lblDodavanjeArtikla, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(separator, GroupLayout.PREFERRED_SIZE, 2, GroupLayout.PREFERRED_SIZE)
-					.addGap(15)
-					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-						.addComponent(lblBarKodArtikla)
-						.addComponent(txtBarkod, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(VbarCode)
-					.addGap(3)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblNewLabel)
-						.addComponent(txtNaziv, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(1)
-					.addComponent(Vnaziv)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblNewLabel_1)
-						.addComponent(comboKlasa, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(18)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblCijenaArtikla)
-						.addComponent(txtCijena, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(1)
-					.addComponent(Vcijena)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblKoliinaArtikla)
-						.addComponent(txtKolicina, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(2)
-					.addComponent(Vkolicina)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(comboMjera, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblMjernaJedinica, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-						.addComponent(btnUnesi)
-						.addComponent(btnZavrsi, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-					.addContainerGap())
-		);
-		frame.getContentPane().setLayout(groupLayout);
+		lblKorisnik = new JLabel("korisnik");
+		lblKorisnik.setVerticalAlignment(SwingConstants.BOTTOM);
+		lblKorisnik.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblKorisnik.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblKorisnik.setBounds(171, 22, 109, 14);
+		frame.getContentPane().add(lblKorisnik);
 		frame.setBackground(new Color(255, 255, 255));
 		frame.setBounds(100, 100, 318, 374);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -5,6 +5,7 @@ import javax.persistence.*;
 
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Izvjestaj implements Serializable {
@@ -19,6 +20,7 @@ public class Izvjestaj implements Serializable {
 	String Vrsta="";
 	String Opis="";
 	Date Datum;
+	//private List<Artikal> artikli;
 	
 	int i=0;
 	
@@ -35,10 +37,8 @@ public class Izvjestaj implements Serializable {
 		return Vrsta;
 	}
 	
-	public void setVrsta(String v) throws Exception{
-		if(v==" ") {
-			throw new Exception("Morate postojati tip izvještaja");
-		}
+	public void setVrsta(String v){
+		
 		Vrsta=v;
 	}
 	
@@ -61,17 +61,37 @@ public class Izvjestaj implements Serializable {
 	
 	public Izvjestaj(){}
 	
-	public Izvjestaj(String v,String o, Date d) throws Exception
+	public Izvjestaj(String v,String o, Date d)
 	{
 		setVrsta(v);
 		setOpis(o);
 		setDatum(d);
 	}
 	
+	/*
+	public Izvjestaj(String _vrsta,String _opis, Date _datum, List<Artikal> _artikli) throws Exception // novi konstruktor
+	{
+		setVrsta(_vrsta);
+		setOpis(_opis);
+		setDatum(_datum);
+		setArtikli(_artikli);
+	}
+	*/
+	
 	@Override
 	public String toString(){
-		return Opis;
+		return "Izvještaj: "+getVrsta()+" "+getDatum().toString();
+	}
+
+	/*
+	public List<Artikal> getArtikli() {
+		return artikli;
 	}
 	
+
+	public void setArtikli(List<Artikal> artikli) {
+		this.artikli = artikli;
+	}
+	*/
 	
 }

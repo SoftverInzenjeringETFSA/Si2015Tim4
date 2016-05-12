@@ -7,22 +7,35 @@ import java.awt.Color;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JSeparator;
 import javax.swing.LayoutStyle.ComponentPlacement;
+
+import ba.unsa.etf.si.app.Inventura.Kontroleri.FormaKontroler;
+import ba.unsa.etf.si.app.Inventura.Kontroleri.TipZaposlenikaKontroler;
+import ba.unsa.etf.si.app.Inventura.Model.TipZaposlenika;
+
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import java.awt.SystemColor;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.SwingConstants;
 
 public class PromjenaLozinke {
 
-	private JFrame frmPromjenaLozinke;
-	private JTextField textField;
-	private JPasswordField passwordField;
-	private JPasswordField passwordField_1;
+	private JFrame frame;
+	
+	private JFrame frameRoditelj;
+	private TipZaposlenika korisnik;
+	private JLabel lblKorisnik;
+	
+	private JTextField txtStaraLozinka;
+	private JPasswordField passwordNovaLozinka1;
+	private JPasswordField passwordNovaLozinka2;
 
 	/**
 	 * Launch the application.
@@ -32,7 +45,26 @@ public class PromjenaLozinke {
 			public void run() {
 				try {
 					PromjenaLozinke window = new PromjenaLozinke();
-					window.frmPromjenaLozinke.setVisible(true);
+					window.frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+	
+	public static void pokreni(JFrame _frameRoditelj, TipZaposlenika _korisnik) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					PromjenaLozinke window = new PromjenaLozinke();
+					
+					window.frameRoditelj=_frameRoditelj;
+					window.korisnik=_korisnik;
+					window.lblKorisnik.setText(window.korisnik.getIme().toUpperCase());
+					
+					FormaKontroler.postaviFormu(window.frameRoditelj, window.frame, false);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -51,94 +83,89 @@ public class PromjenaLozinke {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frmPromjenaLozinke = new JFrame();
-		frmPromjenaLozinke.setTitle("Promjena lozinke");
-		frmPromjenaLozinke.getContentPane().setBackground(SystemColor.control);
+		frame = new JFrame();
+		frame.setTitle("Promjena lozinke");
+		frame.getContentPane().setBackground(SystemColor.control);
 		
 		JLabel lblNewLabel = new JLabel("Promjena lozinke");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.LEFT);
+		lblNewLabel.setVerticalAlignment(SwingConstants.BOTTOM);
+		lblNewLabel.setBounds(32, 34, 109, 19);
 		lblNewLabel.setForeground(new Color(0, 128, 0));
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		
 		JSeparator separator = new JSeparator();
+		separator.setBounds(32, 59, 298, 7);
 		
 		JLabel lblNewLabel_1 = new JLabel("Unesite staru lozinku:");
+		lblNewLabel_1.setBounds(32, 80, 103, 14);
 		
 		JLabel lblNewLabel_2 = new JLabel("Unesite novu lozinku:");
+		lblNewLabel_2.setBounds(32, 131, 102, 14);
 		
 		JLabel lblNewLabel_3 = new JLabel("Potvrdite novu lozinku:");
+		lblNewLabel_3.setBounds(32, 169, 110, 14);
 		
-		textField = new JTextField();
-		textField.setColumns(10);
+		txtStaraLozinka = new JTextField();
+		txtStaraLozinka.setBounds(153, 77, 177, 20);
+		txtStaraLozinka.setColumns(10);
 		
-		passwordField = new JPasswordField();
+		passwordNovaLozinka1 = new JPasswordField();
+		passwordNovaLozinka1.setBounds(152, 128, 178, 20);
 		
-		passwordField_1 = new JPasswordField();
+		passwordNovaLozinka2 = new JPasswordField();
+		passwordNovaLozinka2.setBounds(152, 166, 178, 20);
 		
 		JButton btnPotvrdi = new JButton("Potvrdi");
+		btnPotvrdi.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String staraLozinka=txtStaraLozinka.getText();
+				@SuppressWarnings("deprecation")
+				String novaLozinka1=new String(passwordNovaLozinka1.getText());
+				String novaLozinka2=new String(passwordNovaLozinka2.getText());
+				
+				if(korisnik.getLozinka().equals(staraLozinka) && novaLozinka1.equals(novaLozinka2)){
+					korisnik.setLozinka(novaLozinka1);
+					try{
+						TipZaposlenikaKontroler.izmjeni(korisnik);
+					}
+					catch(Exception i){
+						korisnik.setLozinka(staraLozinka);
+						JOptionPane.showMessageDialog(null, i.getMessage());
+					}
+				}
+			}
+		});
+		btnPotvrdi.setBounds(252, 212, 78, 23);
 		btnPotvrdi.setBackground(new Color(143, 188, 143));
 		
 		JButton btnOdustani = new JButton("Odustani");
+		btnOdustani.setBounds(32, 212, 75, 23);
 		btnOdustani.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				frmPromjenaLozinke.dispose();
-				frmPromjenaLozinke.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				FormaKontroler.zatvoriFormu(frameRoditelj, frame, false);
 			}
 		});
+		frame.getContentPane().setLayout(null);
 		btnOdustani.setBackground(new Color(143, 188, 143));
-		GroupLayout groupLayout = new GroupLayout(frmPromjenaLozinke.getContentPane());
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(32)
-					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-						.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
-							.addComponent(btnOdustani)
-							.addPreferredGap(ComponentPlacement.RELATED, 145, Short.MAX_VALUE)
-							.addComponent(btnPotvrdi, GroupLayout.PREFERRED_SIZE, 78, GroupLayout.PREFERRED_SIZE))
-						.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
-							.addComponent(lblNewLabel_3)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(passwordField_1))
-						.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
-							.addComponent(lblNewLabel_2)
-							.addGap(18)
-							.addComponent(passwordField))
-						.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
-							.addComponent(lblNewLabel_1)
-							.addGap(18)
-							.addComponent(textField))
-						.addComponent(separator, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 298, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblNewLabel, Alignment.LEADING))
-					.addContainerGap(39, Short.MAX_VALUE))
-		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(34)
-					.addComponent(lblNewLabel)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(separator, GroupLayout.PREFERRED_SIZE, 7, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblNewLabel_1)
-						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(31)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblNewLabel_2)
-						.addComponent(passwordField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(18)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblNewLabel_3)
-						.addComponent(passwordField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnPotvrdi)
-						.addComponent(btnOdustani))
-					.addContainerGap())
-		);
-		frmPromjenaLozinke.getContentPane().setLayout(groupLayout);
-		frmPromjenaLozinke.setBounds(100, 100, 385, 284);
-		frmPromjenaLozinke.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().add(btnOdustani);
+		frame.getContentPane().add(btnPotvrdi);
+		frame.getContentPane().add(lblNewLabel_3);
+		frame.getContentPane().add(passwordNovaLozinka2);
+		frame.getContentPane().add(lblNewLabel_2);
+		frame.getContentPane().add(passwordNovaLozinka1);
+		frame.getContentPane().add(lblNewLabel_1);
+		frame.getContentPane().add(txtStaraLozinka);
+		frame.getContentPane().add(separator);
+		frame.getContentPane().add(lblNewLabel);
+		
+		lblKorisnik = new JLabel("korisnik");
+		lblKorisnik.setVerticalAlignment(SwingConstants.BOTTOM);
+		lblKorisnik.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblKorisnik.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblKorisnik.setBounds(227, 38, 102, 14);
+		frame.getContentPane().add(lblKorisnik);
+		frame.setBounds(100, 100, 385, 284);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
-
 }

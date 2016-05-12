@@ -1,7 +1,7 @@
 package ba.unsa.etf.si.app.Inventura.Model;
 
 import java.io.Serializable;
-//import java.util.*;
+import java.util.*;
 
 import javax.persistence.*;
 
@@ -23,8 +23,30 @@ public class Inventura implements Serializable {
 	int trenutnoStanje;
 	@OneToOne
     @JoinColumn(name="skladistar_id") 
+	TipZaposlenika skladistar;
 	
-    TipZaposlenika skladistar;	
+	//private List<Artikal> artikli;
+	
+	public Inventura(){}
+	
+	public Inventura(long id, Date datum, String opis, int stanje, TipZaposlenika osoba) throws Exception//, List<Artikal> _artikli) 
+	{
+		setId(id);
+		setDatum(datum);
+		setOpis(opis);
+		settrenutnoStanje(stanje);
+		setSkladistar(osoba);
+		//setArtikli(_artikli);
+	}
+	
+	public Inventura(Date datum, String opis, TipZaposlenika osoba) throws Exception //, List<Artikal> _artikli)  // novi konstruktor
+	{
+		setDatum(datum);
+		setOpis(opis);
+		setSkladistar(osoba);
+		//setArtikli(_artikli);
+	}
+	
 	public long getId() {
 		return id;
 	}
@@ -73,15 +95,7 @@ public class Inventura implements Serializable {
 	
 
 	
-	public Inventura(){}
-	public Inventura(long id, Date datum, String opis, int stanje, TipZaposlenika osoba) throws Exception
-	{
-		setId(id);
-		setDatum(datum);
-		setOpis(opis);
-		settrenutnoStanje(stanje);
-		setSkladistar(osoba);
-	}
+	
 
 	public void iskoristiInventuru(Inventura I){
 		
@@ -91,6 +105,15 @@ public class Inventura implements Serializable {
 	
 	@Override
 	public String toString(){
-		return opis;
+		return "Inventura: "+getDatum().toString();
 	}
+	/*
+	public List<Artikal> getArtikli() {
+		return artikli;
+	}
+
+	public void setArtikli(List<Artikal> artikli) {
+		this.artikli = artikli;
+	}
+	*/
 }

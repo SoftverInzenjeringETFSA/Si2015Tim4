@@ -11,9 +11,10 @@ import java.util.List;
 
 import javax.swing.SwingConstants;
 
+import ba.unsa.etf.si.app.Inventura.Kontroleri.FormaKontroler;
 import ba.unsa.etf.si.app.Inventura.Kontroleri.KlasaArtikalaKontroler;
 import ba.unsa.etf.si.app.Inventura.Model.KlasaArtikla;
-
+import ba.unsa.etf.si.app.Inventura.Model.TipZaposlenika;
 
 import javax.swing.JList;
 import javax.swing.JOptionPane;
@@ -27,6 +28,11 @@ import java.awt.Component;
 public class ModifikacijaKlaseArtiklaGUI {
 
 	private JFrame frame;
+	
+	private JFrame frameRoditelj;
+	private TipZaposlenika korisnik;
+	private JLabel lblKorisnik;
+	
 	private JTextField txtNaziv;
 	private JList listKlase;
 
@@ -38,7 +44,26 @@ public class ModifikacijaKlaseArtiklaGUI {
 			public void run() {
 				try {
 					ModifikacijaKlaseArtiklaGUI window = new ModifikacijaKlaseArtiklaGUI();
+					window.frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+	
+	public static void pokreni(JFrame _frameRoditelj, TipZaposlenika _korisnik) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					ModifikacijaKlaseArtiklaGUI window = new ModifikacijaKlaseArtiklaGUI();
+					
+					window.frameRoditelj=_frameRoditelj;
+					window.korisnik=_korisnik;
+					window.lblKorisnik.setText(window.korisnik.getIme().toUpperCase());
+					
+					FormaKontroler.postaviFormu(window.frameRoditelj, window.frame, false);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -110,13 +135,7 @@ public class ModifikacijaKlaseArtiklaGUI {
 		JButton btnOdustani = new JButton("Odustani");
 		btnOdustani.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				/*
-			frmModifikacijaKlaseArtikla.dispose();
-			frmModifikacijaKlaseArtikla.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-
-			frame.dispose();
-			frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-			*/
+				FormaKontroler.zatvoriFormu(frameRoditelj, frame, false);
 			}
 		});
 		btnOdustani.setFont(new Font("Tahoma", Font.PLAIN, 12));
@@ -128,18 +147,18 @@ public class ModifikacijaKlaseArtiklaGUI {
 		lblModifikacijaKlaseArtikla.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblModifikacijaKlaseArtikla.setVerticalAlignment(SwingConstants.BOTTOM);
 		lblModifikacijaKlaseArtikla.setHorizontalAlignment(SwingConstants.LEFT);
-		lblModifikacijaKlaseArtikla.setBounds(20, 27, 209, 34);
+		lblModifikacijaKlaseArtikla.setBounds(20, 27, 159, 34);
 		frame.getContentPane().add(lblModifikacijaKlaseArtikla);
 		
 		JSeparator separator = new JSeparator();
 		separator.setBounds(20, 72, 290, 14);
 		frame.getContentPane().add(separator);
 		
-		JLabel lblKorisnik = new JLabel("korisnik");
+		lblKorisnik = new JLabel("korisnik");
 		lblKorisnik.setVerticalAlignment(SwingConstants.BOTTOM);
 		lblKorisnik.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblKorisnik.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblKorisnik.setBounds(241, 46, 69, 14);
+		lblKorisnik.setBounds(196, 46, 114, 14);
 		frame.getContentPane().add(lblKorisnik);
 	}
 	

@@ -7,11 +7,12 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
 import ba.unsa.etf.si.app.Inventura.Kontroleri.ArtikliKontroler;
+import ba.unsa.etf.si.app.Inventura.Kontroleri.FormaKontroler;
 import ba.unsa.etf.si.app.Inventura.Kontroleri.KlasaArtikalaKontroler;
 import ba.unsa.etf.si.app.Inventura.Model.Artikal;
 
 import ba.unsa.etf.si.app.Inventura.Model.KlasaArtikla;
-
+import ba.unsa.etf.si.app.Inventura.Model.TipZaposlenika;
 
 import java.awt.Font;
 import javax.swing.JSeparator;
@@ -34,13 +35,18 @@ import java.awt.event.ActionEvent;
 public class ModifikacijaArtiklaGUI {
 
 	private JFrame frame;
+	
+	private JFrame frameRoditelj;
+	private TipZaposlenika korisnik;
+	private JLabel lblKorisnik;
+	
 	private JTextField txtNaziv;
 	private JTextField txtBarkod;
 	private JTextField txtKolicina;
 	private JTextField txtCijena;
-	private JComboBox comboKlasa;
-	private JComboBox comboMjera;
-	private JList listArtikli;
+	private JComboBox<KlasaArtikla> comboKlasa;
+	private JComboBox<String> comboMjera;
+	private JList<Artikal> listArtikli;
 
 	/**
 	 * Launch the application.
@@ -52,6 +58,24 @@ public class ModifikacijaArtiklaGUI {
 					ModifikacijaArtiklaGUI window = new ModifikacijaArtiklaGUI();
 					window.frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+	
+	public static void pokreni(JFrame _frameRoditelj, TipZaposlenika _korisnik) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					ModifikacijaArtiklaGUI window = new ModifikacijaArtiklaGUI();
+					
+					window.frameRoditelj=_frameRoditelj;
+					window.korisnik=_korisnik;
+					window.lblKorisnik.setText(window.korisnik.getIme().toUpperCase());
+					
+					FormaKontroler.postaviFormu(window.frameRoditelj, window.frame, false);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -85,12 +109,12 @@ public class ModifikacijaArtiklaGUI {
 		lblNewLabel.setBounds(24, 30, 183, 39);
 		frame.getContentPane().add(lblNewLabel);
 		
-		JLabel lblImePrijavljenogKorisnika = new JLabel("ime prijavljenog korisnika");
-		lblImePrijavljenogKorisnika.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblImePrijavljenogKorisnika.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblImePrijavljenogKorisnika.setVerticalAlignment(SwingConstants.BOTTOM);
-		lblImePrijavljenogKorisnika.setBounds(304, 11, 134, 37);
-		frame.getContentPane().add(lblImePrijavljenogKorisnika);
+		lblKorisnik = new JLabel("korisnik");
+		lblKorisnik.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblKorisnik.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblKorisnik.setVerticalAlignment(SwingConstants.BOTTOM);
+		lblKorisnik.setBounds(304, 30, 134, 37);
+		frame.getContentPane().add(lblKorisnik);
 		
 		JSeparator separator = new JSeparator();
 		separator.setBounds(24, 80, 414, 7);
@@ -119,7 +143,7 @@ public class ModifikacijaArtiklaGUI {
 		txtNaziv.setBounds(304, 126, 134, 20);
 		frame.getContentPane().add(txtNaziv);
 		
-		comboKlasa = new JComboBox();
+		comboKlasa = new JComboBox<KlasaArtikla>();
 		comboKlasa.setBounds(304, 151, 134, 20);
 		frame.getContentPane().add(comboKlasa);
 		postaviKlase();
@@ -147,7 +171,7 @@ public class ModifikacijaArtiklaGUI {
 		JButton btnZavrsi = new JButton("Odustani");
 		btnZavrsi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				frame.dispose();
+				FormaKontroler.zatvoriFormu(frameRoditelj, frame, false);
 			}
 		});
 		btnZavrsi.setBounds(221, 300, 89, 23);
@@ -184,12 +208,12 @@ public class ModifikacijaArtiklaGUI {
 		frame.getContentPane().add(txtCijena);
 		txtCijena.setColumns(10);
 		
-		comboMjera = new JComboBox();
+		comboMjera = new JComboBox<String>();
 		comboMjera.setBounds(304, 251, 134, 20);
 		frame.getContentPane().add(comboMjera);
 		postaviMjere();
 		
-		listArtikli = new JList();
+		listArtikli = new JList<Artikal>();
 		listArtikli.setBounds(24, 136, 183, 187);
 		frame.getContentPane().add(listArtikli);
 		postaviListu();
@@ -219,7 +243,7 @@ public class ModifikacijaArtiklaGUI {
 	public void postaviListu(){
 		List<Artikal> artikli=ArtikliKontroler.lista();
 		
-		DefaultListModel model=new DefaultListModel();
+		DefaultListModel<Artikal> model=new DefaultListModel<Artikal>();
 		
 		for(Artikal a:artikli){
 			model.addElement(a);

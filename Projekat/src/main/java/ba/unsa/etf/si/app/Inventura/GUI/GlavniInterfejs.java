@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 //import java.awt.BorderLayout;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 //import javax.swing.JScrollPane;
 import javax.swing.JMenu;
 //import java.awt.Color;
@@ -21,12 +22,26 @@ import javax.swing.GroupLayout.Alignment;
 //import javax.swing.table.DefaultTableModel;
 import javax.swing.JList;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.WindowConstants;
+
+import ba.unsa.etf.si.app.Inventura.Kontroleri.FormaKontroler;
+import ba.unsa.etf.si.app.Inventura.Kontroleri.PostaviListBox;
+import ba.unsa.etf.si.app.Inventura.Model.TipZaposlenika;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 public class GlavniInterfejs {
 
-	JFrame frame;
+	private JFrame frame;
+	
+	private JFrame frameRoditelj;
+	private TipZaposlenika korisnik;
+	private JMenu mnKorisnik;
+	private JTable tabela;
 
 	/**
 	 * Launch the application.
@@ -36,6 +51,8 @@ public class GlavniInterfejs {
 			public void run() {
 				try {
 					GlavniInterfejs window = new GlavniInterfejs();
+					
+					window.frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -43,6 +60,25 @@ public class GlavniInterfejs {
 			}
 		});
 	}
+	
+	public static void pokreni(JFrame _frameRoditelj, TipZaposlenika _korisnik) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					GlavniInterfejs window = new GlavniInterfejs();
+					
+					window.frameRoditelj=_frameRoditelj;
+					window.korisnik=_korisnik;
+					window.mnKorisnik.setText(window.korisnik.getIme().toUpperCase());
+					
+					FormaKontroler.postaviFormu(window.frameRoditelj, window.frame, true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+	
 	/**
 	 * Create the application.
 	 */
@@ -68,58 +104,80 @@ public class GlavniInterfejs {
 		JMenuItem mntmZaponiNovu = new JMenuItem("Započni novu");
 		mntmZaponiNovu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			InventuraGUI nw = new InventuraGUI();
-			InventuraGUI.pokreni();
+				InventuraGUI.pokreni(frame, korisnik);
 			}
 		});
 		mnInventura.add(mntmZaponiNovu);
 		
+		frame.addWindowListener(new java.awt.event.WindowAdapter() {
+		    @Override
+		    public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+		    
+		    	frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+		    	}
+		});
+		
+		
 		JMenuItem mntmPregledZavrenih = new JMenuItem("Pregled završenih");
+		mntmPregledZavrenih.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				PostaviListBox.dokumentiInventure(tabela);
+			}
+		});
 		mnInventura.add(mntmPregledZavrenih);
 		
 		JMenu mnSkladite = new JMenu("Skladište");
 		menuBar.add(mnSkladite);
 		
 		JMenuItem mntmPregledStanjaNa = new JMenuItem("Pregled stanja na skadištu");
+		mntmPregledStanjaNa.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				PostaviListBox.artikliNaSkladistu(tabela);
+			}
+		});
 		mnSkladite.add(mntmPregledStanjaNa);
 		
 		JMenu mnDokumenti = new JMenu("Dokumenti");
 		menuBar.add(mnDokumenti);
 		
-		JMenuItem mntmKreirajIzlazniDokument_1 = new JMenuItem("Kreiraj izlazni dokument");
+		JMenuItem mntmKreirajIzlazniDokument_1 = new JMenuItem("Kreiraj dokument");
 		mntmKreirajIzlazniDokument_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			izlazniDokument nw = new izlazniDokument();
-			izlazniDokument.pokreni();
+				izlazniDokument.pokreni(frame, korisnik);
 			}
 		});
 		mnDokumenti.add(mntmKreirajIzlazniDokument_1);
 		
-		JMenuItem mntmKreiraj = new JMenuItem("Kreiraj dokument otpisa");
-		mntmKreiraj.addActionListener(new ActionListener() {
+		JMenuItem mntmPregledKreiranihDokumenata = new JMenuItem("Pregled dokumenata viška");
+		mntmPregledKreiranihDokumenata.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			OtpisDokument nw = new OtpisDokument();
-			OtpisDokument.pokreni();
+				PostaviListBox.dokumentiViska(tabela);
 			}
 		});
-		mnDokumenti.add(mntmKreiraj);
-		
-		JMenuItem mntmPregledKreiranihDokumenata = new JMenuItem("Pregled dokumenata viška");
 		mnDokumenti.add(mntmPregledKreiranihDokumenata);
 		
 		JMenuItem mntmPregledDokumenataManjka = new JMenuItem("Pregled dokumenata manjka");
 		mntmPregledDokumenataManjka.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			IzvjestajManjka nw = new IzvjestajManjka();
-			IzvjestajManjka.pokreni();
+				PostaviListBox.dokumentiManjka(tabela);
 			}
 		});
 		mnDokumenti.add(mntmPregledDokumenataManjka);
 		
 		JMenuItem mntmPregledDokumenataOtpisa = new JMenuItem("Pregled dokumenata otpisa");
+		mntmPregledDokumenataOtpisa.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				PostaviListBox.dokumentiOtpisa(tabela);
+			}
+		});
 		mnDokumenti.add(mntmPregledDokumenataOtpisa);
 		
 		JMenuItem mntmPregledIzlaznihDokumenata = new JMenuItem("Pregled izlaznih dokumenata");
+		mntmPregledIzlaznihDokumenata.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				PostaviListBox.dokumentiIzlaza(tabela);
+			}
+		});
 		mnDokumenti.add(mntmPregledIzlaznihDokumenata);
 		
 		JMenu mnNewMenu = new JMenu("Postavke");
@@ -131,8 +189,7 @@ public class GlavniInterfejs {
 		JMenuItem mntmNewMenuItem_2 = new JMenuItem("Promijeni lozinku");
 		mntmNewMenuItem_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			PromjenaLozinke nw = new PromjenaLozinke();
-			PromjenaLozinke.pokreni();
+				PromjenaLozinke.pokreni(frame, korisnik);
 			}
 		});
 		mnNewMenu.add(mntmNewMenuItem_2);
@@ -140,49 +197,24 @@ public class GlavniInterfejs {
 		JMenuBar menuBar_1 = new JMenuBar();
 		mnNewMenu.add(menuBar_1);
 		
-		JMenu mnSistem = new JMenu("Sistem");
-		menuBar.add(mnSistem);
+		mnKorisnik = new JMenu("Korisnik");
+		menuBar.add(mnKorisnik);
 		
 		JMenuItem mntmNewMenuItem = new JMenuItem("Odjava");
 		mntmNewMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			frame.dispose();
+				FormaKontroler.zatvoriFormu(frameRoditelj, frame, true);
 			}
 		});
-		mnSistem.add(mntmNewMenuItem);
+		mnKorisnik.add(mntmNewMenuItem);
+		frame.getContentPane().setLayout(null);
 		
-		JLabel lblKorisnikoIme_1 = new JLabel("Korisničko ime");
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 11, 370, 202);
+		frame.getContentPane().add(scrollPane);
 		
-		JList list = new JList();
-		
-		JList list_1 = new JList();
-		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap(280, Short.MAX_VALUE)
-					.addComponent(lblKorisnikoIme_1)
-					.addGap(44))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(52)
-					.addComponent(list, GroupLayout.PREFERRED_SIZE, 1, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(337, Short.MAX_VALUE))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(20)
-					.addComponent(list_1, GroupLayout.PREFERRED_SIZE, 345, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(25, Short.MAX_VALUE))
-		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addComponent(lblKorisnikoIme_1)
-					.addGap(31)
-					.addComponent(list_1, GroupLayout.PREFERRED_SIZE, 156, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(list, GroupLayout.PREFERRED_SIZE, 1, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(15, Short.MAX_VALUE))
-		);
-		frame.getContentPane().setLayout(groupLayout);
+		tabela = new JTable();
+		scrollPane.setViewportView(tabela);
 		
 		JLabel lblKorisnikoIme = new JLabel("Korisničko ime");
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
