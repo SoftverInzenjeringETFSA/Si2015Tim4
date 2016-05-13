@@ -12,7 +12,7 @@ import junit.framework.TestCase;
 public class KlasaArtikalaKontrolerTest extends TestCase {
 
 	@Test
-	public void testDodaj() {
+	public void testDodaj() throws Exception {
 		KlasaArtikla klasa = new KlasaArtikla("pice");
 		Long id = KlasaArtikalaKontroler.dodaj(klasa);
 		KlasaArtikla _k2 = new KlasaArtikla();
@@ -20,24 +20,20 @@ public class KlasaArtikalaKontrolerTest extends TestCase {
 		Assert.assertEquals(_k2.getId(), klasa.getId());
 	}
 	@Test
-	public void testNadji() {
+	public void testNadji() throws Exception {
 		KlasaArtikla klasa = new KlasaArtikla("pice");
 		Long id = KlasaArtikalaKontroler.dodaj(klasa);
 		KlasaArtikla _k2 = new KlasaArtikla();
 		_k2 = KlasaArtikalaKontroler.nadji(id);
 		Assert.assertEquals(_k2.getNaziv(), klasa.getNaziv());
 	}
-
-	public void testIzbrisi() {
-		//bool nePostoji=false;
+	@Test(expected=Exception.class)
+	public void testIzbrisi() throws Exception {
 		KlasaArtikla klasa=new KlasaArtikla("Cokolade");
 		Long id=KlasaArtikalaKontroler.dodaj(klasa);
 		KlasaArtikalaKontroler.izbrisi(id);
-	    List<KlasaArtikla>k=KlasaArtikalaKontroler.lista();
-	    for(int i=0;i<k.size();i++)
-	     	{ 
-	    	//if(k[i].getNaziv()!=klasa.getNaziv()) nePostoji=true;
-	     	}
+		KlasaArtikla pronadjena=KlasaArtikalaKontroler.nadji(id);
+	    
 	}
 
 	public void testIzmijeni() {
@@ -45,7 +41,10 @@ public class KlasaArtikalaKontrolerTest extends TestCase {
 	}
 
 	public void testLista() {
-		fail("Not yet implemented"); // TODO
+
+		List<KlasaArtikla> klase=KlasaArtikalaKontroler.lista();
+		Assert.assertEquals(klase.size(), 26);
+	
 	}
 
 }

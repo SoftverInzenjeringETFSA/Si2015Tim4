@@ -1,5 +1,7 @@
 package ba.unsa.etf.si.app.Inventura.Kontroleri;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.swing.JOptionPane;
 
@@ -46,13 +48,31 @@ public class TipZaposlenikaKontroler {
 	}
 		
 		// trazi po imenu i prezimenu korisnika
-		public static TipZaposlenika nadji(String prezime){
+		/*public static TipZaposlenika nadji(String prezime){
 			openSession();
 			TipZaposlenika tip = (TipZaposlenika)s.get(TipZaposlenika.class,new String(prezime));
 			t.commit();
 			
 			closeSession();
 			return tip;
+		}*/
+		public static TipZaposlenika nadji(String ime, String prezime){
+			openSession();
+					
+			Map<String, String> ogranicenja=new HashMap<String, String>();
+			ogranicenja.put("ime", ime);
+			ogranicenja.put("prezime", prezime);
+			List<Object> zaposlenici = s.createCriteria(TipZaposlenika.class).add(Restrictions.allEq(ogranicenja)).list();
+					
+			t.commit();
+			closeSession();
+					
+			if(zaposlenici.size()!=1){
+				return null;
+			}
+					
+			TipZaposlenika zaposlenik=(TipZaposlenika)zaposlenici.get(0);
+			return zaposlenik;
 		}
 		
 		//trazi po id-u
@@ -115,10 +135,13 @@ public class TipZaposlenikaKontroler {
 		public static void brisiJmbg(String jmbg) throws Exception
 		{
 			openSession();
-			Object instance= s.load(TipZaposlenika.class, new String(jmbg));
-			if (instance != "")
-				s.delete(instance);
 			
+			List<Object>zaposlenici=s.createCriteria(TipZaposlenika.class).add(Restrictions.like("jmbg", jmbg)).list();
+			
+			if(zaposlenici.size()==1)
+			{
+				s.delete(zaposlenici.get(0));
+			}
 			t.commit();
 			closeSession();
 		}

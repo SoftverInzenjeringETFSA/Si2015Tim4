@@ -22,11 +22,13 @@ public class TipZaposlenikaKontrolerTest extends TestCase {
 		novi1=TipZaposlenikaKontroler.nadjiID(novi.getId());
 		Assert.assertEquals(novi1.getId(), novi.getId());	}
 
-	/*public void testNadji() throws Exception {
+	public void testNadji() throws Exception {
 		TipZaposlenika novi1 = new TipZaposlenika();
-		novi1=TipZaposlenikaKontroler.nadji("Hadziarapovic");
-		Assert.assertEquals(novi1.getIme(), "Amra");	
-		}*/
+		novi1=TipZaposlenikaKontroler.nadji("Faruk","Goro");
+		Assert.assertEquals(novi1.getIme(), "Faruk"); 
+		}
+		
+	
 
 	public void testNadjiID() {
 		TipZaposlenika novi1 = new TipZaposlenika();
@@ -46,12 +48,13 @@ public class TipZaposlenikaKontrolerTest extends TestCase {
 		TipZaposlenika novi=TipZaposlenikaKontroler.nadjiIme("Faruk");
 	
 	}
-	/*@Test(expected = Exception.class)
+	
+	@Test(expected = Exception.class)
 	public void testBrisiJmbg() throws Exception {
 		Long id = TipZaposlenikaKontroler.dodaj(novi);
 		TipZaposlenikaKontroler.brisiJmbg("1307992170016");
-		TipZaposlenika novi=TipZaposlenikaKontroler.nadjiIme("Faruk");
-	}*/
+		TipZaposlenikaKontroler.nadjiIme("Faruk");
+	}
 
 	public void testIzmjeni() throws Exception {
 		Long id = TipZaposlenikaKontroler.dodaj(novi);
