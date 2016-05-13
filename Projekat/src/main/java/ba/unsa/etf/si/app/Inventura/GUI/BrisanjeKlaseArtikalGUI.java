@@ -119,6 +119,7 @@ public class BrisanjeKlaseArtikalGUI {
 		txtNaziv.setColumns(10);
 		
 		JButton btnObrisi = new JButton("Obriši");
+		btnObrisi.setBackground(new Color(143, 188, 143));
 		
 		btnObrisi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -137,17 +138,18 @@ public class BrisanjeKlaseArtikalGUI {
 		});
 		
 		btnObrisi.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnObrisi.setBounds(223, 168, 89, 23);
+		btnObrisi.setBounds(215, 168, 97, 23);
 		frame.getContentPane().add(btnObrisi);
 		
 		JButton btnOdustani = new JButton("Odustani");
+		btnOdustani.setBackground(new Color(143, 188, 143));
 		btnOdustani.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				FormaKontroler.zatvoriFormu(frameRoditelj, frame, false);
 			}
 		});
 		btnOdustani.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnOdustani.setBounds(22, 168, 89, 23);
+		btnOdustani.setBounds(22, 168, 97, 23);
 		frame.getContentPane().add(btnOdustani);
 	}
 

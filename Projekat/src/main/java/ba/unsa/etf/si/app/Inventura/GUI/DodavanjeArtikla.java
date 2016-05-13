@@ -123,10 +123,12 @@ public class DodavanjeArtikla {
 		lblDodavanjeArtikla.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		
 		JLabel lblNewLabel = new JLabel("Naziv artikla:");
-		lblNewLabel.setBounds(58, 112, 62, 14);
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblNewLabel.setBounds(48, 112, 72, 14);
 		
 		JLabel lblNewLabel_1 = new JLabel("Klasa artikla:");
-		lblNewLabel_1.setBounds(59, 153, 61, 14);
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblNewLabel_1.setBounds(48, 153, 72, 14);
 		
 		
 		txtNaziv = new JTextField();
@@ -170,7 +172,8 @@ public class DodavanjeArtikla {
 		separator.setForeground(new Color(0, 0, 0));
 		
 		JLabel lblBarKodArtikla = new JLabel("Bar kod artikla:");
-		lblBarKodArtikla.setBounds(48, 72, 72, 14);
+		lblBarKodArtikla.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblBarKodArtikla.setBounds(34, 72, 86, 14);
 		
 		txtBarkod = new JTextField();
 		txtBarkod.setBounds(126, 66, 166, 20);
@@ -188,21 +191,24 @@ public class DodavanjeArtikla {
 		
 		
 		JLabel lblCijenaArtikla = new JLabel("Cijena artikla:");
-		lblCijenaArtikla.setBounds(54, 191, 66, 14);
+		lblCijenaArtikla.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblCijenaArtikla.setBounds(48, 191, 72, 14);
 		
 		txtCijena = new JTextField();
 		txtCijena.setBounds(126, 188, 166, 20);
 		txtCijena.setColumns(10);
 		
 		JLabel lblKoliinaArtikla = new JLabel("Količina artikla:");
-		lblKoliinaArtikla.setBounds(49, 232, 71, 14);
+		lblKoliinaArtikla.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblKoliinaArtikla.setBounds(34, 232, 86, 14);
 		
 		txtKolicina = new JTextField();
 		txtKolicina.setBounds(126, 229, 166, 20);
 		txtKolicina.setColumns(10);
 		
 		JLabel lblMjernaJedinica = new JLabel("Mjerna jedinica:");
-		lblMjernaJedinica.setBounds(44, 271, 76, 27);
+		lblMjernaJedinica.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblMjernaJedinica.setBounds(28, 271, 92, 27);
 		
 		
 		comboMjera = new JComboBox<String>();

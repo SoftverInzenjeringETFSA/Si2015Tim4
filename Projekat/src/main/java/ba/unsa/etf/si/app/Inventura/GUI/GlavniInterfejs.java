@@ -183,9 +183,6 @@ public class GlavniInterfejs {
 		JMenu mnNewMenu = new JMenu("Postavke");
 		menuBar.add(mnNewMenu);
 		
-		JMenuBar menuBar_2 = new JMenuBar();
-		mnNewMenu.add(menuBar_2);
-		
 		JMenuItem mntmNewMenuItem_2 = new JMenuItem("Promijeni lozinku");
 		mntmNewMenuItem_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -193,9 +190,6 @@ public class GlavniInterfejs {
 			}
 		});
 		mnNewMenu.add(mntmNewMenuItem_2);
-		
-		JMenuBar menuBar_1 = new JMenuBar();
-		mnNewMenu.add(menuBar_1);
 		
 		mnKorisnik = new JMenu("Korisnik");
 		menuBar.add(mnKorisnik);

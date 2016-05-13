@@ -62,24 +62,27 @@ public class LogInScreen {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JLabel lblKorisnikoIme = new JLabel("Korisničko ime:");
-		lblKorisnikoIme.setBounds(18, 70, 70, 14);
+		lblKorisnikoIme.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblKorisnikoIme.setBounds(18, 70, 92, 14);
 		
 		JLabel lblLozinka = new JLabel("Lozinka:");
-		lblLozinka.setBounds(18, 96, 70, 14);
+		lblLozinka.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblLozinka.setBounds(55, 95, 43, 14);
 		
 		textField = new JTextField();
-		textField.setBounds(94, 67, 150, 20);
+		textField.setBounds(120, 67, 124, 20);
 		textField.setColumns(10);
 		
 		passwordField = new JPasswordField();
-		passwordField.setBounds(94, 93, 150, 20);
+		passwordField.setBounds(120, 93, 124, 20);
 		
 		final JLabel validacija = new JLabel("  ");
 		validacija.setBounds(18, 42, 217, 14);
 		validacija.setForeground(Color.RED);
 		
 		JButton btnPotvrdi = new JButton("Prijava");
-		btnPotvrdi.setBounds(179, 131, 65, 23);
+		btnPotvrdi.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		btnPotvrdi.setBounds(153, 131, 82, 23);
 		btnPotvrdi.setBackground(new Color(143, 188, 143));
 		btnPotvrdi.addActionListener(new ActionListener() {
 			
@@ -109,12 +112,13 @@ public class LogInScreen {
 		});
 		
 		JLabel lblNewLabel = new JLabel("Dobrodošli");
-		lblNewLabel.setBounds(77, 20, 80, 17);
+		lblNewLabel.setBounds(85, 21, 80, 17);
 		lblNewLabel.setForeground(new Color(0, 128, 0));
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
-		JButton btnExit = new JButton("Exit");
-		btnExit.setBounds(20, 131, 68, 23);
+		JButton btnExit = new JButton("Kraj");
+		btnExit.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		btnExit.setBounds(42, 131, 82, 23);
 		btnExit.setBackground(new Color(143, 188, 143));
 		btnExit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

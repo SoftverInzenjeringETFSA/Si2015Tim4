@@ -144,6 +144,7 @@ public class RegistracijaNovogKorisnika {
 		frame.getContentPane().add(separator);
 		
 		JLabel ime = new JLabel("Ime:");
+		ime.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		ime.setBounds(122, 86, 80, 19);
 		frame.getContentPane().add(ime);
 		
@@ -153,7 +154,8 @@ public class RegistracijaNovogKorisnika {
 		textIme.setColumns(10);
 		
 		JLabel lozinka = new JLabel("Lozinka:");
-		lozinka.setBounds(122, 307, 67, 14);
+		lozinka.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lozinka.setBounds(122, 306, 67, 14);
 		frame.getContentPane().add(lozinka);
 		
 		textLozinka = new JTextField();
@@ -162,6 +164,7 @@ public class RegistracijaNovogKorisnika {
 		textLozinka.setColumns(10);
 		
 		JLabel lblNivoPrivilegija = new JLabel("Nivo privilegije:");
+		lblNivoPrivilegija.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		lblNivoPrivilegija.setBounds(122, 332, 80, 14);
 		frame.getContentPane().add(lblNivoPrivilegija);
 		
@@ -179,15 +182,17 @@ public class RegistracijaNovogKorisnika {
 		frame.getContentPane().add(comboPrivilegije);
 		
 		JButton btnZavrsi = new JButton("Odustani");
+		btnZavrsi.setBackground(new Color(143, 188, 143));
 		btnZavrsi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				FormaKontroler.zatvoriFormu(frameRoditelj, frame, false);
 			}
 		});
-		btnZavrsi.setBounds(43, 389, 89, 23);
+		btnZavrsi.setBounds(43, 389, 125, 23);
 		frame.getContentPane().add(btnZavrsi);
 		
 		JButton registruj = new JButton("Registruj");
+		registruj.setBackground(new Color(143, 188, 143));
 		
 		registruj.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e){
@@ -206,10 +211,11 @@ public class RegistracijaNovogKorisnika {
 		
 		
 		registruj.setToolTipText("");
-		registruj.setBounds(376, 389, 89, 23);
+		registruj.setBounds(336, 389, 129, 23);
 		frame.getContentPane().add(registruj);
 		
 		JLabel lblPrezime = new JLabel("Prezime:");
+		lblPrezime.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		lblPrezime.setBounds(122, 116, 46, 14);
 		frame.getContentPane().add(lblPrezime);
 		
@@ -219,6 +225,7 @@ public class RegistracijaNovogKorisnika {
 		textPrezime.setColumns(10);
 		
 		JLabel lblJmbg = new JLabel("JMBG:");
+		lblJmbg.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		lblJmbg.setBounds(122, 151, 46, 14);
 		frame.getContentPane().add(lblJmbg);
 		
@@ -228,6 +235,7 @@ public class RegistracijaNovogKorisnika {
 		textJMBG.setColumns(10);
 		
 		JLabel lblAdresa = new JLabel("Adresa:");
+		lblAdresa.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		lblAdresa.setBounds(122, 176, 46, 14);
 		frame.getContentPane().add(lblAdresa);
 		
@@ -237,6 +245,7 @@ public class RegistracijaNovogKorisnika {
 		textAdresa.setColumns(10);
 		
 		JLabel lblBrojtel = new JLabel("Broj telefona:");
+		lblBrojtel.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		lblBrojtel.setBounds(122, 213, 80, 14);
 		frame.getContentPane().add(lblBrojtel);
 		
@@ -246,16 +255,18 @@ public class RegistracijaNovogKorisnika {
 		textBrojTelefona.setColumns(10);
 		
 		JLabel lblEmail = new JLabel("E-mail:");
-		lblEmail.setBounds(122, 251, 46, 14);
+		lblEmail.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblEmail.setBounds(122, 243, 46, 14);
 		frame.getContentPane().add(lblEmail);
 		
 		textEmail = new JTextField();
-		textEmail.setBounds(226, 248, 152, 20);
+		textEmail.setBounds(226, 241, 152, 20);
 		frame.getContentPane().add(textEmail);
 		textEmail.setColumns(10);
 		
 		JLabel lblKorisnikoIme = new JLabel("Korisničko ime:");
-		lblKorisnikoIme.setBounds(122, 282, 80, 14);
+		lblKorisnikoIme.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblKorisnikoIme.setBounds(122, 275, 80, 14);
 		frame.getContentPane().add(lblKorisnikoIme);
 		
 		textKorisnickoIme = new JTextField();

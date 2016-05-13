@@ -55,18 +55,23 @@ public class ArtikliKontrolerTest extends TestCase {
 	    Assert.assertEquals(a.getCijena(), pronadjeni.getCijena());
 	
 	}
-	@Test(expected=Exception.class)
+	@Test(expected = IndexOutOfBoundsException.class)
 	public void testIzbrisi() throws Exception {
-		KlasaArtikla klasa=new KlasaArtikla("Cokolade");
+		KlasaArtikla klasa=new KlasaArtikla("Voce");
 		Long id = KlasaArtikalaKontroler.dodaj(klasa);
-		Artikal a=new Artikal("Milka",klasa,"1234567890123",2.5,250.0,"komad");
+		Artikal a=new Artikal("Jabuka",klasa,"1234567890124",2.0,300.0,"kg");
 		Long id2=ArtikliKontroler.dodaj(a);
 		ArtikliKontroler.izbrisi(id2);
-        ArtikliKontroler.nadji("Milka");		
+        ArtikliKontroler.nadji("Jabuka");		
 	}
 	@Test
 	public void testIzmijeni() throws Exception {
 		
+		Artikal b=ArtikliKontroler.nadji("vato");
+		//Long id2=ArtikliKontroler.dodaj(a);
+		b.setNaziv("noviNaziv");
+		Artikal novi=ArtikliKontroler.izmijeni(b);
+		Assert.assertEquals("noviNaziv", novi.getNaziv());
 		
 	}
 

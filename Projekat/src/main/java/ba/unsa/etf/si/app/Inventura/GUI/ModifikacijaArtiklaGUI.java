@@ -121,18 +121,21 @@ public class ModifikacijaArtiklaGUI {
 		frame.getContentPane().add(separator);
 		
 		JLabel lblNewLabel_1 = new JLabel("Postojeći artikli:");
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblNewLabel_1.setVerticalAlignment(SwingConstants.BOTTOM);
-		lblNewLabel_1.setBounds(10, 112, 89, 14);
+		lblNewLabel_1.setBounds(20, 112, 89, 14);
 		frame.getContentPane().add(lblNewLabel_1);
 		
 		JLabel lblNazivArtikla = new JLabel("Naziv artikla:");
+		lblNazivArtikla.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		lblNazivArtikla.setVerticalAlignment(SwingConstants.BOTTOM);
 		lblNazivArtikla.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblNazivArtikla.setBounds(215, 129, 79, 14);
 		frame.getContentPane().add(lblNazivArtikla);
 		
 		JLabel lblKlasaArtikla = new JLabel("Klasa artikla:");
+		lblKlasaArtikla.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		lblKlasaArtikla.setVerticalAlignment(SwingConstants.BOTTOM);
 		lblKlasaArtikla.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblKlasaArtikla.setBounds(215, 154, 79, 14);
@@ -149,6 +152,7 @@ public class ModifikacijaArtiklaGUI {
 		postaviKlase();
 		
 		JButton btnSacuvaj = new JButton("Sa\u010Duvaj");
+		btnSacuvaj.setBackground(new Color(143, 188, 143));
 		btnSacuvaj.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try{
@@ -169,6 +173,7 @@ public class ModifikacijaArtiklaGUI {
 		frame.getContentPane().add(btnSacuvaj);
 		
 		JButton btnZavrsi = new JButton("Odustani");
+		btnZavrsi.setBackground(new Color(143, 188, 143));
 		btnZavrsi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				FormaKontroler.zatvoriFormu(frameRoditelj, frame, false);
@@ -178,6 +183,7 @@ public class ModifikacijaArtiklaGUI {
 		frame.getContentPane().add(btnZavrsi);
 		
 		JLabel lblBarKod = new JLabel("Bar kod:");
+		lblBarKod.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		lblBarKod.setBounds(248, 179, 46, 14);
 		frame.getContentPane().add(lblBarKod);
 		
@@ -187,15 +193,18 @@ public class ModifikacijaArtiklaGUI {
 		txtBarkod.setColumns(10);
 		
 		JLabel lblNewLabel_2 = new JLabel("Količina:");
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		lblNewLabel_2.setBounds(248, 204, 46, 14);
 		frame.getContentPane().add(lblNewLabel_2);
 		
 		JLabel lblNewLabel_3 = new JLabel("Cijena:");
-		lblNewLabel_3.setBounds(248, 229, 46, 14);
+		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblNewLabel_3.setBounds(248, 228, 46, 14);
 		frame.getContentPane().add(lblNewLabel_3);
 		
 		JLabel lblNewLabel_4 = new JLabel("Mjerna jedinica:");
-		lblNewLabel_4.setBounds(215, 254, 79, 14);
+		lblNewLabel_4.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblNewLabel_4.setBounds(205, 253, 89, 14);
 		frame.getContentPane().add(lblNewLabel_4);
 		
 		txtKolicina = new JTextField();
@@ -214,7 +223,7 @@ public class ModifikacijaArtiklaGUI {
 		postaviMjere();
 		
 		listArtikli = new JList<Artikal>();
-		listArtikli.setBounds(24, 136, 183, 187);
+		listArtikli.setBounds(20, 137, 183, 187);
 		frame.getContentPane().add(listArtikli);
 		postaviListu();
 	}

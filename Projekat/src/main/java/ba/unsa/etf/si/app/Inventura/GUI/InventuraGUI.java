@@ -154,6 +154,7 @@ public class InventuraGUI {
 		txtKolicina.setColumns(10);
 		
 		JButton btnDodaj = new JButton("Dodaj artikal");
+		btnDodaj.setBackground(new Color(143, 188, 143));
 		btnDodaj.setBounds(378, 250, 144, 23);
 		btnDodaj.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnDodaj.addActionListener(new ActionListener() {
@@ -189,6 +190,7 @@ public class InventuraGUI {
 		frame.getContentPane().add(txtOpis);
 		
 		JButton btnObracun = new JButton("Zaključi i obračunaj");
+		btnObracun.setBackground(new Color(143, 188, 143));
 		btnObracun.setBounds(478, 456, 143, 23);
 		btnObracun.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnObracun.addActionListener(new ActionListener() {
@@ -277,6 +279,7 @@ public class InventuraGUI {
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		
 		JButton btnOdustani = new JButton("Odustani");
+		btnOdustani.setBackground(new Color(143, 188, 143));
 		btnOdustani.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				FormaKontroler.zatvoriFormu(frameRoditelj, frame, false);
@@ -300,6 +303,7 @@ public class InventuraGUI {
 		
 		
 		JButton btnNadji = new JButton("Očitaj");
+		btnNadji.setBackground(new Color(143, 188, 143));
 		btnNadji.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try{
@@ -361,6 +365,7 @@ public class InventuraGUI {
 		scrollPane.setViewportView(tabela);
 		
 		JButton btnNewButton = new JButton("Ukloni");
+		btnNewButton.setBackground(new Color(143, 188, 143));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int brojReda=tabela.getSelectedRow();
