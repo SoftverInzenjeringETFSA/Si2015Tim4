@@ -19,15 +19,13 @@ public class ArtikliKontrolerTest extends TestCase {
 	Artikal a;
 	@Before 
 	public void postavi() { 
-		
-		klasa=new KlasaArtikla("Cokolade");
-		id = KlasaArtikalaKontroler.dodaj(klasa);
-		a=new Artikal("Milka",klasa,"1234567890123",2.5,250.0,"komad");
 	
 	}
 	
-	@Test
 	public void testDodaj() throws Exception {
+		klasa=new KlasaArtikla("Cokolade");
+		id = KlasaArtikalaKontroler.dodaj(klasa);
+		Artikal a=new Artikal("Milka",klasa,"1234567890123",2.5,250.0,"komad");
 		Long id=ArtikliKontroler.dodaj(a);
 		Assert.assertNotNull(Long.toString(id));
 	}
@@ -40,6 +38,9 @@ public class ArtikliKontrolerTest extends TestCase {
 	}
 	@Test
 	public void testNadjiId() throws Exception {
+		klasa=new KlasaArtikla("Cokolade");
+		id = KlasaArtikalaKontroler.dodaj(klasa);
+		Artikal a=new Artikal("Milka",klasa,"1234567890123",2.5,250.0,"komad");
 		Long id=ArtikliKontroler.dodaj(a);
 		Artikal b = new Artikal();
 		b = ArtikliKontroler.nadjiId(a.getId());
@@ -47,33 +48,25 @@ public class ArtikliKontrolerTest extends TestCase {
 	}
 	@Test
 	public void testNadjiBarKod() throws Exception {
-		KlasaArtikla _k = new KlasaArtikla("brb");
-		Long id = KlasaArtikalaKontroler.dodaj(_k);
-		KlasaArtikla a2=KlasaArtikalaKontroler.nadji(id);
-		Artikal artikal=new Artikal("Ime",a2,"123456789000",3.0,18.0,"komad");
-		Artikal b = new Artikal();
-		b = ArtikliKontroler.nadjiBarKod(artikal.getBarkod());
-		Assert.assertEquals(b.getBarkod(), artikal.getBarkod());
+		KlasaArtikla klasa=new KlasaArtikla("Cokolade");
+		Long id = KlasaArtikalaKontroler.dodaj(klasa);
+		Artikal a=new Artikal("Milka",klasa,"1234567890123",2.5,250.0,"komad");
+	    Artikal pronadjeni=ArtikliKontroler.nadjiBarKod("1234567890123");
+	    Assert.assertEquals(a.getCijena(), pronadjeni.getCijena());
+	
 	}
-	@Test
+	@Test(expected=Exception.class)
 	public void testIzbrisi() throws Exception {
-		KlasaArtikla _k = new KlasaArtikla("brb");
-		Long id = KlasaArtikalaKontroler.dodaj(_k);
-		KlasaArtikla a2=KlasaArtikalaKontroler.nadji(id);
-		Artikal artikal=new Artikal("Ime",a2,"123456789000",3.0,18.0,"komad");
-		Artikal b = new Artikal();
-	//	b = ArtikliKontroler.izbrisi(b.getId());
-		
+		KlasaArtikla klasa=new KlasaArtikla("Cokolade");
+		Long id = KlasaArtikalaKontroler.dodaj(klasa);
+		Artikal a=new Artikal("Milka",klasa,"1234567890123",2.5,250.0,"komad");
+		Long id2=ArtikliKontroler.dodaj(a);
+		ArtikliKontroler.izbrisi(id2);
+        ArtikliKontroler.nadji("Milka");		
 	}
 	@Test
 	public void testIzmijeni() throws Exception {
-		KlasaArtikla _k = new KlasaArtikla("brb");
-		Long id = KlasaArtikalaKontroler.dodaj(_k);
-		KlasaArtikla a2=KlasaArtikalaKontroler.nadji(id);
-		Artikal artikal=new Artikal("Ime",a2,"123456789000",3.0,18.0,"komad");
-		Artikal b = new Artikal();
-		b = ArtikliKontroler.izmijeni(artikal);
-		Assert.assertEquals(b.getNaziv(), artikal.getNaziv());
+		
 		
 	}
 

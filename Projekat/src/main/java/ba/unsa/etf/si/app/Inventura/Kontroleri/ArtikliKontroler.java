@@ -44,13 +44,14 @@ public final class ArtikliKontroler{
 			return id;	
 		}
 		
-		public static Artikal nadji(String naziv){
+		public static Artikal nadji(String naziv) throws Exception{
 			openSession();
-			Artikal a = (Artikal) s.get(Artikal.class,new String(naziv));
-			t.commit();
-			
-			closeSession();
-			return a;
+			List<Object> artikli = s.createCriteria(Artikal.class).add(Restrictions.like("naziv", naziv)).list();
+			if(artikli.size() > 1) {
+				throw new Exception();
+			}
+			Artikal pronadjeniArtikal = (Artikal) artikli.get(0);
+			return pronadjeniArtikal;
 		}
 	
 		public static Artikal nadjiId(Long id) throws Exception
