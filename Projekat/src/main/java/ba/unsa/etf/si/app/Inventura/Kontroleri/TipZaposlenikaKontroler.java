@@ -46,9 +46,9 @@ public class TipZaposlenikaKontroler {
 	}
 		
 		// trazi po imenu i prezimenu korisnika
-		public TipZaposlenika nadji(String ime, String prezime){
+		public static TipZaposlenika nadji(String prezime){
 			openSession();
-			TipZaposlenika tip = (TipZaposlenika) s.get(TipZaposlenika.class,new String(ime) + new String(prezime));
+			TipZaposlenika tip = (TipZaposlenika)s.get(TipZaposlenika.class,new String(prezime));
 			t.commit();
 			
 			closeSession();
@@ -69,7 +69,7 @@ public class TipZaposlenikaKontroler {
 		{
 			openSession();
 			List<Object> temp = s.createCriteria(TipZaposlenika.class).add(Restrictions.like("ime", ime)).list();
-			if(temp.size() > 1) {
+			if(temp.size() != 1) {
 				throw new Exception();
 			}
 			TipZaposlenika pronadjeniTip = (TipZaposlenika) temp.get(0);
@@ -112,11 +112,11 @@ public class TipZaposlenikaKontroler {
 			closeSession();
 		}
 		
-		public void brisiJmbg(String jmbg) throws Exception
+		public static void brisiJmbg(String jmbg) throws Exception
 		{
 			openSession();
-			Object instance= s.createCriteria(TipZaposlenika.class).add(Restrictions.like("jmbg", jmbg)).list();
-			if (instance != null)
+			Object instance= s.load(TipZaposlenika.class, new String(jmbg));
+			if (instance != "")
 				s.delete(instance);
 			
 			t.commit();

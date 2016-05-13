@@ -33,7 +33,7 @@ public final class KlasaArtikalaKontroler {
 		}	
 	}
 	
-	private KlasaArtikalaKontroler(){}
+	public KlasaArtikalaKontroler(){}
 	
 	
 	public static Long dodaj(KlasaArtikla a){
