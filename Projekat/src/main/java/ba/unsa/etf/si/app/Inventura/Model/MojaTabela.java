@@ -46,14 +46,15 @@ public class MojaTabela extends JTable{
 	}
 	
 	public void isprazni(){
-		int vel=objekti.size();
-		
-		objekti.clear();
-		
 		DefaultTableModel model=(DefaultTableModel)getModel();
-		for(int i=0;i<vel;i++){
+		
+		
+		int vel = model.getRowCount();
+		/*	for(int i=0;i<vel;i++){
 			model.removeRow(i);
-		}
+		}*/
+		objekti.clear();
+		model.setRowCount(0);
 	}
 
 	public List<Object> getObjekti() {

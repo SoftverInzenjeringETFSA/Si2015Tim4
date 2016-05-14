@@ -22,7 +22,8 @@ public class Izvjestaj implements Serializable {
 	Date Datum;
 	//private List<Artikal> artikli;
 	
-	int i=0;
+	
+	Double i=(double) 0;
 	
 	public void setId(int id){
 		this.id=id;
@@ -30,6 +31,14 @@ public class Izvjestaj implements Serializable {
 	
 	public long getId(){
 		return id;
+	}
+	
+	public void setI(Double i){
+		this.i=i;
+	}
+	
+	public Double getI(){
+		return i;
 	}
 
 	
@@ -61,11 +70,12 @@ public class Izvjestaj implements Serializable {
 	
 	public Izvjestaj(){}
 	
-	public Izvjestaj(String v,String o, Date d)
+	public Izvjestaj(String v,String o, Date d, Double i)
 	{
 		setVrsta(v);
 		setOpis(o);
 		setDatum(d);
+		setI(i);
 	}
 	
 	/*

@@ -20,7 +20,7 @@ public class Inventura implements Serializable {
 	long id;
 	Date datum;
 	String opis;
-	int trenutnoStanje;
+	Double trenutnoStanje;
 	@OneToOne
     @JoinColumn(name="skladistar_id") 
 	TipZaposlenika skladistar;
@@ -29,12 +29,11 @@ public class Inventura implements Serializable {
 	
 	public Inventura(){}
 	
-	public Inventura(long id, Date datum, String opis, int stanje, TipZaposlenika osoba) throws Exception//, List<Artikal> _artikli) 
+	public Inventura(Date datum, String opis, Double trenutnoStanje, TipZaposlenika osoba) throws Exception//, List<Artikal> _artikli) 
 	{
-		setId(id);
 		setDatum(datum);
 		setOpis(opis);
-		settrenutnoStanje(stanje);
+		settrenutnoStanje(trenutnoStanje);
 		setSkladistar(osoba);
 		//setArtikli(_artikli);
 	}
@@ -45,6 +44,7 @@ public class Inventura implements Serializable {
 		setOpis(opis);
 		setSkladistar(osoba);
 		//setArtikli(_artikli);
+		
 	}
 	
 	public long getId() {
@@ -73,11 +73,11 @@ public class Inventura implements Serializable {
 		opis=s;
 	}
 	
-	public int gettrenutnoStanje() {
+	public Double gettrenutnoStanje() {
 		return trenutnoStanje;
 	}
 
-	public void settrenutnoStanje(int s) throws Exception {
+	public void settrenutnoStanje(Double s) throws Exception {
 		if(s<0){
 			throw new Exception("Kolicina ne moze biti negativna."); 
 	    }

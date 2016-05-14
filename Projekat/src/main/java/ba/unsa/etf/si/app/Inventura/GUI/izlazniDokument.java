@@ -128,6 +128,8 @@ public class izlazniDokument {
 		txtKolicina.setBounds(280, 175, 244, 20);
 		txtKolicina.setColumns(10);
 		
+		Double ukRazlika=0.0;
+		
 		JButton btnDodaj = new JButton("Dodaj >>");
 		btnDodaj.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnDodaj.addActionListener(new ActionListener() {
@@ -150,6 +152,7 @@ public class izlazniDokument {
 					tabelaDodani.dodajRed(artikal, red);
 					
 					kolicine.add(kolicina);
+					
 				}
 				catch(Exception i){
 					JOptionPane.showMessageDialog(null,	i.getMessage());
@@ -170,11 +173,17 @@ public class izlazniDokument {
 		JButton btnZakljuiDokument = new JButton("Zaključi dokument");
 		btnZakljuiDokument.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Double priv=0.0;
+				Double priv_after=0.0;
 				List<Object> objekti=tabelaDodani.getObjekti();
 				for(Object o:objekti){
 					Artikal artikal=(Artikal)o;
 					try{
-						artikal.setKolicina(artikal.getKolicina()-kolicine.get(objekti.indexOf(o)));
+						priv=priv+artikal.getKolicina();
+						priv_after=priv_after+kolicine.get(objekti.indexOf(o));
+						
+						//artikal.getKolicina()-kolicine.get(objekti.indexOf(o)
+						artikal.setKolicina(kolicine.get(objekti.indexOf(o)));
 						ArtikliKontroler.izmijeni(artikal);
 					}
 					catch(Exception i){
@@ -182,18 +191,19 @@ public class izlazniDokument {
 					}
 				}
 				
-				tabelaPostojeci.isprazni();
-				tabelaDodani.isprazni();
-				
+				/*
 				List<Artikal> artikli=ArtikliKontroler.lista();
 				for(Artikal a:artikli){
 					String[] red=new String[]{a.getNaziv(), Double.toString(a.getKolicina())};
 					tabelaPostojeci.dodajRed(a,	red);
-				}
+				}*/
 				txtKolicina.setText("");
 				
-				Izvjestaj i=new Izvjestaj(comboVrsta.getSelectedItem().toString(),txtOpis.getText(),new Date());
+				Izvjestaj i=new Izvjestaj(comboVrsta.getSelectedItem().toString(),txtOpis.getText(),new Date(), priv_after-priv);
 				IzvjestajKontroler.dodaj(i);
+				
+				tabelaPostojeci.isprazni();
+				tabelaDodani.isprazni();
 			}
 		});
 		btnZakljuiDokument.setFont(new Font("Tahoma", Font.PLAIN, 12));

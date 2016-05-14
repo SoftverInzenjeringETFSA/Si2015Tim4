@@ -70,6 +70,8 @@ public class InventuraGUI {
 	private List<Double> kolicine=new ArrayList<Double>();
 	private MojaTabela tabela;
 	
+	Double ukupnoPrebrojano=0.0;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -173,6 +175,7 @@ public class InventuraGUI {
 						kolicine.add(kolicina);
 						String[] red=new String[]{artikal.getNaziv(), kolicina.toString()};
 						tabela.dodajRed(artikal, red);
+						
 					}
 					else{
 						JOptionPane.showMessageDialog(null, "Artkal je već dodat na popis.");
@@ -193,6 +196,11 @@ public class InventuraGUI {
 		btnObracun.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnObracun.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {	
+				
+				Izvjestaj manjakIzvjestaj=new Izvjestaj();
+				Izvjestaj visakIzvjestaj=new Izvjestaj();
+				Inventura inventura= new Inventura();
+				
 				try{
 					Date datum=new Date();
 					
@@ -202,15 +210,38 @@ public class InventuraGUI {
 					
 					for(Object o:objekti){
 						Artikal a=(Artikal)o;
+					    
+						Double trenutnoStanje=a.getKolicina();
+					    
 						a.setKolicina(kolicine.get(objekti.indexOf(o)));
 						artikliInventure.add(a);
+						ukupnoPrebrojano = ukupnoPrebrojano + a.getKolicina();
+						
+						Double razlika = (a.getKolicina()-trenutnoStanje);
+						
+						if(razlika>0)
+						{
+							visakIzvjestaj=new Izvjestaj("Visak", inventura.getOpis(), datum, razlika);
+							IzvjestajKontroler.dodaj(visakIzvjestaj);
+							ArtikliKontroler.izmijeni(a);
+						}
+						else if(razlika<0){
+							manjakIzvjestaj=new Izvjestaj("Manjak", inventura.getOpis(), datum, razlika);
+							IzvjestajKontroler.dodaj(manjakIzvjestaj);
+							ArtikliKontroler.izmijeni(a);
+						}
+						else{
+							return;
+						}
+						
 					}
 					
 					String opis=txtOpis.getText();
-					
-					Inventura inventura=new Inventura(datum, opis, korisnik);
+						
+					inventura=new Inventura(datum, opis, ukupnoPrebrojano, korisnik);
 					InventuraKontroler.dodaj(inventura);
 					
+					/*
 					List<Artikal> artikliManjka=new ArrayList<Artikal>();
 					List<Artikal> artikliViska=new ArrayList<Artikal>();
 					
@@ -218,6 +249,17 @@ public class InventuraGUI {
 					
 					List<Artikal> artikliBaze=ArtikliKontroler.lista();
 					
+
+					for(Artikal a:artikliInventure){
+						ArtikliKontroler.izmijeni(a);
+					}
+					
+					for(Artikal a:artikliPom){
+						a.setKolicina(0.0);
+						ArtikliKontroler.izmijeni(a);
+					}
+					*/
+					/*
 					for(Artikal a1:artikliBaze){
 						boolean popisan=false;
 						for(Artikal a2:artikliInventure){
@@ -242,21 +284,8 @@ public class InventuraGUI {
 							artikliPom.add(a1);
 						}
 					}
-					
-					Izvjestaj manjak=new Izvjestaj("Manjak", inventura.getOpis(), inventura.getDatum());
-					Izvjestaj visak=new Izvjestaj("Visak", inventura.getOpis(), inventura.getDatum());
-					
-					IzvjestajKontroler.dodaj(manjak);
-					IzvjestajKontroler.dodaj(visak);
-					
-					for(Artikal a:artikliInventure){
-						ArtikliKontroler.izmijeni(a);
-					}
-					
-					for(Artikal a:artikliPom){
-						a.setKolicina(0.0);
-						ArtikliKontroler.izmijeni(a);
-					}
+					*/
+
 				}
 				catch(Exception i){
 					JOptionPane.showMessageDialog(frame, i.getMessage());

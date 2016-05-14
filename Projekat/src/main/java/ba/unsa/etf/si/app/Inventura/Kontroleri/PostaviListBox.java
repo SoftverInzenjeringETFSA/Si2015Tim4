@@ -114,7 +114,7 @@ public final class PostaviListBox {
 			);
 		
 		for(Inventura i:inventure){
-			String[] red=new String[]{i.getDatum().toString(), i.getOpis(), Integer.toString(i.gettrenutnoStanje())};
+			String[] red=new String[]{i.getDatum().toString(), i.getOpis(), Double.toString(i.gettrenutnoStanje())};
 			
 			model.addRow(red);
 		}
