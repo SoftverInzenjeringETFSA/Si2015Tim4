@@ -5,7 +5,9 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 //import org.hibernate.criterion.Restrictions;
+import org.hibernate.criterion.Restrictions;
 
+import ba.unsa.etf.si.app.Inventura.Model.Artikal;
 import ba.unsa.etf.si.app.Inventura.Model.Izvjestaj;
 
 public class IzvjestajKontroler {
@@ -44,13 +46,14 @@ public class IzvjestajKontroler {
 	}
 
 	
-	public static Izvjestaj nadji(Long id){
+	public static Izvjestaj nadji(Long id) throws Exception{
 		openSession();
-		Izvjestaj i = (Izvjestaj) s.get(Izvjestaj.class,new Long(id));
-		t.commit();
-		
-		closeSession();
-		return i;
+		List<Object> izvjestaji = s.createCriteria(Izvjestaj.class).add(Restrictions.like("id", id)).list();
+		if(izvjestaji.size() != 1) {
+			throw new Exception();
+		}
+		Izvjestaj pronadjeniIzvjestaj = (Izvjestaj) izvjestaji.get(0);
+		return pronadjeniIzvjestaj;
 	}
 	
 	public static void izbrisi(Long id){
@@ -68,6 +71,7 @@ public class IzvjestajKontroler {
 		
 		List<Izvjestaj> listaIzvjestaja=s.createCriteria(Izvjestaj.class).list();
 		t.commit();
+		closeSession();
 		return listaIzvjestaja;
 	}
 	

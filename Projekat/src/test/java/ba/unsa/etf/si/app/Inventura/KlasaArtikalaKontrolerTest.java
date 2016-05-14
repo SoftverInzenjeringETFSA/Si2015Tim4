@@ -27,23 +27,19 @@ public class KlasaArtikalaKontrolerTest extends TestCase {
 		_k2 = KlasaArtikalaKontroler.nadji(id);
 		Assert.assertEquals(_k2.getNaziv(), klasa.getNaziv());
 	}
-	@Test(expected=Exception.class)
+	@Test
 	public void testIzbrisi() throws Exception {
 		KlasaArtikla klasa=new KlasaArtikla("Cokolade");
 		Long id=KlasaArtikalaKontroler.dodaj(klasa);
 		KlasaArtikalaKontroler.izbrisi(id);
-		KlasaArtikla pronadjena=KlasaArtikalaKontroler.nadji(id);
-	    
-	}
-
-	public void testIzmijeni() {
-		fail("Not yet implemented"); // TODO
+		List<KlasaArtikla> klase=KlasaArtikalaKontroler.lista();
+		Assert.assertEquals(klase.size(), 31);
 	}
 
 	public void testLista() {
 
 		List<KlasaArtikla> klase=KlasaArtikalaKontroler.lista();
-		Assert.assertEquals(klase.size(), 26);
+		Assert.assertEquals(klase.size(), 31);
 	
 	}
 
