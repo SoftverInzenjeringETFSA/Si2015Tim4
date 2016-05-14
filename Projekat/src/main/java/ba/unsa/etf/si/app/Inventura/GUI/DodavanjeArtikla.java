@@ -30,12 +30,15 @@ import java.awt.event.ActionEvent;
 import java.util.Arrays;
 import java.util.List;
 import javax.swing.event.*;
+
+import org.apache.log4j.Logger;
+
 import ba.unsa.etf.si.app.Inventura.Model.ValidacijaArtikla;
 import javax.swing.SwingConstants;;
 
 
 public class DodavanjeArtikla {
-
+	final static Logger logger = Logger.getLogger(LogInScreen.class);
 	private JFrame frame;
 	
 	private JFrame frameRoditelj;
@@ -64,7 +67,7 @@ public class DodavanjeArtikla {
 					window.frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
+					logger.info(e);
 				}
 			}
 		});
@@ -77,7 +80,7 @@ public class DodavanjeArtikla {
 					DodavanjeArtikla window = new DodavanjeArtikla();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
+					logger.info(e);
 				}
 			}
 		});
@@ -95,7 +98,7 @@ public class DodavanjeArtikla {
 					
 					FormaKontroler.postaviFormu(window.frameRoditelj, window.frame, false);
 				} catch (Exception e) {
-					e.printStackTrace();
+					logger.info(e);
 				}
 			}
 		});
@@ -161,6 +164,7 @@ public class DodavanjeArtikla {
 					}					
 				}
 				catch(Exception i){
+					logger.info(i);
 					JOptionPane.showMessageDialog(frame, i.getMessage());
 				}
 			}
@@ -455,7 +459,7 @@ public class DodavanjeArtikla {
 			artikal = new Artikal(naziv, klasa, barkod, cijena, kolicina, mjera);
 			
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.info(e);;
 		}
 		
 		return artikal;

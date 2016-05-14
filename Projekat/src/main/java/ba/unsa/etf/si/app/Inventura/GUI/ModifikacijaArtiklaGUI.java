@@ -6,6 +6,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
+import org.apache.log4j.Logger;
+
 import ba.unsa.etf.si.app.Inventura.Kontroleri.ArtikliKontroler;
 import ba.unsa.etf.si.app.Inventura.Kontroleri.FormaKontroler;
 import ba.unsa.etf.si.app.Inventura.Kontroleri.KlasaArtikalaKontroler;
@@ -33,7 +35,7 @@ import java.util.List;
 import java.awt.event.ActionEvent;
 
 public class ModifikacijaArtiklaGUI {
-
+	final static Logger logger = Logger.getLogger(LogInScreen.class);
 	private JFrame frame;
 	
 	private JFrame frameRoditelj;
@@ -59,7 +61,7 @@ public class ModifikacijaArtiklaGUI {
 					window.frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
+					logger.info(e);
 				}
 			}
 		});
@@ -77,7 +79,7 @@ public class ModifikacijaArtiklaGUI {
 					
 					FormaKontroler.postaviFormu(window.frameRoditelj, window.frame, false);
 				} catch (Exception e) {
-					e.printStackTrace();
+					logger.info(e);
 				}
 			}
 		});
@@ -163,7 +165,7 @@ public class ModifikacijaArtiklaGUI {
 					postaviListu();
 				}
 				catch(Exception i){
-					System.out.print("lalalala ");
+					
 					Component frame = null;
 					JOptionPane.showMessageDialog(frame, i.getMessage());
 				}
@@ -244,8 +246,7 @@ public class ModifikacijaArtiklaGUI {
 			artikal.setKolicina(kolicina);
 			artikal.setMjera(mjera);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.info(e);
 		}
 	}
 	

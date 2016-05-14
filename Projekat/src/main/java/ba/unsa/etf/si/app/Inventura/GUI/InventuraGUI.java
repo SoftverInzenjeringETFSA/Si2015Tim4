@@ -26,6 +26,8 @@ import java.awt.Component;
 import javax.swing.AbstractListModel;
 import javax.swing.table.DefaultTableModel;
 
+import org.apache.log4j.Logger;
+
 import ba.unsa.etf.si.app.Inventura.Kontroleri.ArtikliKontroler;
 import ba.unsa.etf.si.app.Inventura.Kontroleri.FormaKontroler;
 import ba.unsa.etf.si.app.Inventura.Kontroleri.InventuraKontroler;
@@ -55,7 +57,7 @@ import javax.swing.JPanel;
 public class InventuraGUI {
 	
 	private JFrame frame;
-	
+	final static Logger logger = Logger.getLogger(LogInScreen.class);
 	private JFrame frameRoditelj;
 	private TipZaposlenika korisnik;
 	private JLabel lblKorisnik;
@@ -82,7 +84,7 @@ public class InventuraGUI {
 					InventuraGUI window = new InventuraGUI();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
+					logger.info(e);
 				}
 			}
 		});
@@ -100,7 +102,7 @@ public class InventuraGUI {
 					
 					FormaKontroler.postaviFormu(window.frameRoditelj, window.frame, false);
 				} catch (Exception e) {
-					e.printStackTrace();
+					logger.info(e);
 				}
 			}
 		});
@@ -183,6 +185,7 @@ public class InventuraGUI {
 					}
 				}
 				catch(NumberFormatException i){
+					
 					JOptionPane.showMessageDialog(frame, "Format broja nije ispravan.");
 				}
 			}

@@ -9,12 +9,15 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
+
+import org.apache.log4j.Logger;
+
 import javax.swing.JTextArea;
 import javax.swing.JButton;
 import java.awt.Color;
 
 public class IzvjestajViska {
-
+	final static Logger logger = Logger.getLogger(LogInScreen.class);
 	private JFrame frame;
 
 	/**
@@ -28,7 +31,7 @@ public class IzvjestajViska {
 					window.frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
+					logger.info(e);
 				}
 			}
 		});

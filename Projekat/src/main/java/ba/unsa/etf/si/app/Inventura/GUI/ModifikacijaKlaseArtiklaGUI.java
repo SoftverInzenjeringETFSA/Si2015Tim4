@@ -11,6 +11,8 @@ import java.util.List;
 
 import javax.swing.SwingConstants;
 
+import org.apache.log4j.Logger;
+
 import ba.unsa.etf.si.app.Inventura.Kontroleri.FormaKontroler;
 import ba.unsa.etf.si.app.Inventura.Kontroleri.KlasaArtikalaKontroler;
 import ba.unsa.etf.si.app.Inventura.Model.KlasaArtikla;
@@ -26,7 +28,7 @@ import java.awt.Color;
 import java.awt.Component;
 
 public class ModifikacijaKlaseArtiklaGUI {
-
+	final static Logger logger = Logger.getLogger(LogInScreen.class);
 	private JFrame frame;
 	
 	private JFrame frameRoditelj;
@@ -47,7 +49,7 @@ public class ModifikacijaKlaseArtiklaGUI {
 					window.frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
+					logger.info(e);
 				}
 			}
 		});
@@ -65,7 +67,7 @@ public class ModifikacijaKlaseArtiklaGUI {
 					
 					FormaKontroler.postaviFormu(window.frameRoditelj, window.frame, false);
 				} catch (Exception e) {
-					e.printStackTrace();
+					logger.info(e);
 				}
 			}
 		});

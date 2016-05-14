@@ -10,6 +10,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.LayoutStyle.ComponentPlacement;
+
+import org.apache.log4j.Logger;
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -22,7 +25,7 @@ import ba.unsa.etf.si.app.Inventura.Model.TipZaposlenika;;
 public class LogInScreen {
 
 	private JFrame frame;
-	
+	final static Logger logger = Logger.getLogger(LogInScreen.class);
 	private JTextField textField;
 	private JPasswordField passwordField;
 
@@ -36,7 +39,7 @@ public class LogInScreen {
 					LogInScreen window = new LogInScreen();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
+					logger.info(e);
 				}
 			}
 		});
@@ -105,8 +108,7 @@ public class LogInScreen {
 					}
 				}
 				catch (Exception e) {
-					System.out.print("Ne provjeri pass i ne nadje usera");
-					e.printStackTrace();
+					logger.info(e);
 				}
 			}
 		});

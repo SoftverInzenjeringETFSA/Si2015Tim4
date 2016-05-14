@@ -40,8 +40,10 @@ import java.util.List;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 
-public class ModifikacijaKorisnika {
+import org.apache.log4j.Logger;
 
+public class ModifikacijaKorisnika {
+	final static Logger logger = Logger.getLogger(LogInScreen.class);
 	private JFrame frame;
 	
 	private JFrame frameRoditelj;
@@ -73,7 +75,7 @@ public class ModifikacijaKorisnika {
 					window.frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
+					logger.info(e);
 				}
 			}
 		});
@@ -91,7 +93,7 @@ public class ModifikacijaKorisnika {
 					
 					FormaKontroler.postaviFormu(window.frameRoditelj, window.frame, false);
 				} catch (Exception e) {
-					e.printStackTrace();
+					logger.info(e);
 				}
 			}
 		});
@@ -161,7 +163,7 @@ public class ModifikacijaKorisnika {
 					postaviListu();
 				}
 				catch(Exception i){
-					System.out.print("lalalala ");
+					
 					Component frame = null;
 					JOptionPane.showMessageDialog(frame, i.getMessage());
 				}
@@ -321,9 +323,7 @@ public class ModifikacijaKorisnika {
 			}
 			catch (Exception e) 
 			{
-					System.out.print("ne promjeni sve vrijednosti");
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				logger.info(e);
 			}	
 		}
 		public void postaviListu(){

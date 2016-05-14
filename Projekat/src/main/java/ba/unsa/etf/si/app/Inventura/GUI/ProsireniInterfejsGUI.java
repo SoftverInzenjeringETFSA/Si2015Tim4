@@ -13,6 +13,8 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 
+import org.apache.log4j.Logger;
+
 import ba.unsa.etf.si.app.Inventura.Kontroleri.FormaKontroler;
 import ba.unsa.etf.si.app.Inventura.Kontroleri.PostaviListBox;
 import ba.unsa.etf.si.app.Inventura.Model.TipZaposlenika;
@@ -38,7 +40,7 @@ import javax.swing.JTable;
 //import java.awt.Color;
 
 public class ProsireniInterfejsGUI {
-
+	final static Logger logger = Logger.getLogger(LogInScreen.class);
 	private JFrame frame;
 	
 	private JFrame frameRoditelj;
@@ -58,7 +60,7 @@ public class ProsireniInterfejsGUI {
 					window.frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
+					logger.info(e);
 				}
 			}
 		});
@@ -76,7 +78,7 @@ public class ProsireniInterfejsGUI {
 					
 					FormaKontroler.postaviFormu(window.frameRoditelj, window.frame, true);
 				} catch (Exception e) {
-					e.printStackTrace();
+					logger.info(e);
 				}
 			}
 		});
@@ -89,7 +91,7 @@ public class ProsireniInterfejsGUI {
 					ProsireniInterfejsGUI window = new ProsireniInterfejsGUI();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
+					logger.info(e);
 				}
 			}
 		});

@@ -11,8 +11,10 @@ import javax.swing.JTextArea;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
-public class IzvjestajManjka {
+import org.apache.log4j.Logger;
 
+public class IzvjestajManjka {
+	final static Logger logger = Logger.getLogger(LogInScreen.class);
 	private JFrame frame;
 
 	/**
@@ -26,7 +28,7 @@ public class IzvjestajManjka {
 					window.frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
+					logger.info(e);
 				}
 			}
 		});

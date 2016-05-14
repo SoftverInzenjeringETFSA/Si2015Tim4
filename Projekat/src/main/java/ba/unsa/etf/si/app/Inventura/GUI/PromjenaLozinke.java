@@ -13,6 +13,8 @@ import java.awt.Font;
 import javax.swing.JSeparator;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
+import org.apache.log4j.Logger;
+
 import ba.unsa.etf.si.app.Inventura.Kontroleri.FormaKontroler;
 import ba.unsa.etf.si.app.Inventura.Kontroleri.TipZaposlenikaKontroler;
 import ba.unsa.etf.si.app.Inventura.Model.TipZaposlenika;
@@ -26,7 +28,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 
 public class PromjenaLozinke {
-
+	final static Logger logger = Logger.getLogger(LogInScreen.class);
 	private JFrame frame;
 	
 	private JFrame frameRoditelj;
@@ -48,7 +50,7 @@ public class PromjenaLozinke {
 					window.frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
+				  logger.info(e);
 				}
 			}
 		});
@@ -66,7 +68,7 @@ public class PromjenaLozinke {
 					
 					FormaKontroler.postaviFormu(window.frameRoditelj, window.frame, false);
 				} catch (Exception e) {
-					e.printStackTrace();
+					logger.info(e);
 				}
 			}
 		});

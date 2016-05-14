@@ -14,6 +14,8 @@ import java.awt.Component;
 
 import javax.swing.SwingConstants;
 
+import org.apache.log4j.Logger;
+
 import ba.unsa.etf.si.app.Inventura.Model.Artikal;
 import ba.unsa.etf.si.app.Inventura.Model.KlasaArtikla;
 import ba.unsa.etf.si.app.Inventura.Model.TipZaposlenika;
@@ -25,8 +27,10 @@ import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
-public class BrisanjeKlaseArtikalGUI {
+import org.apache.log4j.Logger;
 
+public class BrisanjeKlaseArtikalGUI {
+	final static Logger logger = Logger.getLogger(LogInScreen.class);
 	private JFrame frame;
 	
 	private JFrame frameRoditelj;
@@ -46,7 +50,7 @@ public class BrisanjeKlaseArtikalGUI {
 					window.frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
+					logger.info(e);;
 				}
 			}
 		});
@@ -64,7 +68,7 @@ public class BrisanjeKlaseArtikalGUI {
 					
 					FormaKontroler.postaviFormu(window.frameRoditelj, window.frame, false);
 				} catch (Exception e) {
-					e.printStackTrace();
+					logger.info(e);
 				}
 			}
 		});
@@ -130,7 +134,7 @@ public class BrisanjeKlaseArtikalGUI {
 					KlasaArtikalaKontroler.izbrisi(art.getId());
 				}
 				catch(Exception i){
-					System.out.print("baci izuzetak");
+					logger.info(i);
 					Component frame = null;
 					JOptionPane.showMessageDialog(frame, i.getMessage());
 				}
