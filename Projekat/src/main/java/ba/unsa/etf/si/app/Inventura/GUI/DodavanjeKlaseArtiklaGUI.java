@@ -104,17 +104,17 @@ public class DodavanjeKlaseArtiklaGUI {
 		btnDodaj.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				
 				try{
 					KlasaArtikla klasa = new KlasaArtikla(txtNaziv.getText());
 					KlasaArtikalaKontroler.dodaj(klasa);
 					JOptionPane.showMessageDialog(null, "Klasa uspjesno dodana!");
 				}
 				catch(Exception i){
+					logger.info(i);
 					Component frame = null;
 					JOptionPane.showMessageDialog(frame, i.getMessage());
 					JOptionPane.showMessageDialog(null, "Klasa vec postoji bazi!");
-				}
+					}
 				}
 			
 		});

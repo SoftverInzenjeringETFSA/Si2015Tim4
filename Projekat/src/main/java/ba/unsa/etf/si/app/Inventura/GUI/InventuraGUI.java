@@ -96,7 +96,7 @@ public class InventuraGUI {
 				try {
 					InventuraGUI window = new InventuraGUI();
 					
-					window.frameRoditelj=_frameRoditelj;
+				  window.frameRoditelj=_frameRoditelj;
 					window.korisnik=_korisnik;
 					window.lblKorisnik.setText(window.korisnik.getIme().toUpperCase());
 					
@@ -185,7 +185,7 @@ public class InventuraGUI {
 					}
 				}
 				catch(NumberFormatException i){
-					
+					logger.info(i);
 					JOptionPane.showMessageDialog(frame, "Format broja nije ispravan.");
 				}
 			}
