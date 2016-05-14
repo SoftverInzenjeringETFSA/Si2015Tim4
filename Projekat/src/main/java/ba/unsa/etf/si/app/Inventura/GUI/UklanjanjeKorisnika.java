@@ -108,6 +108,7 @@ public class UklanjanjeKorisnika {
 		frame.getContentPane().add(separator);
 		
 		JLabel lblKorisnikoIme = new JLabel("Korisničko ime:");
+		lblKorisnikoIme.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		lblKorisnikoIme.setBounds(23, 100, 94, 14);
 		frame.getContentPane().add(lblKorisnikoIme);
 		
@@ -117,15 +118,17 @@ public class UklanjanjeKorisnika {
 		textName.setColumns(10);
 		
 		JButton btnZavrsi = new JButton("Odustani");
+		btnZavrsi.setBackground(new Color(143, 188, 143));
 		btnZavrsi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				FormaKontroler.zatvoriFormu(frameRoditelj, frame, false);
 			}
 		});
-		btnZavrsi.setBounds(52, 139, 89, 23);
+		btnZavrsi.setBounds(51, 153, 106, 23);
 		frame.getContentPane().add(btnZavrsi);
 		
 		JButton btnUkloni = new JButton("Ukloni");
+		btnUkloni.setBackground(new Color(143, 188, 143));
 		btnUkloni.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String ime=textName.getText();
@@ -142,7 +145,7 @@ public class UklanjanjeKorisnika {
 			}
 		});
 		
-		btnUkloni.setBounds(188, 139, 89, 23);
+		btnUkloni.setBounds(212, 153, 106, 23);
 		frame.getContentPane().add(btnUkloni);
 	}
 

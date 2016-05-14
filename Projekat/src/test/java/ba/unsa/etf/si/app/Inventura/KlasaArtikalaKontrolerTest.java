@@ -1,20 +1,39 @@
 package ba.unsa.etf.si.app.Inventura;
 
+import java.util.List;
+
+import org.junit.Test;
+
+import ba.unsa.etf.si.app.Inventura.Kontroleri.KlasaArtikalaKontroler;
+import ba.unsa.etf.si.app.Inventura.Model.KlasaArtikla;
+import junit.framework.Assert;
 import junit.framework.TestCase;
 
 public class KlasaArtikalaKontrolerTest extends TestCase {
 
-
-	public void testDodaj() {
-		fail("Not yet implemented"); // TODO
+	@Test
+	public void testDodaj() throws Exception {
+		KlasaArtikla klasa = new KlasaArtikla("pice");
+		Long id = KlasaArtikalaKontroler.dodaj(klasa);
+		KlasaArtikla _k2 = new KlasaArtikla();
+		_k2 = KlasaArtikalaKontroler.nadji(id);
+		Assert.assertEquals(_k2.getId(), klasa.getId());
 	}
-
-	public void testNadji() {
-		fail("Not yet implemented"); // TODO
+	@Test
+	public void testNadji() throws Exception {
+		KlasaArtikla klasa = new KlasaArtikla("pice");
+		Long id = KlasaArtikalaKontroler.dodaj(klasa);
+		KlasaArtikla _k2 = new KlasaArtikla();
+		_k2 = KlasaArtikalaKontroler.nadji(id);
+		Assert.assertEquals(_k2.getNaziv(), klasa.getNaziv());
 	}
-
-	public void testIzbrisi() {
-		fail("Not yet implemented"); // TODO
+	@Test(expected=Exception.class)
+	public void testIzbrisi() throws Exception {
+		KlasaArtikla klasa=new KlasaArtikla("Cokolade");
+		Long id=KlasaArtikalaKontroler.dodaj(klasa);
+		KlasaArtikalaKontroler.izbrisi(id);
+		KlasaArtikla pronadjena=KlasaArtikalaKontroler.nadji(id);
+	    
 	}
 
 	public void testIzmijeni() {
@@ -22,7 +41,10 @@ public class KlasaArtikalaKontrolerTest extends TestCase {
 	}
 
 	public void testLista() {
-		fail("Not yet implemented"); // TODO
+
+		List<KlasaArtikla> klase=KlasaArtikalaKontroler.lista();
+		Assert.assertEquals(klase.size(), 26);
+	
 	}
 
 }

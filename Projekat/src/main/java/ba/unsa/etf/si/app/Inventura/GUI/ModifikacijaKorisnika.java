@@ -148,6 +148,7 @@ public class ModifikacijaKorisnika {
 		postaviPrivilegije();
 		
 		JButton btnSacuvaj = new JButton("Sačuvaj");
+		btnSacuvaj.setBackground(new Color(143, 188, 143));
 		btnSacuvaj.setBounds(334, 645, 89, 23);
 		frame.getContentPane().add(btnSacuvaj);
 		btnSacuvaj.addActionListener(new ActionListener() {
@@ -207,6 +208,7 @@ public class ModifikacijaKorisnika {
 		
 		
 		JButton btnZavrsi = new JButton("Odustani");
+		btnZavrsi.setBackground(new Color(143, 188, 143));
 		btnZavrsi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				FormaKontroler.zatvoriFormu(frameRoditelj, frame, false);

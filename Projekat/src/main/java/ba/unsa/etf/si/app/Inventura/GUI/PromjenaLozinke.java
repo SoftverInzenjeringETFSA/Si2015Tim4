@@ -98,25 +98,29 @@ public class PromjenaLozinke {
 		separator.setBounds(32, 59, 298, 7);
 		
 		JLabel lblNewLabel_1 = new JLabel("Unesite staru lozinku:");
-		lblNewLabel_1.setBounds(32, 80, 103, 14);
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblNewLabel_1.setBounds(32, 80, 129, 14);
 		
 		JLabel lblNewLabel_2 = new JLabel("Unesite novu lozinku:");
-		lblNewLabel_2.setBounds(32, 131, 102, 14);
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblNewLabel_2.setBounds(32, 130, 129, 14);
 		
 		JLabel lblNewLabel_3 = new JLabel("Potvrdite novu lozinku:");
-		lblNewLabel_3.setBounds(32, 169, 110, 14);
+		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblNewLabel_3.setBounds(32, 169, 132, 14);
 		
 		txtStaraLozinka = new JTextField();
-		txtStaraLozinka.setBounds(153, 77, 177, 20);
+		txtStaraLozinka.setBounds(174, 77, 156, 20);
 		txtStaraLozinka.setColumns(10);
 		
 		passwordNovaLozinka1 = new JPasswordField();
-		passwordNovaLozinka1.setBounds(152, 128, 178, 20);
+		passwordNovaLozinka1.setBounds(174, 128, 156, 20);
 		
 		passwordNovaLozinka2 = new JPasswordField();
-		passwordNovaLozinka2.setBounds(152, 166, 178, 20);
+		passwordNovaLozinka2.setBounds(174, 166, 156, 20);
 		
 		JButton btnPotvrdi = new JButton("Potvrdi");
+		btnPotvrdi.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnPotvrdi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String staraLozinka=txtStaraLozinka.getText();
@@ -136,11 +140,12 @@ public class PromjenaLozinke {
 				}
 			}
 		});
-		btnPotvrdi.setBounds(252, 212, 78, 23);
+		btnPotvrdi.setBounds(239, 212, 91, 23);
 		btnPotvrdi.setBackground(new Color(143, 188, 143));
 		
 		JButton btnOdustani = new JButton("Odustani");
-		btnOdustani.setBounds(32, 212, 75, 23);
+		btnOdustani.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		btnOdustani.setBounds(32, 212, 91, 23);
 		btnOdustani.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				FormaKontroler.zatvoriFormu(frameRoditelj, frame, false);

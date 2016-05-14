@@ -33,7 +33,7 @@ public final class KlasaArtikalaKontroler {
 		}	
 	}
 	
-	private KlasaArtikalaKontroler(){}
+	public KlasaArtikalaKontroler(){}
 	
 	
 	public static Long dodaj(KlasaArtikla a){
@@ -46,13 +46,15 @@ public final class KlasaArtikalaKontroler {
 		return id;	
 	}
 	
-	public static KlasaArtikla nadji(Long id){
-		openSession();
-		KlasaArtikla a = (KlasaArtikla) s.get(KlasaArtikla.class,new Long(id));
-		t.commit();
+	public static KlasaArtikla nadji(Long id) throws Exception{
 		
-		closeSession();
-		return a;
+		openSession();
+		List<KlasaArtikla> klase = s.createCriteria(KlasaArtikla.class).add(Restrictions.like("id", id)).list();
+		if(klase.size() > 1) {
+			throw new Exception();
+		}
+		KlasaArtikla pronadjenaKlasa = (KlasaArtikla) klase.get(0);
+		return pronadjenaKlasa;	
 	}
 	
 	public static KlasaArtikla nadjiIme(String naziv) throws Exception
@@ -76,7 +78,7 @@ public final class KlasaArtikalaKontroler {
 		closeSession();
 	}
 	
-	public static KlasaArtikla izmijeni(KlasaArtikla a){
+	public static KlasaArtikla izmijeni(KlasaArtikla a) throws Exception{
 		openSession();
 		
 			s.merge(a);

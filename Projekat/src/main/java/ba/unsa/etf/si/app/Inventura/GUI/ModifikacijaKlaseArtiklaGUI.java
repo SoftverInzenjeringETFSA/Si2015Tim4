@@ -113,6 +113,7 @@ public class ModifikacijaKlaseArtiklaGUI {
 		txtNaziv.setColumns(10);
 		
 		JButton btnIzmjeni = new JButton("Izmjeni");
+		btnIzmjeni.setBackground(new Color(143, 188, 143));
 		btnIzmjeni.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try{
@@ -133,6 +134,7 @@ public class ModifikacijaKlaseArtiklaGUI {
 		frame.getContentPane().add(btnIzmjeni);
 		
 		JButton btnOdustani = new JButton("Odustani");
+		btnOdustani.setBackground(new Color(143, 188, 143));
 		btnOdustani.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				FormaKontroler.zatvoriFormu(frameRoditelj, frame, false);

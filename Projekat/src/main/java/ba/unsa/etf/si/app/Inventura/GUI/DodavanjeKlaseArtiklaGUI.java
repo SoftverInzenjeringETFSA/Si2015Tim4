@@ -98,6 +98,7 @@ public class DodavanjeKlaseArtiklaGUI {
 		txtNaziv.setColumns(10);
 		
 		JButton btnDodaj = new JButton("Dodaj klasu artikla");
+		btnDodaj.setBackground(new Color(143, 188, 143));
 		btnDodaj.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -117,7 +118,7 @@ public class DodavanjeKlaseArtiklaGUI {
 		});
 		
 		btnDodaj.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnDodaj.setBounds(165, 158, 156, 23);
+		btnDodaj.setBounds(192, 158, 129, 23);
 		frame.getContentPane().add(btnDodaj);
 		
 		JLabel lblNewLabel = new JLabel("Unos nove klase artikla");
@@ -133,13 +134,14 @@ public class DodavanjeKlaseArtiklaGUI {
 		frame.getContentPane().add(separator);
 		
 		JButton btnZavrsi = new JButton("Završi");
+		btnZavrsi.setBackground(new Color(143, 188, 143));
 		btnZavrsi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				FormaKontroler.zatvoriFormu(frameRoditelj, frame, false);
 			}
 		});
 		btnZavrsi.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnZavrsi.setBounds(31, 158, 89, 23);
+		btnZavrsi.setBounds(31, 158, 109, 23);
 		frame.getContentPane().add(btnZavrsi);
 		
 		lblKorisnik = new JLabel("korisnik");

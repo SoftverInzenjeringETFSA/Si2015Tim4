@@ -127,6 +127,7 @@ public class UnosSkladistaGUI {
 		frame.getContentPane().add(textField_1);
 		
 		JButton btnUnesi = new JButton("Unesi");
+		btnUnesi.setBackground(new Color(143, 188, 143));
 		btnUnesi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -136,17 +137,18 @@ public class UnosSkladistaGUI {
 			}
 		});
 		btnUnesi.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnUnesi.setBounds(304, 191, 89, 23);
+		btnUnesi.setBounds(285, 191, 108, 23);
 		frame.getContentPane().add(btnUnesi);
 		
 		JButton btnOdustani = new JButton("Odustani");
+		btnOdustani.setBackground(new Color(143, 188, 143));
 		btnOdustani.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				FormaKontroler.zatvoriFormu(frameRoditelj, frame, false);
 			}
 		});
 		btnOdustani.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnOdustani.setBounds(24, 191, 89, 23);
+		btnOdustani.setBounds(43, 191, 108, 23);
 		frame.getContentPane().add(btnOdustani);
 	}
 

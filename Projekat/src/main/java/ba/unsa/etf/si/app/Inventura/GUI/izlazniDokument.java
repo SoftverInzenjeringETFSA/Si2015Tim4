@@ -162,6 +162,7 @@ public class izlazniDokument {
 		btnDodaj.setBounds(345, 206, 100, 23);
 		
 		JButton btnOdustani = new JButton("Odustani");
+		btnOdustani.setBackground(new Color(143, 188, 143));
 		btnOdustani.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnOdustani.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -171,6 +172,7 @@ public class izlazniDokument {
 		btnOdustani.setBounds(256, 423, 142, 23);
 		
 		JButton btnZakljuiDokument = new JButton("Zaključi dokument");
+		btnZakljuiDokument.setBackground(new Color(143, 188, 143));
 		btnZakljuiDokument.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Double priv=0.0;
