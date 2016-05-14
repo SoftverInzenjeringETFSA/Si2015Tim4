@@ -26,8 +26,6 @@ import java.awt.Component;
 import javax.swing.AbstractListModel;
 import javax.swing.table.DefaultTableModel;
 
-import org.apache.log4j.Logger;
-
 import ba.unsa.etf.si.app.Inventura.Kontroleri.ArtikliKontroler;
 import ba.unsa.etf.si.app.Inventura.Kontroleri.FormaKontroler;
 import ba.unsa.etf.si.app.Inventura.Kontroleri.InventuraKontroler;
@@ -57,7 +55,7 @@ import javax.swing.JPanel;
 public class InventuraGUI {
 	
 	private JFrame frame;
-	final static Logger logger = Logger.getLogger(LogInScreen.class);
+	
 	private JFrame frameRoditelj;
 	private TipZaposlenika korisnik;
 	private JLabel lblKorisnik;
@@ -72,8 +70,6 @@ public class InventuraGUI {
 	private List<Double> kolicine=new ArrayList<Double>();
 	private MojaTabela tabela;
 	
-	Double ukupnoPrebrojano=0.0;
-	
 	/**
 	 * Launch the application.
 	 */
@@ -84,7 +80,7 @@ public class InventuraGUI {
 					InventuraGUI window = new InventuraGUI();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
-					logger.info(e);
+					e.printStackTrace();
 				}
 			}
 		});
@@ -96,13 +92,13 @@ public class InventuraGUI {
 				try {
 					InventuraGUI window = new InventuraGUI();
 					
-				  window.frameRoditelj=_frameRoditelj;
+					window.frameRoditelj=_frameRoditelj;
 					window.korisnik=_korisnik;
 					window.lblKorisnik.setText(window.korisnik.getIme().toUpperCase());
 					
 					FormaKontroler.postaviFormu(window.frameRoditelj, window.frame, false);
 				} catch (Exception e) {
-					logger.info(e);
+					e.printStackTrace();
 				}
 			}
 		});
@@ -158,7 +154,6 @@ public class InventuraGUI {
 		txtKolicina.setColumns(10);
 		
 		JButton btnDodaj = new JButton("Dodaj artikal");
-		btnDodaj.setBackground(new Color(143, 188, 143));
 		btnDodaj.setBounds(378, 250, 144, 23);
 		btnDodaj.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnDodaj.addActionListener(new ActionListener() {
@@ -178,14 +173,12 @@ public class InventuraGUI {
 						kolicine.add(kolicina);
 						String[] red=new String[]{artikal.getNaziv(), kolicina.toString()};
 						tabela.dodajRed(artikal, red);
-						
 					}
 					else{
 						JOptionPane.showMessageDialog(null, "Artkal je već dodat na popis.");
 					}
 				}
 				catch(NumberFormatException i){
-					logger.info(i);
 					JOptionPane.showMessageDialog(frame, "Format broja nije ispravan.");
 				}
 			}
@@ -196,16 +189,10 @@ public class InventuraGUI {
 		frame.getContentPane().add(txtOpis);
 		
 		JButton btnObracun = new JButton("Zaključi i obračunaj");
-		btnObracun.setBackground(new Color(143, 188, 143));
 		btnObracun.setBounds(478, 456, 143, 23);
 		btnObracun.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnObracun.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {	
-				
-				Izvjestaj manjakIzvjestaj=new Izvjestaj();
-				Izvjestaj visakIzvjestaj=new Izvjestaj();
-				Inventura inventura= new Inventura();
-				
 				try{
 					Date datum=new Date();
 					
@@ -215,56 +202,20 @@ public class InventuraGUI {
 					
 					for(Object o:objekti){
 						Artikal a=(Artikal)o;
-					    
-						Double trenutnoStanje=a.getKolicina();
-					    
 						a.setKolicina(kolicine.get(objekti.indexOf(o)));
 						artikliInventure.add(a);
-						ukupnoPrebrojano = ukupnoPrebrojano + a.getKolicina();
-						
-						Double razlika = (a.getKolicina()-trenutnoStanje);
-						
-						if(razlika>0)
-						{
-							visakIzvjestaj=new Izvjestaj("Visak", inventura.getOpis(), datum, razlika);
-							IzvjestajKontroler.dodaj(visakIzvjestaj);
-							ArtikliKontroler.izmijeni(a);
-						}
-						else if(razlika<0){
-							manjakIzvjestaj=new Izvjestaj("Manjak", inventura.getOpis(), datum, razlika);
-							IzvjestajKontroler.dodaj(manjakIzvjestaj);
-							ArtikliKontroler.izmijeni(a);
-						}
-						else{
-							return;
-						}
-						
 					}
 					
 					String opis=txtOpis.getText();
-						
-					inventura=new Inventura(datum, opis, ukupnoPrebrojano, korisnik);
+					
+					Inventura inventura=new Inventura(datum, opis, korisnik);
 					InventuraKontroler.dodaj(inventura);
 					
-					/*
 					List<Artikal> artikliManjka=new ArrayList<Artikal>();
 					List<Artikal> artikliViska=new ArrayList<Artikal>();
 					
-					List<Artikal> artikliPom=new ArrayList<Artikal>();
-					
 					List<Artikal> artikliBaze=ArtikliKontroler.lista();
 					
-
-					for(Artikal a:artikliInventure){
-						ArtikliKontroler.izmijeni(a);
-					}
-					
-					for(Artikal a:artikliPom){
-						a.setKolicina(0.0);
-						ArtikliKontroler.izmijeni(a);
-					}
-					*/
-					/*
 					for(Artikal a1:artikliBaze){
 						boolean popisan=false;
 						for(Artikal a2:artikliInventure){
@@ -286,11 +237,32 @@ public class InventuraGUI {
 						}
 						if(!popisan && a1.getKolicina()>0){
 							artikliManjka.add(a1);
-							artikliPom.add(a1);
+							
+							Artikal a1kopija=new Artikal();
+							a1kopija.setId(a1.getId());
+							a1kopija.setNaziv(a1.getNaziv());
+							a1kopija.setKlasaArtikla(a1.getKlasaArtikla());
+							a1kopija.setBarkod(a1.getBarkod());
+							a1kopija.setCijena(a1.getCijena());
+							a1kopija.setMjera(a1.getMjera());
+							a1kopija.setKolicina(0.0);
+							
+							artikliInventure.add(a1kopija);
 						}
 					}
-					*/
-
+					
+					Izvjestaj manjak=new Izvjestaj("Manjak", inventura.getOpis(), inventura.getDatum());
+					Izvjestaj visak=new Izvjestaj("Visak", inventura.getOpis(), inventura.getDatum());
+					
+					IzvjestajKontroler.dodaj(manjak);
+					IzvjestajKontroler.dodaj(visak);
+					
+					IzvjestajGUI.pokreni(frame, korisnik, inventura.getDatum(), artikliManjka, artikliViska);
+					
+					// promjena stanja u bazi
+					for(Artikal a:artikliInventure){
+						ArtikliKontroler.izmijeni(a);
+					}
 				}
 				catch(Exception i){
 					JOptionPane.showMessageDialog(frame, i.getMessage());
@@ -311,7 +283,6 @@ public class InventuraGUI {
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		
 		JButton btnOdustani = new JButton("Odustani");
-		btnOdustani.setBackground(new Color(143, 188, 143));
 		btnOdustani.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				FormaKontroler.zatvoriFormu(frameRoditelj, frame, false);
@@ -335,7 +306,6 @@ public class InventuraGUI {
 		
 		
 		JButton btnNadji = new JButton("Očitaj");
-		btnNadji.setBackground(new Color(143, 188, 143));
 		btnNadji.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try{
@@ -397,7 +367,6 @@ public class InventuraGUI {
 		scrollPane.setViewportView(tabela);
 		
 		JButton btnNewButton = new JButton("Ukloni");
-		btnNewButton.setBackground(new Color(143, 188, 143));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int brojReda=tabela.getSelectedRow();
