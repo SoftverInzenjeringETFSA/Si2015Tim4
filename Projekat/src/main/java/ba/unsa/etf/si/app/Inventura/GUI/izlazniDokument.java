@@ -32,12 +32,15 @@ import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
+import org.apache.log4j.Logger;
+
 import javax.swing.JTextArea;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 
 public class izlazniDokument {
-
+	final static Logger logger = Logger.getLogger(LogInScreen.class);
 	private JFrame frame;
 	
 	private JFrame frameRoditelj;
@@ -62,7 +65,7 @@ public class izlazniDokument {
 					window.frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
+					logger.info(e);
 				}
 			}
 		});
@@ -80,7 +83,7 @@ public class izlazniDokument {
 					
 					FormaKontroler.postaviFormu(window.frameRoditelj, window.frame, false);
 				} catch (Exception e) {
-					e.printStackTrace();
+					logger.info(e);
 				}
 			}
 		});

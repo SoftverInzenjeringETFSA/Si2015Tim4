@@ -1,10 +1,13 @@
 package ba.unsa.etf.si.app.Inventura.Kontroleri;
 
+import org.apache.log4j.Logger;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-public class HibernateUtil {
+import ba.unsa.etf.si.app.Inventura.GUI.LogInScreen;
 
+public class HibernateUtil {
+	final static Logger logger = Logger.getLogger(LogInScreen.class);
 	  private static final SessionFactory sessionFactory = buildSessionFactory();
 
 	    @SuppressWarnings("deprecation")
@@ -13,9 +16,8 @@ public class HibernateUtil {
 	            // Create the SessionFactory from hibernate.cfg.xml
 	            return new Configuration().configure().buildSessionFactory();
 	        }
-	        catch (Throwable ex) {
-	            // Make sure you log the exception, as it might be swallowed
-	            System.err.println("Initial SessionFactory creation failed." + ex);
+	        catch (Exception ex) {
+	            logger.info(ex);
 	            throw new ExceptionInInitializerError(ex);
 	        }
 	    }

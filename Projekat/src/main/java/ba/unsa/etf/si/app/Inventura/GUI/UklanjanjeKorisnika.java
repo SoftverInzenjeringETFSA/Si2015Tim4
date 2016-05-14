@@ -23,8 +23,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 
-public class UklanjanjeKorisnika {
+import org.apache.log4j.Logger;
 
+public class UklanjanjeKorisnika {
+	final static Logger logger = Logger.getLogger(LogInScreen.class);
 	private JFrame frame;
 	
 	private JFrame frameRoditelj;
@@ -44,7 +46,7 @@ public class UklanjanjeKorisnika {
 					window.frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
+					logger.info(e);
 				}
 			}
 		});
@@ -62,7 +64,7 @@ public class UklanjanjeKorisnika {
 					
 					FormaKontroler.postaviFormu(window.frameRoditelj, window.frame, false);
 				} catch (Exception e) {
-					e.printStackTrace();
+					logger.info(e);
 				}
 			}
 		});
@@ -138,8 +140,7 @@ public class UklanjanjeKorisnika {
 					TipZaposlenikaKontroler.izbrisi(tip.getId());
 		
 				} catch (Exception e1) {
-					
-					e1.printStackTrace();
+					logger.info(e);
 					JOptionPane.showMessageDialog(null, "Artikal nije u bazi");
 				}
 			}

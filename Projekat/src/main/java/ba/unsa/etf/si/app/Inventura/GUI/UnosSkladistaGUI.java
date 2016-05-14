@@ -8,6 +8,8 @@ import java.awt.Font;
 import java.awt.Color;
 import javax.swing.SwingConstants;
 
+import org.apache.log4j.Logger;
+
 import ba.unsa.etf.si.app.Inventura.Kontroleri.FormaKontroler;
 import ba.unsa.etf.si.app.Inventura.Kontroleri.SkladisteKontroler;
 import ba.unsa.etf.si.app.Inventura.Model.Skladiste;
@@ -20,7 +22,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class UnosSkladistaGUI {
-
+	final static Logger logger = Logger.getLogger(LogInScreen.class);
 	private JFrame frame;
 	
 	private JLabel lblKorisnik;
@@ -41,7 +43,7 @@ public class UnosSkladistaGUI {
 					window.frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
+					logger.info(e);
 				}
 			}
 		});
@@ -59,7 +61,7 @@ public class UnosSkladistaGUI {
 					
 					FormaKontroler.postaviFormu(window.frameRoditelj, window.frame, false);
 				} catch (Exception e) {
-					e.printStackTrace();
+					logger.info(e);
 				}
 			}
 		});

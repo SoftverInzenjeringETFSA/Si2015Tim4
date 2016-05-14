@@ -34,8 +34,10 @@ import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 //import ba.unsa.etf.si.app.Inventura.Model.TipZaposlenika;
 
-public class RegistracijaNovogKorisnika {
+import org.apache.log4j.Logger;
 
+public class RegistracijaNovogKorisnika {
+	final static Logger logger = Logger.getLogger(LogInScreen.class);
 	private JFrame frame;
 	
 	private JFrame frameRoditelj;
@@ -66,7 +68,7 @@ public class RegistracijaNovogKorisnika {
 					window.frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
+					logger.info(e);
 				}
 			}
 		});
@@ -79,7 +81,7 @@ public class RegistracijaNovogKorisnika {
 					RegistracijaNovogKorisnika window = new RegistracijaNovogKorisnika();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
+					logger.info(e);
 				}
 			}
 		});
@@ -97,7 +99,7 @@ public class RegistracijaNovogKorisnika {
 					
 					FormaKontroler.postaviFormu(window.frameRoditelj, window.frame, false);
 				} catch (Exception e) {
-					e.printStackTrace();
+					logger.info(e);
 				}
 			}
 		});
@@ -292,7 +294,7 @@ public class RegistracijaNovogKorisnika {
 			}
 			catch (Exception e) 
 			{
-				e.printStackTrace();
+				logger.info(e);
 			}
 			return novi;
 		

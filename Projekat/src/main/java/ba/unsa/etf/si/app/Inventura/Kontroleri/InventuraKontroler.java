@@ -44,29 +44,19 @@ public class InventuraKontroler {
 		return id;	
 	}
 	
-	public static Inventura nadjiBarKod(String naziv) throws Exception
-	{
-		openSession();
-		List<Object> inventure = s.createCriteria(Inventura.class).add(Restrictions.like("naziv", naziv)).list();
-		if(inventure.size() > 1) {
-			throw new Exception();
-		}
-		Inventura pronadjenaInventura = (Inventura) inventure.get(0);
-		return pronadjenaInventura;
-	}
 	
-	public static Inventura nadji(String naziv){
+	public static Inventura nadji(Long id){
 		openSession();
-		Inventura a = (Inventura) s.get(Inventura.class,new String(naziv));
+		Inventura a = (Inventura) s.get(Inventura.class,new Long(id));
 		t.commit();
 		
-		closeSession();
+		//closeSession();
 		return a;
 	}
 	
-	public static void izbrisi(String naziv){
+	public static void izbrisi(Long id){
 		openSession();
-		Object instance = s.load(Inventura.class, new String(naziv));
+		Object instance = s.load(Inventura.class, new Long(id));
 		if (instance != null)
 			s.delete(instance);
 		

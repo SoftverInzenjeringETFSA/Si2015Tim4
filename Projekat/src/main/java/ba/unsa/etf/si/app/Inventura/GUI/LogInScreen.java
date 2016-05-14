@@ -10,6 +10,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.LayoutStyle.ComponentPlacement;
+
+import org.apache.log4j.Logger;
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -22,7 +25,7 @@ import ba.unsa.etf.si.app.Inventura.Model.TipZaposlenika;;
 public class LogInScreen {
 
 	private JFrame frame;
-	
+	final static Logger logger = Logger.getLogger(LogInScreen.class);
 	private JTextField textField;
 	private JPasswordField passwordField;
 
@@ -36,7 +39,7 @@ public class LogInScreen {
 					LogInScreen window = new LogInScreen();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
+					logger.info(e);
 				}
 			}
 		});
@@ -85,7 +88,7 @@ public class LogInScreen {
 		btnPotvrdi.setBounds(153, 131, 82, 23);
 		btnPotvrdi.setBackground(new Color(143, 188, 143));
 		btnPotvrdi.addActionListener(new ActionListener() {
-			
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				
 				TipZaposlenika korisnik;
@@ -95,18 +98,17 @@ public class LogInScreen {
 					if(korisnik==null){
 						validacija.setText("Korisnicko ime ili lozinka nisu tačni!");	
 					}
-					else if(korisnik.getPrivilegija().equals("Skladistar"))
+					else if("Skladistar".equals(korisnik.getPrivilegija()))
 					{
 						GlavniInterfejs.pokreni(frame, korisnik);
 					}
-					else if(korisnik.getPrivilegija().equals("Sef"))
+					else if("Sef".equals(korisnik.getPrivilegija()))
 					{
 						ProsireniInterfejsGUI.pokreni(frame, korisnik);
 					}
 				}
 				catch (Exception e) {
-					System.out.print("Ne provjeri pass i ne nadje usera");
-					e.printStackTrace();
+					logger.info(e);
 				}
 			}
 		});
@@ -121,6 +123,7 @@ public class LogInScreen {
 		btnExit.setBounds(42, 131, 82, 23);
 		btnExit.setBackground(new Color(143, 188, 143));
 		btnExit.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 			System.exit(0);
 			}
@@ -139,14 +142,14 @@ public class LogInScreen {
 	public static String provjerUserPass(String username, char[] cs) throws Exception{
 		
 		String psw = new String(cs);
-		TipZaposlenika tip = new TipZaposlenika();
+		TipZaposlenika tip;
 		tip = TipZaposlenikaKontroler.nadjiKorisnickoIme(username);
 		if(tip==null){
 			return "nema";
 		}
 		if(tip.getLozinka().equals(psw))
 		{
-			if(tip.getPrivilegija().equals("Sef")) return "Sef";
+			if("Sef".equals(tip.getPrivilegija())) return "Sef";
 			else return "Skladistar";
 		}
 		else{
@@ -167,6 +170,7 @@ public class LogInScreen {
 			}
 		}
 		catch(Exception i){
+			logger.info(i);
 			return null;
 		}
 	}

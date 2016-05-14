@@ -34,10 +34,12 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import org.apache.log4j.Logger;
+
 public class GlavniInterfejs {
 
 	private JFrame frame;
-	
+	final static Logger logger = Logger.getLogger(LogInScreen.class);
 	private JFrame frameRoditelj;
 	private TipZaposlenika korisnik;
 	private JMenu mnKorisnik;
@@ -55,7 +57,7 @@ public class GlavniInterfejs {
 					window.frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
+					logger.info(e);
 				}
 			}
 		});
@@ -73,7 +75,7 @@ public class GlavniInterfejs {
 					
 					FormaKontroler.postaviFormu(window.frameRoditelj, window.frame, true);
 				} catch (Exception e) {
-					e.printStackTrace();
+					logger.info(e);
 				}
 			}
 		});
