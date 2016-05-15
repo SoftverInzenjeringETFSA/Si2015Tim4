@@ -2,6 +2,9 @@ package ba.unsa.etf.si.app.Inventura;
 import ba.unsa.etf.si.app.Inventura.Kontroleri.*;
 import ba.unsa.etf.si.app.Inventura.Model.*;
 
+import java.util.List;
+
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -12,75 +15,69 @@ import junit.framework.TestCase;
 public class ArtikliKontrolerTest extends TestCase {
 
 	KlasaArtikla klasa;
-	Long id;
+	Long idKlase;
+	Long idArtikla;
 	Artikal a;
+	Artikal temp;
 	@Before 
-	public void postavi() { 
+	public void setUp() { 
 	
-	}
-	
-	public void testDodaj() throws Exception {
 		klasa=new KlasaArtikla("Cokolade");
-		id = KlasaArtikalaKontroler.dodaj(klasa);
-		Artikal a=new Artikal("Milka",klasa,"1234567890123",2.5,250.0,"komad");
-		Long id=ArtikliKontroler.dodaj(a);
-		Assert.assertNotNull(Long.toString(id));
+		idKlase = KlasaArtikalaKontroler.dodaj(klasa);
+		a=new Artikal("Milka",klasa,"1234567890123",2.5,250.0,"komad");
+		idArtikla=ArtikliKontroler.dodaj(a);
 	}
+	
 	@Test
 	public void testNadji() throws Exception {
 		
-		Artikal a=ArtikliKontroler.nadji("nidz");
-		Assert.assertEquals(a.getMjera(),"pass" );
+		temp=ArtikliKontroler.nadji("Milka");
+		Assert.assertEquals(temp.getId(),a.getId());
 		
 	}
+	
 	@Test
 	public void testNadjiId() throws Exception {
-		klasa=new KlasaArtikla("Cokolade");
-		id = KlasaArtikalaKontroler.dodaj(klasa);
-		Artikal a=new Artikal("Milka",klasa,"1234567890123",2.5,250.0,"komad");
-		Long id=ArtikliKontroler.dodaj(a);
-		Artikal b = new Artikal();
-		b = ArtikliKontroler.nadjiId(a.getId());
-		Assert.assertEquals(b.getId(), a.getId());
+		temp = ArtikliKontroler.nadjiId(a.getId());
+		
+		Assert.assertEquals(temp.getId(), a.getId());
 	}
+	
 	@Test
 	public void testNadjiBarKod() throws Exception {
-		KlasaArtikla klasa=new KlasaArtikla("Cokolade");
-		Long id = KlasaArtikalaKontroler.dodaj(klasa);
-		Artikal a=new Artikal("Milka",klasa,"1234567890123",2.5,250.0,"komad");
-	    Artikal pronadjeni=ArtikliKontroler.nadjiBarKod("1234567890123");
-	    Assert.assertEquals(a.getCijena(), pronadjeni.getCijena());
+		temp=ArtikliKontroler.nadjiBarKod("1234567890123");
+	    Assert.assertEquals(a.getId(),temp.getId());
 	
 	}
-	@Test(expected = IndexOutOfBoundsException.class)
+	
+	@Test//(expected = IndexOutOfBoundsException.class)
 	public void testIzbrisi() throws Exception {
-		KlasaArtikla klasa=new KlasaArtikla("Voce");
-		Long id = KlasaArtikalaKontroler.dodaj(klasa);
-		Artikal a=new Artikal("Jabuka",klasa,"1234567890124",2.0,300.0,"kg");
-		Long id2=ArtikliKontroler.dodaj(a);
-		ArtikliKontroler.izbrisi(id2);
-        ArtikliKontroler.nadji("Jabuka");		
+		ArtikliKontroler.izbrisi(a.getId());
+        temp=ArtikliKontroler.nadji("Milka");
+        Assert.assertNull(temp);
 	}
+	
 	@Test
 	public void testIzmijeni() throws Exception {
 		
-		Artikal b=ArtikliKontroler.nadji("nidz");
-		//Long id2=ArtikliKontroler.dodaj(a);
-		b.setNaziv("noviNaziv");
-		Artikal novi=ArtikliKontroler.izmijeni(b);
-		Assert.assertEquals("noviNaziv", novi.getNaziv());
+		a.setNaziv("Dorina");
+		temp=ArtikliKontroler.izmijeni(a);
+		Assert.assertEquals(temp.getNaziv(), a.getNaziv());
 		
 	}
-
+	
+	@Test
 	public void testLista() throws Exception {
-		KlasaArtikla _k = new KlasaArtikla("brb");
-		Long id = KlasaArtikalaKontroler.dodaj(_k);
-		KlasaArtikla a2=KlasaArtikalaKontroler.nadji(id);
-		Artikal artikal=new Artikal("Ime",a2,"123456789000",3.0,18.0,"komad");
-		Long id2=ArtikliKontroler.dodaj(artikal);
-		Artikal b = new Artikal();
-		//b = ArtikliKontroler.lista()
-	//	Assert.assertEquals(b.getNaziv(), artikal.getNaziv());
+		List<Artikal>artikli=ArtikliKontroler.lista();
+		Assert.assertEquals(artikli.size(), ArtikliKontroler.lista().size());
 		
 	}
+	
+	@After
+	public void tearDown(){
+		
+		ArtikliKontroler.izbrisi(a.getId());
+		KlasaArtikalaKontroler.izbrisi(klasa.getId());
+	}
+	
 }
