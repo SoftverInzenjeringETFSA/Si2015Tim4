@@ -1,5 +1,6 @@
 package ba.unsa.etf.si.app.Inventura;
 
+import org.hibernate.ObjectNotFoundException;
 import org.junit.After;
 
 import java.util.List;
@@ -15,19 +16,13 @@ public class TipZaposlenikaKontrolerTest extends TestCase {
 	TipZaposlenika z;
 	TipZaposlenika o;
 	Long id;
+	
 	@Before
 	public void setUp(){
 		
 		z = new TipZaposlenika("Ime", "Prezime", "1307992170016", "Adresa", "000111222", "rukfas@gmail.com", "user", "pass", "Šef");
-
-	}
-
-   @Test 
-	public void testDodaj() {
 		id = TipZaposlenikaKontroler.dodaj(z);
-		o = TipZaposlenikaKontroler.nadjiID(id);
-		Assert.assertEquals(o.getId(), z.getId());
-		}
+	}
 
    @Test
 	public void testNadji() throws Exception {
@@ -42,6 +37,7 @@ public class TipZaposlenikaKontrolerTest extends TestCase {
 		Assert.assertEquals(o.getId(),z.getId());
 		}
 
+	@Test
 	public void testNadjiIme() throws Exception {
 		o=TipZaposlenikaKontroler.nadjiIme(z.getIme());
 		Assert.assertEquals(o.getIme(), "Ime");
@@ -69,7 +65,7 @@ public class TipZaposlenikaKontrolerTest extends TestCase {
 		Assert.assertEquals(korisnici.size(), TipZaposlenikaKontroler.lista().size());
 	}
 
-	@Test(expected = Exception.class)
+	@Test(expected = ObjectNotFoundException.class)
 	public void testIzbrisi() throws Exception {
 		o=TipZaposlenikaKontroler.nadji("Ime", "Prezime");
 		TipZaposlenikaKontroler.izbrisi(o.getId());
