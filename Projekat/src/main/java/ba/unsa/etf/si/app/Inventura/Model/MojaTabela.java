@@ -3,6 +3,7 @@ package ba.unsa.etf.si.app.Inventura.Model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Transient;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -11,6 +12,7 @@ public class MojaTabela extends JTable{
 	 * 
 	 */
 	private static final long serialVersionUID = 7845048495337451755L;
+	@Transient
 	private List<Object> objekti;
 	
 	public MojaTabela(){
