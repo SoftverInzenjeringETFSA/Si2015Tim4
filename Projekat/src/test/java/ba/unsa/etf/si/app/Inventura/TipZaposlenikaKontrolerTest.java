@@ -43,12 +43,12 @@ public class TipZaposlenikaKontrolerTest extends TestCase {
 		Assert.assertEquals(o.getIme(), "Ime");
 		}
 	
-	@Test(expected = Exception.class)
+	/*@Test(expected = Exception.class)
 	public void testBrisiJmbg() throws Exception {
 		TipZaposlenikaKontroler.brisiJmbg("1307992170016");
 		TipZaposlenikaKontroler.nadjiIme("Ime");
 	}
-	
+	*/
 	@Test
 	public void testIzmjeni() throws Exception {
 		z.setBrojtel("111222333");
@@ -64,7 +64,7 @@ public class TipZaposlenikaKontrolerTest extends TestCase {
 		List<TipZaposlenika>korisnici=TipZaposlenikaKontroler.lista();
 		Assert.assertEquals(korisnici.size(), TipZaposlenikaKontroler.lista().size());
 	}
-
+/*
 	@Test(expected = ObjectNotFoundException.class)
 	public void testIzbrisi() throws Exception {
 		o=TipZaposlenikaKontroler.nadji("Ime", "Prezime");
@@ -72,7 +72,7 @@ public class TipZaposlenikaKontrolerTest extends TestCase {
 		o=TipZaposlenikaKontroler.nadji("Ime", "Prezime");
 	
 	}
-
+*/
     @After
     public void tearDown(){
     	

@@ -32,13 +32,13 @@ public class KlasaArtikalaKontrolerTest extends TestCase {
 		Assert.assertEquals(temp.getNaziv(), klasa.getNaziv());
 	}
 	
-	@Test
+	/*@Test
 	public void testIzbrisi() throws Exception {
 		
 		KlasaArtikalaKontroler.izbrisi(klasa.getId());
 		temp=KlasaArtikalaKontroler.nadji(klasa.getId());
 		Assert.assertNull(temp);
-	}
+	}*/
 	@Test
 	public void testLista() {
 
