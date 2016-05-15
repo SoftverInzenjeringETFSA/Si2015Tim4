@@ -2,6 +2,7 @@ package ba.unsa.etf.si.app.Inventura;
 
 import java.util.List;
 
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -44,5 +45,12 @@ public class KlasaArtikalaKontrolerTest extends TestCase {
 		Assert.assertEquals(klase.size(), KlasaArtikalaKontroler.lista().size());
 	
 	}
+	@After
+	public void tearDown(){
+		
+		KlasaArtikalaKontroler.izbrisi(klasa.getId());
+		
+	}
+	
 
 }
