@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.junit.Assert;
 
-import ba.unsa.etf.si.app.Inventura.Kontroleri.SkladisteKontroler;
-import ba.unsa.etf.si.app.Inventura.Model.Artikal;
+import ba.unsa.etf.si.app.Inventura.Kontroleri.*;
+import ba.unsa.etf.si.app.Inventura.Model.*;
 import junit.framework.TestCase;
 
 public class SkladisteKontrolerTest extends TestCase {

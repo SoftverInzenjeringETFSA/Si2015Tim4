@@ -8,13 +8,8 @@ import javax.swing.JTable;
 import org.junit.Assert;
 import org.junit.Test;
 
-import ba.unsa.etf.si.app.Inventura.Kontroleri.ArtikliKontroler;
-import ba.unsa.etf.si.app.Inventura.Kontroleri.IzvjestajKontroler;
-import ba.unsa.etf.si.app.Inventura.Kontroleri.PostaviListBox;
-import ba.unsa.etf.si.app.Inventura.Kontroleri.TipZaposlenikaKontroler;
-import ba.unsa.etf.si.app.Inventura.Model.Artikal;
-import ba.unsa.etf.si.app.Inventura.Model.Izvjestaj;
-import ba.unsa.etf.si.app.Inventura.Model.TipZaposlenika;
+import ba.unsa.etf.si.app.Inventura.Kontroleri.*;
+import ba.unsa.etf.si.app.Inventura.Model.*;
 import junit.framework.TestCase;
 
 public class PostaviListBoxTest extends TestCase {

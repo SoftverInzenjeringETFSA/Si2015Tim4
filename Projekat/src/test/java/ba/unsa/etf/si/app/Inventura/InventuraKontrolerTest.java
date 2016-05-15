@@ -7,10 +7,8 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Test;
 
-import ba.unsa.etf.si.app.Inventura.Kontroleri.InventuraKontroler;
-import ba.unsa.etf.si.app.Inventura.Kontroleri.TipZaposlenikaKontroler;
-import ba.unsa.etf.si.app.Inventura.Model.Inventura;
-import ba.unsa.etf.si.app.Inventura.Model.TipZaposlenika;
+import ba.unsa.etf.si.app.Inventura.Kontroleri.*;
+import ba.unsa.etf.si.app.Inventura.Model.*;
 import junit.framework.TestCase;
 
 public class InventuraKontrolerTest extends TestCase {

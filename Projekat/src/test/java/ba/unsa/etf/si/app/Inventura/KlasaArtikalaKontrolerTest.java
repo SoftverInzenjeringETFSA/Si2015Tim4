@@ -5,8 +5,8 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Test;
 
-import ba.unsa.etf.si.app.Inventura.Kontroleri.KlasaArtikalaKontroler;
-import ba.unsa.etf.si.app.Inventura.Model.KlasaArtikla;
+import ba.unsa.etf.si.app.Inventura.Kontroleri.*;
+import ba.unsa.etf.si.app.Inventura.Model.*;
 import junit.framework.TestCase;
 
 public class KlasaArtikalaKontrolerTest extends TestCase {

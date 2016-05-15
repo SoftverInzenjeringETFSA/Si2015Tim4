@@ -1,5 +1,5 @@
 package ba.unsa.etf.si.app.Inventura.Kontroleri;
-
+import ba.unsa.etf.si.app.Inventura.Kontroleri.HibernateUtil;
 import org.apache.log4j.Logger;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;

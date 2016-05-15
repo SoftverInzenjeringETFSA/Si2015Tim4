@@ -8,7 +8,7 @@ import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
 import ba.unsa.etf.si.app.Inventura.Model.TipZaposlenika;
-
+import ba.unsa.etf.si.app.Inventura.Kontroleri.HibernateUtil;
 public class TipZaposlenikaKontroler {
 
 	private static Transaction t;
