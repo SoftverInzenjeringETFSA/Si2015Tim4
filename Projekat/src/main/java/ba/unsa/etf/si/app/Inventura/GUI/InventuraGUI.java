@@ -11,6 +11,8 @@ import java.awt.Color;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
+import org.apache.log4j.Logger;
+
 import ba.unsa.etf.si.app.Inventura.Kontroleri.ArtikliKontroler;
 import ba.unsa.etf.si.app.Inventura.Kontroleri.FormaKontroler;
 import ba.unsa.etf.si.app.Inventura.Kontroleri.InventuraKontroler;
@@ -32,7 +34,7 @@ import java.util.List;
 import java.awt.event.ActionEvent;
 
 public class InventuraGUI {
-	
+	final static Logger logger = Logger.getLogger(LogInScreen.class);
 	private JFrame frame;
 	
 	private JFrame frameRoditelj;
@@ -54,12 +56,13 @@ public class InventuraGUI {
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				try {
 					InventuraGUI window = new InventuraGUI();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
+					logger.info(e);
 				}
 			}
 		});
@@ -67,6 +70,7 @@ public class InventuraGUI {
 	
 	public static void pokreni(final JFrame _frameRoditelj, final TipZaposlenika _korisnik) {
 		EventQueue.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				try {
 					InventuraGUI window = new InventuraGUI();
@@ -77,7 +81,7 @@ public class InventuraGUI {
 					
 					FormaKontroler.postaviFormu(window.frameRoditelj, window.frame, false);
 				} catch (Exception e) {
-					e.printStackTrace();
+					logger.info(e);
 				}
 			}
 		});
@@ -136,6 +140,7 @@ public class InventuraGUI {
 		btnDodaj.setBounds(378, 250, 144, 23);
 		btnDodaj.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnDodaj.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				try{
 					if(artikal==null){
@@ -158,6 +163,7 @@ public class InventuraGUI {
 					}
 				}
 				catch(NumberFormatException i){
+					logger.info(i);
 					JOptionPane.showMessageDialog(frame, "Format broja nije ispravan.");
 				}
 			}
@@ -171,6 +177,7 @@ public class InventuraGUI {
 		btnObracun.setBounds(478, 456, 143, 23);
 		btnObracun.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnObracun.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {	
 				try{
 					Date datum=new Date();
@@ -244,6 +251,7 @@ public class InventuraGUI {
 					}
 				}
 				catch(Exception i){
+					logger.info(i);
 					JOptionPane.showMessageDialog(frame, i.getMessage());
 				}	
 			} 
@@ -263,6 +271,7 @@ public class InventuraGUI {
 		
 		JButton btnOdustani = new JButton("Odustani");
 		btnOdustani.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				FormaKontroler.zatvoriFormu(frameRoditelj, frame, false);
 			}
@@ -286,6 +295,7 @@ public class InventuraGUI {
 		
 		JButton btnNadji = new JButton("Očitaj");
 		btnNadji.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				try{
 					artikal=ArtikliKontroler.nadjiBarKod(txtBarkod.getText());
@@ -295,6 +305,7 @@ public class InventuraGUI {
 					txtMjera.setText(artikal.getMjera());
 				}
 				catch(Exception i){
+					logger.info(i);
 					JOptionPane.showMessageDialog(frame, "Greska u bazi!");
 				}
 			}
@@ -347,6 +358,7 @@ public class InventuraGUI {
 		
 		JButton btnNewButton = new JButton("Ukloni");
 		btnNewButton.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				int brojReda=tabela.getSelectedRow();
 				tabela.obrisiRed(brojReda);

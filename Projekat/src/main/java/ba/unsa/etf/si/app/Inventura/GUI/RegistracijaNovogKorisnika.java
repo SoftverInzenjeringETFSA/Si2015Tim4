@@ -62,7 +62,9 @@ public class RegistracijaNovogKorisnika {
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
+			@Override
 			public void run() {
+			
 				try {
 					RegistracijaNovogKorisnika window = new RegistracijaNovogKorisnika();
 					window.frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -76,6 +78,7 @@ public class RegistracijaNovogKorisnika {
 	
 	public static void pokreni() {
 		EventQueue.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				try {
 					RegistracijaNovogKorisnika window = new RegistracijaNovogKorisnika();
@@ -89,6 +92,7 @@ public class RegistracijaNovogKorisnika {
 	
 	public static void pokreni(final JFrame _frameRoditelj, final TipZaposlenika _korisnik) {
 		EventQueue.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				try {
 					RegistracijaNovogKorisnika window = new RegistracijaNovogKorisnika();
@@ -186,6 +190,7 @@ public class RegistracijaNovogKorisnika {
 		JButton btnZavrsi = new JButton("Odustani");
 		btnZavrsi.setBackground(new Color(143, 188, 143));
 		btnZavrsi.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				FormaKontroler.zatvoriFormu(frameRoditelj, frame, false);
 			}
@@ -197,6 +202,7 @@ public class RegistracijaNovogKorisnika {
 		registruj.setBackground(new Color(143, 188, 143));
 		
 		registruj.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e){
 				try{
 						TipZaposlenika a= new TipZaposlenika();
@@ -205,6 +211,7 @@ public class RegistracijaNovogKorisnika {
 					}					
 				
 				catch(Exception i){
+					logger.info(i);
 					Component frame = null;
 					JOptionPane.showMessageDialog(frame, i.getMessage());
 				}

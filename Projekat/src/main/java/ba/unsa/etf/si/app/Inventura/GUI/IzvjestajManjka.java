@@ -18,6 +18,7 @@ public class IzvjestajManjka {
 	 */
 	public static void pokreni() {
 		EventQueue.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				try {
 					IzvjestajManjka window = new IzvjestajManjka();

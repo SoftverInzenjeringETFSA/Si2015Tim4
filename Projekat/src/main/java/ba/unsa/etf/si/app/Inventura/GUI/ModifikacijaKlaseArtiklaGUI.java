@@ -35,13 +35,14 @@ public class ModifikacijaKlaseArtiklaGUI {
 	private JLabel lblKorisnik;
 	
 	private JTextField txtNaziv;
-	private JList listKlase;
+	private JList<KlasaArtikla> listKlase;
 
 	/**
 	 * Launch the application.
 	 */
 	public static void pokreni() {
 		EventQueue.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				try {
 					ModifikacijaKlaseArtiklaGUI window = new ModifikacijaKlaseArtiklaGUI();
@@ -56,6 +57,7 @@ public class ModifikacijaKlaseArtiklaGUI {
 	
 	public static void pokreni(final JFrame _frameRoditelj, final TipZaposlenika _korisnik) {
 		EventQueue.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				try {
 					ModifikacijaKlaseArtiklaGUI window = new ModifikacijaKlaseArtiklaGUI();
@@ -116,6 +118,7 @@ public class ModifikacijaKlaseArtiklaGUI {
 		JButton btnIzmjeni = new JButton("Izmjeni");
 		btnIzmjeni.setBackground(new Color(143, 188, 143));
 		btnIzmjeni.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				try{
 					KlasaArtikla klasa = (KlasaArtikla)listKlase.getSelectedValue();
@@ -125,6 +128,7 @@ public class ModifikacijaKlaseArtiklaGUI {
 					postaviListu();
 				}
 				catch(Exception i){
+					logger.info(i);
 					JOptionPane.showMessageDialog(frame, i.getMessage());
 				}
 			}
@@ -168,7 +172,7 @@ public class ModifikacijaKlaseArtiklaGUI {
 	private void postaviListu(){
 		List<KlasaArtikla> klase=KlasaArtikalaKontroler.lista();
 		
-		DefaultListModel model=new DefaultListModel();
+		DefaultListModel<KlasaArtikla> model=new DefaultListModel<KlasaArtikla>();
 		
 		for(KlasaArtikla k:klase){
 			model.addElement(k);

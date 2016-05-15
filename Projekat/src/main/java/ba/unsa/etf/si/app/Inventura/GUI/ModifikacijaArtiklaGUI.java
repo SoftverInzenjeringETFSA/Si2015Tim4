@@ -54,6 +54,7 @@ public class ModifikacijaArtiklaGUI {
 	 */
 	public static void pokreni() {
 		EventQueue.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				try {
 					ModifikacijaArtiklaGUI window = new ModifikacijaArtiklaGUI();
@@ -68,6 +69,7 @@ public class ModifikacijaArtiklaGUI {
 	
 	public static void pokreni(final JFrame _frameRoditelj, final TipZaposlenika _korisnik) {
 		EventQueue.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				try {
 					ModifikacijaArtiklaGUI window = new ModifikacijaArtiklaGUI();
@@ -155,6 +157,7 @@ public class ModifikacijaArtiklaGUI {
 		JButton btnSacuvaj = new JButton("Sa\u010Duvaj");
 		btnSacuvaj.setBackground(new Color(143, 188, 143));
 		btnSacuvaj.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				try{
 					Artikal artikal=(Artikal)listArtikli.getSelectedValue();
@@ -164,7 +167,7 @@ public class ModifikacijaArtiklaGUI {
 					postaviListu();
 				}
 				catch(Exception i){
-					
+					logger.info(i);
 					Component frame = null;
 					JOptionPane.showMessageDialog(frame, i.getMessage());
 				}
@@ -176,6 +179,7 @@ public class ModifikacijaArtiklaGUI {
 		JButton btnZavrsi = new JButton("Odustani");
 		btnZavrsi.setBackground(new Color(143, 188, 143));
 		btnZavrsi.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				FormaKontroler.zatvoriFormu(frameRoditelj, frame, false);
 			}

@@ -3,13 +3,13 @@ package ba.unsa.etf.si.app.Inventura.GUI;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
-//import javax.swing.JInternalFrame;
-//import java.awt.BorderLayout;
+
+
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-//import javax.swing.JScrollPane;
+
 import javax.swing.JMenu;
-//import java.awt.Color;
+
 import javax.swing.JLabel;
 import javax.swing.WindowConstants;
 
@@ -37,6 +37,7 @@ public class GlavniInterfejs {
 	 */
 	public static void pokreni() {
 		EventQueue.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				try {
 					GlavniInterfejs window = new GlavniInterfejs();
@@ -52,6 +53,7 @@ public class GlavniInterfejs {
 	
 	public static void pokreni(final JFrame _frameRoditelj, final TipZaposlenika _korisnik) {
 		EventQueue.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				try {
 					GlavniInterfejs window = new GlavniInterfejs();
@@ -92,6 +94,7 @@ public class GlavniInterfejs {
 		
 		JMenuItem mntmZaponiNovu = new JMenuItem("Započni novu");
 		mntmZaponiNovu.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				InventuraGUI.pokreni(frame, korisnik);
 			}
@@ -109,6 +112,7 @@ public class GlavniInterfejs {
 		
 		JMenuItem mntmPregledZavrenih = new JMenuItem("Pregled završenih");
 		mntmPregledZavrenih.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				PostaviListBox.dokumentiInventure(tabela);
 			}
@@ -120,7 +124,9 @@ public class GlavniInterfejs {
 		
 		JMenuItem mntmPregledStanjaNa = new JMenuItem("Pregled stanja na skadištu");
 		mntmPregledStanjaNa.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				
 				PostaviListBox.artikliNaSkladistu(tabela);
 			}
 		});
@@ -131,6 +137,7 @@ public class GlavniInterfejs {
 		
 		JMenuItem mntmKreirajIzlazniDokument_1 = new JMenuItem("Kreiraj dokument");
 		mntmKreirajIzlazniDokument_1.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				izlazniDokument.pokreni(frame, korisnik);
 			}
@@ -139,6 +146,7 @@ public class GlavniInterfejs {
 		
 		JMenuItem mntmPregledKreiranihDokumenata = new JMenuItem("Pregled dokumenata viška");
 		mntmPregledKreiranihDokumenata.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				PostaviListBox.dokumentiViska(tabela);
 			}
@@ -147,6 +155,7 @@ public class GlavniInterfejs {
 		
 		JMenuItem mntmPregledDokumenataManjka = new JMenuItem("Pregled dokumenata manjka");
 		mntmPregledDokumenataManjka.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				PostaviListBox.dokumentiManjka(tabela);
 			}
@@ -155,6 +164,7 @@ public class GlavniInterfejs {
 		
 		JMenuItem mntmPregledDokumenataOtpisa = new JMenuItem("Pregled dokumenata otpisa");
 		mntmPregledDokumenataOtpisa.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				PostaviListBox.dokumentiOtpisa(tabela);
 			}
@@ -163,6 +173,7 @@ public class GlavniInterfejs {
 		
 		JMenuItem mntmPregledIzlaznihDokumenata = new JMenuItem("Pregled izlaznih dokumenata");
 		mntmPregledIzlaznihDokumenata.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				PostaviListBox.dokumentiIzlaza(tabela);
 			}
@@ -174,6 +185,7 @@ public class GlavniInterfejs {
 		
 		JMenuItem mntmNewMenuItem_2 = new JMenuItem("Promijeni lozinku");
 		mntmNewMenuItem_2.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				PromjenaLozinke.pokreni(frame, korisnik);
 			}
@@ -185,6 +197,7 @@ public class GlavniInterfejs {
 		
 		JMenuItem mntmNewMenuItem = new JMenuItem("Odjava");
 		mntmNewMenuItem.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				FormaKontroler.zatvoriFormu(frameRoditelj, frame, true);
 			}

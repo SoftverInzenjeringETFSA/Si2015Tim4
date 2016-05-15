@@ -44,6 +44,7 @@ public class BrisanjeArtikla {
 	 */
 	public static void pokreni() {
 		EventQueue.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				try {
 					BrisanjeArtikla window = new BrisanjeArtikla();
@@ -58,7 +59,9 @@ public class BrisanjeArtikla {
 	
 	public static void pokreni(final JFrame _frameRoditelj, final TipZaposlenika _korisnik) {
 		EventQueue.invokeLater(new Runnable() {
+			@Override
 			public void run() {
+				
 				try {
 					BrisanjeArtikla window = new BrisanjeArtikla();
 					
@@ -110,6 +113,7 @@ public class BrisanjeArtikla {
 		JButton btnNewButton = new JButton("Odustani");
 		btnNewButton.setBounds(36, 132, 87, 23);
 		btnNewButton.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				FormaKontroler.zatvoriFormu(frameRoditelj, frame, false);
 			}
@@ -119,12 +123,14 @@ public class BrisanjeArtikla {
 		JButton btnNewButton_1 = new JButton("Obriši");
 		btnNewButton_1.setBounds(168, 132, 81, 23);
 		btnNewButton_1.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				String barkod=txtBarkod.getText();
 				try {
 					if(ValidacijaArtikla.validirajBarkod(txtBarkod.getText())){
-					Artikal art=new Artikal();
-					art=ArtikliKontroler.nadjiBarKod(barkod);
+					Artikal art=ArtikliKontroler.nadjiBarKod(barkod);
+						//Artikal art=new Artikal();
+					//art=ArtikliKontroler.nadjiBarKod(barkod);
 					ArtikliKontroler.izbrisi(art.getId());
 					JOptionPane.showMessageDialog(null, "Artikal uspljesno izbrisan");
 					}
@@ -140,8 +146,9 @@ public class BrisanjeArtikla {
 		
 		txtBarkod.getDocument().addDocumentListener(new DocumentListener() {
 
+			@Override
 			public void changedUpdate(DocumentEvent arg0) {
-				// TODO Auto-generated method stub
+				
 				if(ValidacijaArtikla.validirajBarkod(txtBarkod.getText())) {
 					txtBarkod.setBackground(Color.WHITE);
 					VbarCode.setText("  ");
@@ -154,7 +161,7 @@ public class BrisanjeArtikla {
 					
 				
 			}
-
+			@Override
 			public void insertUpdate(DocumentEvent arg0) {
 				// TODO Auto-generated method stub
 				if(ValidacijaArtikla.validirajBarkod(txtBarkod.getText())) {
@@ -168,7 +175,7 @@ public class BrisanjeArtikla {
 				}
 				
 			}
-
+			@Override
 			public void removeUpdate(DocumentEvent arg0) {
 				// TODO Auto-generated method stub
 				if(ValidacijaArtikla.validirajBarkod(txtBarkod.getText())) {

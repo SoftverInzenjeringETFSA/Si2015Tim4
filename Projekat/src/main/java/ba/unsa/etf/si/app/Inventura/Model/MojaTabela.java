@@ -7,6 +7,10 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 public class MojaTabela extends JTable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7845048495337451755L;
 	private List<Object> objekti;
 	
 	public MojaTabela(){
@@ -39,10 +43,10 @@ public class MojaTabela extends JTable{
 	public void izmjeniRed(Object objekat, String[] red){
 		DefaultTableModel model=(DefaultTableModel)getModel();
 		
-		int broj_reda=objekti.indexOf(objekat);
+		int brojReda=objekti.indexOf(objekat);
 		
-		model.removeRow(broj_reda);
-		model.insertRow(broj_reda, red);
+		model.removeRow(brojReda);
+		model.insertRow(brojReda, red);
 	}
 	
 	public void isprazni(){

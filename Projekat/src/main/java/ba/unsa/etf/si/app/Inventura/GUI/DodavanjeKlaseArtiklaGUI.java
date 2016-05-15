@@ -40,6 +40,7 @@ public class DodavanjeKlaseArtiklaGUI {
 	 */
 	public static void pokreni() {
 		EventQueue.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				try {
 					DodavanjeKlaseArtiklaGUI window = new DodavanjeKlaseArtiklaGUI();
@@ -54,6 +55,7 @@ public class DodavanjeKlaseArtiklaGUI {
 	
 	public static void pokreni(final JFrame _frameRoditelj, final TipZaposlenika _korisnik) {
 		EventQueue.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				try {
 					DodavanjeKlaseArtiklaGUI window = new DodavanjeKlaseArtiklaGUI();
@@ -102,6 +104,7 @@ public class DodavanjeKlaseArtiklaGUI {
 		JButton btnDodaj = new JButton("Dodaj klasu artikla");
 		btnDodaj.setBackground(new Color(143, 188, 143));
 		btnDodaj.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				
 				try{
@@ -138,6 +141,7 @@ public class DodavanjeKlaseArtiklaGUI {
 		JButton btnZavrsi = new JButton("Završi");
 		btnZavrsi.setBackground(new Color(143, 188, 143));
 		btnZavrsi.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				FormaKontroler.zatvoriFormu(frameRoditelj, frame, false);
 			}
@@ -159,6 +163,7 @@ public class DodavanjeKlaseArtiklaGUI {
 		frame.getContentPane().add(Vnaziv);
 		
 		txtNaziv.getDocument().addDocumentListener(new DocumentListener(){
+			@Override
 			public void changedUpdate(DocumentEvent arg0) {
 				
 				if(ValidacijaKlaseArtikla.validirajNaziv(txtNaziv.getText())) {
@@ -171,7 +176,7 @@ public class DodavanjeKlaseArtiklaGUI {
 				}
 				
 			}
-
+			@Override
 			public void insertUpdate(DocumentEvent arg0) {
 				
 				if(ValidacijaArtikla.validirajNaziv(txtNaziv.getText())) {
@@ -184,7 +189,7 @@ public class DodavanjeKlaseArtiklaGUI {
 				}
 				
 			}
-
+			@Override
 			public void removeUpdate(DocumentEvent arg0) {
 				
 				if(true==ValidacijaArtikla.validirajNaziv(txtNaziv.getText())) {

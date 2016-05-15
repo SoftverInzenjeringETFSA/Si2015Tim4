@@ -13,6 +13,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import org.apache.log4j.Logger;
+
 import ba.unsa.etf.si.app.Inventura.Kontroleri.FormaKontroler;
 import ba.unsa.etf.si.app.Inventura.Model.Artikal;
 import ba.unsa.etf.si.app.Inventura.Model.TipZaposlenika;
@@ -20,7 +22,7 @@ import ba.unsa.etf.si.app.Inventura.Model.TipZaposlenika;
 import javax.swing.JSeparator;
 
 public class IzvjestajGUI {
-
+	final static Logger logger = Logger.getLogger(LogInScreen.class);
 	private JFrame frame;
 	
 	private JFrame frameRoditelj;
@@ -39,12 +41,13 @@ public class IzvjestajGUI {
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				try {
 					IzvjestajGUI window = new IzvjestajGUI();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
+					logger.info(e);
 				}
 			}
 		});
@@ -53,6 +56,7 @@ public class IzvjestajGUI {
 	public static void pokreni(final JFrame _frameRoditelj, final TipZaposlenika _korisnik, 
 							   final Date _datum, final List<Artikal> _artikliManjka, final List<Artikal> _artikliViska) {
 		EventQueue.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				try {
 					IzvjestajGUI window = new IzvjestajGUI();
@@ -64,7 +68,7 @@ public class IzvjestajGUI {
 					FormaKontroler.postaviFormu(window.frameRoditelj, window.frame, false);
 					window.postaviParametre(_datum, _artikliManjka, _artikliViska);
 				} catch (Exception e) {
-					e.printStackTrace();
+					logger.info(e);
 				}
 			}
 		});

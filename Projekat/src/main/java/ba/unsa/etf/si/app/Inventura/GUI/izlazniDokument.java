@@ -151,6 +151,7 @@ public class izlazniDokument {
 					
 				}
 				catch(Exception i){
+					logger.info(i);
 					JOptionPane.showMessageDialog(null,	i.getMessage());
 				}
 			}
@@ -185,6 +186,7 @@ public class izlazniDokument {
 						ArtikliKontroler.izmijeni(artikal);
 					}
 					catch(Exception i){
+						logger.info(i);
 						JOptionPane.showMessageDialog(null, i.getMessage());
 					}
 				}

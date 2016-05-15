@@ -36,6 +36,7 @@ public class UklanjanjeKorisnika {
 	 */
 	public static void pokreni() {
 		EventQueue.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				try {
 					UklanjanjeKorisnika window = new UklanjanjeKorisnika();
@@ -50,6 +51,7 @@ public class UklanjanjeKorisnika {
 	
 	public static void pokreni(final JFrame _frameRoditelj, final TipZaposlenika _korisnik) {
 		EventQueue.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				try {
 					UklanjanjeKorisnika window = new UklanjanjeKorisnika();
@@ -128,6 +130,7 @@ public class UklanjanjeKorisnika {
 		JButton btnUkloni = new JButton("Ukloni");
 		btnUkloni.setBackground(new Color(143, 188, 143));
 		btnUkloni.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				String ime=textName.getText();
 				try{

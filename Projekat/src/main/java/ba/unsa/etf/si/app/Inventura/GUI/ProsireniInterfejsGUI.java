@@ -40,6 +40,7 @@ public class ProsireniInterfejsGUI {
 	
 	public static void pokreni() {
 		EventQueue.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				try {
 					ProsireniInterfejsGUI window = new ProsireniInterfejsGUI();
@@ -54,6 +55,7 @@ public class ProsireniInterfejsGUI {
 	
 	public static void pokreni(final JFrame _frameRoditelj, final TipZaposlenika _korisnik) {
 		EventQueue.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				try {
 					ProsireniInterfejsGUI window = new ProsireniInterfejsGUI();
@@ -72,6 +74,7 @@ public class ProsireniInterfejsGUI {
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				try {
 					ProsireniInterfejsGUI window = new ProsireniInterfejsGUI();
@@ -122,6 +125,7 @@ public class ProsireniInterfejsGUI {
 		
 		JMenuItem mntmUnosSkladita = new JMenuItem("Unos skladišta");
 		mntmUnosSkladita.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				UnosSkladistaGUI.pokreni(frame, korisnik);
 			}
@@ -133,6 +137,7 @@ public class ProsireniInterfejsGUI {
 		
 		JMenuItem mntmKreirajIzlazniDokument_1 = new JMenuItem("Kreiraj dokument");
 		mntmKreirajIzlazniDokument_1.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				izlazniDokument.pokreni(frame, korisnik);
 			}
@@ -141,6 +146,7 @@ public class ProsireniInterfejsGUI {
 		
 		JMenuItem mntmPregledKreiranihDokumenata = new JMenuItem("Pregled dokumenata viška");
 		mntmPregledKreiranihDokumenata.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				PostaviListBox.dokumentiViska(tabela);
 			}
@@ -149,6 +155,7 @@ public class ProsireniInterfejsGUI {
 		
 		JMenuItem mntmPregledDokumenataManjka = new JMenuItem("Pregled dokumenata manjka");
 		mntmPregledDokumenataManjka.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				PostaviListBox.dokumentiManjka(tabela);
 			}
@@ -157,6 +164,7 @@ public class ProsireniInterfejsGUI {
 		
 		JMenuItem mntmPregledDokumenataOtpisa = new JMenuItem("Pregled dokumenata otpisa");
 		mntmPregledDokumenataOtpisa.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				PostaviListBox.dokumentiOtpisa(tabela);
 			}
@@ -165,6 +173,7 @@ public class ProsireniInterfejsGUI {
 		
 		JMenuItem mntmPregledIzlaznihDokumenata = new JMenuItem("Pregled izlaznih dokumenata");
 		mntmPregledIzlaznihDokumenata.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				PostaviListBox.dokumentiIzlaza(tabela);
 			}
@@ -173,6 +182,7 @@ public class ProsireniInterfejsGUI {
 		
 		JMenuItem mntmPregledZaposlenika = new JMenuItem("Pregled zaposlenika");
 		mntmPregledZaposlenika.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				PostaviListBox.prikaziZaposlenike(tabela);
 			}
@@ -195,6 +205,7 @@ public class ProsireniInterfejsGUI {
 		
 		JMenuItem mntmModifikacija_2 = new JMenuItem("Modifikacija");
 		mntmModifikacija_2.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				ModifikacijaKlaseArtiklaGUI.pokreni(frame, korisnik);
 			}
@@ -203,6 +214,7 @@ public class ProsireniInterfejsGUI {
 		
 		JMenuItem mntmBrisanje_2 = new JMenuItem("Brisanje");
 		mntmBrisanje_2.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				BrisanjeKlaseArtikalGUI.pokreni(frame, korisnik);
 			}
@@ -214,6 +226,7 @@ public class ProsireniInterfejsGUI {
 		
 		JMenuItem mntmUnos = new JMenuItem("Unos");
 		mntmUnos.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				DodavanjeArtikla.pokreni(frame, korisnik);
 			}
@@ -222,6 +235,7 @@ public class ProsireniInterfejsGUI {
 		
 		JMenuItem mntmModifikacija = new JMenuItem("Modifikacija");
 		mntmModifikacija.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				ModifikacijaArtiklaGUI.pokreni(frame, korisnik);
 			}
@@ -230,6 +244,7 @@ public class ProsireniInterfejsGUI {
 		
 		JMenuItem mntmBrisanje = new JMenuItem("Brisanje");
 		mntmBrisanje.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				BrisanjeArtikla.pokreni(frame, korisnik);
 			}
@@ -244,6 +259,7 @@ public class ProsireniInterfejsGUI {
 		
 		JMenuItem mntmUnos_1 = new JMenuItem("Unos");
 		mntmUnos_1.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				RegistracijaNovogKorisnika.pokreni(frame, korisnik);
 			}
@@ -252,6 +268,7 @@ public class ProsireniInterfejsGUI {
 		
 		JMenuItem mntmModifikacija_1 = new JMenuItem("Modifikacija");
 		mntmModifikacija_1.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				ModifikacijaKorisnika.pokreni(frame, korisnik);
 			}
@@ -260,6 +277,7 @@ public class ProsireniInterfejsGUI {
 		
 		JMenuItem mntmBrisanje_1 = new JMenuItem("Brisanje");
 		mntmBrisanje_1.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				UklanjanjeKorisnika.pokreni(frame, korisnik);
 			}
@@ -271,6 +289,7 @@ public class ProsireniInterfejsGUI {
 		
 		JMenuItem mntmNewMenuItem_2 = new JMenuItem("Promijeni lozinku");
 		mntmNewMenuItem_2.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				PromjenaLozinke.pokreni(frame, korisnik);
 			}
@@ -282,6 +301,7 @@ public class ProsireniInterfejsGUI {
 		
 		JMenuItem mntmNewMenuItem = new JMenuItem("Odjava");
 		mntmNewMenuItem.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				FormaKontroler.zatvoriFormu(frameRoditelj, frame, true);
 			}

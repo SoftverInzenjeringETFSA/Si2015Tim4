@@ -40,6 +40,7 @@ public class PromjenaLozinke {
 	 */
 	public static void pokreni() {
 		EventQueue.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				try {
 					PromjenaLozinke window = new PromjenaLozinke();
@@ -54,6 +55,7 @@ public class PromjenaLozinke {
 	
 	public static void pokreni(final JFrame _frameRoditelj, final TipZaposlenika _korisnik) {
 		EventQueue.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				try {
 					PromjenaLozinke window = new PromjenaLozinke();
@@ -120,6 +122,7 @@ public class PromjenaLozinke {
 		JButton btnPotvrdi = new JButton("Potvrdi");
 		btnPotvrdi.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnPotvrdi.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				String staraLozinka=txtStaraLozinka.getText();
 				@SuppressWarnings("deprecation")
@@ -132,6 +135,7 @@ public class PromjenaLozinke {
 						TipZaposlenikaKontroler.izmjeni(korisnik);
 					}
 					catch(Exception i){
+						logger.info(i);
 						korisnik.setLozinka(staraLozinka);
 						JOptionPane.showMessageDialog(null, i.getMessage());
 					}
@@ -145,6 +149,7 @@ public class PromjenaLozinke {
 		btnOdustani.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnOdustani.setBounds(32, 212, 91, 23);
 		btnOdustani.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				FormaKontroler.zatvoriFormu(frameRoditelj, frame, false);
 			}

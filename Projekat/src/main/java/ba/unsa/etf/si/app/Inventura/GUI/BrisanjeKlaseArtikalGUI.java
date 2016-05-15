@@ -40,6 +40,7 @@ public class BrisanjeKlaseArtikalGUI {
 	 */
 	public static void pokreni() {
 		EventQueue.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				try {
 					BrisanjeKlaseArtikalGUI window = new BrisanjeKlaseArtikalGUI();
@@ -54,6 +55,7 @@ public class BrisanjeKlaseArtikalGUI {
 	
 	public static void pokreni(final JFrame _frameRoditelj, final TipZaposlenika _korisnik) {
 		EventQueue.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				try {
 					BrisanjeKlaseArtikalGUI window = new BrisanjeKlaseArtikalGUI();
@@ -122,11 +124,13 @@ public class BrisanjeKlaseArtikalGUI {
 		btnObrisi.setBackground(new Color(143, 188, 143));
 		
 		btnObrisi.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				String naziv=txtNaziv.getText();
 				try{
-					KlasaArtikla art=new KlasaArtikla();
-					art=KlasaArtikalaKontroler.nadjiIme(naziv);
+					KlasaArtikla art = KlasaArtikalaKontroler.nadjiIme(naziv);
+					//KlasaArtikla art=new KlasaArtikla();
+					//art=KlasaArtikalaKontroler.nadjiIme(naziv);
 					KlasaArtikalaKontroler.izbrisi(art.getId());
 				}
 				catch(Exception i){
@@ -144,6 +148,7 @@ public class BrisanjeKlaseArtikalGUI {
 		JButton btnOdustani = new JButton("Odustani");
 		btnOdustani.setBackground(new Color(143, 188, 143));
 		btnOdustani.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				FormaKontroler.zatvoriFormu(frameRoditelj, frame, false);
 			}

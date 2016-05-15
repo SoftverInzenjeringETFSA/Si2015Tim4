@@ -57,6 +57,7 @@ public class DodavanjeArtikla {
 	
 	public static void  main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				try {
 					DodavanjeArtikla window = new DodavanjeArtikla();
@@ -71,6 +72,7 @@ public class DodavanjeArtikla {
 	
 	public static void  pokreni(){
 		EventQueue.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				try {
 					DodavanjeArtikla window = new DodavanjeArtikla();
@@ -84,6 +86,7 @@ public class DodavanjeArtikla {
 	
 	public static void pokreni(final JFrame _frameRoditelj, final TipZaposlenika _korisnik) {
 		EventQueue.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				try {
 					DodavanjeArtikla window = new DodavanjeArtikla();
@@ -137,6 +140,7 @@ public class DodavanjeArtikla {
 		JButton btnZavrsi = new JButton("Odustani");
 		btnZavrsi.setBounds(28, 304, 92, 23);
 		btnZavrsi.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				FormaKontroler.zatvoriFormu(frameRoditelj, frame, false);
 			}
@@ -146,12 +150,12 @@ public class DodavanjeArtikla {
 		JButton btnUnesi = new JButton("Dodaj");
 		btnUnesi.setBounds(197, 304, 95, 23);
 		btnUnesi.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				try{
 					if(ValidacijaArtikla.validirajNaziv(txtNaziv.getText()) && ValidacijaArtikla.validirajBarkod(txtBarkod.getText()) && ValidacijaArtikla.validirajCijenu(txtCijena.getText()) && ValidacijaArtikla.validirajKolicinu(txtKolicina.getText(),_mjera.get(comboMjera.getSelectedIndex())))
 					{	
-						Artikal a= new Artikal();
-						a=dajArtikal();
+						Artikal a=dajArtikal();
 						ArtikliKontroler.dodaj(a);
 					}
 					else
@@ -181,7 +185,7 @@ public class DodavanjeArtikla {
 		
 		comboKlasa = new JComboBox<KlasaArtikla>();
 		comboKlasa.setBounds(126, 150, 166, 20);
-		if(_artikli.size() != 0) {
+		if(!_artikli.isEmpty()) {
 			for(KlasaArtikla a : _artikli) {
 				if(a != null) {
 					comboKlasa.addItem(a);
@@ -213,7 +217,7 @@ public class DodavanjeArtikla {
 		
 		comboMjera = new JComboBox<String>();
 		comboMjera.setBounds(126, 274, 166, 20);
-		if(_mjera.size() != 0) {
+		if(!_mjera.isEmpty()) {
 			for(String m : _mjera) {
 				if(m != null) {
 					comboMjera.addItem(m);
@@ -234,6 +238,7 @@ public class DodavanjeArtikla {
 		Vkolicina.setBounds(126, 251, 6, 14);
 		
 		txtNaziv.getDocument().addDocumentListener(new DocumentListener(){
+			@Override
 			public void changedUpdate(DocumentEvent arg0) {
 				// TODO Auto-generated method stub
 				if(ValidacijaArtikla.validirajNaziv(txtNaziv.getText())) {
@@ -247,7 +252,7 @@ public class DodavanjeArtikla {
 				}
 				
 			}
-
+			@Override
 			public void insertUpdate(DocumentEvent arg0) {
 				// TODO Auto-generated method stub
 				if(ValidacijaArtikla.validirajNaziv(txtNaziv.getText())) {
@@ -261,7 +266,7 @@ public class DodavanjeArtikla {
 				}
 				
 			}
-
+			@Override
 			public void removeUpdate(DocumentEvent arg0) {
 				// TODO Auto-generated method stub
 				if(true==ValidacijaArtikla.validirajNaziv(txtNaziv.getText())) {
@@ -277,7 +282,7 @@ public class DodavanjeArtikla {
 		});
 		
 		txtBarkod.getDocument().addDocumentListener(new DocumentListener() {
-
+			@Override
 			public void changedUpdate(DocumentEvent arg0) {
 				// TODO Auto-generated method stub
 				if(ValidacijaArtikla.validirajBarkod(txtBarkod.getText())) {
@@ -292,7 +297,7 @@ public class DodavanjeArtikla {
 					
 				
 			}
-
+			@Override
 			public void insertUpdate(DocumentEvent arg0) {
 				// TODO Auto-generated method stub
 				if(ValidacijaArtikla.validirajBarkod(txtBarkod.getText())) {
@@ -306,7 +311,7 @@ public class DodavanjeArtikla {
 				}
 				
 			}
-
+			@Override
 			public void removeUpdate(DocumentEvent arg0) {
 				// TODO Auto-generated method stub
 				if(ValidacijaArtikla.validirajBarkod(txtBarkod.getText())) {
@@ -322,7 +327,7 @@ public class DodavanjeArtikla {
 		});
 		
 		txtCijena.getDocument().addDocumentListener(new DocumentListener() {
-
+			@Override
 			public void changedUpdate(DocumentEvent arg0) {
 				// TODO Auto-generated method stub
 				if(ValidacijaArtikla.validirajCijenu(txtCijena.getText())) {
@@ -337,7 +342,7 @@ public class DodavanjeArtikla {
 					
 				
 			}
-
+			@Override
 			public void insertUpdate(DocumentEvent arg0) {
 				// TODO Auto-generated method stub
 				if(ValidacijaArtikla.validirajCijenu(txtCijena.getText())) {
@@ -351,7 +356,7 @@ public class DodavanjeArtikla {
 				}
 				
 			}
-
+			@Override
 			public void removeUpdate(DocumentEvent arg0) {
 				// TODO Auto-generated method stub
 				if(ValidacijaArtikla.validirajCijenu(txtCijena.getText())) {
@@ -367,7 +372,7 @@ public class DodavanjeArtikla {
 		});
 		
 		txtKolicina.getDocument().addDocumentListener(new DocumentListener() {
-
+			@Override
 			public void changedUpdate(DocumentEvent arg0) {
 				// TODO Auto-generated method stub
 				if(ValidacijaArtikla.validirajKolicinu(txtKolicina.getText(), _mjera.get(comboMjera.getSelectedIndex()))){
@@ -380,7 +385,7 @@ public class DodavanjeArtikla {
 					Vkolicina.setForeground(Color.RED);
 				}
 			}
-
+			@Override
 			public void insertUpdate(DocumentEvent arg0) {
 				// TODO Auto-generated method stub
 				if(ValidacijaArtikla.validirajKolicinu(txtKolicina.getText(), _mjera.get(comboMjera.getSelectedIndex()))){
@@ -394,7 +399,7 @@ public class DodavanjeArtikla {
 				}
 				
 			}
-
+			@Override
 			public void removeUpdate(DocumentEvent arg0) {
 				// TODO Auto-generated method stub
 				if(ValidacijaArtikla.validirajKolicinu(txtKolicina.getText(), _mjera.get(comboMjera.getSelectedIndex()))){

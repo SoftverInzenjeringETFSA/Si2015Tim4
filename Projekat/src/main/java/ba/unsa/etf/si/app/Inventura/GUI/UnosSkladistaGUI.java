@@ -37,6 +37,7 @@ public class UnosSkladistaGUI {
 	 */
 	public static void pokreni() {
 		EventQueue.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				try {
 					UnosSkladistaGUI window = new UnosSkladistaGUI();
@@ -51,6 +52,7 @@ public class UnosSkladistaGUI {
 	
 	public static void pokreni(final JFrame _frameRoditelj, final TipZaposlenika _korisnik) {
 		EventQueue.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				try {
 					UnosSkladistaGUI window = new UnosSkladistaGUI();
@@ -131,6 +133,7 @@ public class UnosSkladistaGUI {
 		JButton btnUnesi = new JButton("Unesi");
 		btnUnesi.setBackground(new Color(143, 188, 143));
 		btnUnesi.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				
 				Skladiste s=new Skladiste(textField.getText(),textField_1.getText(),korisnik);
@@ -145,6 +148,7 @@ public class UnosSkladistaGUI {
 		JButton btnOdustani = new JButton("Odustani");
 		btnOdustani.setBackground(new Color(143, 188, 143));
 		btnOdustani.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				FormaKontroler.zatvoriFormu(frameRoditelj, frame, false);
 			}

@@ -11,12 +11,11 @@ import java.awt.Font;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
 
-// import ba.unsa.etf.si.app.Inventura.Model.Sef;
-// import ba.unsa.etf.si.app.Inventura.Model.Skladistar;
+
 import ba.unsa.etf.si.app.Inventura.Model.TipZaposlenika;
 import ba.unsa.etf.si.app.Inventura.Kontroleri.FormaKontroler;
 import ba.unsa.etf.si.app.Inventura.Kontroleri.TipZaposlenikaKontroler;
-//import ba.unsa.etf.si.app.Inventura.Model.Skladistar;
+
 
 
 import javax.swing.DefaultListModel;
@@ -64,6 +63,7 @@ public class ModifikacijaKorisnika {
 	 */
 	public static void pokreni() {
 		EventQueue.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				try {
 					ModifikacijaKorisnika window = new ModifikacijaKorisnika();
@@ -78,6 +78,7 @@ public class ModifikacijaKorisnika {
 	
 	public static void pokreni(final JFrame _frameRoditelj, final TipZaposlenika _korisnik) {
 		EventQueue.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				try {
 					ModifikacijaKorisnika window = new ModifikacijaKorisnika();
@@ -149,6 +150,7 @@ public class ModifikacijaKorisnika {
 		btnSacuvaj.setBounds(334, 645, 89, 23);
 		frame.getContentPane().add(btnSacuvaj);
 		btnSacuvaj.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				try{
 					TipZaposlenika zaposlenik=(TipZaposlenika)listKorisnici.getSelectedValue();
@@ -158,7 +160,7 @@ public class ModifikacijaKorisnika {
 					postaviListu();
 				}
 				catch(Exception i){
-					
+					logger.info(i);
 					Component frame = null;
 					JOptionPane.showMessageDialog(frame, i.getMessage());
 				}
@@ -207,6 +209,7 @@ public class ModifikacijaKorisnika {
 		JButton btnZavrsi = new JButton("Odustani");
 		btnZavrsi.setBackground(new Color(143, 188, 143));
 		btnZavrsi.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				FormaKontroler.zatvoriFormu(frameRoditelj, frame, false);
 			}
