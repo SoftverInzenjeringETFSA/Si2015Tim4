@@ -19,6 +19,8 @@ public class ArtikliKontrolerTest extends TestCase {
 	Long idArtikla;
 	Artikal a;
 	Artikal temp;
+	
+	
 	@Before 
 	public void setUp() { 
 	
