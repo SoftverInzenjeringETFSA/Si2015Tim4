@@ -1,7 +1,9 @@
 package ba.unsa.etf.si.app.Inventura.Kontroleri;
+import ba.unsa.etf.si.app.Inventura.GUI.LogInScreen;
 import ba.unsa.etf.si.app.Inventura.Kontroleri.HibernateUtil;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
@@ -15,6 +17,7 @@ public final class KlasaArtikalaKontroler {
 
 	private static Transaction t;
 	private static Session s;
+	final static Logger logger = Logger.getLogger(LogInScreen.class);
 	
 	private static void openSession(){
 		if(s!=null){
@@ -54,10 +57,8 @@ public final class KlasaArtikalaKontroler {
 	      klase = s.createCriteria(KlasaArtikla.class).add(Restrictions.like("id", id)).list();
 	    }
 	    catch(Exception ex){
-	      return null;
-	    }
-	    if(klase.size() == 0){
-	      return null;
+	    	logger.info(ex);
+	    	return null;
 	    }
 	    if(klase.size() > 1) {
 	      throw new Exception();

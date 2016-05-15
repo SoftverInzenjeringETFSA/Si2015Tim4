@@ -59,7 +59,7 @@ public final class ValidacijaArtikla {
 		
 		try{
 			Double kolicina=Double.parseDouble(txt_kolicina);
-			if(kolicina<0 || (kolicina!=Math.floor(kolicina))){   //mjera==Math.floor(kom) &&
+			if(kolicina<0){   //mjera==Math.floor(kom) &&
 				return false;
 			}
 		}

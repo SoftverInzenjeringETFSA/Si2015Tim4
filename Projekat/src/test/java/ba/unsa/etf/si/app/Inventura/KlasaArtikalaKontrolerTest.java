@@ -47,7 +47,7 @@ public class KlasaArtikalaKontrolerTest extends TestCase {
 	
 	}
 	@After
-	public void tearDown(){
+	public void tearDown() throws Exception{
 		
 		KlasaArtikalaKontroler.izbrisi(klasa.getId());
 		
