@@ -166,7 +166,7 @@ public class LogInScreen {
 			}
 		}
 		catch(Exception i){
-			logger.info("Nema korisnika!");
+			logger.info(i);
 			return null;
 		}
 	}

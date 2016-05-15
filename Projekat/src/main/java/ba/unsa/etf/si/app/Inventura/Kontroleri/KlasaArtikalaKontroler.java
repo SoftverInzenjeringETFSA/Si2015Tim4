@@ -9,6 +9,7 @@ import org.hibernate.criterion.Restrictions;
 import ba.unsa.etf.si.app.Inventura.Kontroleri.HibernateUtil;
 import ba.unsa.etf.si.app.Inventura.Model.KlasaArtikla;
 //import java.util.List;
+import javassist.tools.rmi.ObjectNotFoundException;
 
 public final class KlasaArtikalaKontroler {
 
@@ -46,15 +47,24 @@ public final class KlasaArtikalaKontroler {
 	}
 	
 	public static KlasaArtikla nadji(Long id) throws Exception{
-		
-		openSession();
-		List<KlasaArtikla> klase = s.createCriteria(KlasaArtikla.class).add(Restrictions.like("id", id)).list();
-		if(klase.size() > 1) {
-			throw new Exception();
-		}
-		KlasaArtikla pronadjenaKlasa = (KlasaArtikla) klase.get(0);
-		return pronadjenaKlasa;	
-	}
+	    
+	    openSession();
+	    List<KlasaArtikla> klase = null;
+	    try{ 
+	      klase = s.createCriteria(KlasaArtikla.class).add(Restrictions.like("id", id)).list();
+	    }
+	    catch(Exception ex){
+	      return null;
+	    }
+	    if(klase.size() == 0){
+	      return null;
+	    }
+	    if(klase.size() > 1) {
+	      throw new Exception();
+	    }
+	    KlasaArtikla pronadjenaKlasa = (KlasaArtikla) klase.get(0);
+	    return pronadjenaKlasa; 
+	  }
 	
 	public static KlasaArtikla nadjiIme(String naziv) throws Exception
 	{

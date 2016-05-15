@@ -139,7 +139,7 @@ public class UklanjanjeKorisnika {
 					TipZaposlenikaKontroler.izbrisi(tip.getId());
 		
 				} catch (Exception e1) {
-					logger.info(e);
+					logger.info(e1);
 					JOptionPane.showMessageDialog(null, "Artikal nije u bazi");
 				}
 			}
