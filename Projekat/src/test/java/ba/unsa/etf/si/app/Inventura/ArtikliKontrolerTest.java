@@ -29,8 +29,8 @@ public class ArtikliKontrolerTest extends TestCase {
 	@Test
 	public void testNadji() throws Exception {
 		
-		Artikal a=ArtikliKontroler.nadji("vato");
-		Assert.assertEquals(a.getMjera(),"komad" );
+		Artikal a=ArtikliKontroler.nadji("nidz");
+		Assert.assertEquals(a.getMjera(),"pass" );
 		
 	}
 	@Test
@@ -64,7 +64,7 @@ public class ArtikliKontrolerTest extends TestCase {
 	@Test
 	public void testIzmijeni() throws Exception {
 		
-		Artikal b=ArtikliKontroler.nadji("vato");
+		Artikal b=ArtikliKontroler.nadji("nidz");
 		//Long id2=ArtikliKontroler.dodaj(a);
 		b.setNaziv("noviNaziv");
 		Artikal novi=ArtikliKontroler.izmijeni(b);
