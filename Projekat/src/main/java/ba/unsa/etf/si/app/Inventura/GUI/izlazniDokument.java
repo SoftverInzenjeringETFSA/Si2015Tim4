@@ -3,14 +3,9 @@ package ba.unsa.etf.si.app.Inventura.GUI;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
-import javax.swing.DefaultListModel;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Color;
-import javax.swing.LayoutStyle.ComponentPlacement;
-
 import ba.unsa.etf.si.app.Inventura.Kontroleri.ArtikliKontroler;
 import ba.unsa.etf.si.app.Inventura.Kontroleri.FormaKontroler;
 import ba.unsa.etf.si.app.Inventura.Kontroleri.IzvjestajKontroler;
@@ -19,7 +14,6 @@ import ba.unsa.etf.si.app.Inventura.Model.Izvjestaj;
 import ba.unsa.etf.si.app.Inventura.Model.MojaTabela;
 import ba.unsa.etf.si.app.Inventura.Model.TipZaposlenika;
 
-import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -30,7 +24,6 @@ import java.util.Date;
 import java.util.List;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import org.apache.log4j.Logger;

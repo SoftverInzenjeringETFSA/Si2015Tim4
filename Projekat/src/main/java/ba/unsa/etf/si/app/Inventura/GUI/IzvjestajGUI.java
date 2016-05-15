@@ -15,12 +15,8 @@ import javax.swing.table.DefaultTableModel;
 
 import ba.unsa.etf.si.app.Inventura.Kontroleri.FormaKontroler;
 import ba.unsa.etf.si.app.Inventura.Model.Artikal;
-import ba.unsa.etf.si.app.Inventura.Model.Izvjestaj;
 import ba.unsa.etf.si.app.Inventura.Model.TipZaposlenika;
 
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 import javax.swing.JSeparator;
 
 public class IzvjestajGUI {

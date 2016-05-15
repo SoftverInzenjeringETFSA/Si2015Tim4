@@ -7,7 +7,6 @@ import org.hibernate.Transaction;
 //import org.hibernate.criterion.Restrictions;
 import org.hibernate.criterion.Restrictions;
 
-import ba.unsa.etf.si.app.Inventura.Model.Artikal;
 import ba.unsa.etf.si.app.Inventura.Model.Izvjestaj;
 
 public class IzvjestajKontroler {

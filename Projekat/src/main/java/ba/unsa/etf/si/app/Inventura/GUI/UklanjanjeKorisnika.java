@@ -1,11 +1,7 @@
 package ba.unsa.etf.si.app.Inventura.GUI;
-import ba.unsa.etf.si.app.Inventura.Kontroleri.ArtikliKontroler;
 import ba.unsa.etf.si.app.Inventura.Kontroleri.FormaKontroler;
 import ba.unsa.etf.si.app.Inventura.Kontroleri.TipZaposlenikaKontroler;
-import ba.unsa.etf.si.app.Inventura.Model.Artikal;
 import ba.unsa.etf.si.app.Inventura.Model.TipZaposlenika;
-import ba.unsa.etf.si.app.Inventura.Model.ValidacijaArtikla;
-
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;

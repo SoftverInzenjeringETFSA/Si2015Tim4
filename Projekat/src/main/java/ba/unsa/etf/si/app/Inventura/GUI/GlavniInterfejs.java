@@ -7,21 +7,10 @@ import javax.swing.JFrame;
 //import java.awt.BorderLayout;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
 //import javax.swing.JScrollPane;
 import javax.swing.JMenu;
 //import java.awt.Color;
 import javax.swing.JLabel;
-//import javax.swing.JPanel;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-//import java.awt.Component;
-//import javax.swing.Box;
-//import javax.swing.JTable;
-//import javax.swing.ListSelectionModel;
-//import javax.swing.table.DefaultTableModel;
-import javax.swing.JList;
-import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.WindowConstants;
 
 import ba.unsa.etf.si.app.Inventura.Kontroleri.FormaKontroler;
@@ -32,8 +21,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
-
 import org.apache.log4j.Logger;
 
 public class GlavniInterfejs {

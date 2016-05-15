@@ -92,9 +92,7 @@ public final class ArtikliKontroler{
 				s.merge(a);
 				t.commit();
 				closeSession();
-				
-			String naziv=a.getNaziv();
-			
+							
 			return nadjiId(a.getId());
 		}
 		

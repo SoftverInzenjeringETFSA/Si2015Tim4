@@ -11,14 +11,10 @@ import java.awt.Font;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
 
-import ba.unsa.etf.si.app.Inventura.Model.Artikal;
-import ba.unsa.etf.si.app.Inventura.Model.KlasaArtikla;
 // import ba.unsa.etf.si.app.Inventura.Model.Sef;
 // import ba.unsa.etf.si.app.Inventura.Model.Skladistar;
 import ba.unsa.etf.si.app.Inventura.Model.TipZaposlenika;
-import ba.unsa.etf.si.app.Inventura.Kontroleri.ArtikliKontroler;
 import ba.unsa.etf.si.app.Inventura.Kontroleri.FormaKontroler;
-import ba.unsa.etf.si.app.Inventura.Kontroleri.KlasaArtikalaKontroler;
 import ba.unsa.etf.si.app.Inventura.Kontroleri.TipZaposlenikaKontroler;
 //import ba.unsa.etf.si.app.Inventura.Model.Skladistar;
 
@@ -26,7 +22,6 @@ import ba.unsa.etf.si.app.Inventura.Kontroleri.TipZaposlenikaKontroler;
 import javax.swing.DefaultListModel;
 
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import java.awt.SystemColor;
 import javax.swing.JList;

@@ -3,27 +3,12 @@ package ba.unsa.etf.si.app.Inventura.GUI;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
-import javax.swing.JMenuBar;
-import javax.swing.JMenu;
-import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JLabel;
-import java.awt.BorderLayout;
 import javax.swing.SwingConstants;
 import java.awt.Font;
 import java.awt.Color;
 import javax.swing.JTextField;
-import javax.swing.JComboBox;
-import javax.swing.JFormattedTextField;
-import javax.swing.JTable;
-import javax.swing.Box;
-import javax.swing.DefaultListModel;
-import javax.swing.JSplitPane;
-import javax.swing.JList;
-import javax.swing.JTextPane;
-import javax.swing.JSpinner;
-import java.awt.Component;
-import javax.swing.AbstractListModel;
 import javax.swing.table.DefaultTableModel;
 
 import ba.unsa.etf.si.app.Inventura.Kontroleri.ArtikliKontroler;
@@ -33,24 +18,18 @@ import ba.unsa.etf.si.app.Inventura.Kontroleri.IzvjestajKontroler;
 import ba.unsa.etf.si.app.Inventura.Model.Artikal;
 import ba.unsa.etf.si.app.Inventura.Model.Inventura;
 import ba.unsa.etf.si.app.Inventura.Model.Izvjestaj;
-import ba.unsa.etf.si.app.Inventura.Model.KlasaArtikla;
 import ba.unsa.etf.si.app.Inventura.Model.MojaTabela;
 import ba.unsa.etf.si.app.Inventura.Model.TipZaposlenika;
 
-import javax.swing.ListSelectionModel;
 import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.JTextArea;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.awt.event.ActionEvent;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.JPanel;
 
 public class InventuraGUI {
 	

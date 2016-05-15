@@ -4,15 +4,11 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import java.awt.Color;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import java.awt.Font;
 import javax.swing.JSeparator;
-import javax.swing.LayoutStyle.ComponentPlacement;
-
 import org.apache.log4j.Logger;
 
 import ba.unsa.etf.si.app.Inventura.Kontroleri.FormaKontroler;

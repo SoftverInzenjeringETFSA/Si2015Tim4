@@ -16,18 +16,14 @@ import javax.swing.SwingConstants;
 
 import org.apache.log4j.Logger;
 
-import ba.unsa.etf.si.app.Inventura.Model.Artikal;
 import ba.unsa.etf.si.app.Inventura.Model.KlasaArtikla;
 import ba.unsa.etf.si.app.Inventura.Model.TipZaposlenika;
-import ba.unsa.etf.si.app.Inventura.Kontroleri.ArtikliKontroler;
 import ba.unsa.etf.si.app.Inventura.Kontroleri.FormaKontroler;
 import ba.unsa.etf.si.app.Inventura.Kontroleri.KlasaArtikalaKontroler;
 
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.JButton;
-
-import org.apache.log4j.Logger;
 
 public class BrisanjeKlaseArtikalGUI {
 	final static Logger logger = Logger.getLogger(LogInScreen.class);

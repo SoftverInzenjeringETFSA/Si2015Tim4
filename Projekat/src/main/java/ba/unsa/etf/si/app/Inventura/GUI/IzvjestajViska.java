@@ -3,17 +3,11 @@ package ba.unsa.etf.si.app.Inventura.GUI;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
 import java.awt.Font;
-import javax.swing.JTextField;
-import javax.swing.LayoutStyle.ComponentPlacement;
-
 import org.apache.log4j.Logger;
 
 import javax.swing.JTextArea;
-import javax.swing.JButton;
 import java.awt.Color;
 
 public class IzvjestajViska {

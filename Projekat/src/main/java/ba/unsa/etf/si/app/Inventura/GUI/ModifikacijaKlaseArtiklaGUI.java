@@ -25,7 +25,6 @@ import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JSeparator;
 import java.awt.Color;
-import java.awt.Component;
 
 public class ModifikacijaKlaseArtiklaGUI {
 	final static Logger logger = Logger.getLogger(LogInScreen.class);

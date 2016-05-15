@@ -7,7 +7,6 @@ import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
 import ba.unsa.etf.si.app.Inventura.Kontroleri.HibernateUtil;
-import ba.unsa.etf.si.app.Inventura.Model.Artikal;
 import ba.unsa.etf.si.app.Inventura.Model.KlasaArtikla;
 //import java.util.List;
 
@@ -84,9 +83,7 @@ public final class KlasaArtikalaKontroler {
 			s.merge(a);
 			t.commit();
 			closeSession();
-			
-		String naziv = a.getNaziv();	
-		
+					
 		return nadji(a.getId());
 	}
 	

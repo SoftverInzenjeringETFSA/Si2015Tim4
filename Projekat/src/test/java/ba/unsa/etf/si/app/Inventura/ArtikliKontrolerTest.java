@@ -1,15 +1,13 @@
 package ba.unsa.etf.si.app.Inventura;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import ba.unsa.etf.si.app.Inventura.Kontroleri.ArtikliKontroler;
 import ba.unsa.etf.si.app.Inventura.Kontroleri.KlasaArtikalaKontroler;
-import ba.unsa.etf.si.app.Inventura.Kontroleri.TipZaposlenikaKontroler;
 import ba.unsa.etf.si.app.Inventura.Model.Artikal;
 import ba.unsa.etf.si.app.Inventura.Model.KlasaArtikla;
-import ba.unsa.etf.si.app.Inventura.Model.TipZaposlenika;
-import junit.framework.Assert;
 import junit.framework.TestCase;
 
 public class ArtikliKontrolerTest extends TestCase {

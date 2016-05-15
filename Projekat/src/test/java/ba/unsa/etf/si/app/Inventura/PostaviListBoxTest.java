@@ -1,27 +1,58 @@
 package ba.unsa.etf.si.app.Inventura;
 
+import javax.swing.JTable;
+
+import org.junit.Assert;
+
+import ba.unsa.etf.si.app.Inventura.Kontroleri.PostaviListBox;
 import junit.framework.TestCase;
 
 public class PostaviListBoxTest extends TestCase {
 	
 	public void testDokumentiViska() {
-		fail("Not yet implemented"); // TODO
+
+		JTable t=new JTable();
+		PostaviListBox.dokumentiViska(t);
+		//t.getRowCount()
+		//List<Izvjestaj>i=IzvjestajKontroler.lista();
+		Assert.assertEquals(t.getRowCount(), 0);
 	}
 
 	public void testDokumentiManjka() {
-		fail("Not yet implemented"); // TODO
+
+		JTable t=new JTable();
+		PostaviListBox.dokumentiManjka(t);
+		Assert.assertEquals(t.getRowCount(),0);
 	}
 
 	public void testDokumentiOtpisa() {
-		fail("Not yet implemented"); // TODO
+		
+		JTable t=new JTable();
+		PostaviListBox.dokumentiOtpisa(t);
+		Assert.assertEquals(t.getRowCount(),1);
+		
 	}
 
 	public void testDokumentiIzlaza() {
-		fail("Not yet implemented"); // TODO
-	}
+		JTable t=new JTable();
+		PostaviListBox.dokumentiIzlaza(t);
+		Assert.assertEquals(t.getRowCount(),2);
+		}
 
-	public void testDokumentiInventure() {
-		fail("Not yet implemented"); // TODO
-	}
+	public void testArtikliNaSkladistu() {
+		JTable t=new JTable();
+		PostaviListBox.artikliNaSkladistu(t);
+		Assert.assertEquals(t.getRowCount(),9);	}
+	
+	
+	public void testPrikaziZaposlenike() {
+		JTable t=new JTable();
+		PostaviListBox.prikaziZaposlenike(t);
+		Assert.assertEquals(t.getRowCount(),9);	}
+	
+	
+	
+	
+	
 
 }

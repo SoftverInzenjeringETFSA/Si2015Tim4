@@ -1,10 +1,7 @@
 package ba.unsa.etf.si.app.Inventura.Kontroleri;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.DefaultListModel;
-import javax.swing.JList;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -14,6 +11,7 @@ import ba.unsa.etf.si.app.Inventura.Model.Izvjestaj;
 import ba.unsa.etf.si.app.Inventura.Model.TipZaposlenika;
 
 public final class PostaviListBox {
+	
 	public static void dokumentiViska(JTable tabela){
 		List<Izvjestaj> izvjestaji = IzvjestajKontroler.lista();
 		

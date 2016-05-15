@@ -2,11 +2,11 @@ package ba.unsa.etf.si.app.Inventura;
 
 import java.util.List;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import ba.unsa.etf.si.app.Inventura.Kontroleri.TipZaposlenikaKontroler;
 import ba.unsa.etf.si.app.Inventura.Model.TipZaposlenika;
-import junit.framework.Assert;
 import junit.framework.TestCase;
 
 public class TipZaposlenikaKontrolerTest extends TestCase {

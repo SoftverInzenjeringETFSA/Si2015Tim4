@@ -3,23 +3,12 @@ package ba.unsa.etf.si.app.Inventura.GUI;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
-//import javax.swing.JScrollPane;
-//import javax.swing.JTable;
-//import javax.swing.ListSelectionModel;
-//import javax.swing.table.DefaultTableModel;
-import javax.swing.JLabel;
-//import java.awt.SystemColor;
-//import java.awt.Window;
-import java.awt.Font;
-import javax.swing.SwingConstants;
-
 import org.apache.log4j.Logger;
 
 import ba.unsa.etf.si.app.Inventura.Kontroleri.FormaKontroler;
 import ba.unsa.etf.si.app.Inventura.Kontroleri.PostaviListBox;
 import ba.unsa.etf.si.app.Inventura.Model.TipZaposlenika;
 
-import javax.swing.JSeparator;
 //import javax.swing.JTextField;
 //import javax.swing.JComboBox;
 //import javax.swing.JComponent;
@@ -32,9 +21,6 @@ import javax.swing.JMenuItem;
 //import java.awt.event.KeyEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-//import javax.swing.JFrame;
-//import javax.swing.JFrame;
-import javax.swing.JList;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 //import java.awt.Color;
