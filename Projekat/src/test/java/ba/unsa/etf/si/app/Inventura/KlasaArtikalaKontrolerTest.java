@@ -36,7 +36,8 @@ public class KlasaArtikalaKontrolerTest extends TestCase {
 	public void testIzbrisi() throws Exception {
 		
 		KlasaArtikalaKontroler.izbrisi(klasa.getId());
-		Assert.assertNull(klasa);
+		temp=KlasaArtikalaKontroler.nadji(klasa.getId());
+		Assert.assertNull(temp);
 	}
 	@Test
 	public void testLista() {
