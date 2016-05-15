@@ -19,11 +19,7 @@ public class IzvjestajKontrolerTest extends TestCase {
 		Calendar c=Calendar.getInstance();
 		c.set(2016, 05, 14, 15, 57, 00);
 		d=c.getTime();
-<<<<<<< HEAD
 		Izvjestaj i = new Izvjestaj("Izlaz", "Ovo dokument izlaza", d, 250.0);
-=======
-		Izvjestaj i = new Izvjestaj("vrsta", "opis", d, 0.0);
->>>>>>> 402f5ac2000885ca825196971f16fe863837c02e
 		Long id = IzvjestajKontroler.dodaj(i);
 		Izvjestaj i2 = new Izvjestaj();
 		i2 = IzvjestajKontroler.nadji(id);
@@ -35,11 +31,7 @@ public class IzvjestajKontrolerTest extends TestCase {
 		Calendar c=Calendar.getInstance();
 		c.set(2016, 05, 11, 11, 50, 00);
 		d=c.getTime();
-<<<<<<< HEAD
 		Izvjestaj i = new Izvjestaj("Otpis", "Ovo dokument otpisa", d, 12.0);
-=======
-		Izvjestaj i = new Izvjestaj("vrsta", "opis", d, 0.0);
->>>>>>> 402f5ac2000885ca825196971f16fe863837c02e
 		Long id = IzvjestajKontroler.dodaj(i);
 		
 		Izvjestaj i2 = new Izvjestaj();

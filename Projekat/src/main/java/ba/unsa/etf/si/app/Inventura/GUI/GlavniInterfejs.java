@@ -63,7 +63,7 @@ public class GlavniInterfejs {
 		});
 	}
 	
-	public static void pokreni(JFrame _frameRoditelj, TipZaposlenika _korisnik) {
+	public static void pokreni(final JFrame _frameRoditelj, final TipZaposlenika _korisnik) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {

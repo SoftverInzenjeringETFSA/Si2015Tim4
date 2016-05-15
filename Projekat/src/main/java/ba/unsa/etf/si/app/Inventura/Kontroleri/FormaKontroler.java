@@ -4,7 +4,7 @@ import javax.swing.JFrame;
 
 public final class FormaKontroler {
 	@SuppressWarnings("deprecation")
-	public static void postaviFormu(JFrame frameRoditelj, JFrame frame, boolean prijava){
+	public static void postaviFormu(final JFrame frameRoditelj, final JFrame frame, final boolean prijava){
 		if(prijava){
 			frameRoditelj.setVisible(false);
 		}

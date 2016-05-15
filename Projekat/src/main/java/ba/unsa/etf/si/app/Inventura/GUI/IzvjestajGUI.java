@@ -54,8 +54,8 @@ public class IzvjestajGUI {
 		});
 	}
 	
-	public static void pokreni(JFrame _frameRoditelj, TipZaposlenika _korisnik, 
-							   Date _datum, List<Artikal> _artikliManjka, List<Artikal> _artikliViska) {
+	public static void pokreni(final JFrame _frameRoditelj, final TipZaposlenika _korisnik, 
+							   final Date _datum, final List<Artikal> _artikliManjka, final List<Artikal> _artikliViska) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {

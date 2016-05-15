@@ -86,7 +86,7 @@ public class InventuraGUI {
 		});
 	}
 	
-	public static void pokreni(JFrame _frameRoditelj, TipZaposlenika _korisnik) {
+	public static void pokreni(final JFrame _frameRoditelj, final TipZaposlenika _korisnik) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -251,8 +251,8 @@ public class InventuraGUI {
 						}
 					}
 					
-					Izvjestaj manjak=new Izvjestaj("Manjak", inventura.getOpis(), inventura.getDatum());
-					Izvjestaj visak=new Izvjestaj("Visak", inventura.getOpis(), inventura.getDatum());
+					Izvjestaj manjak=new Izvjestaj("Manjak", inventura.getOpis(), inventura.getDatum(), null);
+					Izvjestaj visak=new Izvjestaj("Visak", inventura.getOpis(), inventura.getDatum(),null);
 					
 					IzvjestajKontroler.dodaj(manjak);
 					IzvjestajKontroler.dodaj(visak);

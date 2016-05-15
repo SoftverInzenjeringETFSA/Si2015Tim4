@@ -88,7 +88,6 @@ public class LogInScreen {
 		btnPotvrdi.setBounds(153, 131, 82, 23);
 		btnPotvrdi.setBackground(new Color(143, 188, 143));
 		btnPotvrdi.addActionListener(new ActionListener() {
-			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				
 				TipZaposlenika korisnik;
@@ -123,7 +122,6 @@ public class LogInScreen {
 		btnExit.setBounds(42, 131, 82, 23);
 		btnExit.setBackground(new Color(143, 188, 143));
 		btnExit.addActionListener(new ActionListener() {
-			@Override
 			public void actionPerformed(ActionEvent e) {
 			System.exit(0);
 			}
