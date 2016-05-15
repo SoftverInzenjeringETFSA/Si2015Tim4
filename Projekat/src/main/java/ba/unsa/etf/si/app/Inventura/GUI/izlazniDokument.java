@@ -138,10 +138,10 @@ public class izlazniDokument {
 				try{
 					Double kolicina=Double.parseDouble(txtKolicina.getText());
 					
-					if(kolicina<0 || (artikal.getMjera().equals("kom") && kolicina!=Math.floor(kolicina))){
-						JOptionPane.showMessageDialog(null,	"Kolicina pozitivna itd.");
-						return;
-					}
+					//if(kolicina<0 || (artikal.getMjera().equals("kom") && kolicina!=Math.floor(kolicina))){
+					//	JOptionPane.showMessageDialog(null,	"Kolicina pozitivna itd.");
+					//	return;
+					//}
 					
 					String[] red=new String[]{artikal.getNaziv(), Double.toString(kolicina)};
 					
