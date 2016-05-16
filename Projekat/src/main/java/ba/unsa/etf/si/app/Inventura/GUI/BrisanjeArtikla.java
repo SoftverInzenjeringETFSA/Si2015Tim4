@@ -128,9 +128,9 @@ public class BrisanjeArtikla {
 				String barkod=txtBarkod.getText();
 				try {
 					if(ValidacijaArtikla.validirajBarkod(txtBarkod.getText())){
-					Artikal art=ArtikliKontroler.nadjiBarKod(barkod);
-						//Artikal art=new Artikal();
-					//art=ArtikliKontroler.nadjiBarKod(barkod);
+					//Artikal art=ArtikliKontroler.nadjiBarKod(barkod);
+					Artikal art=new Artikal();
+					art=ArtikliKontroler.nadjiBarKod(barkod);
 					ArtikliKontroler.izbrisi(art.getId());
 					JOptionPane.showMessageDialog(null, "Artikal uspljesno izbrisan");
 					}
@@ -149,14 +149,18 @@ public class BrisanjeArtikla {
 			@Override
 			public void changedUpdate(DocumentEvent arg0) {
 				
-				if(ValidacijaArtikla.validirajBarkod(txtBarkod.getText())) {
-					txtBarkod.setBackground(Color.WHITE);
-					VbarCode.setText("  ");
-				}
-				else{
-					txtBarkod.setBackground(Color.getHSBColor(0, 80, 100));
-					VbarCode.setText("treba imati 13 znakova");
-					VbarCode.setForeground(Color.RED);
+				try {
+					if(ValidacijaArtikla.validirajBarkod(txtBarkod.getText())) {
+						txtBarkod.setBackground(Color.WHITE);
+						VbarCode.setText("  ");
+					}
+					else{
+						txtBarkod.setBackground(Color.getHSBColor(0, 80, 100));
+						VbarCode.setText("treba imati 13 znakova");
+						VbarCode.setForeground(Color.RED);
+					}
+				} catch (Exception e) {
+					logger.info(e);
 				}
 					
 				
@@ -164,28 +168,36 @@ public class BrisanjeArtikla {
 			@Override
 			public void insertUpdate(DocumentEvent arg0) {
 				// TODO Auto-generated method stub
-				if(ValidacijaArtikla.validirajBarkod(txtBarkod.getText())) {
-					txtBarkod.setBackground(Color.WHITE);
-					VbarCode.setText("  ");
-				}
-				else{
-					txtBarkod.setBackground(Color.getHSBColor(0, 80, 100));
-					VbarCode.setText("treba imati 13 znakova");
-					VbarCode.setForeground(Color.RED);
+				try {
+					if(ValidacijaArtikla.validirajBarkod(txtBarkod.getText())) {
+						txtBarkod.setBackground(Color.WHITE);
+						VbarCode.setText("  ");
+					}
+					else{
+						txtBarkod.setBackground(Color.getHSBColor(0, 80, 100));
+						VbarCode.setText("treba imati 13 znakova");
+						VbarCode.setForeground(Color.RED);
+					}
+				} catch (Exception e) {
+					logger.info(e);
 				}
 				
 			}
 			@Override
 			public void removeUpdate(DocumentEvent arg0) {
 				// TODO Auto-generated method stub
-				if(ValidacijaArtikla.validirajBarkod(txtBarkod.getText())) {
-					txtBarkod.setBackground(Color.WHITE);
-					VbarCode.setText("  ");
-				}
-				else{
-					txtBarkod.setBackground(Color.getHSBColor(0, 80, 100));
-					VbarCode.setText("treba imati 13 znakova");
-					VbarCode.setForeground(Color.RED);
+				try {
+					if(ValidacijaArtikla.validirajBarkod(txtBarkod.getText())) {
+						txtBarkod.setBackground(Color.WHITE);
+						VbarCode.setText("  ");
+					}
+					else{
+						txtBarkod.setBackground(Color.getHSBColor(0, 80, 100));
+						VbarCode.setText("treba imati 13 znakova");
+						VbarCode.setForeground(Color.RED);
+					}
+				} catch (Exception e) {
+					logger.info(e);
 				}
 			}
 		});

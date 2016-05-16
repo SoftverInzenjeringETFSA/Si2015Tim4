@@ -46,6 +46,7 @@ public final class ArtikliKontroler{
 		
 		public static Artikal nadji(String naziv) throws Exception{
 			openSession();
+			@SuppressWarnings("unchecked")
 			List<Object> artikli = s.createCriteria(Artikal.class).add(Restrictions.like("naziv", naziv)).list();
 			if(artikli.size() > 1) {
 				throw new Exception();
@@ -65,12 +66,12 @@ public final class ArtikliKontroler{
 			return pronadjeniArtikal;
 		}
 		
-		public static Artikal nadjiBarKod(String barkod) throws Exception
+		public static Artikal nadjiBarKod(String barkod) 
 		{
 			openSession();
 			List<Object> artikli = s.createCriteria(Artikal.class).add(Restrictions.like("barkod", barkod)).list();
-			if(artikli.size() > 1) {
-				throw new Exception();
+			if(artikli.size() == 0) {
+				return null;
 			}
 			Artikal pronadjeniArtikal = (Artikal) artikli.get(0);
 			return pronadjeniArtikal;
