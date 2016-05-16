@@ -153,10 +153,21 @@ public class DodavanjeArtikla {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try{
+					
+					List<Artikal> artikaltmp= ArtikliKontroler.lista();
+					
+					for( Artikal a : artikaltmp ){
+						if(a.getBarkod().equals(txtBarkod.getText())){
+							JOptionPane.showMessageDialog(null, "Artikal sa tim bar kodom vec postoji!");
+							return;
+						}
+					}
+					
 					if(ValidacijaArtikla.validirajNaziv(txtNaziv.getText()) && ValidacijaArtikla.validirajBarkod(txtBarkod.getText()) && ValidacijaArtikla.validirajCijenu(txtCijena.getText()) && ValidacijaArtikla.validirajKolicinu(txtKolicina.getText(),_mjera.get(comboMjera.getSelectedIndex())))
 					{	
 						Artikal a=dajArtikal();
 						ArtikliKontroler.dodaj(a);
+						JOptionPane.showMessageDialog(null, "Artikal uspjesno dodan!");
 					}
 					else
 					{

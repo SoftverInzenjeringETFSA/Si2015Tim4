@@ -1,19 +1,24 @@
-package ba.unsa.etf.si.app.Inventura.GUI;
+	package ba.unsa.etf.si.app.Inventura.GUI;
 
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import java.awt.Color;
 import javax.swing.SwingConstants;
 
 import org.apache.log4j.Logger;
 
+import ba.unsa.etf.si.app.Inventura.Kontroleri.ArtikliKontroler;
 import ba.unsa.etf.si.app.Inventura.Kontroleri.FormaKontroler;
 import ba.unsa.etf.si.app.Inventura.Kontroleri.SkladisteKontroler;
+import ba.unsa.etf.si.app.Inventura.Model.Artikal;
 import ba.unsa.etf.si.app.Inventura.Model.Skladiste;
 import ba.unsa.etf.si.app.Inventura.Model.TipZaposlenika;
+import ba.unsa.etf.si.app.Inventura.Model.ValidacijaArtikla;
 
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
@@ -135,10 +140,15 @@ public class UnosSkladistaGUI {
 		btnUnesi.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				try{
+					Skladiste s=new Skladiste(textField.getText(),textField_1.getText(),korisnik);
+					SkladisteKontroler.dodajInfoOSkladistu(s);				
+				}
+				catch(Exception i){
+					logger.info(i);
+					JOptionPane.showMessageDialog(frame, i.getMessage());
+				}
 				
-				Skladiste s=new Skladiste(textField.getText(),textField_1.getText(),korisnik);
-				SkladisteKontroler sk=new SkladisteKontroler();
-				sk.dodajInfoOSkladistu(s);
 			}
 		});
 		btnUnesi.setFont(new Font("Tahoma", Font.PLAIN, 12));

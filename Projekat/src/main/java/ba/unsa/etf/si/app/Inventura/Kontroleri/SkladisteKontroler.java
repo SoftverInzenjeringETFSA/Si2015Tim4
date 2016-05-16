@@ -38,7 +38,7 @@ public class SkladisteKontroler {
 		t.commit();
 		return klasaArtikalatmp;
 	}
-	
+	/*
 	public void dodajInfoOSkladistu(Skladiste skl){
 		
 		//dodavanje u bazu informacija sa forme
@@ -49,6 +49,16 @@ public class SkladisteKontroler {
 		closeSession();
 	
 		
+	}
+	*/
+	public static Long dodajInfoOSkladistu(Skladiste sk1){
+		openSession();
+		
+		Long id= (Long) s.save(sk1);
+		t.commit();
+		
+		closeSession();
+		return id;	
 	}
 	
 	

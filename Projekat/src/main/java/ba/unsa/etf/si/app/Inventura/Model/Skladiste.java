@@ -35,7 +35,7 @@ public class Skladiste implements Serializable{
 
 	
 	
-	@OneToOne(optional = false, fetch = FetchType.LAZY)
+	@ManyToOne(optional = true, fetch = FetchType.LAZY)
 	@JoinColumn(name = "sef_id")
 	private TipZaposlenika sef;
 	
@@ -67,7 +67,7 @@ public class Skladiste implements Serializable{
 		setNaziv(_naziv);
 		setLokacija(_lokacija);
 		setSef(sef);
-		artikli=new ArrayList<Artikal>();
+	
 	}
 	
 	public Skladiste(String _naziv, String _lokacija, List<Artikal> _artikli){
