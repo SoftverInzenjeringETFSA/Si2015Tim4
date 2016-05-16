@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 import java.awt.Color;
 import java.awt.Component;
 
@@ -16,8 +17,10 @@ import javax.swing.SwingConstants;
 
 import org.apache.log4j.Logger;
 
+import ba.unsa.etf.si.app.Inventura.Model.Artikal;
 import ba.unsa.etf.si.app.Inventura.Model.KlasaArtikla;
 import ba.unsa.etf.si.app.Inventura.Model.TipZaposlenika;
+import ba.unsa.etf.si.app.Inventura.Kontroleri.ArtikliKontroler;
 import ba.unsa.etf.si.app.Inventura.Kontroleri.FormaKontroler;
 import ba.unsa.etf.si.app.Inventura.Kontroleri.KlasaArtikalaKontroler;
 
@@ -128,15 +131,18 @@ public class BrisanjeKlaseArtikalGUI {
 			public void actionPerformed(ActionEvent e) {
 				String naziv=txtNaziv.getText();
 				try{
-					KlasaArtikla art = KlasaArtikalaKontroler.nadjiIme(naziv);
-					//KlasaArtikla art=new KlasaArtikla();
-					//art=KlasaArtikalaKontroler.nadjiIme(naziv);
+					
+					KlasaArtikla art=new KlasaArtikla();
+					art=KlasaArtikalaKontroler.nadjiIme(naziv);
+				
+					
 					KlasaArtikalaKontroler.izbrisi(art.getId());
+					
 				}
 				catch(Exception i){
 					logger.info(i);
 					Component frame = null;
-					JOptionPane.showMessageDialog(frame, i.getMessage());
+					JOptionPane.showMessageDialog(null, "Prije brisanja klase artikla, potrebno je obrisati sve artikle te klase!");
 				}
 			}
 		});
