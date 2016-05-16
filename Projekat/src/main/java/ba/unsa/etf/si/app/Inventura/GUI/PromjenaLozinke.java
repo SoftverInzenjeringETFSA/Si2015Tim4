@@ -129,16 +129,28 @@ public class PromjenaLozinke {
 				String novaLozinka1=new String(passwordNovaLozinka1.getText());
 				String novaLozinka2=new String(passwordNovaLozinka2.getText());
 				
-				if(korisnik.getLozinka().equals(staraLozinka) && novaLozinka1.equals(novaLozinka2)){
+				if(korisnik.getLozinka().equals(staraLozinka) && novaLozinka1.equals(novaLozinka2) && (novaLozinka1.length()>=10) && novaLozinka2.length()>=10)
+				{
 					korisnik.setLozinka(novaLozinka1);
 					try{
+						
 						TipZaposlenikaKontroler.izmjeni(korisnik);
+						JOptionPane.showMessageDialog(null, "Lozinka uspjesno promjenjena!");
 					}
 					catch(Exception i){
 						logger.info(i);
 						korisnik.setLozinka(staraLozinka);
 						JOptionPane.showMessageDialog(null, i.getMessage());
 					}
+				}
+				else if(!korisnik.getLozinka().equals(staraLozinka)){
+					JOptionPane.showMessageDialog(null, "Unesite ispravnu staru lozinku!");
+				}
+				else if(!novaLozinka1.equals(novaLozinka2)){
+					JOptionPane.showMessageDialog(null, "Nova lozinka mora biti ista u oba polja!");
+				}
+				else if(novaLozinka1.length()<10 || novaLozinka2.length()<10){
+					JOptionPane.showMessageDialog(null, "Lozinka mora biti duza od 10 karaktera!");
 				}
 			}
 		});

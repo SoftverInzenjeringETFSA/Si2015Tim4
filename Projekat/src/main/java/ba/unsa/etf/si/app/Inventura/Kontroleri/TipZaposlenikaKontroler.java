@@ -151,7 +151,7 @@ public class TipZaposlenikaKontroler {
 				s.merge(tip);
 				t.commit();
 			closeSession();
-				System.out.print("ne merga");
+				
 			return nadjiId(tip.getId());
 		}
 		
