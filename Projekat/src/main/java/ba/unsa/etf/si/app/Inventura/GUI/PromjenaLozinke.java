@@ -31,7 +31,7 @@ public class PromjenaLozinke {
 	private TipZaposlenika korisnik;
 	private JLabel lblKorisnik;
 	
-	private JTextField txtStaraLozinka;
+	private JPasswordField txtStaraLozinka;
 	private JPasswordField passwordNovaLozinka1;
 	private JPasswordField passwordNovaLozinka2;
 
@@ -109,7 +109,7 @@ public class PromjenaLozinke {
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		lblNewLabel_3.setBounds(32, 169, 132, 14);
 		
-		txtStaraLozinka = new JTextField();
+		txtStaraLozinka = new JPasswordField();
 		txtStaraLozinka.setBounds(174, 77, 156, 20);
 		txtStaraLozinka.setColumns(10);
 		
