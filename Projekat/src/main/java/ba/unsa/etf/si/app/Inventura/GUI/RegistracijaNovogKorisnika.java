@@ -266,6 +266,10 @@ public class RegistracijaNovogKorisnika {
 			public void actionPerformed(ActionEvent e){
 				boolean postojiIme=false;
 				try{	
+					String imeZaposlenika = textIme.getText();
+					String prezime = textPrezime.getText();
+					String JMBG = textJMBG.getText();
+					String brojTelefona = textBrojTelefona.getText();
 					
 					List<TipZaposlenika> tipTemp= TipZaposlenikaKontroler.lista();
 					
@@ -278,6 +282,37 @@ public class RegistracijaNovogKorisnika {
 							JOptionPane.showMessageDialog(null, "Morate izabrati drugu lozinku!");
 							return;
 						}
+					}
+					
+					
+					String email = textEmail.getText();
+					String emailreg = "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
+
+					 Boolean result = email.matches(emailreg);
+					if(result == false){
+						JOptionPane.showMessageDialog(null, "Email nije unesen u validnom formatu!");
+						return;
+					}
+				
+					if(!JMBG.matches("[0-9]+") && (JMBG.length()<13 || JMBG.length()>13)){
+						JOptionPane.showMessageDialog(null, "JMBG broj sadrzi samo brojeve i ima tacno 13 brojeva!");
+						return;
+					}
+					else if (!JMBG.matches("[0-9]+")) {
+						JOptionPane.showMessageDialog(null, "JMBG sadrzi samo brojeve!");
+						return;
+					}
+					else if (!brojTelefona.matches("[0-9]+")) {
+						JOptionPane.showMessageDialog(null, "Broj telefona sadrzi samo brojeve!");
+						return;
+					}
+					else if(!validacijaImena(imeZaposlenika)){
+						JOptionPane.showMessageDialog(null, "Ime sadrzi samo slova!");
+						return;
+					}
+					else if(!validacijaImena(prezime)){
+						JOptionPane.showMessageDialog(null, "Prezime sadrzi samo slova!");
+						return;
 					}
 					
 					
@@ -315,6 +350,8 @@ public class RegistracijaNovogKorisnika {
 			String sifraZaposlenik = textLozinka.getText();
 			String nivoPrivilegije =(String) comboPrivilegije.getSelectedItem();
 			TipZaposlenika novi = new TipZaposlenika();
+		
+			
 			try
 			{
 				novi = new TipZaposlenika(imeZaposlenika, prezime, JMBG, adresa, brojTelefona, email, korisnickoIme, sifraZaposlenik, nivoPrivilegije);
@@ -326,6 +363,9 @@ public class RegistracijaNovogKorisnika {
 			return novi;
 		
 	}
-		
+	
+		public boolean validacijaImena(String ime) {
+		    return ime.matches("[a-zA-Z]+");
+		}
 	
 }
