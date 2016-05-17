@@ -140,6 +140,16 @@ public class UnosSkladistaGUI {
 		btnUnesi.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				String naziv=textField.getText();
+				String lokacija=textField_1.getText();
+				if(naziv==" "|| lokacija==" "){
+					
+					JOptionPane.showMessageDialog(frame, "Naziv ili lokacija nisu popunjeni.");
+					
+
+				}
+				else{
+				
 				try{
 					Skladiste s=new Skladiste(textField.getText(),textField_1.getText(),korisnik);
 					SkladisteKontroler.dodajInfoOSkladistu(s);				
@@ -150,6 +160,7 @@ public class UnosSkladistaGUI {
 				}
 				
 			}
+			}	
 		});
 		btnUnesi.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnUnesi.setBounds(285, 191, 108, 23);

@@ -184,6 +184,12 @@ public class izlazniDokument {
 				Double priv=0.0;
 				Double priv_after=0.0;
 				List<Object> objekti=tabelaDodani.getObjekti();
+				
+				if(objekti.size()==0)
+					JOptionPane.showMessageDialog(null, "Niste dodali nijedan artikal.");
+					
+				else{
+				
 				for(Object o:objekti){
 					Artikal artikal=(Artikal)o;
 					try{
@@ -213,6 +219,7 @@ public class izlazniDokument {
 				
 				tabelaPostojeci.isprazni();
 				tabelaDodani.isprazni();
+			}
 			}
 		});
 		btnZakljuiDokument.setFont(new Font("Tahoma", Font.PLAIN, 12));
