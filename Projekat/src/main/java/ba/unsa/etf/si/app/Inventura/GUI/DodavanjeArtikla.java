@@ -163,7 +163,12 @@ public class DodavanjeArtikla {
 						}
 					}
 					
-					if(ValidacijaArtikla.validirajNaziv(txtNaziv.getText()) && ValidacijaArtikla.validirajBarkod(txtBarkod.getText()) && ValidacijaArtikla.validirajCijenu(txtCijena.getText()) && ValidacijaArtikla.validirajKolicinu(txtKolicina.getText(),_mjera.get(comboMjera.getSelectedIndex())))
+					if (comboKlasa.getSelectedIndex() == -1) {
+						JOptionPane.showMessageDialog(null, "Klasa artikla nije izabrana!");
+						return;
+					}
+				
+					else if(ValidacijaArtikla.validirajNaziv(txtNaziv.getText()) && ValidacijaArtikla.validirajBarkod(txtBarkod.getText()) && ValidacijaArtikla.validirajCijenu(txtCijena.getText()) && ValidacijaArtikla.validirajKolicinu(txtKolicina.getText(),_mjera.get(comboMjera.getSelectedIndex())))
 					{	
 						Artikal a=dajArtikal();
 						ArtikliKontroler.dodaj(a);
@@ -172,6 +177,7 @@ public class DodavanjeArtikla {
 					else
 					{
 						JOptionPane.showMessageDialog(null, "Nisu pravilno uneseni parametri");
+						return;
 					}					
 				}
 				catch(Exception i){
