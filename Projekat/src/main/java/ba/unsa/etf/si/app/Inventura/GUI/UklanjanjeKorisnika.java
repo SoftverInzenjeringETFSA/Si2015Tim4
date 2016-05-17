@@ -135,12 +135,12 @@ public class UklanjanjeKorisnika {
 				String ime=textName.getText();
 				try{
 					TipZaposlenika tip=new TipZaposlenika();
-					tip=TipZaposlenikaKontroler.nadjiIme(ime);
+					tip=TipZaposlenikaKontroler.nadjiKorisnickoIme(ime);
 					TipZaposlenikaKontroler.izbrisi(tip.getId());
 		
 				} catch (Exception e1) {
 					logger.info(e1);
-					JOptionPane.showMessageDialog(null, "Artikal nije u bazi");
+					JOptionPane.showMessageDialog(null, "Korisnicko ime ne postoji u bazi!");
 				}
 			}
 		});

@@ -161,6 +161,17 @@ public class ModifikacijaArtiklaGUI {
 			public void actionPerformed(ActionEvent e) {
 				try{
 					Artikal artikal=(Artikal)listArtikli.getSelectedValue();
+					Double cijena=Double.parseDouble(txtCijena.getText());
+					Double kolicina=Double.parseDouble(txtKolicina.getText());
+					
+					if(cijena<0){ 
+						JOptionPane.showMessageDialog(null, "Cijena ne moze biti negativna!");
+						return;
+					}
+					else if(kolicina<0){ 
+						JOptionPane.showMessageDialog(null, "Kolicina ne moze biti negativna!");
+						return;
+					}
 					izmjeniArtikal(artikal);
 					ArtikliKontroler.izmijeni(artikal);
 					
@@ -237,8 +248,11 @@ public class ModifikacijaArtiklaGUI {
 		String naziv=txtNaziv.getText();
 		KlasaArtikla klasa=(KlasaArtikla)comboKlasa.getSelectedItem();
 		String barkod=txtBarkod.getText();
+		
 		Double cijena=Double.parseDouble(txtCijena.getText());
 		Double kolicina=Double.parseDouble(txtKolicina.getText());
+		
+		
 		String mjera=(String)comboMjera.getSelectedItem();
 		
 		try {
