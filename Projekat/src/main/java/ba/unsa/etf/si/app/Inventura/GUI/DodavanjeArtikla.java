@@ -307,8 +307,7 @@ public class DodavanjeArtikla {
 						VbarCode.setForeground(Color.RED);
 					}
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					logger.info(e);
 				}
 					
 				
@@ -327,8 +326,7 @@ public class DodavanjeArtikla {
 						VbarCode.setForeground(Color.RED);
 					}
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					logger.info(e);
 				}
 				
 			}
@@ -346,8 +344,7 @@ public class DodavanjeArtikla {
 						VbarCode.setForeground(Color.RED);
 					}
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					logger.info(e);
 				}
 			}
 		});

@@ -187,42 +187,6 @@ public class RegistracijaNovogKorisnika {
 		comboPrivilegije.setBounds(226, 329, 152, 20);
 		frame.getContentPane().add(comboPrivilegije);
 		
-		JButton btnZavrsi = new JButton("Odustani");
-		btnZavrsi.setBackground(new Color(143, 188, 143));
-		btnZavrsi.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				FormaKontroler.zatvoriFormu(frameRoditelj, frame, false);
-			}
-		});
-		btnZavrsi.setBounds(43, 389, 125, 23);
-		frame.getContentPane().add(btnZavrsi);
-		
-		JButton registruj = new JButton("Registruj");
-		registruj.setBackground(new Color(143, 188, 143));
-		
-		registruj.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e){
-				try{
-						TipZaposlenika a= new TipZaposlenika();
-						a=dodajZaposlenika();
-						TipZaposlenikaKontroler.dodaj(a);
-					}					
-				
-				catch(Exception i){
-					logger.info(i);
-					Component frame = null;
-					JOptionPane.showMessageDialog(frame, i.getMessage());
-				}
-			}
-		});
-		
-		
-		registruj.setToolTipText("");
-		registruj.setBounds(336, 389, 129, 23);
-		frame.getContentPane().add(registruj);
-		
 		JLabel lblPrezime = new JLabel("Prezime:");
 		lblPrezime.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		lblPrezime.setBounds(122, 116, 46, 14);
@@ -282,6 +246,62 @@ public class RegistracijaNovogKorisnika {
 		textKorisnickoIme.setBounds(226, 273, 152, 20);
 		frame.getContentPane().add(textKorisnickoIme);
 		textKorisnickoIme.setColumns(10);
+		
+		JButton btnZavrsi = new JButton("Odustani");
+		btnZavrsi.setBackground(new Color(143, 188, 143));
+		btnZavrsi.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				FormaKontroler.zatvoriFormu(frameRoditelj, frame, false);
+			}
+		});
+		btnZavrsi.setBounds(43, 389, 125, 23);
+		frame.getContentPane().add(btnZavrsi);
+		
+		JButton registruj = new JButton("Registruj");
+		registruj.setBackground(new Color(143, 188, 143));
+		
+		registruj.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e){
+				boolean postojiIme=false;
+				try{	
+					
+					List<TipZaposlenika> tipTemp= TipZaposlenikaKontroler.lista();
+					
+					for ( TipZaposlenika tip : tipTemp){
+						if(tip.getKorisnickoime().equals(textKorisnickoIme.getText())){
+								JOptionPane.showMessageDialog(null, "Morate izabrati drugo korisnicko ime!");
+								return;
+						}
+						else if(tip.getLozinka().equals(textLozinka.getText())){
+							JOptionPane.showMessageDialog(null, "Morate izabrati drugu lozinku!");
+							return;
+						}
+					}
+					
+					
+						TipZaposlenika a= new TipZaposlenika();
+						a=dodajZaposlenika();
+						TipZaposlenikaKontroler.dodaj(a);
+						JOptionPane.showMessageDialog(null, "Uspjesno ste registrovali korisnika!");
+									
+				}	
+				
+				catch(Exception i){
+					logger.info(i);
+					Component frame = null;
+					JOptionPane.showMessageDialog(frame, i.getMessage());
+				}
+			}
+		});
+		
+		
+		registruj.setToolTipText("");
+		registruj.setBounds(336, 389, 129, 23);
+		frame.getContentPane().add(registruj);
+		
+		
 	}
 		public TipZaposlenika dodajZaposlenika()
 		{
@@ -306,4 +326,6 @@ public class RegistracijaNovogKorisnika {
 			return novi;
 		
 	}
+		
+	
 }
