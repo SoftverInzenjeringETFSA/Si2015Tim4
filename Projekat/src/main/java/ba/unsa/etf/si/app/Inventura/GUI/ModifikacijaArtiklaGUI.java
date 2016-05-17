@@ -163,7 +163,20 @@ public class ModifikacijaArtiklaGUI {
 					Artikal artikal=(Artikal)listArtikli.getSelectedValue();
 					Double cijena=Double.parseDouble(txtCijena.getText());
 					Double kolicina=Double.parseDouble(txtKolicina.getText());
+					String barkod=txtBarkod.getText();
 					
+					if(!barkod.matches("[0-9]+") && (barkod.length()<13 || barkod.length()>13)){
+						JOptionPane.showMessageDialog(null, "Barkod sadrzi samo brojeve i ima tacno 13 brojeva!");
+						return;
+					}
+					if (!barkod.matches("[0-9]+")) {
+						JOptionPane.showMessageDialog(null, "Barkod sadrzi samo brojeve!");
+						return;
+					}
+					else if(barkod.length()<13 || barkod.length()>13){
+						JOptionPane.showMessageDialog(null, "Barkod sadrzi tacno 13 brojeva!");
+						return;
+					}
 					if(cijena<0){ 
 						JOptionPane.showMessageDialog(null, "Cijena ne moze biti negativna!");
 						return;
@@ -174,7 +187,7 @@ public class ModifikacijaArtiklaGUI {
 					}
 					izmjeniArtikal(artikal);
 					ArtikliKontroler.izmijeni(artikal);
-					
+					JOptionPane.showMessageDialog(null, "Artikal uspjesno modifikovan!");
 					postaviListu();
 				}
 				catch(Exception i){

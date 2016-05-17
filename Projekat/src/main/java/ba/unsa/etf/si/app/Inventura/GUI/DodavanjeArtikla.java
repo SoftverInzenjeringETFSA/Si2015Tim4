@@ -153,7 +153,7 @@ public class DodavanjeArtikla {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try{
-					
+					String barkod=txtBarkod.getText();
 					List<Artikal> artikaltmp= ArtikliKontroler.lista();
 					
 					for( Artikal a : artikaltmp ){
@@ -161,6 +161,15 @@ public class DodavanjeArtikla {
 							JOptionPane.showMessageDialog(null, "Artikal sa tim bar kodom vec postoji!");
 							return;
 						}
+					}
+					
+					if(!barkod.matches("[0-9]+") && (barkod.length()<13 || barkod.length()>13)){
+						JOptionPane.showMessageDialog(null, "Barkod sadrzi samo brojeve i ima tacno 13 brojeva!");
+						return;
+					}
+					if (!barkod.matches("[0-9]+")) {
+						JOptionPane.showMessageDialog(null, "Barkod sadrzi samo brojeve!");
+						return;
 					}
 					
 					if (comboKlasa.getSelectedIndex() == -1) {
