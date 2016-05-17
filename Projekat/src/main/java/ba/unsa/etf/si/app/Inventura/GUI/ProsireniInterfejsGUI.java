@@ -15,6 +15,8 @@ import ba.unsa.etf.si.app.Inventura.Model.TipZaposlenika;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+
 //import javax.swing.JTextArea;
 //import javax.swing.JButton;
 //import java.awt.event.KeyAdapter;
@@ -304,6 +306,7 @@ public class ProsireniInterfejsGUI {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				FormaKontroler.zatvoriFormu(frameRoditelj, frame, true);
+				JOptionPane.showMessageDialog(null, "Uspjesno ste se odjavili sa sistema!");
 			}
 		});
 		mnKorisnik.add(mntmNewMenuItem);

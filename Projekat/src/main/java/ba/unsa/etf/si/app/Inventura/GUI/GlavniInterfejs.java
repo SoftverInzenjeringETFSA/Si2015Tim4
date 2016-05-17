@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-
+import javax.swing.JOptionPane;
 import javax.swing.JMenu;
 
 import javax.swing.JLabel;
@@ -200,6 +200,7 @@ public class GlavniInterfejs {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				FormaKontroler.zatvoriFormu(frameRoditelj, frame, true);
+				JOptionPane.showMessageDialog(null, "Uspjesno ste se odjavili sa sistema!");
 			}
 		});
 		mnKorisnik.add(mntmNewMenuItem);
