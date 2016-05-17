@@ -24,7 +24,7 @@ import org.apache.log4j.Logger;
 public class UklanjanjeKorisnika {
 	final static Logger logger = Logger.getLogger(LogInScreen.class);
 	private JFrame frame;
-	
+	private TipZaposlenika korisnikLog;
 	private JFrame frameRoditelj;
 	private TipZaposlenika korisnik;
 	private JLabel lblKorisnik;
@@ -136,6 +136,11 @@ public class UklanjanjeKorisnika {
 				try{
 					TipZaposlenika tip=new TipZaposlenika();
 					tip=TipZaposlenikaKontroler.nadjiKorisnickoIme(ime);
+					if(tip.getId()==korisnik.getId())
+					{
+						JOptionPane.showMessageDialog(null, "Ne mozete obrisati svoj nalog!");
+						return;
+					}
 					TipZaposlenikaKontroler.izbrisi(tip.getId());
 		
 				} catch (Exception e1) {
