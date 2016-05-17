@@ -136,7 +136,16 @@ public class izlazniDokument {
 				Artikal artikal=(Artikal)tabelaPostojeci.dajRed(brojReda);
 				
 				try{
+					
 					Double kolicina=Double.parseDouble(txtKolicina.getText());
+					
+					if(kolicina<0){
+						JOptionPane.showMessageDialog(null, "Kolicina ne moze biti negativna!");
+						return;
+					}
+					
+					
+				
 					
 					//if(kolicina<0 || (artikal.getMjera().equals("kom") && kolicina!=Math.floor(kolicina))){
 					//	JOptionPane.showMessageDialog(null,	"Kolicina pozitivna itd.");
@@ -152,7 +161,7 @@ public class izlazniDokument {
 				}
 				catch(Exception i){
 					logger.info(i);
-					JOptionPane.showMessageDialog(null,	i.getMessage());
+					JOptionPane.showMessageDialog(null, "Mozete unijeti samo brojeve!");
 				}
 			}
 		});
