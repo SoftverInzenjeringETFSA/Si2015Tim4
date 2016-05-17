@@ -22,6 +22,7 @@ import javax.swing.JSeparator;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 import java.awt.Color;
 import java.awt.Component;
 
@@ -108,6 +109,21 @@ public class DodavanjeKlaseArtiklaGUI {
 			public void actionPerformed(ActionEvent e) {
 				
 				try{
+					String priv=txtNaziv.getText();
+					if (priv.isEmpty()) {
+						JOptionPane.showMessageDialog(null, "Unesite ime klase!");
+						return;
+					}
+					
+					List<KlasaArtikla> klasaArtikalatmp= KlasaArtikalaKontroler.lista();
+					
+					for( KlasaArtikla a : klasaArtikalatmp ){
+						if(a.getNaziv().equals(txtNaziv.getText())){
+							JOptionPane.showMessageDialog(null, "Klasa sa tim imenom vec postoji!");
+							return;
+						}
+					}
+					
 					KlasaArtikla klasa = new KlasaArtikla(txtNaziv.getText());
 					KlasaArtikalaKontroler.dodaj(klasa);
 					JOptionPane.showMessageDialog(null, "Klasa uspjesno dodana!");
@@ -116,7 +132,7 @@ public class DodavanjeKlaseArtiklaGUI {
 					logger.info(i);
 					Component frame = null;
 					JOptionPane.showMessageDialog(frame, i.getMessage());
-					JOptionPane.showMessageDialog(null, "Klasa vec postoji bazi!");
+					
 					}
 				}
 			
