@@ -124,7 +124,7 @@ public class LogInScreen {
 		btnExit.addActionListener(new ActionListener() {
 			@Override	
 			public void actionPerformed(ActionEvent e) {
-				frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				frame.dispose();
 			}
 		});
 		

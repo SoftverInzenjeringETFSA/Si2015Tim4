@@ -159,6 +159,7 @@ public class ModifikacijaArtiklaGUI {
 		btnSacuvaj.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				
 				try{
 					Artikal artikal=(Artikal)listArtikli.getSelectedValue();
 					Double cijena=Double.parseDouble(txtCijena.getText());
