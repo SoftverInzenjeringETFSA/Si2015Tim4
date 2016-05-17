@@ -216,15 +216,12 @@ public class InventuraGUI {
 						else if(razlika==0){
 							return;
 						}
-						else  {
-							return;
-						}
 						
 					}
 					
 					String opis=txtOpis.getText();
 					if(ukupnoPrebrojano==0){
-						JOptionPane.showMessageDialog(null, "Klasa artikla nije izabrana!");
+						JOptionPane.showMessageDialog(null, "Niste unijeli nikakve promjene!");
 						return;
 					}
 					inventura=new Inventura(datum, opis, ukupnoPrebrojano, korisnik);
