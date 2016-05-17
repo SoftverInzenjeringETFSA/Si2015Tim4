@@ -14,6 +14,8 @@ import java.awt.event.ActionEvent;
 import java.awt.Color;
 import java.awt.SystemColor;
 import java.awt.Font;
+
+import ba.unsa.etf.si.app.Inventura.Kontroleri.FormaKontroler;
 import ba.unsa.etf.si.app.Inventura.Kontroleri.TipZaposlenikaKontroler;
 import ba.unsa.etf.si.app.Inventura.Model.TipZaposlenika;;
 
@@ -33,6 +35,7 @@ public class LogInScreen {
 			public void run() {
 				try {
 					LogInScreen window = new LogInScreen();
+					window.frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					logger.info(e);
@@ -121,9 +124,11 @@ public class LogInScreen {
 		btnExit.addActionListener(new ActionListener() {
 			@Override	
 			public void actionPerformed(ActionEvent e) {
-				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
+		
+		
 		frame.getContentPane().setLayout(null);
 		frame.getContentPane().add(btnPotvrdi);
 		frame.getContentPane().add(lblKorisnikoIme);

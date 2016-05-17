@@ -141,6 +141,7 @@ public class UklanjanjeKorisnika {
 						JOptionPane.showMessageDialog(null, "Ne mozete obrisati svoj nalog!");
 						return;
 					}
+					
 					TipZaposlenikaKontroler.izbrisi(tip.getId());
 		
 				} catch (Exception e1) {

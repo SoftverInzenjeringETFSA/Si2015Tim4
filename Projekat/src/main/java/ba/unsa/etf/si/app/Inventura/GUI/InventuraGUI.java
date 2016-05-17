@@ -213,14 +213,20 @@ public class InventuraGUI {
 							IzvjestajKontroler.dodaj(manjakIzvjestaj);
 							ArtikliKontroler.izmijeni(a);
 						}
-						else{
+						else if(razlika==0){
+							return;
+						}
+						else  {
 							return;
 						}
 						
 					}
 					
 					String opis=txtOpis.getText();
-						
+					if(ukupnoPrebrojano==0){
+						JOptionPane.showMessageDialog(null, "Klasa artikla nije izabrana!");
+						return;
+					}
 					inventura=new Inventura(datum, opis, ukupnoPrebrojano, korisnik);
 					InventuraKontroler.dodaj(inventura);
 					JOptionPane.showMessageDialog(null, "Uspjesno spasena inventura, i kreiran izvjestaj manja/viska!");
