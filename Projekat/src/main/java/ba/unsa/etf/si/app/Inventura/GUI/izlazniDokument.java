@@ -132,7 +132,13 @@ public class izlazniDokument {
 			public void actionPerformed(ActionEvent arg0) {
 				// validacija svega
 				
+				
 				int brojReda=tabelaPostojeci.getSelectedRow();
+				if(brojReda==-1){
+					JOptionPane.showMessageDialog(null, "Morate odabrati neki artikal prije unosa kolicine!");
+					return;
+				}
+				
 				Artikal artikal=(Artikal)tabelaPostojeci.dajRed(brojReda);
 				
 				try{
@@ -144,6 +150,10 @@ public class izlazniDokument {
 						return;
 					}
 					
+					if(!kolicina.toString().matches("[0-9]+")){
+						JOptionPane.showMessageDialog(null, "Kolicina sadrzi samo brojeve!");
+						return;
+					}
 					
 				
 					
@@ -161,7 +171,7 @@ public class izlazniDokument {
 				}
 				catch(Exception i){
 					logger.info(i);
-					JOptionPane.showMessageDialog(null, "Mozete unijeti samo brojeve!");
+					JOptionPane.showMessageDialog(null, "Kolicina sadrzi samo brojeve!");
 				}
 			}
 		});
@@ -198,7 +208,8 @@ public class izlazniDokument {
 						
 						//artikal.getKolicina()-kolicine.get(objekti.indexOf(o)
 						artikal.setKolicina(kolicine.get(objekti.indexOf(o)));
-						ArtikliKontroler.izmijeni(artikal);
+						JOptionPane.showMessageDialog(null, "Uspjesno ste kreirali izlazni dokument!");
+						//ArtikliKontroler.izmijeni(artikal);
 					}
 					catch(Exception i){
 						logger.info(i);
