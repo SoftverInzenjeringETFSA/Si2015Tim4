@@ -133,9 +133,12 @@ public class BrisanjeKlaseArtikalGUI {
 				try{
 					
 					KlasaArtikla art=new KlasaArtikla();
+					if(KlasaArtikalaKontroler.nadjiIme(naziv)==null){
+						JOptionPane.showMessageDialog(null, "Trazena klasa artikla ne postoji u bazi!");
+						return;
+					}
+			
 					art=KlasaArtikalaKontroler.nadjiIme(naziv);
-				
-					
 					KlasaArtikalaKontroler.izbrisi(art.getId());
 					
 				}

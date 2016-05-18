@@ -71,8 +71,8 @@ public final class KlasaArtikalaKontroler {
 	{
 		openSession();
 		List<Object> klase = s.createCriteria(KlasaArtikla.class).add(Restrictions.like("naziv", naziv)).list();
-		if(klase.size() > 1) {
-			throw new Exception();
+		if(klase.size()==0) {
+			return null;
 		}
 		KlasaArtikla pronadjenaKlasa = (KlasaArtikla) klase.get(0);
 		return pronadjenaKlasa;
