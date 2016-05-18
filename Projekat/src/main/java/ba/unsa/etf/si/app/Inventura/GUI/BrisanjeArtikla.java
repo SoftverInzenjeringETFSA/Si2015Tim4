@@ -132,13 +132,13 @@ public class BrisanjeArtikla {
 					Artikal art=new Artikal();
 					art=ArtikliKontroler.nadjiBarKod(barkod);
 					ArtikliKontroler.izbrisi(art.getId());
-					JOptionPane.showMessageDialog(null, "Artikal uspljesno izbrisan");
+					JOptionPane.showMessageDialog(null, "Artikal uspjesno izbrisan!");
 					}
 					
 				} catch (Exception e1) {
 					
 					logger.info(e1);
-					JOptionPane.showMessageDialog(null, "Artikal nije u bazi");
+					JOptionPane.showMessageDialog(null, "Artikal nije u bazi!");
 				}
 			}
 		});

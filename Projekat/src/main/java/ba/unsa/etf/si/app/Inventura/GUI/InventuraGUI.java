@@ -200,6 +200,9 @@ public class InventuraGUI {
 	                List<Artikal> artikliViska=new ArrayList<Artikal>();
 	                   
 	                List<Artikal> artikliBaze=ArtikliKontroler.lista();
+	                
+	                Date datum=new Date();
+                    String opis=txtOpis.getText();
  
 	                    for(Artikal a1:artikliBaze){
 	                        boolean popisan=false;
@@ -214,11 +217,17 @@ public class InventuraGUI {
 	                                    a1.setKolicina(-kolicina);
 	                                    artikliManjka.add(a1);
 	                                    stanjeManjka+=a1.getKolicina()*a1.getCijena();
+	                                    Izvjestaj manjak=new Izvjestaj("Manjak", opis, datum, stanjeManjka);
+	                                    IzvjestajKontroler.dodaj(manjak);
+	            	                    
+	            	                    
 	                                }
 	                                else if(kolicina>0){
 	                                    a1.setKolicina(kolicina);
 	                                    artikliViska.add(a1);
 	                                    stanjeViska+=a1.getKolicina()*a1.getCijena();
+	                                    Izvjestaj visak=new Izvjestaj("Visak", opis, datum, stanjeViska);
+	                                    IzvjestajKontroler.dodaj(visak);
 	                                }
 	                               
 	                                break;
@@ -227,7 +236,7 @@ public class InventuraGUI {
 	                        
 	                        if(!popisan && a1.getKolicina()>0){
 	                            artikliManjka.add(a1);
-	                            stanjeManjka+=a1.getKolicina()*a1.getCijena();
+	                            //stanjeManjka+=a1.getKolicina()*a1.getCijena();
 	                            
 	                            Artikal a1_kopija=new Artikal();
 	                            a1_kopija.setId(a1.getId());
@@ -241,15 +250,7 @@ public class InventuraGUI {
 	                            artikliInventure.add(a1_kopija);
 	                        }
 	                    }
-	                    
-	                    Date datum=new Date();
-	                    String opis=txtOpis.getText();
-	                    
-	                    Izvjestaj manjak=new Izvjestaj("Manjak", opis, datum, stanjeManjka);
-	                    Izvjestaj visak=new Izvjestaj("Visak", opis, datum, stanjeViska);
-	                    
-	                    IzvjestajKontroler.dodaj(manjak);
-	                    IzvjestajKontroler.dodaj(visak);
+	                  
 	                    
 	                    IzvjestajGUI.pokreni(frame, korisnik, datum, artikliManjka, artikliViska);
 	                    
@@ -258,10 +259,11 @@ public class InventuraGUI {
 	                    Inventura inventura=new Inventura(datum, opis, stanjeInventure, korisnik);
 	                    InventuraKontroler.dodaj(inventura);
 	                    
+	                    
 	                    for(Artikal a:artikliInventure){
 	                    	ArtikliKontroler.izmijeni(a);
 	                    }
-					
+	                    JOptionPane.showMessageDialog(null, "Inventura uspjesno zavrsena!");
 				}
 				catch(Exception i){
 					logger.info(i);

@@ -19,7 +19,7 @@ public class Inventura implements Serializable {
 	Date datum;
 	String opis;
 	Double trenutnoStanje;
-	@OneToOne
+	@OneToOne(cascade = { CascadeType.ALL, CascadeType.PERSIST, CascadeType.MERGE },  orphanRemoval=true)
     @JoinColumn(name="skladistar_id") 
 	TipZaposlenika skladistar;
 	

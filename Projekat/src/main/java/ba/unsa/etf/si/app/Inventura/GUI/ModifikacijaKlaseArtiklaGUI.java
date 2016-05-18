@@ -122,9 +122,24 @@ public class ModifikacijaKlaseArtiklaGUI {
 			public void actionPerformed(ActionEvent e) {
 				try{
 					KlasaArtikla klasa = (KlasaArtikla)listKlase.getSelectedValue();
+					
+					if(listKlase.getSelectedValue()==null){
+						JOptionPane.showMessageDialog(null, "Niste oznacili klasu artikla koju zelite modifikovati!");
+						return;
+					}
+					else if(txtNaziv.getText().isEmpty()){
+						JOptionPane.showMessageDialog(null, "Unesite novo ime klase artikla!");
+						return;
+					}
+					else if(klasa.getNaziv().equals(txtNaziv.getText())){
+						JOptionPane.showMessageDialog(null, "Klasa artikla se vec tako zove!");
+						return;
+					}
+					
 					klasa.setNaziv(txtNaziv.getText());
 					KlasaArtikalaKontroler.izmijeni(klasa);
 					
+					JOptionPane.showMessageDialog(null, "Uspjesno ste modifikovali klasu artikla!");
 					postaviListu();
 				}
 				catch(Exception i){

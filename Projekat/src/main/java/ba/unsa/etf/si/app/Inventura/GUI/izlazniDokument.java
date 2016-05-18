@@ -209,7 +209,7 @@ public class izlazniDokument {
 						//artikal.getKolicina()-kolicine.get(objekti.indexOf(o)
 						artikal.setKolicina(kolicine.get(objekti.indexOf(o)));
 						JOptionPane.showMessageDialog(null, "Uspjesno ste kreirali izlazni dokument!");
-						//ArtikliKontroler.izmijeni(artikal);
+						ArtikliKontroler.izmijeni(artikal);
 					}
 					catch(Exception i){
 						logger.info(i);
