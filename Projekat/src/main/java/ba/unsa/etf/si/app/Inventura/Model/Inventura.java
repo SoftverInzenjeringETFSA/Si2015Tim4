@@ -23,26 +23,21 @@ public class Inventura implements Serializable {
     @JoinColumn(name="skladistar_id") 
 	TipZaposlenika skladistar;
 	
-	//private List<Artikal> artikli;
-	
 	public Inventura(){}
 	
-	public Inventura(Date datum, String opis, Double trenutnoStanje, TipZaposlenika osoba) throws Exception//, List<Artikal> _artikli) 
+	public Inventura(Date datum, String opis, Double trenutnoStanje, TipZaposlenika osoba)
 	{
 		setDatum(datum);
 		setOpis(opis);
 		settrenutnoStanje(trenutnoStanje);
 		setSkladistar(osoba);
-		//setArtikli(_artikli);
 	}
 	
-	public Inventura(Date datum, String opis, TipZaposlenika osoba) throws Exception //, List<Artikal> _artikli)  // novi konstruktor
+	public Inventura(Date datum, String opis, TipZaposlenika osoba)
 	{
 		setDatum(datum);
 		setOpis(opis);
-		setSkladistar(osoba);
-		//setArtikli(_artikli);
-		
+		setSkladistar(osoba);		
 	}
 	
 	public long getId() {
@@ -75,10 +70,7 @@ public class Inventura implements Serializable {
 		return trenutnoStanje;
 	}
 
-	public void settrenutnoStanje(Double s) throws Exception {
-		if(s<0){
-			throw new Exception("Kolicina ne moze biti negativna."); 
-	    }
+	public void settrenutnoStanje(Double s){
 		trenutnoStanje = s;
 	}
 
@@ -91,27 +83,14 @@ public class Inventura implements Serializable {
 		skladistar=o;
 	}
 	
-
-	
-	
-
-	public void iskoristiInventuru(Inventura I){
-		
+	public void iskoristiInventuru(Inventura I)
+	{
 		System.out.println("Inventura broj" + I.id);
-		
-		}
+	}
 	
 	@Override
 	public String toString(){
 		return "Inventura: "+getDatum().toString();
 	}
-	/*
-	public List<Artikal> getArtikli() {
-		return artikli;
-	}
 
-	public void setArtikli(List<Artikal> artikli) {
-		this.artikli = artikli;
-	}
-	*/
 }
