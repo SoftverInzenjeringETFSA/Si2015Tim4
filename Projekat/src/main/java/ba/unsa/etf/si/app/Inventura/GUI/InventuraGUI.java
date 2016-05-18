@@ -179,54 +179,84 @@ public class InventuraGUI {
 		btnObracun.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {	
-				
-				Izvjestaj manjakIzvjestaj=new Izvjestaj();
-				Izvjestaj visakIzvjestaj=new Izvjestaj();
-				Inventura inventura= new Inventura();
-				Double ukupnoPrebrojano=0.0;
 				try{
-					Date datum=new Date();
+                    List<Artikal> artikliInventure=new ArrayList<Artikal>();
+                    List<Object> objekti=tabela.getObjekti();
+                    
+                    Double stanjeManjka=0.0;
+                    Double stanjeViska=0.0;
+                    
+                    for(Object o:objekti){
+                    	Artikal a=(Artikal)o;
+                    	a.setKolicina(kolicine.get(objekti.indexOf(o)));
+                    	artikliInventure.add(a);
+                    }
 					
-					List<Artikal> artikliInventure=new ArrayList<Artikal>();
-					List<Object> objekti=tabela.getObjekti();
-					
-					
-					for(Object o:objekti){
-						Artikal a=(Artikal)o;
-					    
-						Double trenutnoStanje=a.getKolicina();
-					    
-						a.setKolicina(kolicine.get(objekti.indexOf(o)));
-						artikliInventure.add(a);
-						ukupnoPrebrojano = ukupnoPrebrojano + a.getKolicina();
-						
-						Double razlika = (a.getKolicina()-trenutnoStanje);
-						
-						if(razlika>0)
-						{
-							visakIzvjestaj=new Izvjestaj("Visak", txtOpis.getText(), datum, razlika);
-							IzvjestajKontroler.dodaj(visakIzvjestaj);
-							ArtikliKontroler.izmijeni(a);
-						}
-						else if(razlika<0){
-							manjakIzvjestaj=new Izvjestaj("Manjak", txtOpis.getText(), datum, razlika);
-							IzvjestajKontroler.dodaj(manjakIzvjestaj);
-							ArtikliKontroler.izmijeni(a);
-						}
-						else if(razlika==0){
-							return;
-						}
-						
-					}
-					
-					String opis=txtOpis.getText();
-					if(ukupnoPrebrojano==0){
-						JOptionPane.showMessageDialog(null, "Niste unijeli nikakve promjene!");
-						return;
-					}
-					inventura=new Inventura(datum, opis, ukupnoPrebrojano, korisnik);
-					InventuraKontroler.dodaj(inventura);
-					JOptionPane.showMessageDialog(null, "Uspjesno spasena inventura, i kreiran izvjestaj manja/viska!");
+					List<Artikal> artikliManjka=new ArrayList<Artikal>();
+	                List<Artikal> artikliViska=new ArrayList<Artikal>();
+	                   
+	                List<Artikal> artikliBaze=ArtikliKontroler.lista();
+ 
+	                    for(Artikal a1:artikliBaze){
+	                        boolean popisan=false;
+	                        
+	                        for(Artikal a2:artikliInventure){
+	                            if(a1.getId()==a2.getId()){
+	                                popisan=true;
+	                               
+	                                Double kolicina=a2.getKolicina()-a1.getKolicina();
+	                                
+	                                if(kolicina<0){
+	                                    a1.setKolicina(-kolicina);
+	                                    artikliManjka.add(a1);
+	                                    stanjeManjka+=a1.getKolicina()*a1.getCijena();
+	                                }
+	                                else if(kolicina>0){
+	                                    a1.setKolicina(kolicina);
+	                                    artikliViska.add(a1);
+	                                    stanjeViska+=a1.getKolicina()*a1.getCijena();
+	                                }
+	                               
+	                                break;
+	                            }
+	                        }
+	                        
+	                        if(!popisan && a1.getKolicina()>0){
+	                            artikliManjka.add(a1);
+	                            stanjeManjka+=a1.getKolicina()*a1.getCijena();
+	                            
+	                            Artikal a1_kopija=new Artikal();
+	                            a1_kopija.setId(a1.getId());
+	                            a1_kopija.setNaziv(a1.getNaziv());
+	                            a1_kopija.setKlasaArtikla(a1.getKlasaArtikla());
+	                            a1_kopija.setBarkod(a1.getBarkod());
+	                            a1_kopija.setCijena(a1.getCijena());
+	                            a1_kopija.setMjera(a1.getMjera());
+	                            a1_kopija.setKolicina(0.0);
+	                            
+	                            artikliInventure.add(a1_kopija);
+	                        }
+	                    }
+	                    
+	                    Date datum=new Date();
+	                    String opis=txtOpis.getText();
+	                    
+	                    Izvjestaj manjak=new Izvjestaj("Manjak", opis, datum, stanjeManjka);
+	                    Izvjestaj visak=new Izvjestaj("Visak", opis, datum, stanjeViska);
+	                    
+	                    IzvjestajKontroler.dodaj(manjak);
+	                    IzvjestajKontroler.dodaj(visak);
+	                    
+	                    IzvjestajGUI.pokreni(frame, korisnik, datum, artikliManjka, artikliViska);
+	                    
+	                    Double stanjeInventure=stanjeViska-stanjeManjka;
+	                    
+	                    Inventura inventura=new Inventura(datum, opis, stanjeInventure, korisnik);
+	                    InventuraKontroler.dodaj(inventura);
+	                    
+	                    for(Artikal a:artikliInventure){
+	                    	ArtikliKontroler.izmijeni(a);
+	                    }
 					
 				}
 				catch(Exception i){
