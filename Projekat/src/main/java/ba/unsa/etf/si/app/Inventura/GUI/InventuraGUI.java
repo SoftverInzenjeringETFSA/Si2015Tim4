@@ -159,6 +159,10 @@ public class InventuraGUI {
 						
 						tabela.dodajRed(artikal, red);
 						popis.add(artikal.getId());
+						
+						txtKolicina.setText("");
+						txtNaziv.setText("");
+						txtMjera.setText("");
 					}
 					else{
 						JOptionPane.showMessageDialog(null, "Artkal je već dodat na popis.");
@@ -324,14 +328,16 @@ public class InventuraGUI {
 		frame.getContentPane().add(btnNadji);
 		
 		txtNaziv = new JTextField();
-		txtNaziv.setHorizontalAlignment(SwingConstants.RIGHT);
+		txtNaziv.setFont(new Font("Tahoma", Font.BOLD, 12));
+		txtNaziv.setHorizontalAlignment(SwingConstants.CENTER);
 		txtNaziv.setEnabled(false);
 		txtNaziv.setBounds(378, 177, 144, 20);
 		frame.getContentPane().add(txtNaziv);
 		txtNaziv.setColumns(10);
 		
 		txtMjera = new JTextField();
-		txtMjera.setHorizontalAlignment(SwingConstants.RIGHT);
+		txtMjera.setFont(new Font("Tahoma", Font.BOLD, 12));
+		txtMjera.setHorizontalAlignment(SwingConstants.CENTER);
 		txtMjera.setEnabled(false);
 		txtMjera.setBounds(532, 208, 89, 20);
 		frame.getContentPane().add(txtMjera);
@@ -372,6 +378,10 @@ public class InventuraGUI {
 				int brojReda=tabela.getSelectedRow();
 				tabela.obrisiRed(brojReda);
 				popis.remove(brojReda);
+				
+				artikal=null;
+				txtNaziv.setText("");
+				txtMjera.setText("");
 			}
 		});
 		btnNewButton.setBounds(100, 457, 89, 23);
