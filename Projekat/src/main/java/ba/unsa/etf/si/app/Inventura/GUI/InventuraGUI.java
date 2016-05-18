@@ -48,7 +48,6 @@ public class InventuraGUI {
 	private JTextField txtNaziv;
 	private JTextField txtMjera;
 	private List<Long> popis=new ArrayList<Long>();
-	private List<Double> kolicine=new ArrayList<Double>();
 	private MojaTabela tabela;
 	
 	/**
@@ -146,17 +145,20 @@ public class InventuraGUI {
 					if(artikal==null){
 						return;
 					}
-					
-					Double kolicina=Double.parseDouble(txtKolicina.getText());
-					
-					// validacija podataka
 										
 					if(!popis.contains(artikal.getId())){
+						Double kolicina=Double.parseDouble(txtKolicina.getText());
 						
-						popis.add(artikal.getId());
-						kolicine.add(kolicina);
-						String[] red=new String[]{artikal.getNaziv(), kolicina.toString()};
+						if(kolicina<0){
+							JOptionPane.showMessageDialog(frame, "Količina mora biti pozitivna.");
+							return;
+						}
+						
+						artikal.setKolicina(kolicina);
+						String[] red=new String[]{artikal.getNaziv(), artikal.getKolicina().toString()};
+						
 						tabela.dodajRed(artikal, red);
+						popis.add(artikal.getId());
 					}
 					else{
 						JOptionPane.showMessageDialog(null, "Artkal je već dodat na popis.");
@@ -187,9 +189,7 @@ public class InventuraGUI {
                     Double stanjeViska=0.0;
                     
                     for(Object o:objekti){
-                    	Artikal a=(Artikal)o;
-                    	a.setKolicina(kolicine.get(objekti.indexOf(o)));
-                    	artikliInventure.add(a);
+                    	artikliInventure.add((Artikal)o);
                     }
 					
 					List<Artikal> artikliManjka=new ArrayList<Artikal>();
@@ -372,7 +372,6 @@ public class InventuraGUI {
 				int brojReda=tabela.getSelectedRow();
 				tabela.obrisiRed(brojReda);
 				popis.remove(brojReda);
-				kolicine.remove(brojReda);
 			}
 		});
 		btnNewButton.setBounds(100, 457, 89, 23);
