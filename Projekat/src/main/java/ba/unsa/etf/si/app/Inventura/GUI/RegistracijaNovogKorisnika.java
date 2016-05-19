@@ -262,7 +262,7 @@ public class RegistracijaNovogKorisnika {
 						return;
 					}
 				
-					if(!JMBG.matches("[0-9]+") && (JMBG.length()<13 || JMBG.length()>13)){
+					if(!JMBG.matches("[0-9]+") || JMBG.length()!=13){
 						JOptionPane.showMessageDialog(null, "JMBG broj sadrzi samo brojeve i ima tacno 13 brojeva!");
 						return;
 					}
@@ -270,8 +270,8 @@ public class RegistracijaNovogKorisnika {
 						JOptionPane.showMessageDialog(null, "JMBG sadrzi samo brojeve!");
 						return;
 					}
-					else if (!brojTelefona.matches("[0-9]+")) {
-						JOptionPane.showMessageDialog(null, "Broj telefona sadrzi samo brojeve!");
+					else if (!brojTelefona.matches("[0-9]+") || brojTelefona.length()<6) {
+						JOptionPane.showMessageDialog(null, "Broj telefona sadrzi samo brojeve i ima najmanje 6 cifara!");
 						return;
 					}
 					else if(!validacijaImena(ime)){
@@ -284,7 +284,7 @@ public class RegistracijaNovogKorisnika {
 					}
 						TipZaposlenika zaposlenik = dodajZaposlenika();
 						TipZaposlenikaKontroler.dodaj(zaposlenik);
-						JOptionPane.showMessageDialog(null, "Uspjesno ste registrovali korisnika!");
+						JOptionPane.showMessageDialog(null, "Uspjesno ste registrovali korisnika!\n" + "\nKorisnicko ime:    "+ zaposlenik.getKorisnickoime() + "\nLozinka:        " +zaposlenik.getLozinka());
 									
 				}	
 				
