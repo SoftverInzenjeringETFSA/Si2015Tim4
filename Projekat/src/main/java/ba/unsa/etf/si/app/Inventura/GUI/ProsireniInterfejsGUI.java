@@ -22,6 +22,8 @@ import javax.swing.JOptionPane;
 //import java.awt.event.KeyAdapter;
 //import java.awt.event.KeyEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -100,12 +102,13 @@ public class ProsireniInterfejsGUI {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 419, 321);
+		frame.setResizable(false);
+		frame.setBounds(100, 100, 447, 321);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 23, 383, 213);
+		scrollPane.setBounds(10, 23, 411, 227);
 		frame.getContentPane().add(scrollPane);
 		
 		tabela = new JTable();
@@ -311,5 +314,26 @@ public class ProsireniInterfejsGUI {
 		});
 		mnKorisnik.add(mntmNewMenuItem);
 		
-	}
+		JMenu mnPomo = new JMenu("Pomoć");
+		menuBar.add(mnPomo);
+		
+		JMenuItem mntmOAplikaciji = new JMenuItem("O aplikaciji");
+		
+		mntmOAplikaciji.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String help = "<html><body width=300'" +
+		                    "'><h1>Pomoć</h1>" +
+		                    "<p> Da biste pristupili korištenju funkcionalnosti, potrebno je u glavnom meniju aplikacije pronaći željenu funkcionalnost. Klikom na nju otvorit će se opcije poput pregleda dokumenata, unosa, modifikacije artikala i korisnika isl. Klikom na opcije sa nazivom pregleda, željene informacije će se ispisati na istom prozoru. Za sve ostale odabrane stavke, otvara se nova forma. Korisnički interfejsi su intuitivni i jednostavni za korištenje.  <br><br>" +
+		                    "<p> Ukoliko se želite odjaviti sa sistema, potrebno je kliknuti na svoje ime, te na ponuđenu opciju Odjava." +
+		                    "<p> Za sve ostale informacije kontaktirajte nas putem email-a:" +
+		                    "<p> deltadevelopment@gmail.com <br><br>" +
+		                    "";
+
+                JOptionPane.showMessageDialog(null, help);
+			}
+		});
+		mnPomo.add(mntmOAplikaciji);
 }
+		
+	}
