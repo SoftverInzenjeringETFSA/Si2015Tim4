@@ -11,9 +11,10 @@ import java.awt.Font;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
 
-
+import ba.unsa.etf.si.app.Inventura.Model.KlasaArtikla;
 import ba.unsa.etf.si.app.Inventura.Model.TipZaposlenika;
 import ba.unsa.etf.si.app.Inventura.Kontroleri.FormaKontroler;
+import ba.unsa.etf.si.app.Inventura.Kontroleri.KlasaArtikalaKontroler;
 import ba.unsa.etf.si.app.Inventura.Kontroleri.TipZaposlenikaKontroler;
 
 
@@ -54,9 +55,8 @@ public class ModifikacijaKorisnika {
 	private JTextField textKorisnickoIme;
 	private JTextField textLozinka;
 
-	private JList listKorisnici;
-	private JComboBox comboPrivilegije;
-	private JComboBox comboBoxPrivilegije;
+	private JList<TipZaposlenika> listKorisnici;
+	private JComboBox<String> comboBoxPrivilegije;
 
 	/**
 	 * Launch the application.
@@ -138,7 +138,7 @@ public class ModifikacijaKorisnika {
 		frame.getContentPane().add(lblNivoPrivilegije);
 		
 
-		comboBoxPrivilegije = new JComboBox();
+		comboBoxPrivilegije = new JComboBox<String>();
 		comboBoxPrivilegije.setToolTipText("Radnik\r\nŠef");
 		comboBoxPrivilegije.setBounds(231, 145, 141, 20);
 		frame.getContentPane().add(comboBoxPrivilegije);
@@ -152,20 +152,22 @@ public class ModifikacijaKorisnika {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try{
-					TipZaposlenika tmp=(TipZaposlenika)listKorisnici.getSelectedValue();
-					
-					
-					modifikujZaposlenika(tmp);
+						
+					TipZaposlenika tmp = modifikujZaposlenika();
+					if(tmp==null){
+						return;
+					}
+					else{
 					TipZaposlenikaKontroler.izmjeni(tmp);
-					
 					JOptionPane.showMessageDialog(null, "Korisnik uspjesno modifikovan!");
-					
 					postaviListu();
+					
+					return;
+					}
 				}
 				catch(Exception i){
 					logger.info(i);
-					Component frame = null;
-					JOptionPane.showMessageDialog(frame, i.getMessage());
+					JOptionPane.showMessageDialog(null, "pada ovdje!");
 				}
 			}
 		});
@@ -173,15 +175,9 @@ public class ModifikacijaKorisnika {
 		listKorisnici= new JList();
 		listKorisnici.setBounds(43, 119, 150, 549);
 		frame.getContentPane().add(listKorisnici);
-		 postaviListu();
+		postaviListu();
 		
 
-		comboPrivilegije = new JComboBox();
-		
-		comboPrivilegije.setBounds(231, 145, 141, 20);
-		frame.getContentPane().add(comboPrivilegije);
-		
-		
 		JButton btnZavrsi = new JButton("Odustani");
 		btnZavrsi.setBackground(new Color(143, 188, 143));
 		btnZavrsi.addActionListener(new ActionListener() {
@@ -192,13 +188,6 @@ public class ModifikacijaKorisnika {
 		});
 		btnZavrsi.setBounds(231, 645, 89, 23);
 		frame.getContentPane().add(btnZavrsi);
-		
-		
-		
-		listKorisnici = new JList();
-		listKorisnici.setBounds(43, 119, 150, 549);
-		frame.getContentPane().add(listKorisnici);
-		postaviListu();
 		
 		JLabel lblIme1 = new JLabel("Ime:");
 		lblIme1.setBounds(231, 219, 46, 14);
@@ -276,9 +265,15 @@ public class ModifikacijaKorisnika {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 	}
-		public void modifikujZaposlenika(TipZaposlenika tip)
+		public TipZaposlenika modifikujZaposlenika()
 		{
-			// TipZaposlenika _zaposlenik = (TipZaposlenika)list.getSelectedValue();
+			TipZaposlenika _zaposlenik = (TipZaposlenika)listKorisnici.getSelectedValue();
+			
+			if(_zaposlenik==null){
+				JOptionPane.showMessageDialog(null, "Niste izabrali korisnika cije podatke zelite promijeniti!");
+				return null;
+			}
+			
 			String ime = textIme.getText();
 			String prezime = textPrezime.getText();
 			String JMBG = textJMBG.getText();
@@ -290,29 +285,81 @@ public class ModifikacijaKorisnika {
 		
 			String nivoPrivilegije =(String) comboBoxPrivilegije.getSelectedItem();
 			
-			System.out.print(ime +" "+ prezime +" "+ JMBG +" "+  adresa +" "+ brojTelefona +" "+ email +" "+ korisnickoIme +" "+ lozinka +" "+ nivoPrivilegije);
+			List<TipZaposlenika> tipTemp= TipZaposlenikaKontroler.lista();
+			
+			if(ime==null || prezime==null || JMBG==null || adresa==null || brojTelefona==null || email==null || korisnickoIme==null || lozinka==null )
+			{
+				JOptionPane.showMessageDialog(null, "Niste unijeli sve potrebne parametre!");
+				return null;
+			}
+			
+			for ( TipZaposlenika tip : tipTemp){
+				if(tip.getKorisnickoime().equals(textKorisnickoIme.getText())){
+						JOptionPane.showMessageDialog(null, "Morate izabrati drugo korisnicko ime!");
+						return null;
+				}
+				else if(tip.getLozinka().equals(textLozinka.getText())){
+					JOptionPane.showMessageDialog(null, "Morate izabrati drugu lozinku!");
+					return null;
+				}
+			}
 			
 			try
-			{	tip = new TipZaposlenika(ime, prezime, JMBG, adresa, brojTelefona, email, korisnickoIme, lozinka, nivoPrivilegije);
-				System.out.print("napravi korisnika");
+			{	
+				String emailBox = textEmail.getText();
+				String emailreg = "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
+				 Boolean result = emailBox.matches(emailreg);
+				 
+				if(!JMBG.matches("[0-9]+") && JMBG.length()!=13){
+					JOptionPane.showMessageDialog(null, "JMBG sadrzi samo brojeve i ima tacno 13 brojeva!");
+					return null;
+				}
+				else if (!JMBG.matches("[0-9]+")) {
+					JOptionPane.showMessageDialog(null, "JMBG sadrzi samo brojeve!");
+					return null;
+				}
+				else if (!brojTelefona.matches("[0-9]+")) {
+					JOptionPane.showMessageDialog(null, "Broj telefona sadrzi samo brojeve!");
+					return null;
+				}
+				else if(!ime.matches("[a-zA-Z]+")){
+					JOptionPane.showMessageDialog(null, "Ime sadrzi samo slova!");
+					return null;
+				}
+				else if(!prezime.matches("[a-zA-Z]+")){
+					JOptionPane.showMessageDialog(null, "Prezime sadrzi samo slova!");
+					return null;
+				}
+				else if(result == false){
+					JOptionPane.showMessageDialog(null, "Email nije unesen u validnom formatu!");
+					return null;
+				}
+				else{
+				TipZaposlenika tip = new TipZaposlenika(ime, prezime, JMBG, adresa, brojTelefona, email, korisnickoIme, lozinka, nivoPrivilegije);
+					_zaposlenik.izmjeniKorisnika(tip);
+				}
 			}
 			catch (Exception e) 
 			{
 				logger.info(e);
 			}	
-			
+			return _zaposlenik;
 		}
+		
 		public void postaviListu(){
 			List<TipZaposlenika> zaposlenik=TipZaposlenikaKontroler.lista();
 			
-			DefaultListModel model=new DefaultListModel();
+			DefaultListModel<TipZaposlenika> model=new DefaultListModel<TipZaposlenika>();
 			
 			for(TipZaposlenika a:zaposlenik){
-				model.addElement(a.getIme());
+				model.addElement(a);
+			
 			}
 			
 			listKorisnici.setModel(model);
 		}
+		
+
 		
 		public void postaviPrivilegije(){
 			String[] privilegije=new String[]{"Sef","Skladistar"};

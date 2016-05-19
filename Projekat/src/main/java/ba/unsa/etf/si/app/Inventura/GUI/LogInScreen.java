@@ -90,7 +90,7 @@ public class LogInScreen {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				
-				TipZaposlenika korisnik;
+				TipZaposlenika korisnik=new TipZaposlenika();
 				try {
 					korisnik = provjerUserPass(textField.getText(), new String(passwordField.getPassword()));
 										
@@ -161,7 +161,8 @@ public class LogInScreen {
 	public static TipZaposlenika provjerUserPass(String username, String password) throws Exception{
 		
 		try{
-			TipZaposlenika zaposlenik = TipZaposlenikaKontroler.nadjiKorisnickoIme(username);
+			TipZaposlenika zaposlenik = new TipZaposlenika();
+			zaposlenik=TipZaposlenikaKontroler.nadjiKorisnickoIme(username);
 			
 			if(zaposlenik.getLozinka().equals(password)){
 				return zaposlenik;

@@ -133,14 +133,14 @@ public class TipZaposlenikaKontroler {
 		
 		
 		// modifikacija zaposlenika 
-		public static TipZaposlenika izmjeni(TipZaposlenika tip) throws Exception{
+		public static TipZaposlenika izmjeni( TipZaposlenika tip) throws Exception{
 			openSession();
 			
 				s.merge(tip);
 				t.commit();
 			closeSession();
 				
-			return nadjiId(tip.getId());
+			return nadjiID(tip.getId());
 		}
 		
 		

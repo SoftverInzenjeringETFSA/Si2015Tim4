@@ -128,6 +128,13 @@ public class TipZaposlenika implements Serializable{
 	{
 		privilegija=privil;
 	}
+	
+	@Override
+	public String toString(){
+		return getKorisnickoime();
+	}
+	
+	
 	public void izmjeniKorisnika(TipZaposlenika novi){
 		ime=novi.ime;
 		prezime=novi.prezime;

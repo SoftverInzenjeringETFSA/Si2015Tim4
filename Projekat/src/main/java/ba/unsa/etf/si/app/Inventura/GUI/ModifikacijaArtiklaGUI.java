@@ -166,7 +166,7 @@ public class ModifikacijaArtiklaGUI {
 					Double kolicina=Double.parseDouble(txtKolicina.getText());
 					String barkod=txtBarkod.getText();
 					
-					if(!barkod.matches("[0-9]+") && (barkod.length()<13 || barkod.length()>13)){
+					if(!barkod.matches("[0-9]+") && barkod.length()!=13){
 						JOptionPane.showMessageDialog(null, "Barkod sadrzi samo brojeve i ima tacno 13 brojeva!");
 						return;
 					}
@@ -174,7 +174,7 @@ public class ModifikacijaArtiklaGUI {
 						JOptionPane.showMessageDialog(null, "Barkod sadrzi samo brojeve!");
 						return;
 					}
-					else if(barkod.length()<13 || barkod.length()>13){
+					else if(barkod.length()!=13){
 						JOptionPane.showMessageDialog(null, "Barkod sadrzi tacno 13 brojeva!");
 						return;
 					}
