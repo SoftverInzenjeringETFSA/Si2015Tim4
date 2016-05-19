@@ -1,4 +1,6 @@
 package ba.unsa.etf.si.app.Inventura.Kontroleri;
+import java.math.BigInteger;
+import java.security.SecureRandom;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -154,6 +156,44 @@ public class TipZaposlenikaKontroler {
 			closeSession();
 			
 			return tipTemp;
+		}
+		
+		public static String generisiKorisnickoIme(String ime, String prezime){
+			String pocetni=ime.substring(0, 1).toLowerCase() + prezime.toLowerCase();
+			
+			List<TipZaposlenika> zaposlenici=lista();
+			
+			int brojac=1;
+			for(TipZaposlenika z:zaposlenici){
+				String test=z.getIme().substring(0, 1).toLowerCase() + z.getPrezime().toLowerCase();
+				if(pocetni.equals(test)){
+					brojac++;
+				}
+			}
+			
+			String korisnickoIme=pocetni+Integer.toString(brojac);
+			
+			return korisnickoIme;
+		}
+		
+		public static String generisiLozinku(){
+			SecureRandom random=new SecureRandom();
+			String lozinka=new BigInteger(50, random).toString(32);
+			
+			List<TipZaposlenika> zaposlenici=lista();
+			
+			int brojac=0;
+			for(TipZaposlenika z:zaposlenici){
+				if(z.getLozinka().equals(lozinka)){
+					brojac++;
+				}
+			}
+			
+			if(brojac!=0){
+				lozinka+=Integer.toString(brojac);
+			}
+			
+			return lozinka;
 		}
 			
 	}
