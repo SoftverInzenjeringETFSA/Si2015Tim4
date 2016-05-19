@@ -94,7 +94,7 @@ public class LogInScreen {
 				try {
 					korisnik = provjerUserPass(textField.getText(), new String(passwordField.getPassword()));
 										
-					if(korisnik==null){
+					if(korisnik.equals(null)){
 						validacija.setText("Korisnicko ime ili lozinka nisu tačni!");	
 					}
 					else if("Skladistar".equals(korisnik.getPrivilegija()))
@@ -139,7 +139,7 @@ public class LogInScreen {
 		frame.getContentPane().add(validacija);
 		frame.getContentPane().add(lblNewLabel);
 	}
-	
+	/*
 	public static String provjerUserPass(String username, char[] cs) throws Exception{
 		
 		String psw = new String(cs);
@@ -157,7 +157,7 @@ public class LogInScreen {
 			return "Unesite validne podatke!";
 		}
 	}
-	
+	*/
 	public static TipZaposlenika provjerUserPass(String username, String password) throws Exception{
 		
 		try{
@@ -166,13 +166,11 @@ public class LogInScreen {
 			if(zaposlenik.getLozinka().equals(password)){
 				return zaposlenik;
 			}
-			else{
-				return null;
-			}
 		}
 		catch(Exception i){
 			logger.info(i);
-			return null;
 		}
+		
+		return null;
 	}
 }

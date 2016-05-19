@@ -185,6 +185,12 @@ public class InventuraGUI {
 		btnObracun.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {	
+				
+				if(popis.isEmpty()){
+					JOptionPane.showMessageDialog(null, "Niste uradili inventuru ni za jedan artikal!");
+					return;
+				}
+				
 				try{
                     List<Artikal> artikliInventure=new ArrayList<Artikal>();
                     List<Object> objekti=tabela.getObjekti();

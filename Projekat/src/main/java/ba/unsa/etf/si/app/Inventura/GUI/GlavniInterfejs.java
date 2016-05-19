@@ -2,6 +2,7 @@ package ba.unsa.etf.si.app.Inventura.GUI;
 
 import java.awt.EventQueue;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 
 
@@ -14,10 +15,13 @@ import javax.swing.JLabel;
 import javax.swing.WindowConstants;
 
 import ba.unsa.etf.si.app.Inventura.Kontroleri.FormaKontroler;
+import ba.unsa.etf.si.app.Inventura.Kontroleri.KlasaArtikalaKontroler;
 import ba.unsa.etf.si.app.Inventura.Kontroleri.PostaviListBox;
+import ba.unsa.etf.si.app.Inventura.Model.KlasaArtikla;
 import ba.unsa.etf.si.app.Inventura.Model.TipZaposlenika;
 
 import java.awt.event.ActionListener;
+import java.util.List;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -88,6 +92,13 @@ public class GlavniInterfejs {
 		
 		JMenuBar menuBar = new JMenuBar();
 		frame.setJMenuBar(menuBar);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 23, 383, 213);
+		frame.getContentPane().add(scrollPane);
+		
+		tabela = new JTable();
+		scrollPane.setViewportView(tabela);
 		
 		JMenu mnInventura = new JMenu("Inventura");
 		menuBar.add(mnInventura);
@@ -206,15 +217,12 @@ public class GlavniInterfejs {
 		mnKorisnik.add(mntmNewMenuItem);
 		frame.getContentPane().setLayout(null);
 		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 11, 370, 202);
-		frame.getContentPane().add(scrollPane);
 		
-		tabela = new JTable();
-		scrollPane.setViewportView(tabela);
 		
 		JLabel lblKorisnikoIme = new JLabel("Korisničko ime");
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
 	}
+	
+	
 }

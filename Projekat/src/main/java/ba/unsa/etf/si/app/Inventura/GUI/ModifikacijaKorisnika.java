@@ -94,7 +94,6 @@ public class ModifikacijaKorisnika {
 			}
 		});
 	}
-
 	/**
 	 * Create the application.
 	 */
@@ -153,9 +152,13 @@ public class ModifikacijaKorisnika {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try{
-					TipZaposlenika zaposlenik=(TipZaposlenika)listKorisnici.getSelectedValue();
-					modifikujZaposlenika(zaposlenik);
-					TipZaposlenikaKontroler.izmjeni(zaposlenik);
+					TipZaposlenika tmp=(TipZaposlenika)listKorisnici.getSelectedValue();
+					
+					
+					modifikujZaposlenika(tmp);
+					TipZaposlenikaKontroler.izmjeni(tmp);
+					
+					JOptionPane.showMessageDialog(null, "Korisnik uspjesno modifikovan!");
 					
 					postaviListu();
 				}
@@ -171,33 +174,6 @@ public class ModifikacijaKorisnika {
 		listKorisnici.setBounds(43, 119, 150, 549);
 		frame.getContentPane().add(listKorisnici);
 		 postaviListu();
-		 
-		JLabel lblId = new JLabel("ID:");
-		lblId.setBounds(231, 176, 46, 14);
-		frame.getContentPane().add(lblId);
-		
-		textID = new JTextField();
-		textID.setBounds(231, 188, 141, 20);
-		frame.getContentPane().add(textID);
-		textID.setColumns(10);
-		
-		JLabel lblIme = new JLabel("Ime:");
-		lblIme.setBounds(231, 219, 46, 14);
-		frame.getContentPane().add(lblIme);
-		
-		textIme = new JTextField();
-		textIme.setBounds(231, 235, 141, 20);
-		frame.getContentPane().add(textIme);
-		textIme.setColumns(10);
-		
-		JLabel lblPrezime = new JLabel("Prezime:");
-		lblPrezime.setBounds(231, 266, 46, 14);
-		frame.getContentPane().add(lblPrezime);
-		
-		textPrezime = new JTextField();
-		textPrezime.setBounds(231, 291, 141, 20);
-		frame.getContentPane().add(textPrezime);
-		textPrezime.setColumns(10);
 		
 
 		comboPrivilegije = new JComboBox();
@@ -314,15 +290,17 @@ public class ModifikacijaKorisnika {
 		
 			String nivoPrivilegije =(String) comboBoxPrivilegije.getSelectedItem();
 			
+			System.out.print(ime +" "+ prezime +" "+ JMBG +" "+  adresa +" "+ brojTelefona +" "+ email +" "+ korisnickoIme +" "+ lozinka +" "+ nivoPrivilegije);
 			
 			try
-			{
-				tip = new TipZaposlenika(ime, prezime, JMBG, adresa, brojTelefona, email, korisnickoIme, lozinka, nivoPrivilegije);
+			{	tip = new TipZaposlenika(ime, prezime, JMBG, adresa, brojTelefona, email, korisnickoIme, lozinka, nivoPrivilegije);
+				System.out.print("napravi korisnika");
 			}
 			catch (Exception e) 
 			{
 				logger.info(e);
 			}	
+			
 		}
 		public void postaviListu(){
 			List<TipZaposlenika> zaposlenik=TipZaposlenikaKontroler.lista();

@@ -35,7 +35,7 @@ public class Skladiste implements Serializable{
 
 	
 	
-	@OneToOne(optional = true, fetch = FetchType.LAZY)
+	@ManyToOne(cascade = { CascadeType.ALL, CascadeType.PERSIST, CascadeType.MERGE })
 	@JoinColumn(name = "sef_id")
 	private TipZaposlenika sef;
 	

@@ -43,16 +43,7 @@ public class TipZaposlenikaKontroler {
 		closeSession();
 		return id;	
 	}
-		
-		// trazi po imenu i prezimenu korisnika
-		/*public static TipZaposlenika nadji(String prezime){
-			openSession();
-			TipZaposlenika tip = (TipZaposlenika)s.get(TipZaposlenika.class,new String(prezime));
-			t.commit();
-			
-			closeSession();
-			return tip;
-		}*/
+	
 		public static TipZaposlenika nadji(String ime, String prezime){
 			openSession();
 					
@@ -97,10 +88,7 @@ public class TipZaposlenikaKontroler {
 		{
 			openSession();
 			List<Object> temp = s.createCriteria(TipZaposlenika.class).add(Restrictions.like("korisnickoIme", korisnickoIme)).list();
-			if(temp.size() > 1) {
-				throw new Exception();
-			}
-			else if(temp.size()==0){
+			if(temp.size()==0){
 				return null;
 			}
 			TipZaposlenika pronadjeniKorisnik = (TipZaposlenika) temp.get(0);
