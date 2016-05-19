@@ -4,12 +4,15 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import org.apache.log4j.Logger;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 import java.awt.SystemColor;
@@ -60,12 +63,12 @@ public class LogInScreen {
 		frame.getContentPane().setBackground(SystemColor.control);
 		frame.setBackground(Color.DARK_GRAY);
 		frame.setTitle("Prijava na sistem");
-		frame.setBounds(100, 100, 260, 207);
+		frame.setBounds(100, 100, 277, 207);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JLabel lblKorisnikoIme = new JLabel("Korisničko ime:");
 		lblKorisnikoIme.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblKorisnikoIme.setBounds(18, 70, 92, 14);
+		lblKorisnikoIme.setBounds(20, 70, 92, 14);
 		
 		JLabel lblLozinka = new JLabel("Lozinka:");
 		lblLozinka.setFont(new Font("Tahoma", Font.PLAIN, 12));
@@ -84,7 +87,7 @@ public class LogInScreen {
 		
 		JButton btnPotvrdi = new JButton("Prijava");
 		btnPotvrdi.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnPotvrdi.setBounds(153, 131, 82, 23);
+		btnPotvrdi.setBounds(162, 144, 82, 23);
 		btnPotvrdi.setBackground(new Color(143, 188, 143));
 		btnPotvrdi.addActionListener(new ActionListener() {
 			@Override
@@ -113,13 +116,13 @@ public class LogInScreen {
 		});
 		
 		JLabel lblNewLabel = new JLabel("Dobrodošli");
-		lblNewLabel.setBounds(85, 21, 80, 17);
+		lblNewLabel.setBounds(95, 27, 80, 17);
 		lblNewLabel.setForeground(new Color(0, 128, 0));
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
 		JButton btnExit = new JButton("Kraj");
 		btnExit.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnExit.setBounds(42, 131, 82, 23);
+		btnExit.setBounds(45, 144, 82, 23);
 		btnExit.setBackground(new Color(143, 188, 143));
 		btnExit.addActionListener(new ActionListener() {
 			@Override	
@@ -138,6 +141,27 @@ public class LogInScreen {
 		frame.getContentPane().add(passwordField);
 		frame.getContentPane().add(validacija);
 		frame.getContentPane().add(lblNewLabel);
+		
+		JButton btnNewButton = new JButton("?");
+		btnNewButton.setBackground(new Color(143, 188, 143));
+		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
+			btnNewButton.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					String help = "<html><body width=300'" +
+			                    "'><h1>Pomoć</h1>" +
+			                    "<p> Dobrodošli u sistem za inventuru.<br><br>" +
+			                    "<p> Nakon što se logujete sa korisničkim imenom i lozinkom,prikazat će Vam se početni interfejs, na kojem možete  koristiti implementirane funkcionalnosti. Dalje upute  možete dobiti klikom na dugme Pomoć na sljedećem prozoru.<br><br>" +
+
+			                    "<p> Za sve ostale informacije kontaktirajte nas putem email-a:" +
+			                    "<p> deltadevelopment@gmail.com <br><br>" +
+			                    "";
+
+	                JOptionPane.showMessageDialog(null, help);
+				}
+			});
+		btnNewButton.setBounds(228, 0, 43, 23);
+		frame.getContentPane().add(btnNewButton);
 	}
 	/*
 	public static String provjerUserPass(String username, char[] cs) throws Exception{
