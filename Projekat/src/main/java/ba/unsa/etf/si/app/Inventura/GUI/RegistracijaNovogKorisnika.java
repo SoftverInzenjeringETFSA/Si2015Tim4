@@ -314,6 +314,10 @@ public class RegistracijaNovogKorisnika {
 						JOptionPane.showMessageDialog(null, "Prezime sadrzi samo slova!");
 						return;
 					}
+					else if(textLozinka.getText().length()<10){
+						JOptionPane.showMessageDialog(null, "Lozinka mora imati najmanje 10 karaktera!");
+						return;
+					}
 					
 					
 						TipZaposlenika a= new TipZaposlenika();
