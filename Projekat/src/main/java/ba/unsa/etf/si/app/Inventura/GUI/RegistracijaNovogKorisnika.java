@@ -45,7 +45,6 @@ public class RegistracijaNovogKorisnika {
 	private JLabel lblKorisnik;
 	
 	private JTextField textIme;
-	private JTextField textLozinka;
 	private JComboBox<String> comboPrivilegije;
 	
 	private List<String> _priv = Arrays.asList("Sef","Skladistar");
@@ -54,7 +53,6 @@ public class RegistracijaNovogKorisnika {
 	private JTextField textAdresa;
 	private JTextField textBrojTelefona;
 	private JTextField textEmail;
-	private JTextField textKorisnickoIme;
 	
 	/**
 	 * Launch the application.
@@ -123,7 +121,7 @@ public class RegistracijaNovogKorisnika {
 		frame = new JFrame();
 		frame.setTitle("Registracija korisnika");
 		frame.getContentPane().setBackground(SystemColor.control);
-		frame.setBounds(100, 100, 551, 462);
+		frame.setBounds(100, 100, 551, 416);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
@@ -159,19 +157,9 @@ public class RegistracijaNovogKorisnika {
 		frame.getContentPane().add(textIme);
 		textIme.setColumns(10);
 		
-		JLabel lozinka = new JLabel("Lozinka:");
-		lozinka.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lozinka.setBounds(122, 306, 67, 14);
-		frame.getContentPane().add(lozinka);
-		
-		textLozinka = new JTextField();
-		textLozinka.setBounds(226, 304, 152, 20);
-		frame.getContentPane().add(textLozinka);
-		textLozinka.setColumns(10);
-		
 		JLabel lblNivoPrivilegija = new JLabel("Nivo privilegije:");
 		lblNivoPrivilegija.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblNivoPrivilegija.setBounds(122, 332, 80, 14);
+		lblNivoPrivilegija.setBounds(123, 283, 80, 14);
 		frame.getContentPane().add(lblNivoPrivilegija);
 		
 		
@@ -184,7 +172,7 @@ public class RegistracijaNovogKorisnika {
 			}
 		}
 		comboPrivilegije.setToolTipText("Radnik\r\nŠef");
-		comboPrivilegije.setBounds(226, 329, 152, 20);
+		comboPrivilegije.setBounds(227, 280, 152, 20);
 		frame.getContentPane().add(comboPrivilegije);
 		
 		JLabel lblPrezime = new JLabel("Prezime:");
@@ -237,16 +225,6 @@ public class RegistracijaNovogKorisnika {
 		frame.getContentPane().add(textEmail);
 		textEmail.setColumns(10);
 		
-		JLabel lblKorisnikoIme = new JLabel("Korisničko ime:");
-		lblKorisnikoIme.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblKorisnikoIme.setBounds(122, 275, 80, 14);
-		frame.getContentPane().add(lblKorisnikoIme);
-		
-		textKorisnickoIme = new JTextField();
-		textKorisnickoIme.setBounds(226, 273, 152, 20);
-		frame.getContentPane().add(textKorisnickoIme);
-		textKorisnickoIme.setColumns(10);
-		
 		JButton btnZavrsi = new JButton("Odustani");
 		btnZavrsi.setBackground(new Color(143, 188, 143));
 		btnZavrsi.addActionListener(new ActionListener() {
@@ -255,7 +233,7 @@ public class RegistracijaNovogKorisnika {
 				FormaKontroler.zatvoriFormu(frameRoditelj, frame, false);
 			}
 		});
-		btnZavrsi.setBounds(43, 389, 125, 23);
+		btnZavrsi.setBounds(44, 340, 125, 23);
 		frame.getContentPane().add(btnZavrsi);
 		
 		JButton registruj = new JButton("Registruj");
@@ -266,26 +244,16 @@ public class RegistracijaNovogKorisnika {
 			public void actionPerformed(ActionEvent e){
 				boolean postojiIme=false;
 				try{	
-					String imeZaposlenika = textIme.getText();
+					String ime = textIme.getText();
 					String prezime = textPrezime.getText();
 					String JMBG = textJMBG.getText();
 					String brojTelefona = textBrojTelefona.getText();
-					
-					List<TipZaposlenika> tipTemp= TipZaposlenikaKontroler.lista();
-					
-					for ( TipZaposlenika tip : tipTemp){
-						if(tip.getKorisnickoime().equals(textKorisnickoIme.getText())){
-								JOptionPane.showMessageDialog(null, "Morate izabrati drugo korisnicko ime!");
-								return;
-						}
-						else if(tip.getLozinka().equals(textLozinka.getText())){
-							JOptionPane.showMessageDialog(null, "Morate izabrati drugu lozinku!");
-							return;
-						}
-					}
-					
-					
 					String email = textEmail.getText();
+				
+					
+					
+					
+					
 					String emailreg = "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
 
 					 Boolean result = email.matches(emailreg);
@@ -306,7 +274,7 @@ public class RegistracijaNovogKorisnika {
 						JOptionPane.showMessageDialog(null, "Broj telefona sadrzi samo brojeve!");
 						return;
 					}
-					else if(!validacijaImena(imeZaposlenika)){
+					else if(!validacijaImena(ime)){
 						JOptionPane.showMessageDialog(null, "Ime sadrzi samo slova!");
 						return;
 					}
@@ -314,15 +282,8 @@ public class RegistracijaNovogKorisnika {
 						JOptionPane.showMessageDialog(null, "Prezime sadrzi samo slova!");
 						return;
 					}
-					else if(textLozinka.getText().length()<10){
-						JOptionPane.showMessageDialog(null, "Lozinka mora imati najmanje 10 karaktera!");
-						return;
-					}
-					
-					
-						TipZaposlenika a= new TipZaposlenika();
-						a=dodajZaposlenika();
-						TipZaposlenikaKontroler.dodaj(a);
+						TipZaposlenika zaposlenik = dodajZaposlenika();
+						TipZaposlenikaKontroler.dodaj(zaposlenik);
 						JOptionPane.showMessageDialog(null, "Uspjesno ste registrovali korisnika!");
 									
 				}	
@@ -337,28 +298,29 @@ public class RegistracijaNovogKorisnika {
 		
 		
 		registruj.setToolTipText("");
-		registruj.setBounds(336, 389, 129, 23);
+		registruj.setBounds(337, 340, 129, 23);
 		frame.getContentPane().add(registruj);
 		
 		
 	}
 		public TipZaposlenika dodajZaposlenika()
 		{
-			String imeZaposlenika = textIme.getText();
+			String ime = textIme.getText();
 			String prezime = textPrezime.getText();
-			String JMBG = textJMBG.getText();
+			String jmbg = textJMBG.getText();
 			String adresa = textAdresa.getText();
-			String brojTelefona = textBrojTelefona.getText();
+			String telefon = textBrojTelefona.getText();
 			String email = textEmail.getText();
-			String korisnickoIme = textKorisnickoIme.getText();
-			String sifraZaposlenik = textLozinka.getText();
-			String nivoPrivilegije =(String) comboPrivilegije.getSelectedItem();
+			String korisnickoIme = TipZaposlenikaKontroler.generisiKorisnickoIme(ime, prezime);
+			String sifra = TipZaposlenikaKontroler.generisiLozinku();
+			String privilegija = (String)comboPrivilegije.getSelectedItem();
+			
 			TipZaposlenika novi = new TipZaposlenika();
 		
 			
 			try
 			{
-				novi = new TipZaposlenika(imeZaposlenika, prezime, JMBG, adresa, brojTelefona, email, korisnickoIme, sifraZaposlenik, nivoPrivilegije);
+				novi = new TipZaposlenika(ime, prezime, jmbg, adresa, telefon, email, korisnickoIme, sifra, privilegija);
 			}
 			catch (Exception e) 
 			{

@@ -36,6 +36,8 @@ import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 
 import org.apache.log4j.Logger;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.event.ListSelectionEvent;
 
 public class ModifikacijaKorisnika {
 	final static Logger logger = Logger.getLogger(LogInScreen.class);
@@ -130,11 +132,13 @@ public class ModifikacijaKorisnika {
 		frame.getContentPane().add(separator);
 		
 		JLabel lblKorisnikoIme = new JLabel("Registrovani korisnici:");
+		lblKorisnikoIme.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		lblKorisnikoIme.setBounds(43, 94, 150, 14);
 		frame.getContentPane().add(lblKorisnikoIme);
 		
 		JLabel lblNivoPrivilegije = new JLabel("Nivo privilegije:");
-		lblNivoPrivilegije.setBounds(231, 120, 80, 14);
+		lblNivoPrivilegije.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblNivoPrivilegije.setBounds(231, 120, 89, 14);
 		frame.getContentPane().add(lblNivoPrivilegije);
 		
 
@@ -173,6 +177,27 @@ public class ModifikacijaKorisnika {
 		});
 		
 		listKorisnici= new JList();
+		listKorisnici.addListSelectionListener(new ListSelectionListener() {
+			public void valueChanged(ListSelectionEvent arg0) {
+				TipZaposlenika z=listKorisnici.getSelectedValue();
+				if(z!=null){
+					if(z.getPrivilegija().equals("Sef")){
+						comboBoxPrivilegije.setSelectedItem("Sef");
+					}
+					else{
+						comboBoxPrivilegije.setSelectedItem("Skladistar");
+					}
+					textIme.setText(z.getIme());
+					textPrezime.setText(z.getPrezime());
+					textJMBG.setText(z.getJmbg());
+					textAdresa.setText(z.getAdresa());
+					textBrojTelefona.setText(z.getBrojtel());
+					textEmail.setText(z.getEmail());
+					textKorisnickoIme.setText(z.getKorisnickoime());
+					textLozinka.setText(z.getLozinka());
+				}
+			}
+		});
 		listKorisnici.setBounds(43, 119, 150, 549);
 		frame.getContentPane().add(listKorisnici);
 		postaviListu();
@@ -190,6 +215,7 @@ public class ModifikacijaKorisnika {
 		frame.getContentPane().add(btnZavrsi);
 		
 		JLabel lblIme1 = new JLabel("Ime:");
+		lblIme1.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		lblIme1.setBounds(231, 219, 46, 14);
 		frame.getContentPane().add(lblIme1);
 		
@@ -199,7 +225,8 @@ public class ModifikacijaKorisnika {
 		textIme.setColumns(10);
 		
 		JLabel lblPrezime1 = new JLabel("Prezime:");
-		lblPrezime1.setBounds(231, 266, 46, 14);
+		lblPrezime1.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblPrezime1.setBounds(231, 266, 66, 14);
 		frame.getContentPane().add(lblPrezime1);
 		
 		textPrezime = new JTextField();
@@ -209,6 +236,7 @@ public class ModifikacijaKorisnika {
 		
 
 		JLabel lblJmbg = new JLabel("JMBG:");
+		lblJmbg.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		lblJmbg.setBounds(231, 322, 46, 14);
 		frame.getContentPane().add(lblJmbg);
 		
@@ -218,6 +246,7 @@ public class ModifikacijaKorisnika {
 		textJMBG.setColumns(10);
 		
 		JLabel lblAdresa = new JLabel("Adresa:");
+		lblAdresa.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		lblAdresa.setBounds(231, 373, 46, 14);
 		frame.getContentPane().add(lblAdresa);
 		
@@ -227,7 +256,8 @@ public class ModifikacijaKorisnika {
 		textAdresa.setColumns(10);
 		
 		JLabel lblBrojTelefona = new JLabel("Broj telefona:");
-		lblBrojTelefona.setBounds(231, 419, 66, 14);
+		lblBrojTelefona.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblBrojTelefona.setBounds(231, 419, 89, 14);
 		frame.getContentPane().add(lblBrojTelefona);
 		
 		textBrojTelefona = new JTextField();
@@ -236,6 +266,7 @@ public class ModifikacijaKorisnika {
 		textBrojTelefona.setColumns(10);
 		
 		JLabel lblEmail = new JLabel("Email:");
+		lblEmail.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		lblEmail.setBounds(231, 475, 46, 14);
 		frame.getContentPane().add(lblEmail);
 		
@@ -245,7 +276,8 @@ public class ModifikacijaKorisnika {
 		textEmail.setColumns(10);
 		
 		JLabel lblEmail_1 = new JLabel("Korisničko ime:");
-		lblEmail_1.setBounds(231, 531, 80, 14);
+		lblEmail_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblEmail_1.setBounds(231, 531, 89, 14);
 		frame.getContentPane().add(lblEmail_1);
 		
 		textKorisnickoIme = new JTextField();
@@ -254,7 +286,8 @@ public class ModifikacijaKorisnika {
 		textKorisnickoIme.setColumns(10);
 		
 		JLabel lblLozinka = new JLabel("Lozinka:");
-		lblLozinka.setBounds(231, 573, 46, 14);
+		lblLozinka.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblLozinka.setBounds(231, 573, 66, 14);
 		frame.getContentPane().add(lblLozinka);
 		
 		textLozinka = new JTextField();
