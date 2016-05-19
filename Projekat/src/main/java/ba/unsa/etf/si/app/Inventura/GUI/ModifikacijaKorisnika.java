@@ -331,8 +331,8 @@ public class ModifikacijaKorisnika {
 						JOptionPane.showMessageDialog(null, "Morate izabrati drugo korisnicko ime!");
 						return null;
 				}
-				else if(tip.getLozinka().equals(textLozinka.getText())){
-					JOptionPane.showMessageDialog(null, "Morate izabrati drugu lozinku!");
+				else if(tip.getLozinka().equals(textLozinka.getText()) || textLozinka.getText().length()<10 ){
+					JOptionPane.showMessageDialog(null, "Morate izabrati drugu lozinku! \n\n (Napomena: lozinka mora imati 10 ili vise cifara)");
 					return null;
 				}
 			}
@@ -343,7 +343,7 @@ public class ModifikacijaKorisnika {
 				String emailreg = "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
 				 Boolean result = emailBox.matches(emailreg);
 				 
-				if(!JMBG.matches("[0-9]+") && JMBG.length()!=13){
+				if(!JMBG.matches("[0-9]+") || JMBG.length()!=13){
 					JOptionPane.showMessageDialog(null, "JMBG sadrzi samo brojeve i ima tacno 13 brojeva!");
 					return null;
 				}
@@ -351,8 +351,8 @@ public class ModifikacijaKorisnika {
 					JOptionPane.showMessageDialog(null, "JMBG sadrzi samo brojeve!");
 					return null;
 				}
-				else if (!brojTelefona.matches("[0-9]+")) {
-					JOptionPane.showMessageDialog(null, "Broj telefona sadrzi samo brojeve!");
+				else if (!brojTelefona.matches("[0-9]+") || brojTelefona.length()<6) {
+					JOptionPane.showMessageDialog(null, "Broj telefona sadrzi samo brojeve i ima minimalno 6 cifri!");
 					return null;
 				}
 				else if(!ime.matches("[a-zA-Z]+")){
