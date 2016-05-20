@@ -34,6 +34,9 @@ public class PromjenaLozinke {
 	private JPasswordField txtStaraLozinka;
 	private JPasswordField passwordNovaLozinka1;
 	private JPasswordField passwordNovaLozinka2;
+	private JTextField txtIme;
+	private JTextField txtPrezime;
+	private JTextField txtJMBG;
 
 	/**
 	 * Launch the application.
@@ -87,6 +90,33 @@ public class PromjenaLozinke {
 		frame.setTitle("Promjena lozinke");
 		frame.getContentPane().setBackground(SystemColor.control);
 		
+		JLabel lblUnesiteIme = new JLabel("Unesite ime:");
+		lblUnesiteIme.setBounds(35, 77, 109, 14);
+		frame.getContentPane().add(lblUnesiteIme);
+		
+		txtIme = new JTextField();
+		txtIme.setBounds(174, 74, 156, 20);
+		frame.getContentPane().add(txtIme);
+		txtIme.setColumns(10);
+		
+		JLabel lblUnesitePrezime = new JLabel("Unesite prezime:");
+		lblUnesitePrezime.setBounds(35, 108, 106, 14);
+		frame.getContentPane().add(lblUnesitePrezime);
+		
+		txtPrezime = new JTextField();
+		txtPrezime.setBounds(174, 105, 156, 20);
+		frame.getContentPane().add(txtPrezime);
+		txtPrezime.setColumns(10);
+		
+		JLabel lblUnesiteJmbg = new JLabel("Unesite JMBG:");
+		lblUnesiteJmbg.setBounds(35, 139, 96, 14);
+		frame.getContentPane().add(lblUnesiteJmbg);
+		
+		txtJMBG = new JTextField();
+		txtJMBG.setBounds(174, 136, 156, 20);
+		frame.getContentPane().add(txtJMBG);
+		txtJMBG.setColumns(10);
+		frame.setBounds(100, 100, 413, 379);
 		JLabel lblNewLabel = new JLabel("Promjena lozinke");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.LEFT);
 		lblNewLabel.setVerticalAlignment(SwingConstants.BOTTOM);
@@ -99,25 +129,25 @@ public class PromjenaLozinke {
 		
 		JLabel lblNewLabel_1 = new JLabel("Unesite staru lozinku:");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblNewLabel_1.setBounds(32, 80, 129, 14);
+		lblNewLabel_1.setBounds(35, 182, 129, 14);
 		
 		JLabel lblNewLabel_2 = new JLabel("Unesite novu lozinku:");
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblNewLabel_2.setBounds(32, 130, 129, 14);
+		lblNewLabel_2.setBounds(35, 246, 129, 14);
 		
 		JLabel lblNewLabel_3 = new JLabel("Potvrdite novu lozinku:");
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblNewLabel_3.setBounds(32, 169, 132, 14);
+		lblNewLabel_3.setBounds(32, 277, 132, 14);
 		
 		txtStaraLozinka = new JPasswordField();
-		txtStaraLozinka.setBounds(174, 77, 156, 20);
+		txtStaraLozinka.setBounds(174, 180, 156, 20);
 		txtStaraLozinka.setColumns(10);
 		
 		passwordNovaLozinka1 = new JPasswordField();
-		passwordNovaLozinka1.setBounds(174, 128, 156, 20);
+		passwordNovaLozinka1.setBounds(174, 244, 156, 20);
 		
 		passwordNovaLozinka2 = new JPasswordField();
-		passwordNovaLozinka2.setBounds(174, 166, 156, 20);
+		passwordNovaLozinka2.setBounds(174, 275, 156, 20);
 		
 		JButton btnPotvrdi = new JButton("Potvrdi");
 		btnPotvrdi.setFont(new Font("Tahoma", Font.PLAIN, 12));
@@ -125,13 +155,17 @@ public class PromjenaLozinke {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String staraLozinka=txtStaraLozinka.getText();
+				String ime=txtIme.getText();
+				String prezime=txtPrezime.getText();
+				String JMBG = txtJMBG.getText();
 				@SuppressWarnings("deprecation")
 				String novaLozinka1=new String(passwordNovaLozinka1.getText());
 				String novaLozinka2=new String(passwordNovaLozinka2.getText());
 				
-				if(korisnik.getLozinka().equals(staraLozinka) && novaLozinka1.equals(novaLozinka2) && (novaLozinka1.length()>=10) && novaLozinka2.length()>=10)
+				if(korisnik.getLozinka().equals(staraLozinka) && novaLozinka1.equals(novaLozinka2) && (novaLozinka1.length()>=10) && novaLozinka2.length()>=10 && korisnik.getIme().equals(ime) && korisnik.getPrezime().equals(prezime) && korisnik.getJmbg().equals(JMBG))
 				{
 					korisnik.setLozinka(novaLozinka1);
+					
 					try{
 						
 						TipZaposlenikaKontroler.izmjeni(korisnik);
@@ -142,6 +176,10 @@ public class PromjenaLozinke {
 						korisnik.setLozinka(staraLozinka);
 						JOptionPane.showMessageDialog(null, i.getMessage());
 					}
+				}
+				else if(!korisnik.getIme().equals(ime) || (!korisnik.getPrezime().equals(prezime)) || (!korisnik.getJmbg().equals(JMBG)))
+				{
+					JOptionPane.showMessageDialog(null, "Unesite ispravne lične podatke!");
 				}
 				else if(!korisnik.getLozinka().equals(staraLozinka)){
 					JOptionPane.showMessageDialog(null, "Unesite ispravnu staru lozinku!");
@@ -154,12 +192,12 @@ public class PromjenaLozinke {
 				}
 			}
 		});
-		btnPotvrdi.setBounds(239, 212, 91, 23);
+		btnPotvrdi.setBounds(239, 306, 91, 23);
 		btnPotvrdi.setBackground(new Color(143, 188, 143));
 		
 		JButton btnOdustani = new JButton("Odustani");
 		btnOdustani.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnOdustani.setBounds(32, 212, 91, 23);
+		btnOdustani.setBounds(32, 306, 91, 23);
 		btnOdustani.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -185,7 +223,9 @@ public class PromjenaLozinke {
 		lblKorisnik.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		lblKorisnik.setBounds(227, 38, 102, 14);
 		frame.getContentPane().add(lblKorisnik);
-		frame.setBounds(100, 100, 385, 284);
+		
+		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 }
+
