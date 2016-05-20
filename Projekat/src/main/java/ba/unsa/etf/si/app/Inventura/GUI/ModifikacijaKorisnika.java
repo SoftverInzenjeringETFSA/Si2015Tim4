@@ -335,9 +335,7 @@ public class ModifikacijaKorisnika {
 					JOptionPane.showMessageDialog(null, "Morate izabrati drugo korisnicko ime!");
 						return null;
 				}
-				/*else if(me.getId()==tip.getId() && tip.getKorisnickoime().equals(textKorisnickoIme.getText())){
-					
-				}*/
+				
 				else if(tip.getLozinka().equals(textLozinka.getText()) || textLozinka.getText().length()<10 ){
 					JOptionPane.showMessageDialog(null, "Morate izabrati drugu lozinku! \n\n (Napomena: lozinka mora imati 10 ili vise cifara)");
 					return null;

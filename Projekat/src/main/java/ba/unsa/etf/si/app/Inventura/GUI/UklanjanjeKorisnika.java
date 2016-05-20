@@ -16,6 +16,8 @@ import javax.swing.JButton;
 import java.awt.SystemColor;
 //import java.awt.Window;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 
@@ -30,8 +32,9 @@ public class UklanjanjeKorisnika {
 	private JLabel lblKorisnik;
 	
 	private JTextField textName;
-
+	
 	/**
+	 * 
 	 * Launch the application.
 	 */
 	public static void pokreni() {
@@ -133,21 +136,28 @@ public class UklanjanjeKorisnika {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String ime=textName.getText();
-				try{
-					TipZaposlenika tip=new TipZaposlenika();
-					tip=TipZaposlenikaKontroler.nadjiKorisnickoIme(ime);
-					if(tip.getId()==korisnik.getId())
+				
+				TipZaposlenika tmp;
+				try {
+					
+					tmp = TipZaposlenikaKontroler.nadjiKorisnickoIme(ime);
+					if(tmp.getId()==korisnik.getId()) 
 					{
 						JOptionPane.showMessageDialog(null, "Ne mozete obrisati svoj nalog!");
 						return;
 					}
 					
-					TipZaposlenikaKontroler.izbrisi(tip.getId());
-		
+					TipZaposlenikaKontroler.dodajObrisane(tmp);
+					TipZaposlenikaKontroler.izmjeni(tmp);
+					JOptionPane.showMessageDialog(null, "Uspješno ste obrisali korisnika.");
+					
 				} catch (Exception e1) {
+					
 					logger.info(e1);
-					JOptionPane.showMessageDialog(null, "Korisnicko ime ne postoji u bazi!");
 				}
+				
+				
+				
 			}
 		});
 		

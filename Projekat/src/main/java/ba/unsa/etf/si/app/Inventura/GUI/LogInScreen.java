@@ -9,10 +9,13 @@ import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import org.apache.log4j.Logger;
 
+
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.List;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 import java.awt.SystemColor;
@@ -26,11 +29,12 @@ public class LogInScreen {
 
 	private JFrame frame;
 	final static Logger logger = Logger.getLogger(LogInScreen.class);
-	private JTextField textField;
+	private static JTextField textField;
 	private JPasswordField passwordField;
 
 	/**
 	 * Launch the application.
+	 * 
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -94,11 +98,12 @@ public class LogInScreen {
 			public void actionPerformed(ActionEvent arg0) {
 				
 				TipZaposlenika korisnik=new TipZaposlenika();
+				
 				try {
 					korisnik = provjerUserPass(textField.getText(), new String(passwordField.getPassword()));
 										
 					if(korisnik.equals(null)){
-						validacija.setText("Korisnicko ime ili lozinka nisu tačni!");	
+						return;	
 					}
 					else if("Skladistar".equals(korisnik.getPrivilegija()))
 					{
@@ -163,32 +168,26 @@ public class LogInScreen {
 		btnNewButton.setBounds(228, 0, 43, 23);
 		frame.getContentPane().add(btnNewButton);
 	}
-	/*
-	public static String provjerUserPass(String username, char[] cs) throws Exception{
-		
-		String psw = new String(cs);
-		TipZaposlenika tip;
-		tip = TipZaposlenikaKontroler.nadjiKorisnickoIme(username);
-		if(tip==null){
-			return "nema";
-		}
-		if(tip.getLozinka().equals(psw))
-		{
-			if("Sef".equals(tip.getPrivilegija())) return "Sef";
-			else return "Skladistar";
-		}
-		else{
-			return "Unesite validne podatke!";
-		}
-	}
-	*/
+	
 	public static TipZaposlenika provjerUserPass(String username, String password) throws Exception{
 		
 		try{
 			TipZaposlenika zaposlenik = new TipZaposlenika();
 			zaposlenik=TipZaposlenikaKontroler.nadjiKorisnickoIme(username);
 			
-			if(zaposlenik.getLozinka().equals(password)){
+		   if(zaposlenik==null){
+				JOptionPane.showMessageDialog(null, "Korisnik ne postoji u bazi!");
+				return null;
+			}
+			else if(zaposlenik.getPrivilegija().equals("obrisan")){
+				JOptionPane.showMessageDialog(null, "Korisnik je obrisan iz baze podataka!");
+			}
+			else if(!zaposlenik.getLozinka().equals(password)){
+				JOptionPane.showMessageDialog(null, "Lozinka nije validna!");
+				return null;
+			}
+			
+			else if(zaposlenik.getLozinka().equals(password)){
 				return zaposlenik;
 			}
 		}
