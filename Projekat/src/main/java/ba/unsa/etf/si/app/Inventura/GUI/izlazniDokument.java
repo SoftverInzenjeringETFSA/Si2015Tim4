@@ -149,18 +149,10 @@ public class izlazniDokument {
 						JOptionPane.showMessageDialog(null, "Kolicina ne moze biti negativna!");
 						return;
 					}
-					
-					if(!kolicina.toString().matches("[0-9]+")){
-						JOptionPane.showMessageDialog(null, "Kolicina sadrzi samo brojeve!");
+					else if(kolicina>artikal.getKolicina()){
+						JOptionPane.showMessageDialog(null, "Unesena kolicina je veca od kolicine artikla na skladistu!");
 						return;
 					}
-					
-				
-					
-					//if(kolicina<0 || (artikal.getMjera().equals("kom") && kolicina!=Math.floor(kolicina))){
-					//	JOptionPane.showMessageDialog(null,	"Kolicina pozitivna itd.");
-					//	return;
-					//}
 					
 					String[] red=new String[]{artikal.getNaziv(), Double.toString(kolicina)};
 					
@@ -207,7 +199,7 @@ public class izlazniDokument {
 						priv_after=priv_after+kolicine.get(objekti.indexOf(o));
 						
 						//artikal.getKolicina()-kolicine.get(objekti.indexOf(o)
-						artikal.setKolicina(kolicine.get(objekti.indexOf(o)));
+						artikal.setKolicina(artikal.getKolicina()-kolicine.get(objekti.indexOf(o)));
 						JOptionPane.showMessageDialog(null, "Uspjesno ste kreirali izlazni dokument!");
 						ArtikliKontroler.izmijeni(artikal);
 					}
