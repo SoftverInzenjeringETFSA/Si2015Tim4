@@ -249,10 +249,6 @@ public class RegistracijaNovogKorisnika {
 					String JMBG = textJMBG.getText();
 					String brojTelefona = textBrojTelefona.getText();
 					String email = textEmail.getText();
-				
-					
-					
-					
 					
 					String emailreg = "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
 
@@ -282,16 +278,17 @@ public class RegistracijaNovogKorisnika {
 						JOptionPane.showMessageDialog(null, "Prezime sadrzi samo slova!");
 						return;
 					}
+					else {
 						TipZaposlenika zaposlenik = dodajZaposlenika();
 						TipZaposlenikaKontroler.dodaj(zaposlenik);
 						JOptionPane.showMessageDialog(null, "Uspjesno ste registrovali korisnika!\n" + "\nKorisnicko ime:    "+ zaposlenik.getKorisnickoime() + "\nLozinka:        " +zaposlenik.getLozinka());
-									
+					}			
 				}	
 				
 				catch(Exception i){
 					logger.info(i);
 					Component frame = null;
-					JOptionPane.showMessageDialog(frame, i.getMessage());
+					JOptionPane.showMessageDialog(frame, "Nesto je poslo po zlu.");
 				}
 			}
 		});

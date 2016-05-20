@@ -142,31 +142,79 @@ public class InventuraGUI {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				try{
+					
+					Double kolicina2=Double.parseDouble(txtKolicina.getText());
 					if(artikal==null){
 						return;
 					}
 										
 					if(!popis.contains(artikal.getId())){
-						Double kolicina=Double.parseDouble(txtKolicina.getText());
 						
-						if(kolicina<0){
-							JOptionPane.showMessageDialog(frame, "Količina mora biti pozitivna.");
-							return;
+						if(artikal.getMjera().equals("kom"))
+						{
+							String kolicina=txtKolicina.getText();
+							try{
+								
+							Integer.parseInt(kolicina);
+							
+							if(kolicina2<0){
+								JOptionPane.showMessageDialog(null, "Kolicina ne moze biti negativna!");
+								return;
+							}
+							else if(kolicina2>artikal.getKolicina()){
+								JOptionPane.showMessageDialog(null, "Unesena kolicina je veca od kolicine artikla na skladistu!");
+								return;
+							}
+							else{
+								artikal.setKolicina(kolicina2);
+								String[] red=new String[]{artikal.getNaziv(), artikal.getKolicina().toString()};
+								
+								tabela.dodajRed(artikal, red);
+								popis.add(artikal.getId());
+								
+								txtKolicina.setText("");
+								txtNaziv.setText("");
+								txtMjera.setText("");
+
+							}
+						    }
+							catch(NumberFormatException e) {  
+								JOptionPane.showMessageDialog(null, "Neispravan format polja količina.");
+						         return;  
+						      }  
+
+							
+						}
+						else{
+							
+							if(kolicina2<0){
+								JOptionPane.showMessageDialog(null, "Kolicina ne moze biti negativna!");
+								return;
+							}
+							else if(kolicina2>artikal.getKolicina()){
+								JOptionPane.showMessageDialog(null, "Unesena kolicina je veca od kolicine artikla na skladistu!");
+								return;
+							}
+							else{
+							artikal.setKolicina(kolicina2);
+							String[] red=new String[]{artikal.getNaziv(), artikal.getKolicina().toString()};
+							
+							tabela.dodajRed(artikal, red);
+							popis.add(artikal.getId());
+							
+							txtKolicina.setText("");
+							txtNaziv.setText("");
+							txtMjera.setText("");
+							}
+							
 						}
 						
-						artikal.setKolicina(kolicina);
-						String[] red=new String[]{artikal.getNaziv(), artikal.getKolicina().toString()};
 						
-						tabela.dodajRed(artikal, red);
-						popis.add(artikal.getId());
-						
-						txtKolicina.setText("");
-						txtNaziv.setText("");
-						txtMjera.setText("");
 					}
 					else{
 						JOptionPane.showMessageDialog(null, "Artkal je već dodat na popis.");
 					}
+		
 				}
 				catch(NumberFormatException i){
 					logger.info(i);
