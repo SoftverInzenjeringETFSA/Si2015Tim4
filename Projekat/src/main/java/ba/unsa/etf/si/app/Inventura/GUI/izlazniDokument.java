@@ -192,37 +192,37 @@ public class izlazniDokument {
 					
 				else{
 				
-				for(Object o:objekti){
-					Artikal artikal=(Artikal)o;
-					try{
-						priv=priv+artikal.getKolicina();
-						priv_after=priv_after+kolicine.get(objekti.indexOf(o));
-						
-						//artikal.getKolicina()-kolicine.get(objekti.indexOf(o)
-						artikal.setKolicina(artikal.getKolicina()-kolicine.get(objekti.indexOf(o)));
-						JOptionPane.showMessageDialog(null, "Uspjesno ste kreirali izlazni dokument!");
-						ArtikliKontroler.izmijeni(artikal);
+					for(Object o:objekti){
+						Artikal artikal=(Artikal)o;
+						try{
+							priv=priv+artikal.getKolicina();
+							priv_after=priv_after+kolicine.get(objekti.indexOf(o));
+							
+							//artikal.getKolicina()-kolicine.get(objekti.indexOf(o)
+							artikal.setKolicina(artikal.getKolicina()-kolicine.get(objekti.indexOf(o)));
+							JOptionPane.showMessageDialog(null, "Uspjesno ste kreirali izlazni dokument!");
+							ArtikliKontroler.izmijeni(artikal);
+						}
+						catch(Exception i){
+							logger.info(i);
+							JOptionPane.showMessageDialog(null, i.getMessage());
+						}
 					}
-					catch(Exception i){
-						logger.info(i);
-						JOptionPane.showMessageDialog(null, i.getMessage());
+					
+					Izvjestaj i=new Izvjestaj(comboVrsta.getSelectedItem().toString(),txtOpis.getText(),new Date(), priv_after-priv);
+					IzvjestajKontroler.dodaj(i);
+					
+					tabelaPostojeci.isprazni();
+					tabelaDodani.isprazni();
+					
+					List<Artikal> artikli=ArtikliKontroler.lista();
+					for(Artikal a:artikli){
+						String[] red=new String[]{a.getNaziv(), Double.toString(a.getKolicina())};
+						tabelaPostojeci.dodajRed(a,	red);
 					}
+					
+					txtKolicina.setText("");
 				}
-				
-				/*
-				List<Artikal> artikli=ArtikliKontroler.lista();
-				for(Artikal a:artikli){
-					String[] red=new String[]{a.getNaziv(), Double.toString(a.getKolicina())};
-					tabelaPostojeci.dodajRed(a,	red);
-				}*/
-				txtKolicina.setText("");
-				
-				Izvjestaj i=new Izvjestaj(comboVrsta.getSelectedItem().toString(),txtOpis.getText(),new Date(), priv_after-priv);
-				IzvjestajKontroler.dodaj(i);
-				
-				tabelaPostojeci.isprazni();
-				tabelaDodani.isprazni();
-			}
 			}
 		});
 		btnZakljuiDokument.setFont(new Font("Tahoma", Font.PLAIN, 12));
