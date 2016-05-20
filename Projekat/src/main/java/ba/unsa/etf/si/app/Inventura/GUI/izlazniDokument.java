@@ -139,51 +139,45 @@ public class izlazniDokument {
 				
 				Artikal artikal=(Artikal)tabelaPostojeci.dajRed(brojReda);
 				
-				try{
-				if(!tabelaDodani.getObjekti().contains(artikal.getId()))
-				{
-					if(artikal.getMjera().equals("kom"))
-					{
-						String kolicina=txtKolicina.getText();
-						try{
-							
-						Integer.parseInt(kolicina);
-						
-						Double kolicina2=Double.parseDouble(txtKolicina.getText());
-						if(kolicina2<0){
-							JOptionPane.showMessageDialog(null, "Kolicina ne moze biti negativna!");
-							return;
-						}
-						else if(kolicina2>artikal.getKolicina()){
-							JOptionPane.showMessageDialog(null, "Unesena kolicina je veca od kolicine artikla na skladistu!");
-							return;
-						}
-						else{
-							String[] red=new String[]{artikal.getNaziv(), Double.toString(kolicina2)};
-						tabelaDodani.dodajRed(artikal, red);
-						
-						kolicine.add(kolicina2);
-
-						}
-					}
-						catch(NumberFormatException e) {  
-							JOptionPane.showMessageDialog(null, "Neispravan format polja količina.");
-					         return;  
-					      }  
-
-						
-					}
-					
-				}
-				else{
-					JOptionPane.showMessageDialog(null, "Artkal je već dodat na popis.");
+				if(tabelaDodani.getObjekti().contains(artikal)){
+					JOptionPane.showMessageDialog(null, "Artikal je dodat u popis.");
 					return;
 				}
-			}
+				
+				try{
+					
+					Double kolicina=Double.parseDouble(txtKolicina.getText());
+					
+					if(kolicina<0){
+						JOptionPane.showMessageDialog(null, "Kolicina ne moze biti negativna!");
+						return;
+					}
+					else if(kolicina>artikal.getKolicina()){
+						JOptionPane.showMessageDialog(null, "Unesena kolicina je veca od kolicine artikla na skladistu!");
+						return;
+					}
+					else if(artikal.getMjera().equals("kom")){
+						try{
+							Integer.parseInt(txtKolicina.getText());
+						}
+						catch(Exception i){
+							JOptionPane.showMessageDialog(null, "Odabrani artikal se prodaje po komadu, kolicina mora biti cijeli broj.");
+							return;
+						}
+					}
+					
+					String[] red=new String[]{artikal.getNaziv(), Double.toString(kolicina)};
+					
+					tabelaDodani.dodajRed(artikal, red);
+					
+					kolicine.add(kolicina);
+					
+				}
 				catch(Exception i){
 					logger.info(i);
 					JOptionPane.showMessageDialog(null, "Kolicina sadrzi samo brojeve!");
 				}
+				
 			}
 		});
 		btnDodaj.setBounds(345, 206, 100, 23);
