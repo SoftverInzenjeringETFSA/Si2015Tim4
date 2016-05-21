@@ -8,10 +8,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
-import ba.unsa.etf.si.app.Inventura.Kontroleri.HibernateUtil;
 import ba.unsa.etf.si.app.Inventura.Model.KlasaArtikla;
-//import java.util.List;
-import javassist.tools.rmi.ObjectNotFoundException;
 
 public final class KlasaArtikalaKontroler {
 

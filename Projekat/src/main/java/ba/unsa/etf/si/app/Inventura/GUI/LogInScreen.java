@@ -15,13 +15,11 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.List;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 import java.awt.SystemColor;
 import java.awt.Font;
 
-import ba.unsa.etf.si.app.Inventura.Kontroleri.FormaKontroler;
 import ba.unsa.etf.si.app.Inventura.Kontroleri.TipZaposlenikaKontroler;
 import ba.unsa.etf.si.app.Inventura.Model.TipZaposlenika;;
 

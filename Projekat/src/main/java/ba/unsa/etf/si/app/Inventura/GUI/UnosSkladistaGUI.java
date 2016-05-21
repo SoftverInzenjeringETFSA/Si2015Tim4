@@ -12,14 +12,10 @@ import javax.swing.SwingConstants;
 
 import org.apache.log4j.Logger;
 
-import ba.unsa.etf.si.app.Inventura.Kontroleri.ArtikliKontroler;
 import ba.unsa.etf.si.app.Inventura.Kontroleri.FormaKontroler;
 import ba.unsa.etf.si.app.Inventura.Kontroleri.SkladisteKontroler;
-import ba.unsa.etf.si.app.Inventura.Model.Artikal;
 import ba.unsa.etf.si.app.Inventura.Model.Skladiste;
 import ba.unsa.etf.si.app.Inventura.Model.TipZaposlenika;
-import ba.unsa.etf.si.app.Inventura.Model.ValidacijaArtikla;
-
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.JButton;

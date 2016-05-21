@@ -9,7 +9,6 @@ import javax.swing.JOptionPane;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.List;
 import java.awt.Color;
 import java.awt.Component;
 
@@ -17,10 +16,8 @@ import javax.swing.SwingConstants;
 
 import org.apache.log4j.Logger;
 
-import ba.unsa.etf.si.app.Inventura.Model.Artikal;
 import ba.unsa.etf.si.app.Inventura.Model.KlasaArtikla;
 import ba.unsa.etf.si.app.Inventura.Model.TipZaposlenika;
-import ba.unsa.etf.si.app.Inventura.Kontroleri.ArtikliKontroler;
 import ba.unsa.etf.si.app.Inventura.Kontroleri.FormaKontroler;
 import ba.unsa.etf.si.app.Inventura.Kontroleri.KlasaArtikalaKontroler;
 

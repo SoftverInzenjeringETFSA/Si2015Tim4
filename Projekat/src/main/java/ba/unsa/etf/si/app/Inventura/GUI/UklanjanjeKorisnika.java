@@ -16,8 +16,6 @@ import javax.swing.JButton;
 import java.awt.SystemColor;
 //import java.awt.Window;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.List;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 

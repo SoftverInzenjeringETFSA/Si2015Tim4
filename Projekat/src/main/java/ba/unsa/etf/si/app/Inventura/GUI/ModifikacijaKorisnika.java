@@ -4,17 +4,13 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import java.awt.Color;
-import java.awt.Component;
-
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
 
-import ba.unsa.etf.si.app.Inventura.Model.KlasaArtikla;
 import ba.unsa.etf.si.app.Inventura.Model.TipZaposlenika;
 import ba.unsa.etf.si.app.Inventura.Kontroleri.FormaKontroler;
-import ba.unsa.etf.si.app.Inventura.Kontroleri.KlasaArtikalaKontroler;
 import ba.unsa.etf.si.app.Inventura.Kontroleri.TipZaposlenikaKontroler;
 
 

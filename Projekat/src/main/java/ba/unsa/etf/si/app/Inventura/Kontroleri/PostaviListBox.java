@@ -1,5 +1,4 @@
 package ba.unsa.etf.si.app.Inventura.Kontroleri;
-import ba.unsa.etf.si.app.Inventura.Kontroleri.HibernateUtil;
 import java.util.List;
 
 import javax.swing.JTable;

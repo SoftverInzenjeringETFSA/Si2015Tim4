@@ -22,8 +22,6 @@ import javax.swing.JOptionPane;
 //import java.awt.event.KeyAdapter;
 //import java.awt.event.KeyEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -128,14 +126,14 @@ public class ProsireniInterfejsGUI {
 		});
 		mnSkladite.add(mntmPregledStanjaNa);
 		
-		JMenuItem mntmUnosSkladita = new JMenuItem("Unos skladišta");
+		/*JMenuItem mntmUnosSkladita = new JMenuItem("Unos skladišta");
 		mntmUnosSkladita.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				UnosSkladistaGUI.pokreni(frame, korisnik);
 			}
 		});
-		mnSkladite.add(mntmUnosSkladita);
+		mnSkladite.add(mntmUnosSkladita);*/
 		
 		JMenu mnDokumenti = new JMenu("Dokumenti");
 		menuBar.add(mnDokumenti);

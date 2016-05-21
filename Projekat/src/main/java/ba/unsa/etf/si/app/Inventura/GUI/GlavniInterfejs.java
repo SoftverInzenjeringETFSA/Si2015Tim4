@@ -2,7 +2,6 @@ package ba.unsa.etf.si.app.Inventura.GUI;
 
 import java.awt.EventQueue;
 
-import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 
 
@@ -15,13 +14,10 @@ import javax.swing.JLabel;
 import javax.swing.WindowConstants;
 
 import ba.unsa.etf.si.app.Inventura.Kontroleri.FormaKontroler;
-import ba.unsa.etf.si.app.Inventura.Kontroleri.KlasaArtikalaKontroler;
 import ba.unsa.etf.si.app.Inventura.Kontroleri.PostaviListBox;
-import ba.unsa.etf.si.app.Inventura.Model.KlasaArtikla;
 import ba.unsa.etf.si.app.Inventura.Model.TipZaposlenika;
 
 import java.awt.event.ActionListener;
-import java.util.List;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;

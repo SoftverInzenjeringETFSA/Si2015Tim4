@@ -1,5 +1,4 @@
 package ba.unsa.etf.si.app.Inventura.Kontroleri;
-import ba.unsa.etf.si.app.Inventura.Kontroleri.HibernateUtil;
 import javax.swing.JFrame;
 
 public final class FormaKontroler {

@@ -242,7 +242,6 @@ public class RegistracijaNovogKorisnika {
 		registruj.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e){
-				boolean postojiIme=false;
 				try{	
 					String ime = textIme.getText();
 					String prezime = textPrezime.getText();
