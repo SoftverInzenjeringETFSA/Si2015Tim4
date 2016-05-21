@@ -161,8 +161,8 @@ public class izlazniDokument {
 							Integer.parseInt(txtKolicina.getText());
 						}
 						catch(Exception i){
-							JOptionPane.showMessageDialog(null, "Odabrani artikal se prodaje po komadu, kolicina mora biti cijeli broj.");
-							return;
+							logger.info(i);
+							//JOptionPane.showMessageDialog(null, "Odabrani artikal se prodaje po komadu, kolicina mora biti cijeli broj.");
 						}
 					}
 					

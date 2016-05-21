@@ -27,7 +27,7 @@ public class LogInScreen {
 
 	private JFrame frame;
 	final static Logger logger = Logger.getLogger(LogInScreen.class);
-	private static JTextField textField;
+	private JTextField textField;
 	private JPasswordField passwordField;
 
 	/**
