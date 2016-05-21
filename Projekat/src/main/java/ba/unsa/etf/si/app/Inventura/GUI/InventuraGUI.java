@@ -161,10 +161,6 @@ public class InventuraGUI {
 								JOptionPane.showMessageDialog(null, "Kolicina ne moze biti negativna!");
 								return;
 							}
-							else if(kolicina2>artikal.getKolicina()){
-								JOptionPane.showMessageDialog(null, "Unesena kolicina je veca od kolicine artikla na skladistu!");
-								return;
-							}
 							else{
 								artikal.setKolicina(kolicina2);
 								String[] red=new String[]{artikal.getNaziv(), artikal.getKolicina().toString()};
@@ -189,10 +185,6 @@ public class InventuraGUI {
 							
 							if(kolicina2<0){
 								JOptionPane.showMessageDialog(null, "Kolicina ne moze biti negativna!");
-								return;
-							}
-							else if(kolicina2>artikal.getKolicina()){
-								JOptionPane.showMessageDialog(null, "Unesena kolicina je veca od kolicine artikla na skladistu!");
 								return;
 							}
 							else{
@@ -271,16 +263,18 @@ public class InventuraGUI {
 	                                    a1.setKolicina(-kolicina);
 	                                    artikliManjka.add(a1);
 	                                    stanjeManjka+=a1.getKolicina()*a1.getCijena();
-	                                    Izvjestaj manjak=new Izvjestaj("Manjak", opis, datum, stanjeManjka);
+	                                    
+	                                    //Izvjestaj manjak=new Izvjestaj("Manjak", opis, datum, stanjeManjka); // staro
+	                                    Izvjestaj manjak=new Izvjestaj("Manjak", a1.getNaziv(), datum, a1.getKolicina()); // novo
 	                                    IzvjestajKontroler.dodaj(manjak);
-	            	                    
-	            	                    
 	                                }
 	                                else if(kolicina>0){
 	                                    a1.setKolicina(kolicina);
 	                                    artikliViska.add(a1);
 	                                    stanjeViska+=a1.getKolicina()*a1.getCijena();
-	                                    Izvjestaj visak=new Izvjestaj("Visak", opis, datum, stanjeViska);
+	                                    
+	                                    //Izvjestaj visak=new Izvjestaj("Visak", opis, datum, stanjeViska); // staro
+	                                    Izvjestaj visak=new Izvjestaj("Visak", a1.getNaziv(), datum, a1.getKolicina()); // novo
 	                                    IzvjestajKontroler.dodaj(visak);
 	                                }
 	                               
@@ -290,7 +284,10 @@ public class InventuraGUI {
 	                        
 	                        if(!popisan && a1.getKolicina()>0){
 	                            artikliManjka.add(a1);
-	                            //stanjeManjka+=a1.getKolicina()*a1.getCijena();
+	                            stanjeManjka+=a1.getKolicina()*a1.getCijena(); // novo
+	                           
+	                            Izvjestaj manjak=new Izvjestaj("Manjak", a1.getNaziv(), datum, a1.getKolicina()); // novo
+                                IzvjestajKontroler.dodaj(manjak);												  // novo
 	                            
 	                            Artikal a1_kopija=new Artikal();
 	                            a1_kopija.setId(a1.getId());
