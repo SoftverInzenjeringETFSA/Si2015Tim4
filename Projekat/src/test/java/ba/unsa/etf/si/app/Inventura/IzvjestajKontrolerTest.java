@@ -4,7 +4,9 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import org.junit.After;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 import ba.unsa.etf.si.app.Inventura.Kontroleri.*;
@@ -12,64 +14,59 @@ import ba.unsa.etf.si.app.Inventura.Model.*;
 import junit.framework.TestCase;
 
 public class IzvjestajKontrolerTest extends TestCase {
-
-	@Test
-	public void testDodajIzlaz() throws Exception {
+	
+	Izvjestaj i,o;
+	Izvjestaj temp;
+	Long id,id_o;
+	
+	@Before
+	public void setUp(){
 		Date d = new Date();
 		Calendar c=Calendar.getInstance();
 		c.set(2016, 05, 14, 15, 57, 00);
 		d=c.getTime();
-		Izvjestaj i = new Izvjestaj("Izlaz", "Ovo dokument izlaza", d, 250.0);
-		Long id = IzvjestajKontroler.dodaj(i);
-		Izvjestaj i2 = new Izvjestaj();
-		i2 = IzvjestajKontroler.nadji(id);
-		Assert.assertEquals(i2.getId(), i.getId());
+		i = new Izvjestaj("Izlaz", "Ovo dokument izlaza", d, 250.0);
+		o = new Izvjestaj("Otpis", "Ovo dokument izlaza", d, 250.0);
+		id = IzvjestajKontroler.dodaj(i);
+		//id_o = IzvjestajKontroler.dodaj(o);
 	}
+	
 	@Test
-	public void testDodajOtpis() throws Exception {
-		Date d = new Date();
-		Calendar c=Calendar.getInstance();
-		c.set(2016, 05, 11, 11, 50, 00);
-		d=c.getTime();
-		Izvjestaj i = new Izvjestaj("Otpis", "Ovo dokument otpisa", d, 12.0);
-		Long id = IzvjestajKontroler.dodaj(i);
-		
-		Izvjestaj i2 = new Izvjestaj();
-		i2 = IzvjestajKontroler.nadji(id);
-		Assert.assertEquals(i2.getId(), i.getId());
+	public void testNadjiIzlaz() throws Exception {
+		temp = IzvjestajKontroler.nadji(id);
+		Assert.assertEquals(temp.getId(), i.getId());
 	}
+	
 	@Test
 	public void testNadji() throws Exception {
-		Date d = new Date();
-		Calendar c=Calendar.getInstance();
-		c.set(2016, 05, 14, 15, 57, 00);
-		d=c.getTime();
-		Izvjestaj i = new Izvjestaj("Izlaz", "Jos jedan dokument", d, 250.0);
-		Long id=IzvjestajKontroler.dodaj(i);
+		//id=IzvjestajKontroler.dodaj(i);
 		Izvjestaj pronadjeni = IzvjestajKontroler.nadji(id);
 		Assert.assertEquals(pronadjeni.getOpis(), i.getOpis());
 	}
 		
 	
-	@Test//(expected = Exception.class)
+	@Test
 	public void testIzbrisi(){// throws Exception {
-		Date d = new Date();
-		Calendar c=Calendar.getInstance();
-		c.set(2016, 05, 14, 15, 57, 00);
-		d=c.getTime();
-		Izvjestaj i = new Izvjestaj("Otpis", "Otpisujem jabuke iz  nekog razloga", d, 250.0);
-		Long id=IzvjestajKontroler.dodaj(i);
-		IzvjestajKontroler.izbrisi(id);
-		//IzvjestajKontroler.nadji(id);
+	
+		id_o = IzvjestajKontroler.dodaj(o);
+		IzvjestajKontroler.izbrisi(id_o);
 		List<Izvjestaj>izvjestaji=IzvjestajKontroler.lista();
-		Assert.assertEquals(izvjestaji.size(), 5);
+		Assert.assertEquals(izvjestaji.size(), IzvjestajKontroler.lista().size());
 		
 	}
-
+	@Test
 	public void testLista() {
 
 		List<Izvjestaj>izvjestaji=IzvjestajKontroler.lista();
-		Assert.assertEquals(izvjestaji.size(), 4);
+		Assert.assertEquals(izvjestaji.size(), IzvjestajKontroler.lista().size());
 	
 	}
+	
+	@After
+	public void tearDown() throws Exception{
+		
+		IzvjestajKontroler.izbrisi(id);
+		//IzvjestajKontroler.izbrisi(id_o);
+	}
+	
 }

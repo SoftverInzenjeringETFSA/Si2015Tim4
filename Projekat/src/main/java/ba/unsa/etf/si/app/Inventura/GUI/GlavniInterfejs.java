@@ -87,7 +87,8 @@ public class GlavniInterfejs {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 406, 283);
+		frame.setResizable(false);
+		frame.setBounds(100, 100, 414, 313);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JMenuBar menuBar = new JMenuBar();

@@ -1,6 +1,5 @@
 package ba.unsa.etf.si.app.Inventura;
 
-import org.hibernate.ObjectNotFoundException;
 import org.junit.After;
 
 import java.util.List;
@@ -13,9 +12,9 @@ import ba.unsa.etf.si.app.Inventura.Model.*;
 import junit.framework.TestCase;
 
 public class TipZaposlenikaKontrolerTest extends TestCase {
-	TipZaposlenika z;
+	TipZaposlenika z,z2;
 	TipZaposlenika o;
-	Long id;
+	Long id,id2;
 	
 	@Before
 	public void setUp(){
@@ -43,12 +42,16 @@ public class TipZaposlenikaKontrolerTest extends TestCase {
 		Assert.assertEquals(o.getIme(), "Ime");
 		}
 	
-	/*@Test(expected = Exception.class)
+	@Test
 	public void testBrisiJmbg() throws Exception {
-		TipZaposlenikaKontroler.brisiJmbg("1307992170016");
-		TipZaposlenikaKontroler.nadjiIme("Ime");
+		z2 = new TipZaposlenika("N", "N", "0000000000001", "Adresa", "000111222", "bla@gmail.com", "ok", "ok", "Šef");
+		id2 = TipZaposlenikaKontroler.dodaj(z2);
+		o=TipZaposlenikaKontroler.nadji("N", "N");
+		TipZaposlenikaKontroler.brisiJmbg("0000000000001");
+		List<TipZaposlenika>korisnici=TipZaposlenikaKontroler.lista();
+		Assert.assertEquals(korisnici.size(), TipZaposlenikaKontroler.lista().size());
 	}
-	*/
+	
 	@Test
 	public void testIzmjeni() throws Exception {
 		z.setBrojtel("111222333");
@@ -64,15 +67,17 @@ public class TipZaposlenikaKontrolerTest extends TestCase {
 		List<TipZaposlenika>korisnici=TipZaposlenikaKontroler.lista();
 		Assert.assertEquals(korisnici.size(), TipZaposlenikaKontroler.lista().size());
 	}
-/*
-	@Test(expected = ObjectNotFoundException.class)
+
+	@Test
 	public void testIzbrisi() throws Exception {
-		o=TipZaposlenikaKontroler.nadji("Ime", "Prezime");
+		z2 = new TipZaposlenika("N", "N", "0000000000001", "Adresa", "000111222", "bla@gmail.com", "ok", "ok", "Šef");
+		id2 = TipZaposlenikaKontroler.dodaj(z2);
+		o=TipZaposlenikaKontroler.nadji("N", "N");
 		TipZaposlenikaKontroler.izbrisi(o.getId());
-		o=TipZaposlenikaKontroler.nadji("Ime", "Prezime");
-	
+		List<TipZaposlenika>korisnici=TipZaposlenikaKontroler.lista();
+		Assert.assertEquals(korisnici.size(), TipZaposlenikaKontroler.lista().size());
 	}
-*/
+
     @After
     public void tearDown(){
     	
